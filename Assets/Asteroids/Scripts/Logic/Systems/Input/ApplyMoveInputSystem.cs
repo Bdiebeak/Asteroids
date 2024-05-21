@@ -1,10 +1,11 @@
-﻿using System.Numerics;
-using Asteroids.Scripts.ECS.Components;
+﻿using Asteroids.Scripts.ECS.Components;
 using Asteroids.Scripts.ECS.Contexts;
 using Asteroids.Scripts.ECS.Entities;
 using Asteroids.Scripts.ECS.Systems.Interfaces;
 using Asteroids.Scripts.Logic.Components;
 using Asteroids.Scripts.Logic.Infrastructure.Utilities;
+using UnityEngine;
+using Vector2 = System.Numerics.Vector2;
 
 namespace Asteroids.Scripts.Logic.Systems.Input
 {
@@ -33,15 +34,25 @@ namespace Asteroids.Scripts.Logic.Systems.Input
 			foreach (Entity inputEntity in inputEntities)
 			{
 				MoveInputComponent moveInput = inputEntity.Get<MoveInputComponent>();
-				foreach (Entity playerEntity in playerEntities)
+				foreach (Entity playerEntity in playerEntities) // TODO: fix multiple enumeration
 				{
 					MoveDirectionComponent moveDirection = playerEntity.Get<MoveDirectionComponent>();
 					AngularDirectionComponent angularDirection = playerEntity.Get<AngularDirectionComponent>();
 					RotationComponent rotation = playerEntity.Get<RotationComponent>();
 
-					Vector2 relativeDirection = moveInput.value.Rotate(rotation.value);
-					moveDirection.value = relativeDirection;
-					angularDirection.value = moveInput.value.X;
+					// Refill movement input. Handle only forward movement.
+					if (moveInput.value.Y >= 0)
+					{
+						Vector2 moveVector = new(0, moveInput.value.Y);
+						moveDirection.value = moveVector.Rotate(rotation.value);
+					}
+					else
+					{
+						moveDirection.value = Vector2.Zero;
+					}
+
+					// Refill rotation input. Invert for proper rotation.
+					angularDirection.value = -moveInput.value.X;
 				}
 			}
 		}

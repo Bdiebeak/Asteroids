@@ -10,6 +10,7 @@ namespace Asteroids.Scripts.ECS.Contexts
 		void DestroyEntity(Entity entity);
 		IEnumerable<Entity> GetEntities();
 		IEnumerable<Entity> GetEntities(Filter filter);
+		// TODO: don't use IEnumerable
 		// TODO: GetSingleEntity
 	}
 }

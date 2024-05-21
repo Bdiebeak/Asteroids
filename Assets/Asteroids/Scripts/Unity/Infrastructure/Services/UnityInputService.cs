@@ -1,4 +1,4 @@
-﻿using Asteroids.Scripts.Logic.Infrastructure.Services.Input;
+﻿using Asteroids.Scripts.Logic.Infrastructure.Services;
 
 namespace Asteroids.Scripts.Unity.Infrastructure.Services
 {

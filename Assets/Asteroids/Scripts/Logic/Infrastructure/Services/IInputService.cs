@@ -1,4 +1,4 @@
-﻿namespace Asteroids.Scripts.Logic.Infrastructure.Services.Input
+﻿namespace Asteroids.Scripts.Logic.Infrastructure.Services
 {
 	public interface IInputService
 	{

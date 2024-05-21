@@ -1,8 +1,7 @@
 ﻿using Asteroids.Scripts.ECS.Contexts;
-using Asteroids.Scripts.ECS.Contexts.Container;
 using Asteroids.Scripts.ECS.Systems.Container;
-using Asteroids.Scripts.Logic.Infrastructure.Constants;
-using Asteroids.Scripts.Logic.Infrastructure.Services.Input;
+using Asteroids.Scripts.Logic.Infrastructure.Services;
+using Asteroids.Scripts.Logic.Systems;
 using Asteroids.Scripts.Logic.Systems.Input;
 using Asteroids.Scripts.Logic.Systems.Movement;
 
@@ -17,7 +16,7 @@ namespace Asteroids.Scripts.Logic.Infrastructure
 		private ISystemsContainer _gameplaySystems;
 		private ISystemsContainer _physicSystems;
 
-		public void Initialize(IInputService inputService)
+		public void Initialize(IInputService inputService, IViewFactory viewFactory)
 		{
 			// TODO: do i need it?
 			// Initialize contexts.
@@ -40,8 +39,11 @@ namespace Asteroids.Scripts.Logic.Infrastructure
 
 			// Initialize gameplay systems.
 			_gameplaySystems = new SystemsContainer();
-			_gameplaySystems.Add(new MoveSystem(_gameplayContext))
-							.Add(new RotateSystem(_gameplayContext));
+			// TODO: mb move and rotation in physics?
+			_gameplaySystems.Add(new InitializePlayerSystem(_gameplayContext, viewFactory))
+							.Add(new MoveSystem(_gameplayContext))
+							.Add(new RotateSystem(_gameplayContext))
+							.Add(new UpdateViewSystem(_gameplayContext));
 
 			// Initialize physics systems.
 			_physicSystems = new SystemsContainer();

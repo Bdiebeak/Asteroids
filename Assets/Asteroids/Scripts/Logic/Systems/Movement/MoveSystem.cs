@@ -28,6 +28,7 @@ namespace Asteroids.Scripts.Logic.Systems.Movement
 				MoveDirectionComponent moveDirection = entity.Get<MoveDirectionComponent>();
 				MoveSpeedComponent moveSpeed = entity.Get<MoveSpeedComponent>();
 
+				// TODO: add inertia.
 				position.value += moveDirection.value * moveSpeed.value * deltaTime;
 			}
 		}

@@ -6,13 +6,15 @@ namespace Asteroids.Scripts.Unity.Infrastructure
 {
 	public class EcsMonoStartup : MonoBehaviour
 	{
+		public ViewFactory viewFactory;
+
 		private readonly EcsStartup _ecsStartup = new();
 
 		private void Awake()
 		{
 			UnityInputService inputService = new();
 			inputService.Initialize();
-			_ecsStartup.Initialize(inputService);
+			_ecsStartup.Initialize(inputService, viewFactory);
 		}
 
 		private void Start()

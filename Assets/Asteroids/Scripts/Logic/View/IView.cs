@@ -1,8 +1,10 @@
-﻿namespace Asteroids.Scripts.Logic.View
+﻿using System.Numerics;
+
+namespace Asteroids.Scripts.Logic.View
 {
 	public interface IView
 	{
-		void SetPosition(float x, float y);
+		void SetPosition(Vector2 position);
 		void SetRotation(float angle);
 	}
 }

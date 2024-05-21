@@ -3,7 +3,7 @@ using Asteroids.Scripts.ECS.Contexts;
 using Asteroids.Scripts.ECS.Entities;
 using Asteroids.Scripts.ECS.Systems.Interfaces;
 using Asteroids.Scripts.Logic.Components;
-using Asteroids.Scripts.Logic.Infrastructure.Services.Input;
+using Asteroids.Scripts.Logic.Infrastructure.Services;
 
 namespace Asteroids.Scripts.Logic.Systems.Input
 {

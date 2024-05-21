@@ -1,14 +1,15 @@
 ﻿using Asteroids.Scripts.Logic.View;
 using UnityEngine;
+using Vector2 = System.Numerics.Vector2;
 
 namespace Asteroids.Scripts.Unity.View
 {
 	public class UnityView : MonoBehaviour, IView
 	{
-		public void SetPosition(float x, float y)
+		public void SetPosition(Vector2 position)
 		{
 			Vector3 currentPosition = transform.position;
-			Vector3 newPosition = new(x, y, currentPosition.z);
+			Vector3 newPosition = new(position.X, position.Y, currentPosition.z);
 			transform.position = newPosition;
 		}
 

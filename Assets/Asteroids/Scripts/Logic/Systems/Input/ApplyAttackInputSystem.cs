@@ -16,7 +16,6 @@ namespace Asteroids.Scripts.Logic.Systems.Input
 
 		public void Update(float deltaTime)
 		{
-			throw new System.NotImplementedException();
 		}
 	}
 }

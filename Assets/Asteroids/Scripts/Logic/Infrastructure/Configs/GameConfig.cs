@@ -6,9 +6,8 @@ namespace Asteroids.Scripts.Logic.Infrastructure.Configs
 {
 	public static class GameConfig
 	{
-		public const float ShipScale = 0.5f;
-		public const float ShipAcceleration = 2;
-		public const float ShipMaxSpeed = 10;
+		public const float ShipAngularSpeed = 150;
+		public const float ShipMoveSpeed = 2;
 
 		public static Dictionary<WeaponType, float> WeaponsScale = new()
 		{
