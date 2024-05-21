@@ -1,7 +1,10 @@
 {
-    "name": "Asteroids.ECS",
+    "name": "Asteroids.Unity",
     "rootNamespace": "",
-    "references": [],
+    "references": [
+        "GUID:3e8650de0161e5a43b6563ca74614ed3",
+        "GUID:75469ad4d38634e559750d17036d5f7c"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
