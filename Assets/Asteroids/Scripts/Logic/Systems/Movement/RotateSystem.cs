@@ -29,7 +29,7 @@ namespace Asteroids.Scripts.Logic.Systems.Movement
 				AngularSpeedComponent angularSpeed = entity.Get<AngularSpeedComponent>();
 
 				rotation.value += angularDirection.value * angularSpeed.value * deltaTime;
-				// TODO: clamp rotation.angle = (rotation.angle + 180) % 360 - 180;
+				rotation.value = (rotation.value + 180) % 360 - 180;
 			}
 		}
 	}

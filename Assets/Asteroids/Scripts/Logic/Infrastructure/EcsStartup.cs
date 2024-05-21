@@ -49,6 +49,11 @@ namespace Asteroids.Scripts.Logic.Infrastructure
 			_physicSystems = new SystemsContainer();
 		}
 
+		public void InitializeDebug(IEcsDebugger ecsDebugger)
+		{
+			ecsDebugger.SetContexts(_inputContext, _gameplayContext);
+		}
+
 		public void Start()
 		{
 			_inputSystems.Start();

@@ -15,6 +15,11 @@ namespace Asteroids.Scripts.ECS.Entities
 			Id = id;
 		}
 
+		public IEnumerable<IComponent> GetComponents()
+		{
+			return _components.Values;
+		}
+
 		public TComponent Add<TComponent>() where TComponent : IComponent, new()
 		{
 			Type componentType = typeof(TComponent);

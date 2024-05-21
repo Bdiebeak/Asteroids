@@ -226,6 +226,7 @@ GameObject:
   - component: {fileID: 573291024}
   - component: {fileID: 573291023}
   - component: {fileID: 573291025}
+  - component: {fileID: 573291026}
   m_Layer: 0
   m_Name: EcsStartup
   m_TagString: Untagged
@@ -246,6 +247,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   viewFactory: {fileID: 573291025}
+  ecsDebugger: {fileID: 573291026}
 --- !u!4 &573291024
 Transform:
   m_ObjectHideFlags: 0
@@ -274,6 +276,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerView: {fileID: -2961874928603011201, guid: 266f2e7e29a2f1d4bb156673b57c2268, type: 3}
+--- !u!114 &573291026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 573291022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9728576d573d4d10bf052b7e990440e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

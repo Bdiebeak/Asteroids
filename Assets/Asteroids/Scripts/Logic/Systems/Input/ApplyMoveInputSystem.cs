@@ -4,7 +4,6 @@ using Asteroids.Scripts.ECS.Entities;
 using Asteroids.Scripts.ECS.Systems.Interfaces;
 using Asteroids.Scripts.Logic.Components;
 using Asteroids.Scripts.Logic.Infrastructure.Utilities;
-using UnityEngine;
 using Vector2 = System.Numerics.Vector2;
 
 namespace Asteroids.Scripts.Logic.Systems.Input
