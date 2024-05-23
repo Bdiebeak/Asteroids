@@ -19,5 +19,10 @@ namespace Asteroids.Scripts.Unity.View
 			Quaternion newRotation = Quaternion.Euler(currentRotation.x, currentRotation.y, angle);
 			transform.rotation = newRotation;
 		}
+
+		public void Destroy()
+		{
+			Destroy(gameObject);
+		}
 	}
 }

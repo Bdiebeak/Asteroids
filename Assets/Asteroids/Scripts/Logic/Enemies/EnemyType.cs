@@ -2,9 +2,8 @@
 {
 	public enum EnemyType
 	{
-		BigAsteroid,
-		MiddleAsteroid,
-		LittleAsteroid,
-		UFO
+		Asteroid,
+		AsteroidPiece,
+		Ufo
 	}
 }

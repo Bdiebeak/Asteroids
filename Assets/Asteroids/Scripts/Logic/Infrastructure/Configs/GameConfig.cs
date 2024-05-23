@@ -23,24 +23,21 @@ namespace Asteroids.Scripts.Logic.Infrastructure.Configs
 
 		public static Dictionary<EnemyType, float> EnemiesScale = new()
 		{
-			{EnemyType.BigAsteroid, 1f},
-			{EnemyType.MiddleAsteroid, 0.5f},
-			{EnemyType.LittleAsteroid, 0.25f},
-			{EnemyType.UFO, 0.5f}
+			{EnemyType.Asteroid, 1f},
+			{EnemyType.AsteroidPiece, 0.5f},
+			{EnemyType.Ufo, 0.5f}
 		};
 		public static Dictionary<EnemyType, float> EnemiesSpeed = new()
 		{
-			{EnemyType.BigAsteroid, 2},
-			{EnemyType.MiddleAsteroid, 4},
-			{EnemyType.LittleAsteroid, 6},
-			{EnemyType.UFO, 8}
+			{EnemyType.Asteroid, 2},
+			{EnemyType.AsteroidPiece, 4},
+			{EnemyType.Ufo, 8}
 		};
 		public static Dictionary<EnemyType, int> EnemiesScore = new()
 		{
-			{EnemyType.BigAsteroid, 50},
-			{EnemyType.MiddleAsteroid, 75},
-			{EnemyType.LittleAsteroid, 100},
-			{EnemyType.UFO, 125}
+			{EnemyType.Asteroid, 50},
+			{EnemyType.AsteroidPiece, 75},
+			{EnemyType.Ufo, 100}
 		};
 	}
 }

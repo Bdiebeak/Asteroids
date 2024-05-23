@@ -33,7 +33,6 @@ namespace Asteroids.Scripts.Logic.Infrastructure
 
 			// Initialize gameplay systems.
 			_gameplaySystems = new SystemsContainer();
-			// TODO: mb move and rotation in physics?
 			_gameplaySystems.Add(new InitializePlayerSystem(_gameplayContext, viewFactory))
 							.Add(new MoveSystem(_gameplayContext))
 							.Add(new RotateSystem(_gameplayContext))

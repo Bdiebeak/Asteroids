@@ -6,5 +6,6 @@ namespace Asteroids.Scripts.Logic.View
 	{
 		void SetPosition(Vector2 position);
 		void SetRotation(float angle);
+		void Destroy();
 	}
 }
