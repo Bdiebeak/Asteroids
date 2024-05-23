@@ -29,11 +29,6 @@ namespace Asteroids.Scripts.Unity.Infrastructure
 			_ecsStartup.Update(Time.deltaTime);
 		}
 
-		private void FixedUpdate()
-		{
-			_ecsStartup.FixedUpdate(Time.fixedTime);
-		}
-
 		private void LateUpdate()
 		{
 			_ecsStartup.CleanUp();
