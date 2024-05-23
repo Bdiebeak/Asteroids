@@ -14,23 +14,17 @@ namespace Asteroids.Scripts.Logic.Infrastructure
 
 		private ISystemsContainer _inputSystems;
 		private ISystemsContainer _gameplaySystems;
-		private ISystemsContainer _physicSystems;
 
+		// TODO: services with DiContainer, factory for systems.
 		public void Initialize(IInputService inputService, IViewFactory viewFactory)
 		{
-			// TODO: do i need it?
-			// Initialize contexts.
-			// _contexts = new ContextsContainer();
-			// _contexts.Add(ContextTypes.Input, new Context());
-			// _contexts.Add(ContextTypes.Gameplay, new Context());
-			// _contexts.Add(ContextTypes.Physics, new Context());
-
 			// Initialize contexts.
 			_inputContext = new Context();
 			_gameplayContext = new Context();
 
 			// Initialize input systems.
 			_inputSystems = new SystemsContainer();
+			// TODO: use Features and split this initialization.
 			_inputSystems.Add(new InitializeInputSystem(_inputContext))
 						 .Add(new UpdateMoveInputSystem(_inputContext, inputService))
 						 .Add(new UpdateAttackInputSystem(_inputContext, inputService))
@@ -44,9 +38,6 @@ namespace Asteroids.Scripts.Logic.Infrastructure
 							.Add(new MoveSystem(_gameplayContext))
 							.Add(new RotateSystem(_gameplayContext))
 							.Add(new UpdateViewSystem(_gameplayContext));
-
-			// Initialize physics systems.
-			_physicSystems = new SystemsContainer();
 		}
 
 		public void InitializeDebug(IEcsDebugger ecsDebugger)
@@ -58,7 +49,6 @@ namespace Asteroids.Scripts.Logic.Infrastructure
 		{
 			_inputSystems.Start();
 			_gameplaySystems.Start();
-			_physicSystems.Start();
 		}
 
 		public void Update(float deltaTime)
@@ -67,24 +57,16 @@ namespace Asteroids.Scripts.Logic.Infrastructure
 			_gameplaySystems.Update(deltaTime);
 		}
 
-		public void FixedUpdate(float fixedTime)
-		{
-			_physicSystems.Update(fixedTime);
-		}
-
 		public void CleanUp()
 		{
-			// TODO: mb clean after update of every systems?
 			_inputSystems.CleanUp();
 			_gameplaySystems.CleanUp();
-			_physicSystems.CleanUp();
 		}
 
 		public void Stop()
 		{
 			_inputSystems.Stop();
 			_gameplaySystems.Stop();
-			_physicSystems.Stop();
 		}
 	}
 }
