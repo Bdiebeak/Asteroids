@@ -4,8 +4,7 @@
 	{
 		float HorizontalInput { get; }
 		float VerticalInput { get; }
-		bool IsFiring { get; }
-
-		void Initialize();
+		bool IsFiringPressed { get; }
+		bool IsStartLevelPressed { get; }
 	}
 }

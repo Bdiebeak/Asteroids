@@ -53,20 +53,18 @@ public partial class @UnityInputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""StartLevel"",
+                    ""type"": ""Button"",
+                    ""id"": ""d9df9bf5-efd6-43ba-ae4e-52fb49eab8b8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""a98dc524-4566-4152-962c-a003003487df"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Fire"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
                 {
                     ""name"": """",
                     ""id"": ""abb776f3-f329-4f7b-bbf8-b577d13be018"",
@@ -75,17 +73,6 @@ public partial class @UnityInputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Fire"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""e88e595a-be63-4d2b-afe3-bfb376535300"",
-                    ""path"": ""<Gamepad>/rightStick/x"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Rotate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -156,17 +143,6 @@ public partial class @UnityInputs: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""db7ee692-75d9-4bb3-a10c-68bf7aac9f21"",
-                    ""path"": ""<Gamepad>/leftStick/y"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
                     ""name"": ""1D Axis"",
                     ""id"": ""63c87567-36d3-4533-b365-6ac62b9278cc"",
                     ""path"": ""1DAxis"",
@@ -209,6 +185,17 @@ public partial class @UnityInputs: IInputActionCollection2, IDisposable
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9992b46e-8fed-4023-8359-9432e741410e"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""StartLevel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -220,6 +207,7 @@ public partial class @UnityInputs: IInputActionCollection2, IDisposable
         m_Game_Fire = m_Game.FindAction("Fire", throwIfNotFound: true);
         m_Game_Move = m_Game.FindAction("Move", throwIfNotFound: true);
         m_Game_Rotate = m_Game.FindAction("Rotate", throwIfNotFound: true);
+        m_Game_StartLevel = m_Game.FindAction("StartLevel", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -284,6 +272,7 @@ public partial class @UnityInputs: IInputActionCollection2, IDisposable
     private readonly InputAction m_Game_Fire;
     private readonly InputAction m_Game_Move;
     private readonly InputAction m_Game_Rotate;
+    private readonly InputAction m_Game_StartLevel;
     public struct GameActions
     {
         private @UnityInputs m_Wrapper;
@@ -291,6 +280,7 @@ public partial class @UnityInputs: IInputActionCollection2, IDisposable
         public InputAction @Fire => m_Wrapper.m_Game_Fire;
         public InputAction @Move => m_Wrapper.m_Game_Move;
         public InputAction @Rotate => m_Wrapper.m_Game_Rotate;
+        public InputAction @StartLevel => m_Wrapper.m_Game_StartLevel;
         public InputActionMap Get() { return m_Wrapper.m_Game; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -309,6 +299,9 @@ public partial class @UnityInputs: IInputActionCollection2, IDisposable
             @Rotate.started += instance.OnRotate;
             @Rotate.performed += instance.OnRotate;
             @Rotate.canceled += instance.OnRotate;
+            @StartLevel.started += instance.OnStartLevel;
+            @StartLevel.performed += instance.OnStartLevel;
+            @StartLevel.canceled += instance.OnStartLevel;
         }
 
         private void UnregisterCallbacks(IGameActions instance)
@@ -322,6 +315,9 @@ public partial class @UnityInputs: IInputActionCollection2, IDisposable
             @Rotate.started -= instance.OnRotate;
             @Rotate.performed -= instance.OnRotate;
             @Rotate.canceled -= instance.OnRotate;
+            @StartLevel.started -= instance.OnStartLevel;
+            @StartLevel.performed -= instance.OnStartLevel;
+            @StartLevel.canceled -= instance.OnStartLevel;
         }
 
         public void RemoveCallbacks(IGameActions instance)
@@ -344,5 +340,6 @@ public partial class @UnityInputs: IInputActionCollection2, IDisposable
         void OnFire(InputAction.CallbackContext context);
         void OnMove(InputAction.CallbackContext context);
         void OnRotate(InputAction.CallbackContext context);
+        void OnStartLevel(InputAction.CallbackContext context);
     }
 }

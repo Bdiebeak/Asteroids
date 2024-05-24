@@ -1,10 +1,8 @@
-﻿using UnityEngine;
-
-namespace Asteroids.Scripts.Logic.Infrastructure.StateMachine.States
+﻿namespace Asteroids.Scripts.Logic.Infrastructure.StateMachine.States
 {
 	public class BootstrapState : IState
 	{
-		private IGameStateMachine _stateMachine;
+		private readonly IGameStateMachine _stateMachine;
 
 		public BootstrapState(IGameStateMachine stateMachine)
 		{
@@ -13,18 +11,12 @@ namespace Asteroids.Scripts.Logic.Infrastructure.StateMachine.States
 
 		public void Enter()
 		{
-			Debug.Log("Enter bootstrap state");
+			// TODO: show greetings screen.
 			_stateMachine.Enter<GameInitializeState>();
 		}
 
-		public void Update()
-		{
-			Debug.Log("Update bootstrap state");
-		}
+		public void Update() { }
 
-		public void Exit()
-		{
-			Debug.Log("Exit bootstrap state");
-		}
+		public void Exit() { }
 	}
 }

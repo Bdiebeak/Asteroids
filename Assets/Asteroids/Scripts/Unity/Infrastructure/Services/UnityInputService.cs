@@ -6,12 +6,15 @@ namespace Asteroids.Scripts.Unity.Infrastructure.Services
 	{
 		public float HorizontalInput => _unityInputs.Game.Rotate.ReadValue<float>();
 		public float VerticalInput => _unityInputs.Game.Move.ReadValue<float>();
-		public bool IsFiring => _unityInputs.Game.Fire.IsPressed();
+		public bool IsFiringPressed => _unityInputs.Game.Fire.IsPressed();
+		public bool IsStartLevelPressed { get; }
+		// public bool IsStartLevelPressed => _unityInputs.Game.St
 
-		private readonly UnityInputs _unityInputs = new();
+		private readonly UnityInputs _unityInputs;
 
-		public void Initialize()
+		public UnityInputService()
 		{
+			_unityInputs = new UnityInputs();
 			_unityInputs.Game.Enable();
 		}
 	}

@@ -4,30 +4,29 @@ namespace Asteroids.Scripts.Logic.Infrastructure.StateMachine.States
 {
 	public class GameLoopState : IState
 	{
-		private IGameStateMachine _stateMachine;
+		private readonly IGameStateMachine _stateMachine;
+		private readonly EcsStartup _ecsStartup;
 
-		public GameLoopState(IGameStateMachine stateMachine)
+		public GameLoopState(IGameStateMachine stateMachine, EcsStartup ecsStartup)
 		{
 			_stateMachine = stateMachine;
+			_ecsStartup = ecsStartup;
 		}
 
 		public void Enter()
 		{
-			Debug.Log("Enter game loop state");
+			_ecsStartup.Start();
 		}
 
 		public void Update()
 		{
-			Debug.Log("Update game loop state");
-			if (Input.GetKeyDown(KeyCode.R))
-			{
-				_stateMachine.Enter<GameRestartState>();
-			}
+			_ecsStartup.Update(Time.deltaTime);
+			_ecsStartup.CleanUp();
 		}
 
 		public void Exit()
 		{
-			Debug.Log("Exit game loop state");
+			_ecsStartup.Stop();
 		}
 	}
 }

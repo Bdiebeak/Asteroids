@@ -7,6 +7,7 @@ namespace Asteroids.Scripts.Unity.Infrastructure.Services
 {
 	public class ViewFactory : MonoBehaviour, IViewFactory
 	{
+		// TODO: asset provider
 		public UnityView playerView;
 
 		public IView CreatePlayerView()
