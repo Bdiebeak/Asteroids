@@ -2,7 +2,7 @@ using System.Collections;
 using NUnit.Framework;
 using UnityEngine.TestTools;
 
-namespace Asteroids.Scripts.DI.Tests
+namespace Asteroids.Scripts.ECS.Tests
 {
 	public class ECSTester
 	{

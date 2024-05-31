@@ -1,44 +1,106 @@
+using System;
+using Asteroids.Scripts.DI.Builder;
 using Asteroids.Scripts.DI.Container;
+using Asteroids.Scripts.DI.Describers;
 using NUnit.Framework;
 
 namespace Asteroids.Scripts.DI.Tests
 {
 	public class ContainerTester
 	{
-		private interface ITestInterface
+		[Test]
+		public void TestUnregisteredDependency()
 		{
-			int TestInt { get; }
-			void TestFunction();
-		}
+			IContainerBuilder builder = new ContainerBuilder();
+			IContainer container = builder.Build();
 
-		private class TestClass : ITestInterface
-		{
-			public int TestInt { get; }
-
-			public void TestFunction()
-			{
-			}
+			Assert.Throws<InvalidOperationException>(() => container.Resolve<ITestService>());
 		}
 
 		[Test]
-		public void NewTestScriptSimplePasses()
+		public void TestCycledDependencies()
 		{
-			DependencyContainer container = new();
-			container.Register<TestClass>().As(typeof(ITestInterface));
+			IContainerBuilder builder = new ContainerBuilder();
+			builder.Register(new TypeDependencyDescriber(Lifetime.Singleton, typeof(ServiceA), typeof(ServiceA)));
+			builder.Register(new TypeDependencyDescriber(Lifetime.Singleton, typeof(ServiceB), typeof(ServiceB)));
 
-			ITestInterface testInterface = container.Resolve<ITestInterface>();
-			Assert.NotNull(testInterface);
-			Assert.Zero(testInterface.TestInt);
+			IContainer container = builder.Build();
 
-			// TODO: throw exception - can't find constructor.
-			// container.Register<ITestInterface>();
+			Assert.Throws<InvalidOperationException>(() => container.Resolve<ServiceA>());
+			Assert.Throws<InvalidOperationException>(() => container.Resolve<ServiceB>());
+		}
 
-			// TODO: throw exception - already registered.
-			// container.Register<TestClass>();
-			// container.Register<TestClass>();
+		[Test]
+		public void TestTypesMismatch()
+		{
+			IContainerBuilder builder = new ContainerBuilder();
 
-			// TODO: throw if types mismatch.
-			// container.Register<TestClass>().As(typeof(ITestInterface));
+			Assert.Throws<InvalidOperationException>(() => builder.Register(new TypeDependencyDescriber(Lifetime.Singleton, typeof(ServiceA), typeof(ServiceB))));
+		}
+
+		[Test]
+		public void TestInstanceDependency()
+		{
+			IContainerBuilder builder = new ContainerBuilder();
+			ITestService bindingService = new TestService();
+			builder.Register(new InstanceDependencyDescriber(typeof(ITestService), bindingService));
+
+			IContainer container = builder.Build();
+			ITestService resolvedService = container.Resolve<ITestService>();
+
+			Assert.AreEqual(bindingService, resolvedService);
+		}
+
+		[Test]
+		public void TestTypeDependency()
+		{
+			IContainerBuilder builder = new ContainerBuilder();
+			builder.Register(new TypeDependencyDescriber(Lifetime.Singleton, typeof(ITestService), typeof(TestService)));
+
+			IContainer container = builder.Build();
+			ITestService resolvedService = container.Resolve<ITestService>();
+
+			Assert.NotNull(resolvedService);
+			Assert.IsInstanceOf<TestService>(resolvedService);
+		}
+
+		[Test]
+		public void TestSelfTypeDependency()
+		{
+			IContainerBuilder builder = new ContainerBuilder();
+			builder.Register(new TypeDependencyDescriber(Lifetime.Singleton, typeof(TestService), typeof(TestService)));
+
+			IContainer container = builder.Build();
+			TestService resolvedService = container.Resolve<TestService>();
+
+			Assert.NotNull(resolvedService);
+			Assert.IsInstanceOf<TestService>(resolvedService);
+		}
+
+		[Test]
+		public void TestSingletonResolving()
+		{
+			IContainerBuilder builder = new ContainerBuilder();
+			builder.Register(new TypeDependencyDescriber(Lifetime.Singleton, typeof(ITestService), typeof(TestService)));
+
+			IContainer container = builder.Build();
+			ITestService firstResolvedService = container.Resolve<ITestService>();
+			ITestService secondResolvedService = container.Resolve<ITestService>();
+
+			Assert.AreEqual(firstResolvedService, secondResolvedService);
+		}
+
+		[Test]
+		public void TestTransientResolving()
+		{
+			IContainerBuilder builder = new ContainerBuilder();
+			builder.Register(new TypeDependencyDescriber(Lifetime.Transient, typeof(ITestService), typeof(TestService)));
+
+			IContainer container = builder.Build();
+			ITestService firstResolvedService = container.Resolve<ITestService>();
+			ITestService secondResolvedService = container.Resolve<ITestService>();
+
+			Assert.AreNotEqual(firstResolvedService, secondResolvedService);
 		}
 	}
 }
