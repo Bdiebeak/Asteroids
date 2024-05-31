@@ -1,24 +1,25 @@
-﻿using Asteroids.Scripts.DI;
-using Asteroids.Scripts.Logic.Infrastructure;
-using Asteroids.Scripts.Logic.Infrastructure.Services;
+﻿using Asteroids.Scripts.DI.Builder;
+using Asteroids.Scripts.DI.Container;
+using Asteroids.Scripts.DI.Extensions;
 using Asteroids.Scripts.Logic.Infrastructure.StateMachine;
 using Asteroids.Scripts.Logic.Infrastructure.StateMachine.States;
-using Asteroids.Scripts.Unity.Infrastructure.Services;
 using UnityEngine;
 
 namespace Asteroids.Scripts.Unity
 {
 	public class GameRunner : MonoBehaviour
 	{
-		public ViewFactory viewFactory;
-
-		private IServiceProvider _serviceProvider;
+		private IContainer _diContainer;
 		private IGameStateMachine _gameStateMachine;
 
 		private void Awake()
 		{
-			InitializeServiceProvider();
-			InitializeStateMachine();
+			_diContainer = BuildContainer();
+		}
+
+		private void Start()
+		{
+			_gameStateMachine = _diContainer.Resolve<IGameStateMachine>();
 			_gameStateMachine.Enter<BootstrapState>();
 		}
 
@@ -32,25 +33,12 @@ namespace Asteroids.Scripts.Unity
 			_gameStateMachine.Exit();
 		}
 
-		private void InitializeServiceProvider()
+		private IContainer BuildContainer()
 		{
-			_serviceProvider = new ServiceProvider();
-			_serviceProvider.Bind<IInputService>(new UnityInputService());
-			_serviceProvider.Bind<IViewFactory>(viewFactory);
-			_serviceProvider.Bind<EcsStartup>(new EcsStartup());
-		}
-
-		private void InitializeStateMachine()
-		{
-			_gameStateMachine = new GameStateMachine();
-			_gameStateMachine.Register(new BootstrapState(_gameStateMachine));
-			_gameStateMachine.Register(new GameInitializeState(_gameStateMachine,
-															   _serviceProvider.Resolve<EcsStartup>(),
-															   _serviceProvider.Resolve<IInputService>(),
-															   _serviceProvider.Resolve<IViewFactory>()));
-			_gameStateMachine.Register(new GameLoopState(_gameStateMachine,
-														 _serviceProvider.Resolve<EcsStartup>()));
-			_gameStateMachine.Register(new GameRestartState(_gameStateMachine));
+			IContainerBuilder containerBuilder = new ContainerBuilder();
+			containerBuilder.Register(new ServicesInstaller());
+			containerBuilder.Register(new GameStateMachineInstaller());
+			return containerBuilder.Build();
 		}
 	}
 }
