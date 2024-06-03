@@ -18,8 +18,6 @@ namespace Asteroids.Scripts.DI.Builder
 		public IContainer Build()
 		{
 			IContainer container = new Container.Container(_dependencyDescribers);
-			// Register container instance into builder to inject it if needed (into factories or etc).
-			_dependencyDescribers.Add(new InstanceDependencyDescriber(typeof(IContainer), container));
 			return container;
 		}
 

@@ -102,5 +102,15 @@ namespace Asteroids.Scripts.DI.Tests
 
 			Assert.AreNotEqual(firstResolvedService, secondResolvedService);
 		}
+
+		[Test]
+		public void TestSelfBinding()
+		{
+			IContainerBuilder builder = new ContainerBuilder();
+			IContainer container = builder.Build();
+			IContainer resolvedContainer = container.Resolve<IContainer>();
+
+			Assert.AreEqual(container, resolvedContainer);
+		}
 	}
 }

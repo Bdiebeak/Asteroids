@@ -7,7 +7,14 @@ namespace Asteroids.Scripts.Logic.Components
 	[Serializable]
 	public class MoveInputComponent : IComponent
 	{
+		// TODO: bool or float
 		public Vector2 value;
+	}
+
+	[Serializable]
+	public class RotateInputComponent : IComponent
+	{
+		public float value;
 	}
 
 	[Serializable]

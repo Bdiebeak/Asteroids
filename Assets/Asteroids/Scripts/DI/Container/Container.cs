@@ -14,6 +14,10 @@ namespace Asteroids.Scripts.DI.Container
 
 		public Container(IEnumerable<IDependencyDescriber> dependencyDescribers)
 		{
+			// Register container instance to inject it if needed (into factories or etc).
+			_describers.Add(typeof(IContainer), new InstanceDependencyDescriber(typeof(IContainer), this));
+
+			// Register dependencies from builder.
 			foreach (IDependencyDescriber dependencyDescriber in dependencyDescribers)
 			{
 				_describers.Add(dependencyDescriber.RegistrationType, dependencyDescriber);

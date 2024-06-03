@@ -5,7 +5,8 @@ using UnityEngine;
 
 namespace Asteroids.Scripts.Unity.Infrastructure.Services
 {
-	public class ViewFactory : MonoBehaviour, IViewFactory
+	[CreateAssetMenu(menuName = "SO/" + nameof(ViewFactory), fileName = nameof(ViewFactory))]
+	public class ViewFactory : ScriptableObject, IViewFactory
 	{
 		// TODO: asset provider
 		public UnityView playerView;
