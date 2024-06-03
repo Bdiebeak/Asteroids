@@ -4,18 +4,18 @@ using System.Linq;
 using System.Reflection;
 using Asteroids.Scripts.DI.Describers;
 
-namespace Asteroids.Scripts.DI.Container
+namespace Asteroids.Scripts.DI.Resolver
 {
-	public class Container : IContainer
+	public class ContainerResolver : IContainerResolver
 	{
 		private readonly Dictionary<Type, IDependencyDescriber> _describers = new();
 		private readonly Dictionary<Type, object> _singletons = new();
 		private readonly HashSet<Type> _currentResolves = new();
 
-		public Container(IEnumerable<IDependencyDescriber> dependencyDescribers)
+		public ContainerResolver(IEnumerable<IDependencyDescriber> dependencyDescribers)
 		{
 			// Register container instance to inject it if needed (into factories or etc).
-			_describers.Add(typeof(IContainer), new InstanceDependencyDescriber(typeof(IContainer), this));
+			_describers.Add(typeof(IContainerResolver), new InstanceDependencyDescriber(typeof(IContainerResolver), this));
 
 			// Register dependencies from builder.
 			foreach (IDependencyDescriber dependencyDescriber in dependencyDescribers)
@@ -54,7 +54,7 @@ namespace Asteroids.Scripts.DI.Container
 					}
 				}
 
-				// Create instance.
+				// Create instance depending on describer.
 				switch (describer)
 				{
 					case InstanceDependencyDescriber instanceDescriber:

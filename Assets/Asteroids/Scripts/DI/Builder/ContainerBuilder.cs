@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Asteroids.Scripts.DI.Container;
 using Asteroids.Scripts.DI.Describers;
+using Asteroids.Scripts.DI.Resolver;
 
 namespace Asteroids.Scripts.DI.Builder
 {
@@ -15,10 +15,10 @@ namespace Asteroids.Scripts.DI.Builder
 			_dependencyDescribers.Add(dependencyDescriber);
 		}
 
-		public IContainer Build()
+		public IContainerResolver Build()
 		{
-			IContainer container = new Container.Container(_dependencyDescribers);
-			return container;
+			IContainerResolver containerResolver = new ContainerResolver(_dependencyDescribers);
+			return containerResolver;
 		}
 
 		private void ValidateDescriber(IDependencyDescriber dependencyDescriber)

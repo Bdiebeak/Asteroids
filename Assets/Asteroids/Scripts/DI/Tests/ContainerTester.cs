@@ -1,7 +1,7 @@
 using System;
 using Asteroids.Scripts.DI.Builder;
-using Asteroids.Scripts.DI.Container;
 using Asteroids.Scripts.DI.Describers;
+using Asteroids.Scripts.DI.Resolver;
 using NUnit.Framework;
 
 namespace Asteroids.Scripts.DI.Tests
@@ -12,9 +12,9 @@ namespace Asteroids.Scripts.DI.Tests
 		public void TestUnregisteredDependency()
 		{
 			IContainerBuilder builder = new ContainerBuilder();
-			IContainer container = builder.Build();
+			IContainerResolver containerResolver = builder.Build();
 
-			Assert.Throws<InvalidOperationException>(() => container.Resolve<ITestService>());
+			Assert.Throws<InvalidOperationException>(() => containerResolver.Resolve<ITestService>());
 		}
 
 		[Test]
@@ -24,10 +24,10 @@ namespace Asteroids.Scripts.DI.Tests
 			builder.Register(new TypeDependencyDescriber(Lifetime.Singleton, typeof(ServiceA), typeof(ServiceA)));
 			builder.Register(new TypeDependencyDescriber(Lifetime.Singleton, typeof(ServiceB), typeof(ServiceB)));
 
-			IContainer container = builder.Build();
+			IContainerResolver containerResolver = builder.Build();
 
-			Assert.Throws<InvalidOperationException>(() => container.Resolve<ServiceA>());
-			Assert.Throws<InvalidOperationException>(() => container.Resolve<ServiceB>());
+			Assert.Throws<InvalidOperationException>(() => containerResolver.Resolve<ServiceA>());
+			Assert.Throws<InvalidOperationException>(() => containerResolver.Resolve<ServiceB>());
 		}
 
 		[Test]
@@ -45,8 +45,8 @@ namespace Asteroids.Scripts.DI.Tests
 			ITestService bindingService = new TestService();
 			builder.Register(new InstanceDependencyDescriber(typeof(ITestService), bindingService));
 
-			IContainer container = builder.Build();
-			ITestService resolvedService = container.Resolve<ITestService>();
+			IContainerResolver containerResolver = builder.Build();
+			ITestService resolvedService = containerResolver.Resolve<ITestService>();
 
 			Assert.AreEqual(bindingService, resolvedService);
 		}
@@ -57,8 +57,8 @@ namespace Asteroids.Scripts.DI.Tests
 			IContainerBuilder builder = new ContainerBuilder();
 			builder.Register(new TypeDependencyDescriber(Lifetime.Singleton, typeof(ITestService), typeof(TestService)));
 
-			IContainer container = builder.Build();
-			ITestService resolvedService = container.Resolve<ITestService>();
+			IContainerResolver containerResolver = builder.Build();
+			ITestService resolvedService = containerResolver.Resolve<ITestService>();
 
 			Assert.NotNull(resolvedService);
 			Assert.IsInstanceOf<TestService>(resolvedService);
@@ -70,8 +70,8 @@ namespace Asteroids.Scripts.DI.Tests
 			IContainerBuilder builder = new ContainerBuilder();
 			builder.Register(new TypeDependencyDescriber(Lifetime.Singleton, typeof(TestService), typeof(TestService)));
 
-			IContainer container = builder.Build();
-			TestService resolvedService = container.Resolve<TestService>();
+			IContainerResolver containerResolver = builder.Build();
+			TestService resolvedService = containerResolver.Resolve<TestService>();
 
 			Assert.NotNull(resolvedService);
 			Assert.IsInstanceOf<TestService>(resolvedService);
@@ -83,9 +83,9 @@ namespace Asteroids.Scripts.DI.Tests
 			IContainerBuilder builder = new ContainerBuilder();
 			builder.Register(new TypeDependencyDescriber(Lifetime.Singleton, typeof(ITestService), typeof(TestService)));
 
-			IContainer container = builder.Build();
-			ITestService firstResolvedService = container.Resolve<ITestService>();
-			ITestService secondResolvedService = container.Resolve<ITestService>();
+			IContainerResolver containerResolver = builder.Build();
+			ITestService firstResolvedService = containerResolver.Resolve<ITestService>();
+			ITestService secondResolvedService = containerResolver.Resolve<ITestService>();
 
 			Assert.AreEqual(firstResolvedService, secondResolvedService);
 		}
@@ -96,9 +96,9 @@ namespace Asteroids.Scripts.DI.Tests
 			IContainerBuilder builder = new ContainerBuilder();
 			builder.Register(new TypeDependencyDescriber(Lifetime.Transient, typeof(ITestService), typeof(TestService)));
 
-			IContainer container = builder.Build();
-			ITestService firstResolvedService = container.Resolve<ITestService>();
-			ITestService secondResolvedService = container.Resolve<ITestService>();
+			IContainerResolver containerResolver = builder.Build();
+			ITestService firstResolvedService = containerResolver.Resolve<ITestService>();
+			ITestService secondResolvedService = containerResolver.Resolve<ITestService>();
 
 			Assert.AreNotEqual(firstResolvedService, secondResolvedService);
 		}
@@ -107,10 +107,10 @@ namespace Asteroids.Scripts.DI.Tests
 		public void TestSelfBinding()
 		{
 			IContainerBuilder builder = new ContainerBuilder();
-			IContainer container = builder.Build();
-			IContainer resolvedContainer = container.Resolve<IContainer>();
+			IContainerResolver containerResolver = builder.Build();
+			IContainerResolver resolvedContainer = containerResolver.Resolve<IContainerResolver>();
 
-			Assert.AreEqual(container, resolvedContainer);
+			Assert.AreEqual(containerResolver, resolvedContainer);
 		}
 	}
 }

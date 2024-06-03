@@ -1,6 +1,5 @@
 ﻿using System;
 using Asteroids.Scripts.DI.Builder;
-using Asteroids.Scripts.DI.Container;
 using Asteroids.Scripts.DI.Describers;
 
 namespace Asteroids.Scripts.DI.Extensions

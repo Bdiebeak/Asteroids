@@ -1,5 +1,4 @@
 ﻿using System;
-using Asteroids.Scripts.DI.Container;
 
 namespace Asteroids.Scripts.DI.Describers
 {

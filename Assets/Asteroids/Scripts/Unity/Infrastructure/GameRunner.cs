@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Asteroids.Scripts.DI.Builder;
-using Asteroids.Scripts.DI.Container;
 using Asteroids.Scripts.DI.Extensions;
+using Asteroids.Scripts.DI.Resolver;
 using Asteroids.Scripts.Logic.Infrastructure.StateMachine;
 using Asteroids.Scripts.Logic.Infrastructure.StateMachine.States;
 using Asteroids.Scripts.Unity.Infrastructure.Installers;
@@ -14,7 +14,7 @@ namespace Asteroids.Scripts.Unity.Infrastructure
 		[SerializeField]
 		private List<MonoInstaller> monoInstallers;
 
-		private IContainer _diContainer;
+		private IContainerResolver _diContainer;
 		private IGameStateMachine _gameStateMachine;
 
 		private void Awake()
@@ -38,7 +38,7 @@ namespace Asteroids.Scripts.Unity.Infrastructure
 			_gameStateMachine.Exit();
 		}
 
-		private IContainer BuildContainer()
+		private IContainerResolver BuildContainer()
 		{
 			IContainerBuilder containerBuilder = new ContainerBuilder();
 			foreach (MonoInstaller installer in monoInstallers)

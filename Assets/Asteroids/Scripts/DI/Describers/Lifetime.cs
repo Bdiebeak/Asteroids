@@ -1,4 +1,4 @@
-﻿namespace Asteroids.Scripts.DI.Container
+﻿namespace Asteroids.Scripts.DI.Describers
 {
 	public enum Lifetime
 	{

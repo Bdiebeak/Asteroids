@@ -1,20 +1,20 @@
-﻿using Asteroids.Scripts.DI.Container;
+﻿using Asteroids.Scripts.DI.Resolver;
 
 namespace Asteroids.Scripts.Logic.Infrastructure.StateMachine
 {
 	// TODO: interface
 	public class GameStatesFactory
 	{
-		private IContainer _container;
+		private IContainerResolver _containerResolver;
 
-		public GameStatesFactory(IContainer container)
+		public GameStatesFactory(IContainerResolver containerResolver)
 		{
-			_container = container;
+			_containerResolver = containerResolver;
 		}
 
 		public TState GetState<TState>()
 		{
-			return _container.Resolve<TState>();
+			return _containerResolver.Resolve<TState>();
 		}
 	}
 }
