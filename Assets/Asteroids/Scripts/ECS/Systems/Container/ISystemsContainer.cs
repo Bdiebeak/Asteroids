@@ -4,7 +4,7 @@ namespace Asteroids.Scripts.ECS.Systems.Container
 {
 	public interface ISystemsContainer
 	{
-		SystemsContainer Add(ISystem system);
+		ISystemsContainer Add(ISystem system);
 		void Start();
 		void Update(float deltaTime);
 		void CleanUp();

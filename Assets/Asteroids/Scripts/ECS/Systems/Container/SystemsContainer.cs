@@ -10,7 +10,7 @@ namespace Asteroids.Scripts.ECS.Systems.Container
 		private readonly List<ICleanUpSystem> _cleanUpSystems = new();
 		private readonly List<IStopSystem> _stopSystems = new();
 
-		public SystemsContainer Add(ISystem system)
+		public ISystemsContainer Add(ISystem system)
 		{
 			if (system is IStartSystem startSystem)
 			{
