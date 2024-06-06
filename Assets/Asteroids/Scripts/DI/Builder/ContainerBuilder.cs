@@ -23,26 +23,12 @@ namespace Asteroids.Scripts.DI.Builder
 
 		private void ValidateDescriber(IDependencyDescriber dependencyDescriber)
 		{
-			switch (dependencyDescriber)
+			if (dependencyDescriber.IsValid())
 			{
-				case InstanceDependencyDescriber instanceDescriber:
-					Type instanceType = instanceDescriber.Instance.GetType();
-					if (instanceDescriber.RegistrationType.IsAssignableFrom(instanceType) == false)
-					{
-						throw new InvalidOperationException($"{instanceType} doesn't implement or inherit {instanceDescriber.RegistrationType}.");
-					}
-					break;
-
-				case TypeDependencyDescriber typeDescriber:
-					if (typeDescriber.RegistrationType.IsAssignableFrom(typeDescriber.ImplementationType) == false)
-					{
-						throw new InvalidOperationException($"{typeDescriber.ImplementationType} doesn't implement or inherit {typeDescriber.RegistrationType}.");
-					}
-					break;
-
-				default:
-					throw new ArgumentOutOfRangeException(nameof(dependencyDescriber));
+				return;
 			}
+
+			throw new InvalidOperationException($"Dependency in describer doesn't implement or inherit registration type - {dependencyDescriber.RegistrationType}.");
 		}
 	}
 }

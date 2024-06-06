@@ -6,5 +6,7 @@ namespace Asteroids.Scripts.DI.Describers
 	{
 		Lifetime Lifetime { get; }
 		Type RegistrationType { get; }
+
+		bool IsValid();
 	}
 }

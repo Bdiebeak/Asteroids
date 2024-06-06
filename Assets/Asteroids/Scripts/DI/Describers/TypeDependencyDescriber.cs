@@ -14,5 +14,10 @@ namespace Asteroids.Scripts.DI.Describers
 			RegistrationType = dependencyType;
 			ImplementationType = implementationType;
 		}
+
+		public bool IsValid()
+		{
+			return RegistrationType.IsAssignableFrom(ImplementationType);
+		}
 	}
 }
