@@ -3,17 +3,17 @@ using System.Collections.Generic;
 
 namespace Asteroids.Scripts.ECS.Components
 {
-	public class Filter
+	public class Filter : IFilter
 	{
 		private readonly HashSet<Type> _includeComponents = new();
 		private readonly HashSet<Type> _excludeComponents = new();
 
-		public IEnumerable<Type> GetIncluded()
+		public IReadOnlyCollection<Type> GetIncluded()
 		{
 			return _includeComponents;
 		}
 
-		public IEnumerable<Type> GetExcluded()
+		public IReadOnlyCollection<Type> GetExcluded()
 		{
 			return _excludeComponents;
 		}
