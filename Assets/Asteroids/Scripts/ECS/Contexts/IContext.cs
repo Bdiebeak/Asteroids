@@ -8,9 +8,8 @@ namespace Asteroids.Scripts.ECS.Contexts
 	{
 		Entity CreateEntity();
 		void DestroyEntity(Entity entity);
-		IEnumerable<Entity> GetEntities();
-		IEnumerable<Entity> GetEntities(Filter filter);
-		// TODO: don't use IEnumerable
-		// TODO: GetSingleEntity
+		IReadOnlyCollection<Entity> GetEntities(Filter filter);
+		bool TryGetUnique<TComponent>(out TComponent uniqueComponent) where TComponent : IUniqueComponent;
+		Pool<TComponent> GetComponentPool<TComponent>() where TComponent : IComponent;
 	}
 }
