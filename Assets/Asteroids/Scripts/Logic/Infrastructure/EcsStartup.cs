@@ -12,8 +12,8 @@ namespace Asteroids.Scripts.Logic.Infrastructure
 		private IContext _inputContext;
 		private IContext _gameplayContext;
 
-		private ISystemsContainer _inputSystems;
-		private ISystemsContainer _gameplaySystems;
+		private SystemsContainer _inputSystems;
+		private SystemsContainer _gameplaySystems;
 
 		// TODO: services with DiContainer, factory for systems.
 		public void Initialize(IInputService inputService, IViewFactory viewFactory)

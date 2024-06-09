@@ -20,23 +20,22 @@ namespace Asteroids.Scripts.Unity.Infrastructure.Services
 		[ContextMenu("Print")]
 		private void PrintInfo()
 		{
-			// TODO:
-			// int i = 1;
-			// StringBuilder logBuilder = new();
-			// foreach (IContext context in _contexts)
-			// {
-			// 	logBuilder.AppendLine($"Context {i}.");
-			// 	foreach (Entity entity in context.GetEntities())
-			// 	{
-			// 		logBuilder.AppendLine($"Entity {entity.Id}:");
-			// 		foreach (IComponent component in entity.GetComponents())
-			// 		{
-			// 			logBuilder.AppendLine($"\t-{component.GetType().Name}");
-			// 		}
-			// 	}
-			// 	i++;
-			// }
-			// Debug.Log(logBuilder);
+			int i = 1;
+			StringBuilder logBuilder = new();
+			foreach (IContext context in _contexts)
+			{
+				logBuilder.AppendLine($"Context {i}.");
+				foreach (Entity entity in context.GetEntities())
+				{
+					logBuilder.AppendLine($"Entity:");
+					foreach (IComponent component in entity.GetComponents())
+					{
+						logBuilder.AppendLine($"\t-{component.GetType().Name}");
+					}
+				}
+				i++;
+			}
+			Debug.Log(logBuilder);
 		}
 	}
 }

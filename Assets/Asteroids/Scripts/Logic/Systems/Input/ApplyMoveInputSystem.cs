@@ -1,7 +1,6 @@
 ﻿using Asteroids.Scripts.ECS.Components;
 using Asteroids.Scripts.ECS.Contexts;
 using Asteroids.Scripts.ECS.Entities;
-using Asteroids.Scripts.ECS.Extensions;
 using Asteroids.Scripts.ECS.Systems.Interfaces;
 using Asteroids.Scripts.Logic.Components;
 using Asteroids.Scripts.Logic.Infrastructure.Utilities;
@@ -13,15 +12,15 @@ namespace Asteroids.Scripts.Logic.Systems.Input
 	{
 		private readonly IContext _inputContext;
 		private readonly IContext _gameplayContext;
-		private readonly Filter _moveInputFilter;
-		private readonly Filter _playerFilter;
+		private readonly Mask _moveInputMask;
+		private readonly Mask _playerMask;
 
 		public ApplyMoveInputSystem(IContext inputContext, IContext gameplayContext)
 		{
 			_inputContext = inputContext;
 			_gameplayContext = gameplayContext;
-			_moveInputFilter = new Filter().Include<MoveInputComponent>();
-			_playerFilter = new Filter().Include<PlayerComponent>()
+			_moveInputMask = new Mask().Include<MoveInputComponent>();
+			_playerMask = new Mask().Include<PlayerComponent>()
 										.Include<MoveDirectionComponent>()
 										.Include<AngularDirectionComponent>()
 										.Include<RotationComponent>();
@@ -29,8 +28,8 @@ namespace Asteroids.Scripts.Logic.Systems.Input
 
 		public void Update(float deltaTime)
 		{
-			var inputEntities = _inputContext.GetEntities(_moveInputFilter);
-			var playerEntities = _gameplayContext.GetEntities(_playerFilter);
+			var inputEntities = _inputContext.GetEntities(_moveInputMask);
+			var playerEntities = _gameplayContext.GetEntities(_playerMask);
 			foreach (Entity inputEntity in inputEntities)
 			{
 				MoveInputComponent moveInput = inputEntity.Get<MoveInputComponent>();

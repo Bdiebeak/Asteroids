@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Asteroids.Scripts.ECS.Components
 {
-	public class Filter : IFilter
+	public class Mask
 	{
 		private readonly HashSet<Type> _includeComponents = new();
 		private readonly HashSet<Type> _excludeComponents = new();
@@ -18,13 +18,13 @@ namespace Asteroids.Scripts.ECS.Components
 			return _excludeComponents;
 		}
 
-		public Filter Include<TComponent>() where TComponent : IComponent
+		public Mask Include<TComponent>() where TComponent : IComponent
 		{
 			_includeComponents.Add(typeof(TComponent));
 			return this;
 		}
 
-		public Filter Exclude<TComponent>() where TComponent : IComponent
+		public Mask Exclude<TComponent>() where TComponent : IComponent
 		{
 			_excludeComponents.Add(typeof(TComponent));
 			return this;

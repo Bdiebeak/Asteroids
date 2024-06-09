@@ -1,7 +1,6 @@
 ﻿using Asteroids.Scripts.ECS.Components;
 using Asteroids.Scripts.ECS.Contexts;
 using Asteroids.Scripts.ECS.Entities;
-using Asteroids.Scripts.ECS.Extensions;
 using Asteroids.Scripts.ECS.Systems.Interfaces;
 using Asteroids.Scripts.Logic.Components;
 
@@ -10,19 +9,19 @@ namespace Asteroids.Scripts.Logic.Systems.Movement
 	public class RotateSystem : IUpdateSystem
 	{
 		private readonly IContext _gameplayContext;
-		private readonly Filter _movableFilter;
+		private readonly Mask _movableMask;
 
 		public RotateSystem(IContext gameplayContext)
 		{
 			_gameplayContext = gameplayContext;
-			_movableFilter = new Filter().Include<RotationComponent>()
+			_movableMask = new Mask().Include<RotationComponent>()
 										 .Include<AngularDirectionComponent>()
 										 .Include<AngularSpeedComponent>();
 		}
 
 		public void Update(float deltaTime)
 		{
-			var movableEntities = _gameplayContext.GetEntities(_movableFilter);
+			var movableEntities = _gameplayContext.GetEntities(_movableMask);
 			foreach (Entity entity in movableEntities)
 			{
 				RotationComponent rotation = entity.Get<RotationComponent>();

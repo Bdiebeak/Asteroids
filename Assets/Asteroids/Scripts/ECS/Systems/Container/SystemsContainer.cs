@@ -3,14 +3,14 @@ using Asteroids.Scripts.ECS.Systems.Interfaces;
 
 namespace Asteroids.Scripts.ECS.Systems.Container
 {
-	public class SystemsContainer : ISystemsContainer
+	public class SystemsContainer
 	{
 		private readonly List<IStartSystem> _startSystems = new();
 		private readonly List<IUpdateSystem> _updateSystems = new();
 		private readonly List<ICleanUpSystem> _cleanUpSystems = new();
 		private readonly List<IStopSystem> _stopSystems = new();
 
-		public ISystemsContainer Add(ISystem system)
+		public SystemsContainer Add(ISystem system)
 		{
 			if (system is IStartSystem startSystem)
 			{

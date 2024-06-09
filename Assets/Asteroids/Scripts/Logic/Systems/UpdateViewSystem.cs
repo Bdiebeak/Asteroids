@@ -1,7 +1,6 @@
 ﻿using Asteroids.Scripts.ECS.Components;
 using Asteroids.Scripts.ECS.Contexts;
 using Asteroids.Scripts.ECS.Entities;
-using Asteroids.Scripts.ECS.Extensions;
 using Asteroids.Scripts.ECS.Systems.Interfaces;
 using Asteroids.Scripts.Logic.Components;
 
@@ -10,17 +9,17 @@ namespace Asteroids.Scripts.Logic.Systems
 	public class UpdateViewSystem : IUpdateSystem
 	{
 		private readonly IContext _gameplayContext;
-		private readonly Filter _viewFilter;
+		private readonly Mask _viewMask;
 
 		public UpdateViewSystem(IContext gameplayContext)
 		{
 			_gameplayContext = gameplayContext;
-			_viewFilter = new Filter().Include<ViewComponent>();
+			_viewMask = new Mask().Include<ViewComponent>();
 		}
 
 		public void Update(float deltaTime)
 		{
-			var viewEntities = _gameplayContext.GetEntities(_viewFilter);
+			var viewEntities = _gameplayContext.GetEntities(_viewMask);
 			foreach (Entity entity in viewEntities)
 			{
 				ViewComponent view = entity.Get<ViewComponent>();
