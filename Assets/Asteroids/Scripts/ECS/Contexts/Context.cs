@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Asteroids.Scripts.ECS.Components;
@@ -14,6 +15,15 @@ namespace Asteroids.Scripts.ECS.Contexts
 			Entity newEntity = new();
 			_entities.Add(newEntity);
 			return newEntity;
+		}
+
+		public void DestroyEntity(Entity entity)
+		{
+			if (_entities.Contains(entity) == false)
+			{
+				throw new InvalidOperationException("Can't remove this entity it doesn't exist in this context.");
+			}
+			entity.Clear();
 		}
 
 		public IReadOnlyCollection<Entity> GetEntities()

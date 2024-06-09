@@ -9,6 +9,11 @@ namespace Asteroids.Scripts.ECS.Entities
 	{
 		private readonly Dictionary<Type, IComponent> _components = new();
 
+		public void Clear()
+		{
+			_components.Clear();
+		}
+
 		public IReadOnlyCollection<IComponent> GetComponents()
 		{
 			return _components.Values;
