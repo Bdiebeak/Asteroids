@@ -18,11 +18,11 @@ namespace Asteroids.Scripts.ECS.Tests
 			_context = new Context();
 
 			_first = _context.CreateEntity();
-			_first.Add<FirstComponent>();
+			_first.Add(new FirstComponent());
 
 			_second = _context.CreateEntity();
-			_second.Add<FirstComponent>();
-			_second.Add<SecondComponent>();
+			_second.Add(new FirstComponent());
+			_second.Add(new SecondComponent());
 
 			_third = _context.CreateEntity();
 		}

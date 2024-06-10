@@ -21,16 +21,16 @@ namespace Asteroids.Scripts.Logic.Systems
 		public void Start()
 		{
 			Entity entity = _gameplayContext.CreateEntity();
-			entity.Add<PlayerComponent>();
-			entity.Add<ViewComponent>().value = _viewFactory.CreatePlayerView();
+			entity.Add<PlayerComponent>(new PlayerComponent());
+			entity.Add<ViewComponent>(new ViewComponent()).value = _viewFactory.CreatePlayerView();
 			// TODO: entity.ConfigureWithMovement();
-			entity.Add<PositionComponent>();
-			entity.Add<MoveDirectionComponent>();
-			entity.Add<MoveSpeedComponent>().value = GameConfig.ShipMoveSpeed;
+			entity.Add<PositionComponent>(new PositionComponent());
+			entity.Add<MoveDirectionComponent>(new MoveDirectionComponent());
+			entity.Add<MoveSpeedComponent>(new MoveSpeedComponent()).value = GameConfig.ShipMoveSpeed;
 			// TODO: entity.ConfigureWithRotation();
-			entity.Add<RotationComponent>();
-			entity.Add<AngularDirectionComponent>();
-			entity.Add<AngularSpeedComponent>().value = GameConfig.ShipAngularSpeed;
+			entity.Add<RotationComponent>(new RotationComponent());
+			entity.Add<AngularDirectionComponent>(new AngularDirectionComponent());
+			entity.Add<AngularSpeedComponent>(new AngularSpeedComponent()).value = GameConfig.ShipAngularSpeed;
 		}
 	}
 }

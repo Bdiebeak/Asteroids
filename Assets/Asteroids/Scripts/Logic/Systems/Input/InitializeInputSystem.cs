@@ -17,8 +17,8 @@ namespace Asteroids.Scripts.Logic.Systems.Input
 		public void Start()
 		{
 			Entity entity = _inputContext.CreateEntity();
-			entity.Add<MoveInputComponent>();
-			entity.Add<AttackInputComponent>();
+			entity.Add<MoveInputComponent>(new MoveInputComponent());
+			entity.Add<AttackInputComponent>(new AttackInputComponent());
 		}
 	}
 }

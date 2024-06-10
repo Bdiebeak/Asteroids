@@ -19,7 +19,7 @@ namespace Asteroids.Scripts.ECS.Entities
 			return _components.Values;
 		}
 
-		public TComponent Add<TComponent>() where TComponent : IComponent, new()
+		public TComponent Add<TComponent>(TComponent component) where TComponent : IComponent
 		{
 			Type componentType = typeof(TComponent);
 			if (_components.ContainsKey(componentType))
@@ -27,9 +27,8 @@ namespace Asteroids.Scripts.ECS.Entities
 				throw new InvalidOperationException($"Entity already has component {componentType}. Can't add.");
 			}
 
-			TComponent newComponent = new();
-			_components[componentType] = newComponent;
-			return newComponent;
+			_components[componentType] = component;
+			return component;
 		}
 
 		public TComponent Get<TComponent>() where TComponent : IComponent

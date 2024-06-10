@@ -9,6 +9,7 @@ namespace Asteroids.Scripts.ECS.Contexts
 	public class Context : IContext
 	{
 		private readonly HashSet<Entity> _entities = new();
+		private Entity _uniqueEntity;
 
 		public Entity CreateEntity()
 		{
@@ -51,6 +52,49 @@ namespace Asteroids.Scripts.ECS.Contexts
 				entities.Add(entity);
 			}
 			return entities;
+		}
+
+		public TComponent CreateUnique<TComponent>(TComponent component) where TComponent : IUniqueComponent
+		{
+			Entity uniqueEntity = GetOrCreateUniqueEntity();
+			if (uniqueEntity.Has<TComponent>())
+			{
+				throw new InvalidOperationException("Unique component was already created.");
+			}
+			return uniqueEntity.Add(component);
+		}
+
+		public TComponent GetUnique<TComponent>() where TComponent : IUniqueComponent
+		{
+			Entity uniqueEntity = GetOrCreateUniqueEntity();
+			if (uniqueEntity.Has<TComponent>() == false)
+			{
+				throw new InvalidOperationException("Unique component wasn't created.");
+			}
+			return uniqueEntity.Get<TComponent>();
+		}
+
+		public void RemoveUnique<TComponent>() where TComponent : IUniqueComponent
+		{
+			Entity uniqueEntity = GetOrCreateUniqueEntity();
+			if (uniqueEntity.Has<TComponent>() == false)
+			{
+				throw new InvalidOperationException("Unique component wasn't created.");
+			}
+			uniqueEntity.Remove<TComponent>();
+			if (uniqueEntity.GetComponents().Count == 0)
+			{
+				DestroyEntity(uniqueEntity);
+			}
+		}
+
+		private Entity GetOrCreateUniqueEntity()
+		{
+			if (_uniqueEntity == null)
+			{
+				_uniqueEntity = CreateEntity();
+			}
+			return _uniqueEntity;
 		}
 	}
 }

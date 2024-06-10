@@ -12,7 +12,7 @@ namespace Asteroids.Scripts.ECS.Tests
 		{
 			Context context = new();
 			Entity entity = context.CreateEntity();
-			FirstComponent component = entity.Add<FirstComponent>();
+			FirstComponent component = entity.Add(new FirstComponent());
 
 			Assert.IsNotNull(component);
 			Assert.IsTrue(entity.GetComponents().Contains(component));
@@ -24,7 +24,7 @@ namespace Asteroids.Scripts.ECS.Tests
 		{
 			Context context = new();
 			Entity entity = context.CreateEntity();
-			FirstComponent component = entity.Add<FirstComponent>();
+			FirstComponent component = entity.Add(new FirstComponent());
 			FirstComponent getComponent = entity.Get<FirstComponent>();
 
 			Assert.IsNotNull(getComponent);
@@ -36,7 +36,7 @@ namespace Asteroids.Scripts.ECS.Tests
 		{
 			Context context = new();
 			Entity entity = context.CreateEntity();
-			entity.Add<FirstComponent>();
+			entity.Add(new FirstComponent());
 
 			Assert.IsTrue(entity.Has<FirstComponent>());
 		}
@@ -46,7 +46,7 @@ namespace Asteroids.Scripts.ECS.Tests
 		{
 			Context context = new();
 			Entity entity = context.CreateEntity();
-			entity.Add<FirstComponent>();
+			entity.Add(new FirstComponent());
 			entity.Remove<FirstComponent>();
 
 			Assert.IsFalse(entity.Has<FirstComponent>());
@@ -57,7 +57,7 @@ namespace Asteroids.Scripts.ECS.Tests
 		{
 			Context context = new();
 			Entity entity = context.CreateEntity();
-			entity.Add<FirstComponent>();
+			entity.Add(new FirstComponent());
 			context.DestroyEntity(entity);
 
 			Assert.IsFalse(entity.Has<FirstComponent>());
