@@ -139,7 +139,7 @@ GameObject:
   - component: {fileID: 905243687171133496}
   - component: {fileID: -2961874928603011201}
   m_Layer: 7
-  m_Name: Player
+  m_Name: PlayerShip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

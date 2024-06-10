@@ -84,6 +84,11 @@ namespace Asteroids.Scripts.DI.Resolver
 
 		private object CreateInstance(Type implementationType)
 		{
+			if (implementationType.IsInterface || implementationType.IsAbstract)
+			{
+				throw new InvalidOperationException($"{implementationType} cannot be instantiated because it is an interface or an abstract class.");
+			}
+
 			ConstructorInfo constructorInfo = implementationType.GetConstructors().FirstOrDefault();
 			if (constructorInfo == null)
 			{

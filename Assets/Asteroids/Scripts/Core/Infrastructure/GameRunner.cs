@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Asteroids.Scripts.Core.Infrastructure.Installers;
+﻿using Asteroids.Scripts.Core.Infrastructure.Installers;
 using Asteroids.Scripts.Core.Infrastructure.StateMachine;
 using Asteroids.Scripts.Core.Infrastructure.StateMachine.States;
 using Asteroids.Scripts.DI.Builder;
@@ -13,10 +12,6 @@ namespace Asteroids.Scripts.Core.Infrastructure
 	// TODO: IEnginePhysicsBroadcaster - broadcasts engine physics events (OnCollisionEnter and etc.)
 	public class GameRunner : MonoBehaviour
 	{
-		// TODO: get rid of MonoInstallers - we need it only to assign something from editor - use Addressables instead
-		[SerializeField]
-		private List<MonoInstaller> monoInstallers;
-
 		private IContainerResolver _diContainer;
 		private IGameStateMachine _gameStateMachine;
 
@@ -44,10 +39,7 @@ namespace Asteroids.Scripts.Core.Infrastructure
 		private IContainerResolver BuildContainer()
 		{
 			IContainerBuilder containerBuilder = new ContainerBuilder();
-			foreach (MonoInstaller installer in monoInstallers)
-			{
-				installer.InstallTo(containerBuilder);
-			}
+			containerBuilder.Register(new ServicesInstaller());
 			containerBuilder.Register(new GameStateMachineInstaller());
 			return containerBuilder.Build();
 		}

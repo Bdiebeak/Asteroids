@@ -1,7 +1,9 @@
 ﻿using Asteroids.Scripts.Core.Gameplay.Movement.Components;
 using Asteroids.Scripts.Core.Gameplay.Player.Components;
+using Asteroids.Scripts.Core.Gameplay.View;
 using Asteroids.Scripts.Core.Gameplay.View.Components;
 using Asteroids.Scripts.Core.Infrastructure.Configs;
+using Asteroids.Scripts.Core.Infrastructure.Factories;
 using Asteroids.Scripts.Core.Infrastructure.Services;
 using Asteroids.Scripts.ECS.Contexts;
 using Asteroids.Scripts.ECS.Entities;
@@ -22,9 +24,11 @@ namespace Asteroids.Scripts.Core.Gameplay.Player.Systems
 
 		public void Start()
 		{
+			IView playerView = _viewFactory.CreatePlayerView();
+
 			Entity entity = _gameplayContext.CreateEntity();
 			entity.Add<PlayerComponent>(new PlayerComponent());
-			entity.Add<ViewComponent>(new ViewComponent()).value = _viewFactory.CreatePlayerView();
+			entity.Add<ViewComponent>(new ViewComponent()).value = playerView;
 			// TODO: entity.ConfigureWithMovement();
 			entity.Add<PositionComponent>(new PositionComponent());
 			entity.Add<MoveDirectionComponent>(new MoveDirectionComponent());

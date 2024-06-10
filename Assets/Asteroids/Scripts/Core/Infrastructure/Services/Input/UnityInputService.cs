@@ -1,4 +1,4 @@
-﻿namespace Asteroids.Scripts.Core.Infrastructure.Services
+﻿namespace Asteroids.Scripts.Core.Infrastructure.Services.Input
 {
 	public class UnityInputService : IInputService
 	{
