@@ -9,8 +9,11 @@ using UnityEngine;
 
 namespace Asteroids.Scripts.Core.Infrastructure
 {
+	// TODO: IEngineCycleBroadcaster - broadcasts engine events (Start, Update and etc.)
+	// TODO: IEnginePhysicsBroadcaster - broadcasts engine physics events (OnCollisionEnter and etc.)
 	public class GameRunner : MonoBehaviour
 	{
+		// TODO: get rid of MonoInstallers - we need it only to assign something from editor - use Addressables instead
 		[SerializeField]
 		private List<MonoInstaller> monoInstallers;
 
