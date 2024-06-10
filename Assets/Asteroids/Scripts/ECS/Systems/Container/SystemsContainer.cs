@@ -10,6 +10,12 @@ namespace Asteroids.Scripts.ECS.Systems.Container
 		private readonly List<ICleanUpSystem> _cleanUpSystems = new();
 		private readonly List<IStopSystem> _stopSystems = new();
 
+		public SystemsContainer Add(Feature feature)
+		{
+			feature.AddTo(this);
+			return this;
+		}
+
 		public SystemsContainer Add(ISystem system)
 		{
 			if (system is IStartSystem startSystem)

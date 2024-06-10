@@ -1,12 +1,14 @@
-﻿using Asteroids.Scripts.Core.Gameplay.Input.Systems;
+﻿using Asteroids.Scripts.Core.Gameplay.Input;
 using Asteroids.Scripts.Core.Gameplay.Movement.Systems;
 using Asteroids.Scripts.Core.Gameplay.Player.Systems;
 using Asteroids.Scripts.Core.Gameplay.View.Systems;
+using Asteroids.Scripts.Core.Infrastructure.Factories;
 using Asteroids.Scripts.Core.Infrastructure.Services;
+using Asteroids.Scripts.Core.Infrastructure.Services.Input;
 using Asteroids.Scripts.ECS.Contexts;
 using Asteroids.Scripts.ECS.Systems.Container;
 
-namespace Asteroids.Scripts.Core.Infrastructure
+namespace Asteroids.Scripts.Core.Gameplay
 {
 	public class EcsStartup
 	{
@@ -17,6 +19,7 @@ namespace Asteroids.Scripts.Core.Infrastructure
 		private SystemsContainer _gameplaySystems;
 
 		// TODO: services with DiContainer, factory for systems.
+		// TODO: but how to split Context on different binding - Tags?
 		public void Initialize(IInputService inputService, IViewFactory viewFactory)
 		{
 			// Initialize contexts.
@@ -25,12 +28,7 @@ namespace Asteroids.Scripts.Core.Infrastructure
 
 			// Initialize input systems.
 			_inputSystems = new SystemsContainer();
-			// TODO: use Features and split this initialization.
-			_inputSystems.Add(new InitializeInputSystem(_inputContext))
-						 .Add(new UpdateMoveInputSystem(_inputContext, inputService))
-						 .Add(new UpdateAttackInputSystem(_inputContext, inputService))
-						 .Add(new ApplyMoveInputSystem(_inputContext, _gameplayContext))
-						 .Add(new ApplyAttackInputSystem(_inputContext, _gameplayContext));
+			_inputSystems.Add(new InputFeature(_inputContext, _gameplayContext, inputService));
 
 			// Initialize gameplay systems.
 			_gameplaySystems = new SystemsContainer();
