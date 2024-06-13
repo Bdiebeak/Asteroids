@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Asteroids.Scripts.ECS.Components;
 using Asteroids.Scripts.ECS.Entities;
+using Asteroids.Scripts.ECS.Exceptions;
 
 namespace Asteroids.Scripts.ECS.Contexts
 {
@@ -22,7 +23,7 @@ namespace Asteroids.Scripts.ECS.Contexts
 		{
 			if (_entities.Contains(entity) == false)
 			{
-				throw new InvalidOperationException("Can't remove this entity it doesn't exist in this context.");
+				throw new NoEntityException("Can't remove this entity it doesn't exist in this context.");
 			}
 			entity.Clear();
 		}
@@ -56,45 +57,31 @@ namespace Asteroids.Scripts.ECS.Contexts
 
 		public TComponent CreateUnique<TComponent>(TComponent component) where TComponent : IUniqueComponent
 		{
-			Entity uniqueEntity = GetOrCreateUniqueEntity();
-			if (uniqueEntity.Has<TComponent>())
-			{
-				throw new InvalidOperationException("Unique component was already created.");
-			}
-			return uniqueEntity.Add(component);
+			_uniqueEntity ??= CreateEntity();
+			return _uniqueEntity.Add(component);
 		}
 
 		public TComponent GetUnique<TComponent>() where TComponent : IUniqueComponent
 		{
-			Entity uniqueEntity = GetOrCreateUniqueEntity();
-			if (uniqueEntity.Has<TComponent>() == false)
+			if (_uniqueEntity == null)
 			{
-				throw new InvalidOperationException("Unique component wasn't created.");
+				throw new NoEntityException("Can't find unique entity.");
 			}
-			return uniqueEntity.Get<TComponent>();
+			return _uniqueEntity.Get<TComponent>();
 		}
 
 		public void RemoveUnique<TComponent>() where TComponent : IUniqueComponent
 		{
-			Entity uniqueEntity = GetOrCreateUniqueEntity();
-			if (uniqueEntity.Has<TComponent>() == false)
-			{
-				throw new InvalidOperationException("Unique component wasn't created.");
-			}
-			uniqueEntity.Remove<TComponent>();
-			if (uniqueEntity.GetComponents().Count == 0)
-			{
-				DestroyEntity(uniqueEntity);
-			}
-		}
-
-		private Entity GetOrCreateUniqueEntity()
-		{
 			if (_uniqueEntity == null)
 			{
-				_uniqueEntity = CreateEntity();
+				throw new NoEntityException("Can't find unique entity.");
 			}
-			return _uniqueEntity;
+
+			_uniqueEntity.Remove<TComponent>();
+			if (_uniqueEntity.GetComponents().Count == 0)
+			{
+				DestroyEntity(_uniqueEntity);
+			}
 		}
 	}
 }

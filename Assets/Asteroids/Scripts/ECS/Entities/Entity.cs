@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Asteroids.Scripts.ECS.Components;
+using Asteroids.Scripts.ECS.Exceptions;
 
 namespace Asteroids.Scripts.ECS.Entities
 {
@@ -24,7 +25,7 @@ namespace Asteroids.Scripts.ECS.Entities
 			Type componentType = typeof(TComponent);
 			if (_components.ContainsKey(componentType))
 			{
-				throw new InvalidOperationException($"Entity already has component {componentType}. Can't add.");
+				throw new AddComponentException($"Entity already has component {componentType}. Can't add.");
 			}
 
 			_components[componentType] = component;
@@ -36,7 +37,7 @@ namespace Asteroids.Scripts.ECS.Entities
 			Type componentType = typeof(TComponent);
 			if (Has<TComponent>() == false)
 			{
-				throw new InvalidOperationException($"Entity doesn't have component {componentType}. Can't get.");
+				throw new NoComponentException($"Entity doesn't have component {componentType}. Can't get.");
 			}
 
 			return (TComponent)_components[componentType];
@@ -47,7 +48,7 @@ namespace Asteroids.Scripts.ECS.Entities
 			Type componentType = typeof(TComponent);
 			if (Has<TComponent>() == false)
 			{
-				throw new InvalidOperationException($"Entity doesn't have component {componentType}. Can't remove.");
+				throw new NoComponentException($"Entity doesn't have component {componentType}. Can't remove.");
 			}
 
 			_components.Remove(componentType);
