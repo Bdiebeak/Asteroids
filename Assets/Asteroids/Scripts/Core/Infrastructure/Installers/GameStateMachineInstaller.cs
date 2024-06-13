@@ -1,4 +1,5 @@
-﻿using Asteroids.Scripts.Core.Infrastructure.StateMachine;
+﻿using Asteroids.Scripts.Core.Infrastructure.Factories;
+using Asteroids.Scripts.Core.Infrastructure.StateMachine;
 using Asteroids.Scripts.Core.Infrastructure.StateMachine.States;
 using Asteroids.Scripts.DI.Builder;
 using Asteroids.Scripts.DI.Extensions;
@@ -10,11 +11,12 @@ namespace Asteroids.Scripts.Core.Infrastructure.Installers
 		public void InstallTo(IContainerBuilder containerBuilder)
 		{
 			containerBuilder.Register<IGameStateMachine, GameStateMachine>();
-			containerBuilder.Register<GameStatesFactory>();
+			containerBuilder.Register<IGameStatesFactory, GameStatesFactory>();
 			containerBuilder.Register<BootstrapState>();
-			containerBuilder.Register<GameInitializeState>();
+			containerBuilder.Register<InitializationState>();
 			containerBuilder.Register<GameLoopState>();
-			containerBuilder.Register<GameRestartState>();
+			containerBuilder.Register<GameOverState>();
+			containerBuilder.Register<RestartState>();
 		}
 	}
 }

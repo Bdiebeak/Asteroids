@@ -1,18 +1,17 @@
 ﻿using Asteroids.Scripts.Core.Gameplay;
 using Asteroids.Scripts.Core.Infrastructure.Factories;
-using Asteroids.Scripts.Core.Infrastructure.Services;
 using Asteroids.Scripts.Core.Infrastructure.Services.Input;
 
 namespace Asteroids.Scripts.Core.Infrastructure.StateMachine.States
 {
-	public class GameInitializeState : IState
+	public class InitializationState : IState
 	{
 		private readonly IGameStateMachine _stateMachine;
 		private readonly EcsStartup _ecsStartup;
 		private readonly IInputService _inputService;
 		private readonly IViewFactory _viewFactory;
 
-		public GameInitializeState(IGameStateMachine stateMachine, EcsStartup ecsStartup,
+		public InitializationState(IGameStateMachine stateMachine, EcsStartup ecsStartup,
 								   IInputService inputService, IViewFactory viewFactory)
 		{
 			_stateMachine = stateMachine;

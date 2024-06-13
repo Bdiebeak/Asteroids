@@ -12,7 +12,7 @@
 		public void Enter()
 		{
 			// TODO: show greetings screen.
-			_stateMachine.Enter<GameInitializeState>();
+			_stateMachine.Enter<InitializationState>();
 		}
 
 		public void Update() { }

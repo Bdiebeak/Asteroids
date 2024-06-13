@@ -1,11 +1,10 @@
 ﻿using Asteroids.Scripts.DI.Resolver;
 
-namespace Asteroids.Scripts.Core.Infrastructure.StateMachine
+namespace Asteroids.Scripts.Core.Infrastructure.Factories
 {
-	// TODO: interface
-	public class GameStatesFactory
+	public class GameStatesFactory : IGameStatesFactory
 	{
-		private IContainerResolver _containerResolver;
+		private readonly IContainerResolver _containerResolver;
 
 		public GameStatesFactory(IContainerResolver containerResolver)
 		{

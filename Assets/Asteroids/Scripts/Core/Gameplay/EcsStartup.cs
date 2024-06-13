@@ -3,7 +3,6 @@ using Asteroids.Scripts.Core.Gameplay.Movement.Systems;
 using Asteroids.Scripts.Core.Gameplay.Player.Systems;
 using Asteroids.Scripts.Core.Gameplay.View.Systems;
 using Asteroids.Scripts.Core.Infrastructure.Factories;
-using Asteroids.Scripts.Core.Infrastructure.Services;
 using Asteroids.Scripts.Core.Infrastructure.Services.Input;
 using Asteroids.Scripts.ECS.Contexts;
 using Asteroids.Scripts.ECS.Systems.Container;
@@ -36,11 +35,6 @@ namespace Asteroids.Scripts.Core.Gameplay
 							.Add(new MoveSystem(_gameplayContext))
 							.Add(new RotateSystem(_gameplayContext))
 							.Add(new UpdateViewSystem(_gameplayContext));
-		}
-
-		public void InitializeDebug(IEcsDebugger ecsDebugger)
-		{
-			ecsDebugger.SetContexts(_inputContext, _gameplayContext);
 		}
 
 		public void Start()

@@ -1,17 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using Asteroids.Scripts.Core.Infrastructure.Factories;
 using Asteroids.Scripts.Core.Infrastructure.StateMachine.States;
 
 namespace Asteroids.Scripts.Core.Infrastructure.StateMachine
 {
 	public class GameStateMachine : IGameStateMachine
 	{
-		private readonly GameStatesFactory _statesFactory;
+		private readonly IGameStatesFactory _statesFactory;
 		private readonly Dictionary<Type, IState> _states = new();
 
 		public IState CurrentState { get; private set; }
 
-		public GameStateMachine(GameStatesFactory statesFactory)
+		public GameStateMachine(IGameStatesFactory statesFactory)
 		{
 			_statesFactory = statesFactory;
 		}

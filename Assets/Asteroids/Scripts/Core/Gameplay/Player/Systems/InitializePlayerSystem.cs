@@ -4,7 +4,6 @@ using Asteroids.Scripts.Core.Gameplay.View;
 using Asteroids.Scripts.Core.Gameplay.View.Components;
 using Asteroids.Scripts.Core.Infrastructure.Configs;
 using Asteroids.Scripts.Core.Infrastructure.Factories;
-using Asteroids.Scripts.Core.Infrastructure.Services;
 using Asteroids.Scripts.ECS.Contexts;
 using Asteroids.Scripts.ECS.Entities;
 using Asteroids.Scripts.ECS.Systems.Interfaces;

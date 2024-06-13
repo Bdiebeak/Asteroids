@@ -1,17 +1,17 @@
 ﻿namespace Asteroids.Scripts.Core.Infrastructure.StateMachine.States
 {
-	public class GameRestartState : IState
+	public class  RestartState : IState
 	{
 		private IGameStateMachine _stateMachine;
 
-		public GameRestartState(IGameStateMachine stateMachine)
+		public RestartState(IGameStateMachine stateMachine)
 		{
 			_stateMachine = stateMachine;
 		}
 
 		public void Enter()
 		{
-			_stateMachine.Enter<GameInitializeState>();
+			_stateMachine.Enter<InitializationState>();
 		}
 
 		public void Update() { }
