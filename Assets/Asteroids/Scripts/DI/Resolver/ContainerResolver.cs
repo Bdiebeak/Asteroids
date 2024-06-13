@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Asteroids.Scripts.DI.Describers;
+using Asteroids.Scripts.DI.Exceptions;
 
 namespace Asteroids.Scripts.DI.Resolver
 {
@@ -33,7 +34,7 @@ namespace Asteroids.Scripts.DI.Resolver
 		{
 			if (_currentResolves.Contains(type))
 			{
-				throw new InvalidOperationException($"Cycle dependency was detected for {type.Name}.");
+				throw new CycleDependencyException($"Cycle dependency was detected for {type.Name}.");
 			}
 
 			_currentResolves.Add(type);
@@ -42,7 +43,7 @@ namespace Asteroids.Scripts.DI.Resolver
 				object instance;
 				if (_describers.TryGetValue(type, out IDependencyDescriber describer) == false)
 				{
-					throw new InvalidOperationException($"Can't find registered describer for {type.Name}.");
+					throw new RegistrationException($"Can't find registered describer for {type.Name}.");
 				}
 
 				// Try to get existing singleton if needed.
@@ -86,13 +87,13 @@ namespace Asteroids.Scripts.DI.Resolver
 		{
 			if (implementationType.IsInterface || implementationType.IsAbstract)
 			{
-				throw new InvalidOperationException($"{implementationType} cannot be instantiated because it is an interface or an abstract class.");
+				throw new InstanceCreationException($"{implementationType} cannot be created because it is an interface or an abstract class.");
 			}
 
 			ConstructorInfo constructorInfo = implementationType.GetConstructors().FirstOrDefault();
 			if (constructorInfo == null)
 			{
-				throw new InvalidOperationException($"Can't find any available constructor for {implementationType}.");
+				throw new InstanceCreationException($"Can't find any available constructor for {implementationType}.");
 			}
 
 			ParameterInfo[] parameterInfos = constructorInfo.GetParameters();

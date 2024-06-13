@@ -1,6 +1,6 @@
-using System;
 using Asteroids.Scripts.DI.Builder;
 using Asteroids.Scripts.DI.Describers;
+using Asteroids.Scripts.DI.Exceptions;
 using Asteroids.Scripts.DI.Resolver;
 using NUnit.Framework;
 
@@ -14,7 +14,7 @@ namespace Asteroids.Scripts.DI.Tests
 			IContainerBuilder builder = new ContainerBuilder();
 			IContainerResolver containerResolver = builder.Build();
 
-			Assert.Throws<InvalidOperationException>(() => containerResolver.Resolve<ITestService>());
+			Assert.Throws<RegistrationException>(() => containerResolver.Resolve<ITestService>());
 		}
 
 		[Test]
@@ -26,8 +26,8 @@ namespace Asteroids.Scripts.DI.Tests
 
 			IContainerResolver containerResolver = builder.Build();
 
-			Assert.Throws<InvalidOperationException>(() => containerResolver.Resolve<ServiceA>());
-			Assert.Throws<InvalidOperationException>(() => containerResolver.Resolve<ServiceB>());
+			Assert.Throws<CycleDependencyException>(() => containerResolver.Resolve<ServiceA>());
+			Assert.Throws<CycleDependencyException>(() => containerResolver.Resolve<ServiceB>());
 		}
 
 		[Test]
@@ -35,7 +35,17 @@ namespace Asteroids.Scripts.DI.Tests
 		{
 			IContainerBuilder builder = new ContainerBuilder();
 
-			Assert.Throws<InvalidOperationException>(() => builder.Register(new TypeDependencyDescriber(Lifetime.Singleton, typeof(ServiceA), typeof(ServiceB))));
+			Assert.Throws<RegistrationException>(() => builder.Register(new TypeDependencyDescriber(Lifetime.Singleton, typeof(ServiceA), typeof(ServiceB))));
+		}
+
+		[Test]
+		public void TestCreationWithoutConstructor()
+		{
+			IContainerBuilder builder = new ContainerBuilder();
+			builder.Register(new TypeDependencyDescriber(Lifetime.Singleton, typeof(ITestService), typeof(ITestService)));
+			IContainerResolver containerResolver = builder.Build();
+
+			Assert.Throws<InstanceCreationException>(() => containerResolver.Resolve<ITestService>());
 		}
 
 		[Test]

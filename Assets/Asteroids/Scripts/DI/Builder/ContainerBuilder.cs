@@ -1,6 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Asteroids.Scripts.DI.Describers;
+using Asteroids.Scripts.DI.Exceptions;
 using Asteroids.Scripts.DI.Resolver;
 
 namespace Asteroids.Scripts.DI.Builder
@@ -28,7 +28,7 @@ namespace Asteroids.Scripts.DI.Builder
 				return;
 			}
 
-			throw new InvalidOperationException($"Dependency in describer doesn't implement or inherit registration type - {dependencyDescriber.RegistrationType}.");
+			throw new RegistrationException($"Dependency doesn't implement or inherit registration type - {dependencyDescriber.RegistrationType}.");
 		}
 	}
 }
