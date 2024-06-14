@@ -5,13 +5,19 @@ using UnityEngine;
 
 namespace Asteroids.Scripts.Core.Infrastructure.Factories
 {
-	public class ViewFactory : IViewFactory
+	public class GameFactory : IGameFactory
 	{
 		private readonly IAssetProvider _assetProvider;
 
-		public ViewFactory(IAssetProvider assetProvider)
+		public GameFactory(IAssetProvider assetProvider)
 		{
 			_assetProvider = assetProvider;
+		}
+
+		public Camera CreateMainCamera()
+		{
+			GameObject playerAsset = _assetProvider.Load<GameObject>(AssetKeys.MainCamera);
+			return Object.Instantiate(playerAsset).GetComponent<Camera>();
 		}
 
 		public IView CreatePlayerView()

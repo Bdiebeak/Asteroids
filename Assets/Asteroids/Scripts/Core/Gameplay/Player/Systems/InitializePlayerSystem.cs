@@ -13,17 +13,17 @@ namespace Asteroids.Scripts.Core.Gameplay.Player.Systems
 	public class InitializePlayerSystem : IStartSystem
 	{
 		private readonly IContext _gameplayContext;
-		private readonly IViewFactory _viewFactory;
+		private readonly IGameFactory _gameFactory;
 
-		public InitializePlayerSystem(IContext gameplayContext, IViewFactory viewFactory)
+		public InitializePlayerSystem(IContext gameplayContext, IGameFactory gameFactory)
 		{
 			_gameplayContext = gameplayContext;
-			_viewFactory = viewFactory;
+			_gameFactory = gameFactory;
 		}
 
 		public void Start()
 		{
-			IView playerView = _viewFactory.CreatePlayerView();
+			IView playerView = _gameFactory.CreatePlayerView();
 
 			Entity entity = _gameplayContext.CreateEntity();
 			entity.Add<PlayerComponent>(new PlayerComponent());

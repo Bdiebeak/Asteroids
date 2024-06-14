@@ -1,9 +1,11 @@
 ﻿using Asteroids.Scripts.Core.Gameplay.View;
+using UnityEngine;
 
 namespace Asteroids.Scripts.Core.Infrastructure.Factories
 {
-	public interface IViewFactory
+	public interface IGameFactory
 	{
+		Camera CreateMainCamera();
 		IView CreatePlayerView();
 	}
 }

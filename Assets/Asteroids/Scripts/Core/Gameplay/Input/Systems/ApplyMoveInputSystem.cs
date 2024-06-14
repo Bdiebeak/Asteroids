@@ -35,7 +35,7 @@ namespace Asteroids.Scripts.Core.Gameplay.Input.Systems
 			foreach (Entity inputEntity in inputEntities)
 			{
 				MoveInputComponent moveInput = inputEntity.Get<MoveInputComponent>();
-				foreach (Entity playerEntity in playerEntities) // TODO: fix multiple enumeration
+				foreach (Entity playerEntity in playerEntities)
 				{
 					MoveDirectionComponent moveDirection = playerEntity.Get<MoveDirectionComponent>();
 					AngularDirectionComponent angularDirection = playerEntity.Get<AngularDirectionComponent>();

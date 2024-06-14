@@ -11,12 +11,10 @@
 
 		public void Enter()
 		{
-			// TODO: show greetings screen.
-			_stateMachine.Enter<InitializationState>();
+			_stateMachine.Enter<GameStartState>();
 		}
 
 		public void Update() { }
-
 		public void Exit() { }
 	}
 }

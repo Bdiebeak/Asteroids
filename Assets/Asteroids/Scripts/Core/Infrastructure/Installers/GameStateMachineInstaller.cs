@@ -13,7 +13,7 @@ namespace Asteroids.Scripts.Core.Infrastructure.Installers
 			containerBuilder.Register<IGameStateMachine, GameStateMachine>();
 			containerBuilder.Register<IGameStatesFactory, GameStatesFactory>();
 			containerBuilder.Register<BootstrapState>();
-			containerBuilder.Register<InitializationState>();
+			containerBuilder.Register<GameStartState>();
 			containerBuilder.Register<GameLoopState>();
 			containerBuilder.Register<GameOverState>();
 			containerBuilder.Register<RestartState>();

@@ -1,4 +1,4 @@
-﻿namespace Asteroids.Scripts.Core.UI
+﻿namespace Asteroids.Scripts.Core.UI.Base
 {
 	public interface IScreen
 	{
