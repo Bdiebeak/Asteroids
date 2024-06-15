@@ -1,7 +1,7 @@
 ﻿using Asteroids.Scripts.ECS.Contexts;
 using Asteroids.Scripts.ECS.Systems.Interfaces;
 
-namespace Asteroids.Scripts.Core.Gameplay.Input.Systems
+namespace Asteroids.Scripts.Core.Gameplay.Weapons.Systems
 {
 	public class ApplyAttackInputSystem : IUpdateSystem
 	{

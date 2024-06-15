@@ -10,7 +10,7 @@ using Asteroids.Scripts.ECS.Entities;
 using Asteroids.Scripts.ECS.Systems.Interfaces;
 using UnityEngine;
 
-namespace Asteroids.Scripts.Core.Gameplay.Input.Systems
+namespace Asteroids.Scripts.Core.Gameplay.Movement.Systems
 {
 	public class ApplyMoveInputSystem : IUpdateSystem
 	{
@@ -51,14 +51,10 @@ namespace Asteroids.Scripts.Core.Gameplay.Input.Systems
 					// Handle only forward movement.
 					if (moveInput.value > 0)
 					{
-						// TODO: use change velocity request to make all check there.
-						// TODO: should use Delta time here?
 						Vector2 moveVector = new(0, moveInput.value);
-						velocity.value += moveVector.Rotate(rotation.value) * GameConfig.ShipAcceleration;
-						if (velocity.value.magnitude >= GameConfig.ShipMaxSpeed)
-						{
-							velocity.value = velocity.value.normalized * GameConfig.ShipMaxSpeed;
-						}
+						Vector2 targetVelocity = moveVector.Rotate(rotation.value).normalized * GameConfig.ShipMaxSpeed;
+						velocity.value = Vector2.MoveTowards(velocity.value, targetVelocity,
+															 GameConfig.ShipAcceleration * _timeService.DeltaTime);
 					}
 
 					// Refill rotation input. Invert for proper rotation.

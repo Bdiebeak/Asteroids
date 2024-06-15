@@ -8,18 +8,21 @@ namespace Asteroids.Scripts.Core.Gameplay.Movement
 {
 	public class MovementFeature : Feature
 	{
+		private readonly IContext _inputContext;
 		private readonly IContext _gameplayContext;
 		private readonly ITimeService _timeService;
 
-		public MovementFeature(IContext gameplayContext, ITimeService timeService)
+		public MovementFeature(IContext inputContext, IContext gameplayContext, ITimeService timeService)
 		{
+			_inputContext = inputContext;
 			_gameplayContext = gameplayContext;
 			_timeService = timeService;
 		}
 
 		public override void AddTo(SystemsContainer systems)
 		{
-			systems.Add(new VelocityDragSystem(_gameplayContext, _timeService))
+			systems.Add(new ApplyMoveInputSystem(_inputContext, _gameplayContext, _timeService))
+				   .Add(new VelocityDragSystem(_gameplayContext, _timeService))
 				   .Add(new MoveSystem(_gameplayContext, _timeService))
 				   .Add(new RotateSystem(_gameplayContext, _timeService));
 		}

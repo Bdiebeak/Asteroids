@@ -1,6 +1,5 @@
 ﻿using Asteroids.Scripts.Core.Gameplay.Input;
 using Asteroids.Scripts.Core.Gameplay.Movement;
-using Asteroids.Scripts.Core.Gameplay.Movement.Systems;
 using Asteroids.Scripts.Core.Gameplay.Player.Systems;
 using Asteroids.Scripts.Core.Gameplay.View.Systems;
 using Asteroids.Scripts.Core.Infrastructure.Factories;
@@ -39,12 +38,12 @@ namespace Asteroids.Scripts.Core.Gameplay
 
 			// Initialize input systems.
 			_inputSystems = new SystemsContainer();
-			_inputSystems.Add(new InputFeature(_inputContext, _gameplayContext, _inputService, _timeService));
+			_inputSystems.Add(new InputFeature(_inputContext, _inputService));
 
 			// Initialize gameplay systems.
 			_gameplaySystems = new SystemsContainer();
 			_gameplaySystems.Add(new InitializePlayerSystem(_gameplayContext, _gameFactory))
-							.Add(new MovementFeature(_gameplayContext, _timeService))
+							.Add(new MovementFeature(_inputContext, _gameplayContext, _timeService))
 							.Add(new UpdateViewSystem(_gameplayContext));
 		}
 
