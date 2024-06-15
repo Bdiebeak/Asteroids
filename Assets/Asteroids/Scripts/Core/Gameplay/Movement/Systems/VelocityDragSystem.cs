@@ -4,31 +4,33 @@ using Asteroids.Scripts.ECS.Components;
 using Asteroids.Scripts.ECS.Contexts;
 using Asteroids.Scripts.ECS.Entities;
 using Asteroids.Scripts.ECS.Systems.Interfaces;
+using UnityEngine;
 
 namespace Asteroids.Scripts.Core.Gameplay.Movement.Systems
 {
-	public class MoveSystem : IUpdateSystem
+	public class VelocityDragSystem : IUpdateSystem
 	{
 		private readonly IContext _gameplayContext;
 		private readonly ITimeService _timeService;
-		private readonly Mask _movableMask;
+		private readonly Mask _mask;
 
-		public MoveSystem(IContext gameplayContext, ITimeService timeService)
+		public VelocityDragSystem(IContext gameplayContext, ITimeService timeService)
 		{
 			_gameplayContext = gameplayContext;
 			_timeService = timeService;
-			_movableMask = new Mask().Include<PositionComponent>()
-									 .Include<VelocityComponent>();
+			_mask = new Mask().Include<VelocityComponent>()
+							  .Include<VelocityDragComponent>();
 		}
 
 		public void Update()
 		{
-			var movableEntities = _gameplayContext.GetEntities(_movableMask);
-			foreach (Entity entity in movableEntities)
+			var entities = _gameplayContext.GetEntities(_mask);
+			foreach (Entity entity in entities)
 			{
-				PositionComponent position = entity.Get<PositionComponent>();
 				VelocityComponent velocity = entity.Get<VelocityComponent>();
-				position.value += velocity.value * _timeService.DeltaTime;
+				VelocityDragComponent drag = entity.Get<VelocityDragComponent>();
+				velocity.value = Vector2.MoveTowards(velocity.value, Vector2.zero,
+													 drag.value * _timeService.DeltaTime);
 			}
 		}
 	}

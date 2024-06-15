@@ -1,6 +1,8 @@
 ﻿using Asteroids.Scripts.Core.Gameplay.Input.Components;
 using Asteroids.Scripts.Core.Gameplay.Movement.Components;
 using Asteroids.Scripts.Core.Gameplay.Player.Components;
+using Asteroids.Scripts.Core.Infrastructure.Configs;
+using Asteroids.Scripts.Core.Infrastructure.Services.Time;
 using Asteroids.Scripts.Core.Infrastructure.Utilities;
 using Asteroids.Scripts.ECS.Components;
 using Asteroids.Scripts.ECS.Contexts;
@@ -14,18 +16,20 @@ namespace Asteroids.Scripts.Core.Gameplay.Input.Systems
 	{
 		private readonly IContext _inputContext;
 		private readonly IContext _gameplayContext;
+		private readonly ITimeService _timeService;
 		private readonly Mask _moveInputMask;
 		private readonly Mask _playerMask;
 
-		public ApplyMoveInputSystem(IContext inputContext, IContext gameplayContext)
+		public ApplyMoveInputSystem(IContext inputContext, IContext gameplayContext, ITimeService timeService)
 		{
 			_inputContext = inputContext;
 			_gameplayContext = gameplayContext;
+			_timeService = timeService;
 			_moveInputMask = new Mask().Include<MoveInputComponent>()
 									   .Include<RotateInputComponent>();
 			_playerMask = new Mask().Include<PlayerComponent>()
-									.Include<MoveDirectionComponent>()
-									.Include<AngularDirectionComponent>()
+									.Include<VelocityComponent>()
+									.Include<RotationVelocityComponent>()
 									.Include<RotationComponent>();
 		}
 
@@ -37,25 +41,28 @@ namespace Asteroids.Scripts.Core.Gameplay.Input.Systems
 			{
 				MoveInputComponent moveInput = inputEntity.Get<MoveInputComponent>();
 				RotateInputComponent rotateInput = inputEntity.Get<RotateInputComponent>();
+
 				foreach (Entity playerEntity in playerEntities)
 				{
-					MoveDirectionComponent moveDirection = playerEntity.Get<MoveDirectionComponent>();
-					AngularDirectionComponent angularDirection = playerEntity.Get<AngularDirectionComponent>();
+					VelocityComponent velocity = playerEntity.Get<VelocityComponent>();
+					RotationVelocityComponent rotationVelocity = playerEntity.Get<RotationVelocityComponent>();
 					RotationComponent rotation = playerEntity.Get<RotationComponent>();
 
-					// Refill movement input. Handle only forward movement.
-					if (moveInput.value >= 0)
+					// Handle only forward movement.
+					if (moveInput.value > 0)
 					{
+						// TODO: use change velocity request to make all check there.
+						// TODO: should use Delta time here?
 						Vector2 moveVector = new(0, moveInput.value);
-						moveDirection.value = moveVector.Rotate(rotation.value);
-					}
-					else
-					{
-						moveDirection.value = Vector2.zero;
+						velocity.value += moveVector.Rotate(rotation.value) * GameConfig.ShipAcceleration;
+						if (velocity.value.magnitude >= GameConfig.ShipMaxSpeed)
+						{
+							velocity.value = velocity.value.normalized * GameConfig.ShipMaxSpeed;
+						}
 					}
 
 					// Refill rotation input. Invert for proper rotation.
-					angularDirection.value = -rotateInput.value;
+					rotationVelocity.value = -rotateInput.value * GameConfig.ShipAngularSpeed;
 				}
 			}
 		}

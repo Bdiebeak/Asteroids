@@ -18,8 +18,7 @@ namespace Asteroids.Scripts.Core.Gameplay.Movement.Systems
 			_gameplayContext = gameplayContext;
 			_timeService = timeService;
 			_movableMask = new Mask().Include<RotationComponent>()
-									 .Include<AngularDirectionComponent>()
-									 .Include<AngularSpeedComponent>();
+									 .Include<RotationVelocityComponent>();
 		}
 
 		public void Update()
@@ -28,11 +27,8 @@ namespace Asteroids.Scripts.Core.Gameplay.Movement.Systems
 			foreach (Entity entity in movableEntities)
 			{
 				RotationComponent rotation = entity.Get<RotationComponent>();
-				AngularDirectionComponent angularDirection = entity.Get<AngularDirectionComponent>();
-				AngularSpeedComponent angularSpeed = entity.Get<AngularSpeedComponent>();
-
-				// TODO: add inertia.
-				rotation.value += angularDirection.value * angularSpeed.value * _timeService.DeltaTime;
+				RotationVelocityComponent rotationVelocity = entity.Get<RotationVelocityComponent>();
+				rotation.value += rotationVelocity.value * _timeService.DeltaTime;
 				rotation.value = (rotation.value + 180) % 360 - 180;
 			}
 		}

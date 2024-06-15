@@ -24,18 +24,17 @@ namespace Asteroids.Scripts.Core.Gameplay.Player.Systems
 		public void Start()
 		{
 			IView playerView = _gameFactory.CreatePlayerView();
-
 			Entity entity = _gameplayContext.CreateEntity();
 			entity.Add<PlayerComponent>(new PlayerComponent());
 			entity.Add<ViewComponent>(new ViewComponent()).value = playerView;
 			// TODO: entity.ConfigureWithMovement();
 			entity.Add<PositionComponent>(new PositionComponent());
-			entity.Add<MoveDirectionComponent>(new MoveDirectionComponent());
-			entity.Add<MoveSpeedComponent>(new MoveSpeedComponent()).value = GameConfig.ShipMoveSpeed;
+			entity.Add<VelocityComponent>(new VelocityComponent());
+			entity.Add<VelocityDragComponent>(new VelocityDragComponent()).value = GameConfig.ShipDrag;
 			// TODO: entity.ConfigureWithRotation();
 			entity.Add<RotationComponent>(new RotationComponent());
-			entity.Add<AngularDirectionComponent>(new AngularDirectionComponent());
-			entity.Add<AngularSpeedComponent>(new AngularSpeedComponent()).value = GameConfig.ShipAngularSpeed;
+			entity.Add<RotationVelocityComponent>(new RotationVelocityComponent());
+			entity.Add<RotationSpeedComponent>(new RotationSpeedComponent()).value = GameConfig.ShipAngularSpeed;
 		}
 	}
 }

@@ -4,7 +4,7 @@ using Asteroids.Scripts.ECS.Components;
 namespace Asteroids.Scripts.Core.Gameplay.Movement.Components
 {
 	[Serializable]
-	public class AngularSpeedComponent : IComponent
+	public class RotationVelocityComponent : IComponent
 	{
 		public float value;
 	}
