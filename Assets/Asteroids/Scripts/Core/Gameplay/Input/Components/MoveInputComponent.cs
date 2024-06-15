@@ -7,7 +7,6 @@ namespace Asteroids.Scripts.Core.Gameplay.Input.Components
 	[Serializable]
 	public class MoveInputComponent : IComponent
 	{
-		// TODO: bool or float
-		public Vector2 value;
+		public float value;
 	}
 }

@@ -15,8 +15,8 @@ namespace Asteroids.Scripts.Core.Gameplay.Movement.Systems
 		{
 			_gameplayContext = gameplayContext;
 			_movableMask = new Mask().Include<PositionComponent>()
-										 .Include<MoveDirectionComponent>()
-										 .Include<MoveSpeedComponent>();
+									 .Include<MoveDirectionComponent>()
+									 .Include<MoveSpeedComponent>();
 		}
 
 		public void Update(float deltaTime)

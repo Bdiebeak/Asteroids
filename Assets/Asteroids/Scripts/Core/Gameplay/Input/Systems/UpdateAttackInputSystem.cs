@@ -17,7 +17,8 @@ namespace Asteroids.Scripts.Core.Gameplay.Input.Systems
 		{
 			_inputContext = inputContext;
 			_inputService = inputService;
-			_mask = new Mask().Include<AttackInputComponent>();
+			_mask = new Mask().Include<BulletAttackInputComponent>()
+							  .Include<LaserAttackInputComponent>();
 		}
 
 		public void Update(float deltaTime)
@@ -25,8 +26,11 @@ namespace Asteroids.Scripts.Core.Gameplay.Input.Systems
 			var inputEntities = _inputContext.GetEntities(_mask);
 			foreach (Entity inputEntity in inputEntities)
 			{
-				AttackInputComponent attackInput = inputEntity.Get<AttackInputComponent>();
-				attackInput.isFiring = _inputService.BulletAttack;
+				BulletAttackInputComponent bulletInput = inputEntity.Get<BulletAttackInputComponent>();
+				bulletInput.value = _inputService.BulletAttack;
+
+				LaserAttackInputComponent laserInput = inputEntity.Get<LaserAttackInputComponent>();
+				laserInput.value = _inputService.LaserAttack;
 			}
 		}
 	}

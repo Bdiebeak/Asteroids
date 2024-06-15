@@ -18,7 +18,9 @@ namespace Asteroids.Scripts.Core.Gameplay.Input.Systems
 		{
 			Entity entity = _inputContext.CreateEntity();
 			entity.Add<MoveInputComponent>(new MoveInputComponent());
-			entity.Add<AttackInputComponent>(new AttackInputComponent());
+			entity.Add<RotateInputComponent>(new RotateInputComponent());
+			entity.Add<BulletAttackInputComponent>(new BulletAttackInputComponent());
+			entity.Add<LaserAttackInputComponent>(new LaserAttackInputComponent());
 		}
 	}
 }

@@ -21,11 +21,12 @@ namespace Asteroids.Scripts.Core.Gameplay.Input.Systems
 		{
 			_inputContext = inputContext;
 			_gameplayContext = gameplayContext;
-			_moveInputMask = new Mask().Include<MoveInputComponent>();
+			_moveInputMask = new Mask().Include<MoveInputComponent>()
+									   .Include<RotateInputComponent>();
 			_playerMask = new Mask().Include<PlayerComponent>()
-										.Include<MoveDirectionComponent>()
-										.Include<AngularDirectionComponent>()
-										.Include<RotationComponent>();
+									.Include<MoveDirectionComponent>()
+									.Include<AngularDirectionComponent>()
+									.Include<RotationComponent>();
 		}
 
 		public void Update(float deltaTime)
@@ -35,6 +36,7 @@ namespace Asteroids.Scripts.Core.Gameplay.Input.Systems
 			foreach (Entity inputEntity in inputEntities)
 			{
 				MoveInputComponent moveInput = inputEntity.Get<MoveInputComponent>();
+				RotateInputComponent rotateInput = inputEntity.Get<RotateInputComponent>();
 				foreach (Entity playerEntity in playerEntities)
 				{
 					MoveDirectionComponent moveDirection = playerEntity.Get<MoveDirectionComponent>();
@@ -42,9 +44,9 @@ namespace Asteroids.Scripts.Core.Gameplay.Input.Systems
 					RotationComponent rotation = playerEntity.Get<RotationComponent>();
 
 					// Refill movement input. Handle only forward movement.
-					if (moveInput.value.Y >= 0)
+					if (moveInput.value >= 0)
 					{
-						Vector2 moveVector = new(0, moveInput.value.Y);
+						Vector2 moveVector = new(0, moveInput.value);
 						moveDirection.value = moveVector.Rotate(rotation.value);
 					}
 					else
@@ -53,7 +55,7 @@ namespace Asteroids.Scripts.Core.Gameplay.Input.Systems
 					}
 
 					// Refill rotation input. Invert for proper rotation.
-					angularDirection.value = -moveInput.value.X;
+					angularDirection.value = -rotateInput.value;
 				}
 			}
 		}
