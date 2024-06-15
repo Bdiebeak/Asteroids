@@ -26,7 +26,7 @@ namespace Asteroids.Scripts.Core.Gameplay.Input.Systems
 			foreach (Entity inputEntity in inputEntities)
 			{
 				AttackInputComponent attackInput = inputEntity.Get<AttackInputComponent>();
-				attackInput.isFiring = _inputService.IsFiringPressed;
+				attackInput.isFiring = _inputService.BulletAttack;
 			}
 		}
 	}

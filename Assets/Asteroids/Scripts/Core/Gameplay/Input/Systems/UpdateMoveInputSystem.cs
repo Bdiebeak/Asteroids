@@ -4,6 +4,7 @@ using Asteroids.Scripts.ECS.Components;
 using Asteroids.Scripts.ECS.Contexts;
 using Asteroids.Scripts.ECS.Entities;
 using Asteroids.Scripts.ECS.Systems.Interfaces;
+using UnityEngine;
 
 namespace Asteroids.Scripts.Core.Gameplay.Input.Systems
 {
@@ -26,8 +27,8 @@ namespace Asteroids.Scripts.Core.Gameplay.Input.Systems
 			foreach (Entity inputEntity in inputEntities)
 			{
 				MoveInputComponent moveInput = inputEntity.Get<MoveInputComponent>();
-				moveInput.value.X = _inputService.HorizontalInput;
-				moveInput.value.Y = _inputService.VerticalInput;
+				moveInput.value.X = _inputService.Rotate;
+				moveInput.value.Y = _inputService.MoveForward;
 			}
 		}
 	}

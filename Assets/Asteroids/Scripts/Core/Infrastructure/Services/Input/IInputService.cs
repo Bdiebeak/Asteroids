@@ -2,9 +2,10 @@
 {
 	public interface IInputService
 	{
-		float HorizontalInput { get; }
-		float VerticalInput { get; }
-		bool IsFiringPressed { get; }
-		bool IsStartLevelPressed { get; }
+		bool BulletAttack { get; }
+		bool LaserAttack { get; }
+		float MoveForward { get; }
+		float Rotate { get; }
+		bool StartLevel { get; }
 	}
 }

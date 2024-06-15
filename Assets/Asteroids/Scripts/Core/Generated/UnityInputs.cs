@@ -28,7 +28,7 @@ public partial class @UnityInputs: IInputActionCollection2, IDisposable
             ""id"": ""265c38f5-dd18-4d34-b198-aec58e1627ff"",
             ""actions"": [
                 {
-                    ""name"": ""Fire"",
+                    ""name"": ""BulletAttack"",
                     ""type"": ""Button"",
                     ""id"": ""1077f913-a9f9-41b1-acb3-b9ee0adbc744"",
                     ""expectedControlType"": ""Button"",
@@ -37,7 +37,16 @@ public partial class @UnityInputs: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Move"",
+                    ""name"": ""LaserAttack"",
+                    ""type"": ""Button"",
+                    ""id"": ""d71b993e-7406-4384-9d78-e3777cf08fc0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MoveForward"",
                     ""type"": ""Value"",
                     ""id"": ""50fd2809-3aa3-4a90-988e-1facf6773553"",
                     ""expectedControlType"": ""Axis"",
@@ -72,12 +81,23 @@ public partial class @UnityInputs: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Fire"",
+                    ""action"": ""BulletAttack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""1D Axis"",
+                    ""name"": """",
+                    ""id"": ""908b955d-8913-4a36-a921-a6f2a3d80517"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""BulletAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Arrows [Keyboard]"",
                     ""id"": ""9f08fc94-7899-4dd4-96b8-f89655cccbca"",
                     ""path"": ""1DAxis"",
                     ""interactions"": """",
@@ -110,7 +130,7 @@ public partial class @UnityInputs: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""1D Axis"",
+                    ""name"": ""WASD [Keyboard]"",
                     ""id"": ""0cf53ab4-17d5-4172-bede-6bdc1846779f"",
                     ""path"": ""1DAxis"",
                     ""interactions"": """",
@@ -143,48 +163,15 @@ public partial class @UnityInputs: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""1D Axis"",
-                    ""id"": ""63c87567-36d3-4533-b365-6ac62b9278cc"",
-                    ""path"": ""1DAxis"",
+                    ""name"": """",
+                    ""id"": ""b7f51006-b584-4799-ac9e-c32b304afe95"",
+                    ""path"": ""<Gamepad>/rightStick/x"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""positive"",
-                    ""id"": ""4640c904-2bda-42e7-a137-bd69ecee7ac8"",
-                    ""path"": ""<Keyboard>/upArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""Rotate"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""1D Axis"",
-                    ""id"": ""b2340095-25f1-4160-a196-43145db1f183"",
-                    ""path"": ""1DAxis"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": true,
                     ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""positive"",
-                    ""id"": ""0a2fb4a5-2eee-4828-8760-ca890559e4c2"",
-                    ""path"": ""<Keyboard>/w"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
                 },
                 {
                     ""name"": """",
@@ -196,6 +183,94 @@ public partial class @UnityInputs: IInputActionCollection2, IDisposable
                     ""action"": ""StartLevel"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8c514ed6-eb21-47ff-8903-c5ef3e843f0a"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""StartLevel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""de31ddf3-51a2-40d6-8ac1-f130f114f40e"",
+                    ""path"": ""<Keyboard>/alt"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LaserAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0afbd135-244c-486a-888e-8e98a343c9c4"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LaserAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Arrows [Keyboard]"",
+                    ""id"": ""6953ce69-2b12-4fc1-85cf-69f0af4ef7fe"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveForward"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""0900bc92-5959-4822-bd98-2624f97c632a"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveForward"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""WASD [Keyboard]"",
+                    ""id"": ""c4590827-0b34-4746-b075-404423c3470f"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveForward"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""3e53f915-360a-410c-865e-2be4a53dfb97"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveForward"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2dae7dca-6217-46a6-ac5a-6beae29cd176"",
+                    ""path"": ""<Gamepad>/leftStick/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveForward"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -204,8 +279,9 @@ public partial class @UnityInputs: IInputActionCollection2, IDisposable
 }");
         // Game
         m_Game = asset.FindActionMap("Game", throwIfNotFound: true);
-        m_Game_Fire = m_Game.FindAction("Fire", throwIfNotFound: true);
-        m_Game_Move = m_Game.FindAction("Move", throwIfNotFound: true);
+        m_Game_BulletAttack = m_Game.FindAction("BulletAttack", throwIfNotFound: true);
+        m_Game_LaserAttack = m_Game.FindAction("LaserAttack", throwIfNotFound: true);
+        m_Game_MoveForward = m_Game.FindAction("MoveForward", throwIfNotFound: true);
         m_Game_Rotate = m_Game.FindAction("Rotate", throwIfNotFound: true);
         m_Game_StartLevel = m_Game.FindAction("StartLevel", throwIfNotFound: true);
     }
@@ -269,16 +345,18 @@ public partial class @UnityInputs: IInputActionCollection2, IDisposable
     // Game
     private readonly InputActionMap m_Game;
     private List<IGameActions> m_GameActionsCallbackInterfaces = new List<IGameActions>();
-    private readonly InputAction m_Game_Fire;
-    private readonly InputAction m_Game_Move;
+    private readonly InputAction m_Game_BulletAttack;
+    private readonly InputAction m_Game_LaserAttack;
+    private readonly InputAction m_Game_MoveForward;
     private readonly InputAction m_Game_Rotate;
     private readonly InputAction m_Game_StartLevel;
     public struct GameActions
     {
         private @UnityInputs m_Wrapper;
         public GameActions(@UnityInputs wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Fire => m_Wrapper.m_Game_Fire;
-        public InputAction @Move => m_Wrapper.m_Game_Move;
+        public InputAction @BulletAttack => m_Wrapper.m_Game_BulletAttack;
+        public InputAction @LaserAttack => m_Wrapper.m_Game_LaserAttack;
+        public InputAction @MoveForward => m_Wrapper.m_Game_MoveForward;
         public InputAction @Rotate => m_Wrapper.m_Game_Rotate;
         public InputAction @StartLevel => m_Wrapper.m_Game_StartLevel;
         public InputActionMap Get() { return m_Wrapper.m_Game; }
@@ -290,12 +368,15 @@ public partial class @UnityInputs: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_GameActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_GameActionsCallbackInterfaces.Add(instance);
-            @Fire.started += instance.OnFire;
-            @Fire.performed += instance.OnFire;
-            @Fire.canceled += instance.OnFire;
-            @Move.started += instance.OnMove;
-            @Move.performed += instance.OnMove;
-            @Move.canceled += instance.OnMove;
+            @BulletAttack.started += instance.OnBulletAttack;
+            @BulletAttack.performed += instance.OnBulletAttack;
+            @BulletAttack.canceled += instance.OnBulletAttack;
+            @LaserAttack.started += instance.OnLaserAttack;
+            @LaserAttack.performed += instance.OnLaserAttack;
+            @LaserAttack.canceled += instance.OnLaserAttack;
+            @MoveForward.started += instance.OnMoveForward;
+            @MoveForward.performed += instance.OnMoveForward;
+            @MoveForward.canceled += instance.OnMoveForward;
             @Rotate.started += instance.OnRotate;
             @Rotate.performed += instance.OnRotate;
             @Rotate.canceled += instance.OnRotate;
@@ -306,12 +387,15 @@ public partial class @UnityInputs: IInputActionCollection2, IDisposable
 
         private void UnregisterCallbacks(IGameActions instance)
         {
-            @Fire.started -= instance.OnFire;
-            @Fire.performed -= instance.OnFire;
-            @Fire.canceled -= instance.OnFire;
-            @Move.started -= instance.OnMove;
-            @Move.performed -= instance.OnMove;
-            @Move.canceled -= instance.OnMove;
+            @BulletAttack.started -= instance.OnBulletAttack;
+            @BulletAttack.performed -= instance.OnBulletAttack;
+            @BulletAttack.canceled -= instance.OnBulletAttack;
+            @LaserAttack.started -= instance.OnLaserAttack;
+            @LaserAttack.performed -= instance.OnLaserAttack;
+            @LaserAttack.canceled -= instance.OnLaserAttack;
+            @MoveForward.started -= instance.OnMoveForward;
+            @MoveForward.performed -= instance.OnMoveForward;
+            @MoveForward.canceled -= instance.OnMoveForward;
             @Rotate.started -= instance.OnRotate;
             @Rotate.performed -= instance.OnRotate;
             @Rotate.canceled -= instance.OnRotate;
@@ -337,8 +421,9 @@ public partial class @UnityInputs: IInputActionCollection2, IDisposable
     public GameActions @Game => new GameActions(this);
     public interface IGameActions
     {
-        void OnFire(InputAction.CallbackContext context);
-        void OnMove(InputAction.CallbackContext context);
+        void OnBulletAttack(InputAction.CallbackContext context);
+        void OnLaserAttack(InputAction.CallbackContext context);
+        void OnMoveForward(InputAction.CallbackContext context);
         void OnRotate(InputAction.CallbackContext context);
         void OnStartLevel(InputAction.CallbackContext context);
     }
