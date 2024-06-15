@@ -14,7 +14,7 @@ namespace Asteroids.Scripts.Core.Gameplay.Input.Systems
 			_gameplayContext = gameplayContext;
 		}
 
-		public void Update(float deltaTime)
+		public void Update()
 		{
 		}
 	}

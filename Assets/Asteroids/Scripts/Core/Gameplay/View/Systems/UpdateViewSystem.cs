@@ -18,7 +18,7 @@ namespace Asteroids.Scripts.Core.Gameplay.View.Systems
 			_viewMask = new Mask().Include<ViewComponent>();
 		}
 
-		public void Update(float deltaTime)
+		public void Update()
 		{
 			var viewEntities = _gameplayContext.GetEntities(_viewMask);
 			foreach (Entity entity in viewEntities)

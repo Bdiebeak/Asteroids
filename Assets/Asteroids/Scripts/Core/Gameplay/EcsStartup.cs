@@ -4,6 +4,7 @@ using Asteroids.Scripts.Core.Gameplay.Player.Systems;
 using Asteroids.Scripts.Core.Gameplay.View.Systems;
 using Asteroids.Scripts.Core.Infrastructure.Factories;
 using Asteroids.Scripts.Core.Infrastructure.Services.Input;
+using Asteroids.Scripts.Core.Infrastructure.Services.Time;
 using Asteroids.Scripts.ECS.Contexts;
 using Asteroids.Scripts.ECS.Systems.Container;
 
@@ -17,11 +18,14 @@ namespace Asteroids.Scripts.Core.Gameplay
 		private SystemsContainer _gameplaySystems;
 		private readonly IInputService _inputService;
 		private readonly IGameFactory _gameFactory;
+		private readonly ITimeService _timeService;
 
-		public EcsStartup(IInputService inputService, IGameFactory gameFactory)
+		public EcsStartup(IInputService inputService, IGameFactory gameFactory,
+						  ITimeService timeService)
 		{
 			_inputService = inputService;
 			_gameFactory = gameFactory;
+			_timeService = timeService;
 		}
 
 		// TODO: services with DiContainer, factory for systems.
@@ -39,8 +43,8 @@ namespace Asteroids.Scripts.Core.Gameplay
 			// Initialize gameplay systems.
 			_gameplaySystems = new SystemsContainer();
 			_gameplaySystems.Add(new InitializePlayerSystem(_gameplayContext, _gameFactory))
-							.Add(new MoveSystem(_gameplayContext))
-							.Add(new RotateSystem(_gameplayContext))
+							.Add(new MoveSystem(_gameplayContext, _timeService))
+							.Add(new RotateSystem(_gameplayContext, _timeService))
 							.Add(new UpdateViewSystem(_gameplayContext));
 		}
 
@@ -50,10 +54,10 @@ namespace Asteroids.Scripts.Core.Gameplay
 			_gameplaySystems.Start();
 		}
 
-		public void Update(float deltaTime)
+		public void Update()
 		{
-			_inputSystems.Update(deltaTime);
-			_gameplaySystems.Update(deltaTime);
+			_inputSystems.Update();
+			_gameplaySystems.Update();
 		}
 
 		public void CleanUp()

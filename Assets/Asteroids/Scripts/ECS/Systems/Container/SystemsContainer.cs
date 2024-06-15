@@ -46,11 +46,11 @@ namespace Asteroids.Scripts.ECS.Systems.Container
 			}
 		}
 
-		public void Update(float deltaTime)
+		public void Update()
 		{
 			foreach (IUpdateSystem system in _updateSystems)
 			{
-				system.Update(deltaTime);
+				system.Update();
 			}
 		}
 

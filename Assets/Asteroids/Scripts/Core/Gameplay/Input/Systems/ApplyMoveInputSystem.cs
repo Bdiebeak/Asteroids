@@ -29,7 +29,7 @@ namespace Asteroids.Scripts.Core.Gameplay.Input.Systems
 									.Include<RotationComponent>();
 		}
 
-		public void Update(float deltaTime)
+		public void Update()
 		{
 			var inputEntities = _inputContext.GetEntities(_moveInputMask);
 			var playerEntities = _gameplayContext.GetEntities(_playerMask);

@@ -25,7 +25,7 @@ namespace Asteroids.Scripts.Core.Infrastructure.StateMachine.States
 
 		public void Update()
 		{
-			_ecsStartup.Update(Time.deltaTime);
+			_ecsStartup.Update();
 			_ecsStartup.CleanUp();
 		}
 

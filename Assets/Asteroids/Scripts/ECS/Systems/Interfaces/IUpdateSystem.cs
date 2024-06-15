@@ -2,6 +2,6 @@
 {
 	public interface IUpdateSystem : ISystem
 	{
-		void Update(float deltaTime);
+		void Update();
 	}
 }
