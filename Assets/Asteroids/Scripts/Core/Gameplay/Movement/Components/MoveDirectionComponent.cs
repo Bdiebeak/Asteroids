@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Numerics;
 using Asteroids.Scripts.ECS.Components;
+using UnityEngine;
 
 namespace Asteroids.Scripts.Core.Gameplay.Movement.Components
 {

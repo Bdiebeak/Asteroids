@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using Vector2 = System.Numerics.Vector2;
 
 namespace Asteroids.Scripts.Core.Gameplay.View
 {
@@ -8,7 +7,7 @@ namespace Asteroids.Scripts.Core.Gameplay.View
 		public void SetPosition(Vector2 position)
 		{
 			Vector3 currentPosition = transform.position;
-			Vector3 newPosition = new(position.X, position.Y, currentPosition.z);
+			Vector3 newPosition = new(position.x, position.y, currentPosition.z);
 			transform.position = newPosition;
 		}
 

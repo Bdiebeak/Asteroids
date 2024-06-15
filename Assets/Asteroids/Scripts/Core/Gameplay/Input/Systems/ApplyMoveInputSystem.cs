@@ -6,7 +6,7 @@ using Asteroids.Scripts.ECS.Components;
 using Asteroids.Scripts.ECS.Contexts;
 using Asteroids.Scripts.ECS.Entities;
 using Asteroids.Scripts.ECS.Systems.Interfaces;
-using Vector2 = System.Numerics.Vector2;
+using UnityEngine;
 
 namespace Asteroids.Scripts.Core.Gameplay.Input.Systems
 {
@@ -51,7 +51,7 @@ namespace Asteroids.Scripts.Core.Gameplay.Input.Systems
 					}
 					else
 					{
-						moveDirection.value = Vector2.Zero;
+						moveDirection.value = Vector2.zero;
 					}
 
 					// Refill rotation input. Invert for proper rotation.
