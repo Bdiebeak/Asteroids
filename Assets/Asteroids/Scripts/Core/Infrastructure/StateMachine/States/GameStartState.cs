@@ -26,7 +26,7 @@ namespace Asteroids.Scripts.Core.Infrastructure.StateMachine.States
 		{
 			// TODO: should bind into Container.
 			_gameFactory.CreateMainCamera();
-			_screenService.Show<StartScreen>();
+			_screenService.ShowStartScreen();
 			_ecsStartup.Initialize();
 		}
 

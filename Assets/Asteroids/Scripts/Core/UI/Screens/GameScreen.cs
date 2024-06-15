@@ -1,5 +1,5 @@
 ﻿using Asteroids.Scripts.Core.UI.Base;
-using Asteroids.Scripts.Core.UI.ScreenModels;
+using Asteroids.Scripts.Core.UI.Models;
 
 namespace Asteroids.Scripts.Core.UI.Screens
 {
@@ -7,7 +7,6 @@ namespace Asteroids.Scripts.Core.UI.Screens
 	{
 		private GameScreenModel _screenModel;
 
-		// TODO: how to pass ScreenModel?
 		public void Construct(GameScreenModel screenModel)
 		{
 			_screenModel = screenModel;

@@ -41,6 +41,7 @@ namespace Asteroids.Scripts.Core.Infrastructure
 			IContainerBuilder containerBuilder = new ContainerBuilder();
 			containerBuilder.Register(new ServicesInstaller());
 			containerBuilder.Register(new GameStateMachineInstaller());
+			containerBuilder.Register(new UIInstaller());
 			return containerBuilder.Build();
 		}
 	}

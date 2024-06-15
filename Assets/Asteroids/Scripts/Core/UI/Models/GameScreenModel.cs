@@ -1,4 +1,4 @@
-﻿namespace Asteroids.Scripts.Core.UI.ScreenModels
+﻿namespace Asteroids.Scripts.Core.UI.Models
 {
 	public class GameScreenModel
 	{

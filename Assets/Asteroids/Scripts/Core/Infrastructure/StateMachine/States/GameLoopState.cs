@@ -19,7 +19,7 @@ namespace Asteroids.Scripts.Core.Infrastructure.StateMachine.States
 
 		public void Enter()
 		{
-			_screenService.Show<GameScreen>();
+			_screenService.ShowGameScreen();
 			_ecsStartup.Start();
 		}
 

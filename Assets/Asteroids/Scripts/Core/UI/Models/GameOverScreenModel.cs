@@ -2,7 +2,7 @@
 using Asteroids.Scripts.Core.Infrastructure.StateMachine;
 using Asteroids.Scripts.Core.Infrastructure.StateMachine.States;
 
-namespace Asteroids.Scripts.Core.UI.ScreenModels
+namespace Asteroids.Scripts.Core.UI.Models
 {
 	public class GameOverScreenModel
 	{
@@ -20,13 +20,15 @@ namespace Asteroids.Scripts.Core.UI.ScreenModels
 		// TODO: subscribe and unsubscribe when screen Shown or Closed.
 		public void Enable()
 		{
+			_inputService.StartLevelPressed += RestartGame;
 		}
 
 		public void Disable()
 		{
+			_inputService.StartLevelPressed += RestartGame;
 		}
 
-		public void Restart()
+		public void RestartGame()
 		{
 			_gameStateMachine.Enter<RestartState>();
 		}

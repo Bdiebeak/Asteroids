@@ -17,7 +17,7 @@ namespace Asteroids.Scripts.Core.Infrastructure.StateMachine.States
 
 		public void Enter()
 		{
-			_screenService.Show<GameOverScreen>();
+			_screenService.ShowGameOverScreen();
 		}
 
 		public void Update() { }
