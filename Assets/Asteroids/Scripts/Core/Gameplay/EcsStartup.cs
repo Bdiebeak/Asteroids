@@ -11,13 +11,12 @@ namespace Asteroids.Scripts.Core.Gameplay
 {
 	public class EcsStartup
 	{
-		private readonly IInputService _inputService;
-		private readonly IGameFactory _gameFactory;
-
 		private IContext _inputContext;
 		private IContext _gameplayContext;
 		private SystemsContainer _inputSystems;
 		private SystemsContainer _gameplaySystems;
+		private readonly IInputService _inputService;
+		private readonly IGameFactory _gameFactory;
 
 		public EcsStartup(IInputService inputService, IGameFactory gameFactory)
 		{
@@ -26,7 +25,7 @@ namespace Asteroids.Scripts.Core.Gameplay
 		}
 
 		// TODO: services with DiContainer, factory for systems.
-		// TODO: but how to split Context on different binding - Tags?
+		// TODO: but how to split few Context on different bindings - Contexts { inputContext, gameplayContext }
 		public void Initialize()
 		{
 			// Initialize contexts.

@@ -1,4 +1,6 @@
-﻿namespace Asteroids.Scripts.Core.Infrastructure.Services.Input
+﻿using System;
+
+namespace Asteroids.Scripts.Core.Infrastructure.Services.Input
 {
 	public interface IInputService
 	{
@@ -7,5 +9,7 @@
 		float MoveForward { get; }
 		float Rotate { get; }
 		bool StartLevel { get; }
+
+		event Action StartLevelPressed;
 	}
 }

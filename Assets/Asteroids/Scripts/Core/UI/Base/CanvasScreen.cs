@@ -7,34 +7,25 @@ namespace Asteroids.Scripts.Core.UI.Base
 	public abstract class CanvasScreen : MonoBehaviour, IScreen
 	{
 		[SerializeField]
-		private CanvasGroup _canvasGroup;
+		protected CanvasGroup canvasGroup;
 
 		public void Show()
 		{
-			_canvasGroup.Show();
+			canvasGroup.Show();
 			OnShown();
 		}
 		protected virtual void OnShown() { }
 
 		public void Close()
 		{
-			_canvasGroup.Hide();
+			canvasGroup.Hide();
 			OnClosed();
 		}
 		protected virtual void OnClosed() { }
 
 		private void Reset()
 		{
-			// TODO: rework.
-			string typeName = GetType().Name;
-			if (string.Equals(gameObject.name, typeName) == false)
-			{
-				Debug.LogError($"You have to rename it to properly work with asset provider.\nRequired name {typeName}.",
-							   gameObject);
-				DestroyImmediate(this);
-			}
-
-			_canvasGroup = GetComponent<CanvasGroup>();
+			canvasGroup = GetComponent<CanvasGroup>();
 		}
 	}
 }

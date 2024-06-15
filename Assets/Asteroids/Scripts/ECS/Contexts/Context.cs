@@ -9,8 +9,8 @@ namespace Asteroids.Scripts.ECS.Contexts
 {
 	public class Context : IContext
 	{
-		private readonly HashSet<Entity> _entities = new();
 		private Entity _uniqueEntity;
+		private readonly HashSet<Entity> _entities = new();
 
 		public Entity CreateEntity()
 		{

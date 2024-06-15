@@ -16,8 +16,8 @@ namespace Asteroids.Scripts.Core.Infrastructure.Factories
 
 		public Camera CreateMainCamera()
 		{
-			GameObject playerAsset = _assetProvider.Load<GameObject>(AssetKeys.MainCamera);
-			return Object.Instantiate(playerAsset).GetComponent<Camera>();
+			GameObject cameraAsset = _assetProvider.Load<GameObject>(AssetKeys.MainCamera);
+			return Object.Instantiate(cameraAsset).GetComponent<Camera>();
 		}
 
 		public IView CreatePlayerView()
