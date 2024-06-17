@@ -83,6 +83,24 @@ namespace Asteroids.Scripts.DI.Resolver
 			}
 		}
 
+		public void InjectInto(object target)
+		{
+			Type targetType = target.GetType();
+			MethodInfo[] targetMethods = targetType.GetMethods();
+
+			foreach (MethodInfo method in targetMethods)
+			{
+				InjectAttribute attribute = method.GetCustomAttribute<InjectAttribute>();
+				if (attribute == null)
+				{
+					continue;
+				}
+
+				object[] parameters = ResolveParameters(method.GetParameters());
+				method.Invoke(target, parameters);
+			}
+		}
+
 		private object CreateInstance(Type implementationType)
 		{
 			if (implementationType.IsInterface || implementationType.IsAbstract)
@@ -90,20 +108,30 @@ namespace Asteroids.Scripts.DI.Resolver
 				throw new InstanceCreationException($"{implementationType} cannot be created because it is an interface or an abstract class.");
 			}
 
+			object instance;
 			ConstructorInfo constructorInfo = implementationType.GetConstructors().FirstOrDefault();
-			if (constructorInfo == null)
+			if (constructorInfo != null)
 			{
-				throw new InstanceCreationException($"Can't find any available constructor for {implementationType}.");
+				object[] parameters = ResolveParameters(constructorInfo.GetParameters());
+				instance = constructorInfo.Invoke(parameters);
+			}
+			else
+			{
+				instance = Activator.CreateInstance(implementationType);
 			}
 
-			ParameterInfo[] parameterInfos = constructorInfo.GetParameters();
-			object[] parameters = new object[parameterInfos.Length];
-			for (int i = 0; i < parameterInfos.Length; i++)
-			{
-				parameters[i] = Resolve(parameterInfos[i].ParameterType);
-			}
+			InjectInto(instance);
+			return instance;
+		}
 
-			return constructorInfo.Invoke(parameters);
+		private object[] ResolveParameters(ParameterInfo[] infos)
+		{
+			object[] parameters = new object[infos.Length];
+			for (int i = 0; i < infos.Length; i++)
+			{
+				parameters[i] = Resolve(infos[i].ParameterType);
+			}
+			return parameters;
 		}
 	}
 }
