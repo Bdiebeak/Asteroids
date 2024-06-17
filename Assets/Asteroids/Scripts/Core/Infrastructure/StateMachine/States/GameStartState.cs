@@ -8,19 +8,22 @@ namespace Asteroids.Scripts.Core.Infrastructure.StateMachine.States
 	public class GameStartState : IState
 	{
 		private readonly IGameFactory _gameFactory;
+		private readonly IUIFactory _uiFactory;
 		private readonly IScreenService _screenService;
 		private readonly EcsStartup _ecsStartup;
 
-		public GameStartState(IGameFactory gameFactory, IScreenService screenService,
-							  EcsStartup ecsStartup)
+		public GameStartState(IGameFactory gameFactory, IUIFactory uiFactory,
+							  IScreenService screenService, EcsStartup ecsStartup)
 		{
 			_gameFactory = gameFactory;
+			_uiFactory = uiFactory;
 			_screenService = screenService;
 			_ecsStartup = ecsStartup;
 		}
 
 		public void Enter()
 		{
+			_uiFactory.CreateMainCanvas();
 			_gameFactory.CreateMainCamera(); // TODO: should bind into Container.
 			_screenService.Show<GameStartScreen>();
 			_ecsStartup.Initialize();

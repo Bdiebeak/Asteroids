@@ -2,8 +2,8 @@
 using Asteroids.Scripts.Core.Gameplay.Movement.Components;
 using Asteroids.Scripts.Core.Gameplay.Player.Components;
 using Asteroids.Scripts.Core.Infrastructure.Configs;
+using Asteroids.Scripts.Core.Infrastructure.Extensions;
 using Asteroids.Scripts.Core.Infrastructure.Services.Time;
-using Asteroids.Scripts.Core.Infrastructure.Utilities;
 using Asteroids.Scripts.ECS.Components;
 using Asteroids.Scripts.ECS.Contexts;
 using Asteroids.Scripts.ECS.Entities;

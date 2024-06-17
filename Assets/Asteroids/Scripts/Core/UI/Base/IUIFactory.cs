@@ -4,7 +4,7 @@ namespace Asteroids.Scripts.Core.UI.Base
 {
 	public interface IUIFactory
 	{
-		Canvas GetMainCanvas();
+		Canvas CreateMainCanvas();
 		TScreen CreateScreen<TScreen>() where TScreen : IScreen;
 	}
 }

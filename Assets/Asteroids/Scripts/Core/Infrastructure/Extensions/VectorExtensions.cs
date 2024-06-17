@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Asteroids.Scripts.Core.Infrastructure.Utilities
+namespace Asteroids.Scripts.Core.Infrastructure.Extensions
 {
 	public static class VectorExtensions
 	{

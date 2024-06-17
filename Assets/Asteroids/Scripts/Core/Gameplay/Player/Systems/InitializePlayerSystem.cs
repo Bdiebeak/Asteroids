@@ -23,7 +23,7 @@ namespace Asteroids.Scripts.Core.Gameplay.Player.Systems
 
 		public void Start()
 		{
-			IView playerView = _gameFactory.CreatePlayerView();
+			IView playerView = _gameFactory.CreatePlayer();
 			Entity entity = _gameplayContext.CreateEntity();
 			entity.Add<PlayerComponent>(new PlayerComponent());
 			entity.Add<ViewComponent>(new ViewComponent()).value = playerView;

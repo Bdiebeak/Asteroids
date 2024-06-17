@@ -1,4 +1,4 @@
-﻿using Asteroids.Scripts.Core.Infrastructure.Utilities;
+﻿using Asteroids.Scripts.Core.Infrastructure.Extensions;
 using UnityEngine;
 
 namespace Asteroids.Scripts.Core.UI.Base

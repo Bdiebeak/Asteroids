@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using Asteroids.Scripts.Core.Infrastructure.Constants;
-using Asteroids.Scripts.Core.Infrastructure.Services.AssetProvider;
+using Asteroids.Scripts.Core.Infrastructure.Services.Assets;
 using Asteroids.Scripts.Core.UI.Screens;
-using Asteroids.Scripts.DI.Resolver;
 using UnityEngine;
-using Object = UnityEngine.Object;
 
 namespace Asteroids.Scripts.Core.UI.Base
 {
@@ -13,13 +11,11 @@ namespace Asteroids.Scripts.Core.UI.Base
 	{
 		private Canvas _canvas;
 		private readonly Dictionary<Type, string> _screenKeys;
-		private readonly IContainerResolver _containerResolver;
-		private readonly IAssetProvider _assetProvider;
+		private readonly IPrefabCreator _prefabCreator;
 
-		public UIFactory(IContainerResolver containerResolver, IAssetProvider assetProvider)
+		public UIFactory(IPrefabCreator prefabCreator)
 		{
-			_containerResolver = containerResolver;
-			_assetProvider = assetProvider;
+			_prefabCreator = prefabCreator;
 			_screenKeys = new Dictionary<Type, string>()
 			{
 				{typeof(GameStartScreen), AssetKeys.StartScreen},
@@ -28,12 +24,11 @@ namespace Asteroids.Scripts.Core.UI.Base
 			};
 		}
 
-		public Canvas GetMainCanvas()
+		public Canvas CreateMainCanvas()
 		{
 			if (_canvas == null)
 			{
-				GameObject canvas = _assetProvider.Load<GameObject>(AssetKeys.MainCanvas);
-				_canvas = Object.Instantiate(canvas).GetComponent<Canvas>();
+				_canvas = _prefabCreator.InstantiateComponent<Canvas>(AssetKeys.MainCanvas);
 			}
 			return _canvas;
 		}
@@ -41,10 +36,7 @@ namespace Asteroids.Scripts.Core.UI.Base
 		public TScreen CreateScreen<TScreen>() where TScreen : IScreen
 		{
 			Type screenType = typeof(TScreen);
-			GameObject screenAsset = _assetProvider.Load<GameObject>(_screenKeys[screenType]);
-			TScreen screen = Object.Instantiate(screenAsset, GetMainCanvas().transform).GetComponent<TScreen>();
-			_containerResolver.InjectInto(screen);
-			return screen;
+			return _prefabCreator.InstantiateComponent<TScreen>(_screenKeys[screenType], _canvas.transform);
 		}
 	}
 }
