@@ -1,5 +1,6 @@
 ﻿using Asteroids.Scripts.Core.UI.Base;
 using Asteroids.Scripts.Core.UI.Models;
+using Asteroids.Scripts.DI.Resolver;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,6 +16,7 @@ namespace Asteroids.Scripts.Core.UI.Screens
 
 		private GameOverScreenModel _screenModel;
 
+		[Inject]
 		public void Construct(GameOverScreenModel screenModel)
 		{
 			_screenModel = screenModel;

@@ -25,7 +25,7 @@ namespace Asteroids.Scripts.Core.UI.Models
 
 		public void Disable()
 		{
-			_inputService.StartLevelPressed += RestartGame;
+			_inputService.StartLevelPressed -= RestartGame;
 		}
 
 		public void RestartGame()

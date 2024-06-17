@@ -1,5 +1,4 @@
-﻿using Asteroids.Scripts.Core.UI;
-using Asteroids.Scripts.Core.UI.Base;
+﻿using Asteroids.Scripts.Core.UI.Base;
 using Asteroids.Scripts.Core.UI.Screens;
 
 namespace Asteroids.Scripts.Core.Infrastructure.StateMachine.States
@@ -17,7 +16,7 @@ namespace Asteroids.Scripts.Core.Infrastructure.StateMachine.States
 
 		public void Enter()
 		{
-			_screenService.ShowGameOverScreen();
+			_screenService.Show<GameOverScreen>();
 		}
 
 		public void Update() { }

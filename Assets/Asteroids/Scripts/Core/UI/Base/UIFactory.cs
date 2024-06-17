@@ -1,26 +1,31 @@
-﻿using Asteroids.Scripts.Core.Infrastructure.Constants;
+﻿using System;
+using System.Collections.Generic;
+using Asteroids.Scripts.Core.Infrastructure.Constants;
 using Asteroids.Scripts.Core.Infrastructure.Services.AssetProvider;
-using Asteroids.Scripts.Core.UI.Models;
 using Asteroids.Scripts.Core.UI.Screens;
+using Asteroids.Scripts.DI.Resolver;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace Asteroids.Scripts.Core.UI.Base
 {
 	public class UIFactory : IUIFactory
 	{
 		private Canvas _canvas;
+		private readonly Dictionary<Type, string> _screenKeys;
+		private readonly IContainerResolver _containerResolver;
 		private readonly IAssetProvider _assetProvider;
-		private readonly StartScreenModel _startScreenModel;
-		private readonly GameScreenModel _gameScreenModel;
-		private readonly GameOverScreenModel _gameOverScreenModel;
 
-		public UIFactory(IAssetProvider assetProvider, StartScreenModel startScreenModel,
-						 GameScreenModel gameScreenModel, GameOverScreenModel gameOverScreenModel)
+		public UIFactory(IContainerResolver containerResolver, IAssetProvider assetProvider)
 		{
+			_containerResolver = containerResolver;
 			_assetProvider = assetProvider;
-			_startScreenModel = startScreenModel;
-			_gameScreenModel = gameScreenModel;
-			_gameOverScreenModel = gameOverScreenModel;
+			_screenKeys = new Dictionary<Type, string>()
+			{
+				{typeof(GameStartScreen), AssetKeys.StartScreen},
+				{typeof(GameScreen), AssetKeys.GameScreen},
+				{typeof(GameOverScreen), AssetKeys.GameOverScreen}
+			};
 		}
 
 		public Canvas GetMainCanvas()
@@ -33,28 +38,12 @@ namespace Asteroids.Scripts.Core.UI.Base
 			return _canvas;
 		}
 
-		// TODO: refactoring. It isn't scalable at all.
-		public StartScreen CreateStartScreen()
+		public TScreen CreateScreen<TScreen>() where TScreen : IScreen
 		{
-			GameObject screenAsset = _assetProvider.Load<GameObject>(AssetKeys.StartScreen);
-			StartScreen screen = Object.Instantiate(screenAsset, GetMainCanvas().transform).GetComponent<StartScreen>();
-			screen.Construct(_startScreenModel);
-			return screen;
-		}
-
-		public GameScreen CreateGameScreen()
-		{
-			GameObject screenAsset = _assetProvider.Load<GameObject>(AssetKeys.GameScreen);
-			GameScreen screen = Object.Instantiate(screenAsset, GetMainCanvas().transform).GetComponent<GameScreen>();
-			screen.Construct(_gameScreenModel);
-			return screen;
-		}
-
-		public GameOverScreen CreateGameOverScreen()
-		{
-			GameObject screenAsset = _assetProvider.Load<GameObject>(AssetKeys.GameOverScreen);
-			GameOverScreen screen = Object.Instantiate(screenAsset, GetMainCanvas().transform).GetComponent<GameOverScreen>();
-			screen.Construct(_gameOverScreenModel);
+			Type screenType = typeof(TScreen);
+			GameObject screenAsset = _assetProvider.Load<GameObject>(_screenKeys[screenType]);
+			TScreen screen = Object.Instantiate(screenAsset, GetMainCanvas().transform).GetComponent<TScreen>();
+			_containerResolver.InjectInto(screen);
 			return screen;
 		}
 	}

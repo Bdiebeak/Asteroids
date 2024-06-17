@@ -1,13 +1,10 @@
 ﻿using Asteroids.Scripts.Core.Gameplay;
 using Asteroids.Scripts.Core.Infrastructure.Factories;
-using Asteroids.Scripts.Core.Infrastructure.Services.Input;
-using Asteroids.Scripts.Core.UI;
 using Asteroids.Scripts.Core.UI.Base;
 using Asteroids.Scripts.Core.UI.Screens;
 
 namespace Asteroids.Scripts.Core.Infrastructure.StateMachine.States
 {
-	// TODO: mb combine with BootstrapState?
 	public class GameStartState : IState
 	{
 		private readonly IGameFactory _gameFactory;
@@ -24,9 +21,8 @@ namespace Asteroids.Scripts.Core.Infrastructure.StateMachine.States
 
 		public void Enter()
 		{
-			// TODO: should bind into Container.
-			_gameFactory.CreateMainCamera();
-			_screenService.ShowStartScreen();
+			_gameFactory.CreateMainCamera(); // TODO: should bind into Container.
+			_screenService.Show<GameStartScreen>();
 			_ecsStartup.Initialize();
 		}
 

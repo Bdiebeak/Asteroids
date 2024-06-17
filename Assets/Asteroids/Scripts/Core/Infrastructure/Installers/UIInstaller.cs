@@ -11,7 +11,6 @@ namespace Asteroids.Scripts.Core.Infrastructure.Installers
 		{
 			containerBuilder.Register<IScreenService, ScreenService>();
 			containerBuilder.Register<IUIFactory, UIFactory>();
-
 			containerBuilder.Register<StartScreenModel>();
 			containerBuilder.Register<GameScreenModel>();
 			containerBuilder.Register<GameOverScreenModel>();

@@ -1,8 +1,6 @@
 ﻿using Asteroids.Scripts.Core.Gameplay;
-using Asteroids.Scripts.Core.UI;
 using Asteroids.Scripts.Core.UI.Base;
 using Asteroids.Scripts.Core.UI.Screens;
-using UnityEngine;
 
 namespace Asteroids.Scripts.Core.Infrastructure.StateMachine.States
 {
@@ -19,7 +17,7 @@ namespace Asteroids.Scripts.Core.Infrastructure.StateMachine.States
 
 		public void Enter()
 		{
-			_screenService.ShowGameScreen();
+			_screenService.Show<GameScreen>();
 			_ecsStartup.Start();
 		}
 

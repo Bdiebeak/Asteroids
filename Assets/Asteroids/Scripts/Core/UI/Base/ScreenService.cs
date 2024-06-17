@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Asteroids.Scripts.Core.UI.Screens;
 
 namespace Asteroids.Scripts.Core.UI.Base
 {
@@ -17,38 +16,15 @@ namespace Asteroids.Scripts.Core.UI.Base
 			_uiFactory = uiFactory;
 		}
 
-		// TODO: refactoring. It isn't scalable at all.
-		public void ShowStartScreen()
+		public void Show<TScreen>() where TScreen : IScreen
 		{
 			CloseActive();
-			if (TryGetScreen(out StartScreen screen) == false)
-			{
-				screen = _uiFactory.CreateStartScreen();
-				_screens.Add(typeof(StartScreen), screen);
-			}
-			screen.Show();
-			_activeScreen = screen;
-		}
 
-		public void ShowGameScreen()
-		{
-			CloseActive();
-			if (TryGetScreen(out GameScreen screen) == false)
+			Type requiredType = typeof(TScreen);
+			if (_screens.TryGetValue(requiredType, out IScreen screen) == false)
 			{
-				screen = _uiFactory.CreateGameScreen();
-				_screens.Add(typeof(GameScreen), screen);
-			}
-			screen.Show();
-			_activeScreen = screen;
-		}
-
-		public void ShowGameOverScreen()
-		{
-			CloseActive();
-			if (TryGetScreen(out GameOverScreen screen) == false)
-			{
-				screen = _uiFactory.CreateGameOverScreen();
-				_screens.Add(typeof(GameOverScreen), screen);
+				screen = _uiFactory.CreateScreen<TScreen>();
+				_screens.Add(requiredType, screen);
 			}
 			screen.Show();
 			_activeScreen = screen;
@@ -61,18 +37,6 @@ namespace Asteroids.Scripts.Core.UI.Base
 				return;
 			}
 			_activeScreen.Close();
-		}
-
-		private bool TryGetScreen<TScreen>(out TScreen screen) where TScreen : IScreen
-		{
-			Type requiredType = typeof(TScreen);
-			if (_screens.TryGetValue(requiredType, out IScreen cachedScreen))
-			{
-				screen = (TScreen)cachedScreen;
-				return true;
-			}
-			screen = default;
-			return false;
 		}
 	}
 }

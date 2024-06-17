@@ -2,9 +2,7 @@
 {
 	public interface IScreenService
 	{
-		void ShowStartScreen();
-		void ShowGameScreen();
-		void ShowGameOverScreen();
+		void Show<TScreen>() where TScreen : IScreen;
 		void CloseActive();
 	}
 }

@@ -2,6 +2,9 @@
 
 namespace Asteroids.Scripts.Core.Infrastructure.Factories
 {
+	/// <summary>
+	/// This factory is needed only to resolve states from container with auto injection.
+	/// </summary>
 	public class GameStatesFactory : IGameStatesFactory
 	{
 		private readonly IContainerResolver _containerResolver;

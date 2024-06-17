@@ -28,23 +28,13 @@ namespace Asteroids.Scripts.Core.Gameplay
 			_timeService = timeService;
 		}
 
-		// TODO: services with DiContainer, factory for systems.
-		// TODO: but how to split few Context on different bindings - Contexts { inputContext, gameplayContext }
 		public void Initialize()
 		{
-			// Initialize contexts.
 			_inputContext = new Context();
 			_gameplayContext = new Context();
 
-			// Initialize input systems.
-			_inputSystems = new SystemsContainer();
-			_inputSystems.Add(new InputFeature(_inputContext, _inputService));
-
-			// Initialize gameplay systems.
-			_gameplaySystems = new SystemsContainer();
-			_gameplaySystems.Add(new InitializePlayerSystem(_gameplayContext, _gameFactory))
-							.Add(new MovementFeature(_inputContext, _gameplayContext, _timeService))
-							.Add(new UpdateViewSystem(_gameplayContext));
+			InitializeInputSystems();
+			InitializeGameplaySystems();
 		}
 
 		public void Start()
@@ -69,6 +59,20 @@ namespace Asteroids.Scripts.Core.Gameplay
 		{
 			_inputSystems.Stop();
 			_gameplaySystems.Stop();
+		}
+
+		private void InitializeInputSystems()
+		{
+			_inputSystems = new SystemsContainer();
+			_inputSystems.Add(new InputFeature(_inputContext, _inputService));
+		}
+
+		private void InitializeGameplaySystems()
+		{
+			_gameplaySystems = new SystemsContainer();
+			_gameplaySystems.Add(new InitializePlayerSystem(_gameplayContext, _gameFactory))
+							.Add(new MovementFeature(_inputContext, _gameplayContext, _timeService))
+							.Add(new UpdateViewSystem(_gameplayContext));
 		}
 	}
 }
