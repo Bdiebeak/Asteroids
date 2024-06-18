@@ -1,6 +1,5 @@
 ﻿using System;
 using Asteroids.Scripts.Core.Gameplay.Enemies;
-using Asteroids.Scripts.Core.Gameplay.View;
 using Asteroids.Scripts.Core.Infrastructure.Constants;
 using Asteroids.Scripts.Core.Infrastructure.Services.Assets;
 using UnityEngine;
@@ -21,24 +20,27 @@ namespace Asteroids.Scripts.Core.Infrastructure.Factories
 			return _prefabCreator.InstantiateComponent<Camera>(AssetKeys.MainCamera);
 		}
 
-		public IView CreatePlayer()
+		public void CreatePlayer()
 		{
-			return _prefabCreator.InstantiateComponent<IView>(AssetKeys.Player);
+			_prefabCreator.Instantiate(AssetKeys.Player);
 		}
 
-		public IView CreateEnemy(EnemyType enemyType)
+		public void CreateEnemy(EnemyType enemyType)
 		{
 			// TODO: don't like enum and switch.
 			switch (enemyType)
 			{
 				case EnemyType.Asteroid:
-					return _prefabCreator.InstantiateComponent<IView>(AssetKeys.Asteroid);
+					_prefabCreator.Instantiate(AssetKeys.Asteroid);
+					break;
 
 				case EnemyType.AsteroidPiece:
-					return _prefabCreator.InstantiateComponent<IView>(AssetKeys.AsteroidPiece);
+					_prefabCreator.Instantiate(AssetKeys.AsteroidPiece);
+					break;
 
 				case EnemyType.Ufo:
-					return _prefabCreator.InstantiateComponent<IView>(AssetKeys.Ufo);
+					_prefabCreator.Instantiate(AssetKeys.Ufo);
+					break;
 
 				default:
 					throw new ArgumentOutOfRangeException(nameof(enemyType), enemyType, null);

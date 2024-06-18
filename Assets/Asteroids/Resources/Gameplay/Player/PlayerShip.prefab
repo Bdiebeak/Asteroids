@@ -137,7 +137,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 905243687171133496}
-  - component: {fileID: -2961874928603011201}
+  - component: {fileID: 8344598413667046934}
+  - component: {fileID: 564970362861375722}
   m_Layer: 7
   m_Name: PlayerShip
   m_TagString: Untagged
@@ -161,7 +162,7 @@ Transform:
   - {fileID: 7644638181082491206}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-2961874928603011201
+--- !u!114 &8344598413667046934
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -170,6 +171,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 7614896232304256053}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9744a55c162c410fbbfecb219c67947d, type: 3}
+  m_Script: {fileID: 11500000, guid: a4a5781305334815bb2b40fa7d8a42a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _converters:
+  - {fileID: 564970362861375722}
+--- !u!114 &564970362861375722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7614896232304256053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecb258d562864fceb0e17407c0b85748, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

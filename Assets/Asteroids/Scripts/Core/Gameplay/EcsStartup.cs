@@ -1,4 +1,4 @@
-using Asteroids.Scripts.Core.Gameplay.Input;
+﻿using Asteroids.Scripts.Core.Gameplay.Input;
 using Asteroids.Scripts.Core.Gameplay.Movement;
 using Asteroids.Scripts.Core.Gameplay.Player.Systems;
 using Asteroids.Scripts.Core.Infrastructure.Factories;
@@ -67,7 +67,7 @@ namespace Asteroids.Scripts.Core.Gameplay
 		private void InitializeGameplaySystems()
 		{
 			_gameplaySystems = new SystemsContainer();
-			_gameplaySystems.Add(new InitializePlayerSystem(_gameplayContext, _gameFactory))
+			_gameplaySystems.Add(new InitializePlayerSystem(_gameFactory))
 							.Add(new MovementFeature(_inputContext, _gameplayContext, _timeService));
 		}
 	}
