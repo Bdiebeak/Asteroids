@@ -10,6 +10,8 @@ namespace Asteroids.Scripts.Core.Infrastructure.Installers
 		public void InstallTo(IContainerBuilder containerBuilder)
 		{
 			containerBuilder.Register<IGameFactory, GameFactory>();
+			containerBuilder.Register<InputContext>();
+			containerBuilder.Register<GameplayContext>();
 			containerBuilder.Register<EcsStartup>();
 		}
 	}

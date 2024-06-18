@@ -1,28 +1,28 @@
-﻿using Asteroids.Scripts.Core.Gameplay.Input;
+using Asteroids.Scripts.Core.Gameplay.Input;
 using Asteroids.Scripts.Core.Gameplay.Movement;
 using Asteroids.Scripts.Core.Gameplay.Player.Systems;
-using Asteroids.Scripts.Core.Gameplay.View.Systems;
 using Asteroids.Scripts.Core.Infrastructure.Factories;
 using Asteroids.Scripts.Core.Infrastructure.Services.Input;
 using Asteroids.Scripts.Core.Infrastructure.Services.Time;
-using Asteroids.Scripts.ECS.Contexts;
 using Asteroids.Scripts.ECS.Systems.Container;
 
 namespace Asteroids.Scripts.Core.Gameplay
 {
 	public class EcsStartup
 	{
-		private IContext _inputContext;
-		private IContext _gameplayContext;
 		private SystemsContainer _inputSystems;
 		private SystemsContainer _gameplaySystems;
+		private readonly InputContext _inputContext;
+		private readonly GameplayContext _gameplayContext;
 		private readonly IInputService _inputService;
 		private readonly IGameFactory _gameFactory;
 		private readonly ITimeService _timeService;
 
-		public EcsStartup(IInputService inputService, IGameFactory gameFactory,
-						  ITimeService timeService)
+		public EcsStartup(InputContext inputContext, GameplayContext gameplayContext,
+						  IInputService inputService, IGameFactory gameFactory, ITimeService timeService)
 		{
+			_inputContext = inputContext;
+			_gameplayContext = gameplayContext;
 			_inputService = inputService;
 			_gameFactory = gameFactory;
 			_timeService = timeService;
@@ -30,9 +30,6 @@ namespace Asteroids.Scripts.Core.Gameplay
 
 		public void Initialize()
 		{
-			_inputContext = new Context();
-			_gameplayContext = new Context();
-
 			InitializeInputSystems();
 			InitializeGameplaySystems();
 		}
@@ -71,8 +68,7 @@ namespace Asteroids.Scripts.Core.Gameplay
 		{
 			_gameplaySystems = new SystemsContainer();
 			_gameplaySystems.Add(new InitializePlayerSystem(_gameplayContext, _gameFactory))
-							.Add(new MovementFeature(_inputContext, _gameplayContext, _timeService))
-							.Add(new UpdateViewSystem(_gameplayContext));
+							.Add(new MovementFeature(_inputContext, _gameplayContext, _timeService));
 		}
 	}
 }
