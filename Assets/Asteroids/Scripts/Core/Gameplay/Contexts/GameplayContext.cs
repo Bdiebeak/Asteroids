@@ -1,8 +1,6 @@
 using Asteroids.Scripts.ECS.Contexts;
 
-namespace Asteroids.Scripts.Core.Gameplay
+namespace Asteroids.Scripts.Core.Gameplay.Contexts
 {
-	public class GameplayContext : Context
-	{
-	}
+	public class GameplayContext : Context { }
 }
