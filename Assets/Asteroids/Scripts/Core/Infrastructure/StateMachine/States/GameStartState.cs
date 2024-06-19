@@ -23,8 +23,8 @@ namespace Asteroids.Scripts.Core.Infrastructure.StateMachine.States
 
 		public void Enter()
 		{
-			_uiFactory.CreateMainCanvas();
 			_gameFactory.CreateMainCamera(); // TODO: should bind into Container.
+			_uiFactory.CreateMainCanvas();
 			_screenService.Show<GameStartScreen>();
 			_ecsStartup.Initialize();
 		}

@@ -2,7 +2,7 @@
 using Asteroids.Scripts.ECS.Entities;
 using UnityEngine;
 
-namespace Asteroids.Scripts.Core.Gameplay
+namespace Asteroids.Scripts.Core.Gameplay.Views
 {
 	public class TransformUpdater : MonoBehaviour
 	{

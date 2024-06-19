@@ -15,7 +15,6 @@ namespace Asteroids.Scripts.Core.UI.Models
 			_gameStateMachine = gameStateMachine;
 		}
 
-		// TODO: subscribe and unsubscribe when screen Shown or Closed.
 		public void Enable()
 		{
 			_inputService.StartLevelPressed += StartGame;

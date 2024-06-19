@@ -1,6 +1,7 @@
 ﻿using Asteroids.Scripts.Core.Gameplay.Converters;
 using Asteroids.Scripts.Core.Gameplay.Movement.Components;
 using Asteroids.Scripts.Core.Gameplay.Player.Components;
+using Asteroids.Scripts.Core.Gameplay.Views;
 using Asteroids.Scripts.Core.Infrastructure.Configs;
 using Asteroids.Scripts.ECS.Contexts;
 using Asteroids.Scripts.ECS.Entities;
@@ -11,15 +12,15 @@ namespace Asteroids.Scripts.Core.Gameplay.Player
 	{
 		protected override void OnConvert(IContext context, Entity entity)
 		{
-			entity.Add<PlayerComponent>(new PlayerComponent());
+			entity.Add(new PlayerComponent());
 			// TODO: entity.ConfigureWithMovement();
-			entity.Add<PositionComponent>(new PositionComponent());
-			entity.Add<VelocityComponent>(new VelocityComponent());
-			entity.Add<VelocityDragComponent>(new VelocityDragComponent()).value = GameConfig.ShipDrag;
+			entity.Add(new PositionComponent());
+			entity.Add(new VelocityComponent());
+			entity.Add(new VelocityDragComponent()).value = GameConfig.ShipDrag;
 			// TODO: entity.ConfigureWithRotation();
-			entity.Add<RotationComponent>(new RotationComponent());
-			entity.Add<RotationVelocityComponent>(new RotationVelocityComponent());
-			entity.Add<RotationSpeedComponent>(new RotationSpeedComponent()).value = GameConfig.ShipAngularSpeed;
+			entity.Add(new RotationComponent());
+			entity.Add(new RotationVelocityComponent());
+			entity.Add(new RotationSpeedComponent()).value = GameConfig.ShipAngularSpeed;
 
 			TransformUpdater transformUpdater = gameObject.AddComponent<TransformUpdater>();
 			transformUpdater.Initialize(entity);

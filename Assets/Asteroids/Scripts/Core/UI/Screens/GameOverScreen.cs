@@ -26,14 +26,12 @@ namespace Asteroids.Scripts.Core.UI.Screens
 		{
 			_scoreText.SetText(_screenModel.Score.ToString());
 			_restartButton.onClick.AddListener(OnRestartButtonClicked);
-			// TODO: refactoring.
 			_screenModel.Enable();
 		}
 
 		protected override void OnClosed()
 		{
 			_restartButton.onClick.RemoveListener(OnRestartButtonClicked);
-			// TODO: refactoring.
 			_screenModel.Disable();
 		}
 
