@@ -20,31 +20,34 @@ namespace Asteroids.Scripts.Core.Infrastructure.Factories
 			return _prefabCreator.InstantiateComponent<Camera>(AssetKeys.MainCamera);
 		}
 
-		public void CreatePlayer()
+		public void CreatePlayer(Vector2 position)
 		{
-			_prefabCreator.Instantiate(AssetKeys.Player);
+			GameObject player = _prefabCreator.Instantiate(AssetKeys.Player);
+			player.transform.position = position;
 		}
 
-		public void CreateEnemy(EnemyType enemyType)
+		public void CreateEnemy(EnemyType enemyType, Vector2 position)
 		{
 			// TODO: don't like enum and switch.
+			GameObject enemy;
 			switch (enemyType)
 			{
 				case EnemyType.Asteroid:
-					_prefabCreator.Instantiate(AssetKeys.Asteroid);
+					enemy = _prefabCreator.Instantiate(AssetKeys.Asteroid);
 					break;
 
 				case EnemyType.AsteroidPiece:
-					_prefabCreator.Instantiate(AssetKeys.AsteroidPiece);
+					enemy = _prefabCreator.Instantiate(AssetKeys.AsteroidPiece);
 					break;
 
 				case EnemyType.Ufo:
-					_prefabCreator.Instantiate(AssetKeys.Ufo);
+					enemy = _prefabCreator.Instantiate(AssetKeys.Ufo);
 					break;
 
 				default:
 					throw new ArgumentOutOfRangeException(nameof(enemyType), enemyType, null);
 			}
+			enemy.transform.position = position;
 		}
 	}
 }

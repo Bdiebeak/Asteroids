@@ -8,11 +8,14 @@ namespace Asteroids.Scripts.ECS.Entities
 {
 	public class Entity
 	{
+		public event Action Destroyed;
+
 		private readonly Dictionary<Type, IComponent> _components = new();
 
-		public void Clear()
+		public void Destroy()
 		{
 			_components.Clear();
+			Destroyed?.Invoke();
 		}
 
 		public IReadOnlyCollection<IComponent> GetComponents()

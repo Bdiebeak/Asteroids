@@ -2,6 +2,7 @@
 using Asteroids.Scripts.Core.Infrastructure.Factories;
 using Asteroids.Scripts.Core.Infrastructure.Services.Screens;
 using Asteroids.Scripts.Core.UI.Screens;
+using UnityEngine;
 
 namespace Asteroids.Scripts.Core.Infrastructure.StateMachine.States
 {
@@ -21,7 +22,7 @@ namespace Asteroids.Scripts.Core.Infrastructure.StateMachine.States
 
 		public void Enter()
 		{
-			_gameFactory.CreatePlayer();
+			_gameFactory.CreatePlayer(Vector2.zero); // TODO: should be here?
 			_screenService.Show<GameScreen>();
 			_ecsStartup.Start();
 		}

@@ -10,7 +10,7 @@ namespace Asteroids.Scripts.Core.Gameplay.Collisions
 	public class CollisionListener : MonoBehaviour
 	{
 		private GameplayContext _gameplayContext;
-		private LinkedEntity _linkedEntity;
+		private LinkedEntityReference _linkedEntity;
 
 		[Inject]
 		public void Construct(GameplayContext gameplayContext)
@@ -23,18 +23,18 @@ namespace Asteroids.Scripts.Core.Gameplay.Collisions
 			CollisionEnterEventComponent eventComponent = new()
 			{
 				sender = GetLinkedEntity().Entity,
-				collision = other.gameObject.GetComponent<LinkedEntity>().Entity
+				collision = other.gameObject.GetComponent<LinkedEntityReference>().Entity
 			};
 
 			Entity entity = _gameplayContext.CreateEntity();
 			entity.Add(eventComponent);
 		}
 
-		private LinkedEntity GetLinkedEntity()
+		private LinkedEntityReference GetLinkedEntity()
 		{
 			if (_linkedEntity == null)
 			{
-				_linkedEntity = gameObject.GetComponent<LinkedEntity>();
+				_linkedEntity = gameObject.GetComponent<LinkedEntityReference>();
 			}
 			return _linkedEntity;
 		}

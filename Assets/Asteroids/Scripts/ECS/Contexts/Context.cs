@@ -24,7 +24,7 @@ namespace Asteroids.Scripts.ECS.Contexts
 				throw new NoEntityException("Can't remove this entity it doesn't exist in this context.");
 			}
 			_entities.Remove(entity);
-			entity.Clear();
+			entity.Destroy();
 		}
 
 		public IReadOnlyCollection<Entity> GetEntities()
@@ -52,6 +52,14 @@ namespace Asteroids.Scripts.ECS.Contexts
 				entities.Add(entity);
 			}
 			return entities;
+		}
+
+		public void Destroy()
+		{
+			while (_entities.Count > 0)
+			{
+				DestroyEntity(_entities.First());
+			}
 		}
 	}
 }

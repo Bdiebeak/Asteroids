@@ -10,5 +10,6 @@ namespace Asteroids.Scripts.ECS.Contexts
 		void DestroyEntity(Entity entity);
 		IReadOnlyCollection<Entity> GetEntities();
 		IReadOnlyCollection<Entity> GetEntities(Mask mask);
+		void Destroy();
 	}
 }

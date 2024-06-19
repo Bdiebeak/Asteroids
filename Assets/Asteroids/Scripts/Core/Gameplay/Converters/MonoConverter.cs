@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace Asteroids.Scripts.Core.Gameplay.Converters
 {
+	[RequireComponent(typeof(MonoComponentsContainer))]
 	public abstract class MonoConverter : MonoBehaviour, IConverter
 	{
 		public void Convert(IContext context, Entity entity)
