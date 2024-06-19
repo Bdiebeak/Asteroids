@@ -1,4 +1,4 @@
-﻿namespace Asteroids.Scripts.Core.UI.Base
+﻿namespace Asteroids.Scripts.Core.Infrastructure.Services.Screens
 {
 	public interface IScreenService
 	{

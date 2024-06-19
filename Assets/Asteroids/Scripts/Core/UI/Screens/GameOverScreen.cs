@@ -1,5 +1,4 @@
-﻿using Asteroids.Scripts.Core.UI.Base;
-using Asteroids.Scripts.Core.UI.Models;
+﻿using Asteroids.Scripts.Core.UI.Models;
 using Asteroids.Scripts.DI.Resolver;
 using TMPro;
 using UnityEngine;
@@ -10,9 +9,9 @@ namespace Asteroids.Scripts.Core.UI.Screens
 	public class GameOverScreen : CanvasScreen
 	{
 		[SerializeField]
-		private TextMeshProUGUI _scoreText;
+		private TextMeshProUGUI scoreText;
 		[SerializeField]
-		private Button _restartButton;
+		private Button restartButton;
 
 		private GameOverScreenModel _screenModel;
 
@@ -24,14 +23,14 @@ namespace Asteroids.Scripts.Core.UI.Screens
 
 		protected override void OnShown()
 		{
-			_scoreText.SetText(_screenModel.Score.ToString());
-			_restartButton.onClick.AddListener(OnRestartButtonClicked);
+			scoreText.SetText(_screenModel.Score.ToString());
+			restartButton.onClick.AddListener(OnRestartButtonClicked);
 			_screenModel.Enable();
 		}
 
 		protected override void OnClosed()
 		{
-			_restartButton.onClick.RemoveListener(OnRestartButtonClicked);
+			restartButton.onClick.RemoveListener(OnRestartButtonClicked);
 			_screenModel.Disable();
 		}
 

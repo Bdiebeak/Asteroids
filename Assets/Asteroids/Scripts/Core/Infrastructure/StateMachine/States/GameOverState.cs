@@ -1,4 +1,4 @@
-﻿using Asteroids.Scripts.Core.UI.Base;
+﻿using Asteroids.Scripts.Core.Infrastructure.Services.Screens;
 using Asteroids.Scripts.Core.UI.Screens;
 
 namespace Asteroids.Scripts.Core.Infrastructure.StateMachine.States

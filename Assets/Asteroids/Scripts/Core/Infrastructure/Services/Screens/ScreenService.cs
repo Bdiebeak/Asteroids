@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using Asteroids.Scripts.Core.Infrastructure.Factories;
 
-namespace Asteroids.Scripts.Core.UI.Base
+namespace Asteroids.Scripts.Core.Infrastructure.Services.Screens
 {
 	public class ScreenService : IScreenService
 	{

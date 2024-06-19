@@ -335,8 +335,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvasGroup: {fileID: 1086285530037334862}
-  _scoreText: {fileID: 1973808728316729718}
-  _restartButton: {fileID: 9089126312971533212}
+  scoreText: {fileID: 1973808728316729718}
+  restartButton: {fileID: 9089126312971533212}
 --- !u!1 &5783905364293481621
 GameObject:
   m_ObjectHideFlags: 0

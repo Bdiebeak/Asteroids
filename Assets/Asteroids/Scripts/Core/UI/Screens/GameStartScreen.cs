@@ -1,5 +1,4 @@
-﻿using Asteroids.Scripts.Core.UI.Base;
-using Asteroids.Scripts.Core.UI.Models;
+﻿using Asteroids.Scripts.Core.UI.Models;
 using Asteroids.Scripts.DI.Resolver;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,7 +8,7 @@ namespace Asteroids.Scripts.Core.UI.Screens
 	public class GameStartScreen : CanvasScreen
 	{
 		[SerializeField]
-		private Button _startButton;
+		private Button startButton;
 
 		private StartScreenModel _screenModel;
 
@@ -21,13 +20,13 @@ namespace Asteroids.Scripts.Core.UI.Screens
 
 		protected override void OnShown()
 		{
-			_startButton.onClick.AddListener(OnStartButtonClicked);
+			startButton.onClick.AddListener(OnStartButtonClicked);
 			_screenModel.Enable();
 		}
 
 		protected override void OnClosed()
 		{
-			_startButton.onClick.RemoveListener(OnStartButtonClicked);
+			startButton.onClick.RemoveListener(OnStartButtonClicked);
 			_screenModel.Disable();
 		}
 

@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using Asteroids.Scripts.Core.Infrastructure.Constants;
 using Asteroids.Scripts.Core.Infrastructure.Services.Assets;
+using Asteroids.Scripts.Core.Infrastructure.Services.Screens;
 using Asteroids.Scripts.Core.UI.Screens;
 using UnityEngine;
 
-namespace Asteroids.Scripts.Core.UI.Base
+namespace Asteroids.Scripts.Core.Infrastructure.Factories
 {
 	public class UIFactory : IUIFactory
 	{

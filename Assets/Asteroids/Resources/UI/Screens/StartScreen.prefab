@@ -588,4 +588,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvasGroup: {fileID: 4572567537735454561}
-  _startButton: {fileID: 535496534247405497}
+  startButton: {fileID: 535496534247405497}

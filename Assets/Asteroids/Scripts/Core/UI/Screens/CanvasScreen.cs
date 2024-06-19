@@ -1,7 +1,8 @@
 ﻿using Asteroids.Scripts.Core.Infrastructure.Extensions;
+using Asteroids.Scripts.Core.Infrastructure.Services.Screens;
 using UnityEngine;
 
-namespace Asteroids.Scripts.Core.UI.Base
+namespace Asteroids.Scripts.Core.UI.Screens
 {
 	[RequireComponent(typeof(CanvasGroup))]
 	public abstract class CanvasScreen : MonoBehaviour, IScreen

@@ -10,9 +10,9 @@ namespace Asteroids.Scripts.Core.Gameplay.Converters
 	public class MonoComponentsContainer : MonoBehaviour, IComponentsContainer
 	{
 		[SerializeField]
-		private List<MonoConverter> _converters = new();
+		private List<MonoConverter> converters = new();
 
-		public IReadOnlyList<IConverter> Converters => _converters;
+		public IReadOnlyList<IConverter> Converters => converters;
 
 		[Inject]
 		public void Construct(GameplayContext context)

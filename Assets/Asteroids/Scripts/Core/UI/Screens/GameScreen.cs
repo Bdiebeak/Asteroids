@@ -1,5 +1,4 @@
-﻿using Asteroids.Scripts.Core.UI.Base;
-using Asteroids.Scripts.Core.UI.Elements;
+﻿using Asteroids.Scripts.Core.UI.Elements;
 using Asteroids.Scripts.Core.UI.Models;
 using Asteroids.Scripts.DI.Resolver;
 using UnityEngine;
