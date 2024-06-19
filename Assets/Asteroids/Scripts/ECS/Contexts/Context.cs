@@ -8,7 +8,6 @@ namespace Asteroids.Scripts.ECS.Contexts
 {
 	public class Context : IContext
 	{
-		private Entity _uniqueEntity;
 		private readonly HashSet<Entity> _entities = new();
 
 		public Entity CreateEntity()
@@ -24,6 +23,7 @@ namespace Asteroids.Scripts.ECS.Contexts
 			{
 				throw new NoEntityException("Can't remove this entity it doesn't exist in this context.");
 			}
+			_entities.Remove(entity);
 			entity.Clear();
 		}
 
@@ -52,35 +52,6 @@ namespace Asteroids.Scripts.ECS.Contexts
 				entities.Add(entity);
 			}
 			return entities;
-		}
-
-		public TComponent CreateUnique<TComponent>(TComponent component) where TComponent : IUniqueComponent
-		{
-			_uniqueEntity ??= CreateEntity();
-			return _uniqueEntity.Add(component);
-		}
-
-		public TComponent GetUnique<TComponent>() where TComponent : IUniqueComponent
-		{
-			if (_uniqueEntity == null)
-			{
-				throw new NoEntityException("Can't find unique entity.");
-			}
-			return _uniqueEntity.Get<TComponent>();
-		}
-
-		public void RemoveUnique<TComponent>() where TComponent : IUniqueComponent
-		{
-			if (_uniqueEntity == null)
-			{
-				throw new NoEntityException("Can't find unique entity.");
-			}
-
-			_uniqueEntity.Remove<TComponent>();
-			if (_uniqueEntity.GetComponents().Count == 0)
-			{
-				DestroyEntity(_uniqueEntity);
-			}
 		}
 	}
 }

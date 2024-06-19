@@ -1,4 +1,5 @@
-﻿using Asteroids.Scripts.Core.Gameplay.Contexts;
+﻿using Asteroids.Scripts.Core.Gameplay.Collisions.Systems;
+using Asteroids.Scripts.Core.Gameplay.Contexts;
 using Asteroids.Scripts.Core.Gameplay.Input;
 using Asteroids.Scripts.Core.Gameplay.Movement;
 using Asteroids.Scripts.Core.Gameplay.UI.Systems;
@@ -73,7 +74,8 @@ namespace Asteroids.Scripts.Core.Gameplay
 		{
 			_gameplaySystems = new SystemsContainer();
 			_gameplaySystems.Add(new MovementFeature(_inputContext, _gameplayContext, _timeService))
-							.Add(new UpdateGameScreenModelSystem(_gameplayContext, _gameScreenModel));
+							.Add(new UpdateGameScreenModelSystem(_gameplayContext, _gameScreenModel))
+							.Add(new CleanUpCollisionEventsSystem(_gameplayContext));
 		}
 	}
 }

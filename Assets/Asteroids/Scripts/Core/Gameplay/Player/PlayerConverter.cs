@@ -13,12 +13,11 @@ namespace Asteroids.Scripts.Core.Gameplay.Player
 		protected override void OnConvert(IContext context, Entity entity)
 		{
 			entity.Add(new PlayerComponent());
-			// TODO: entity.ConfigureWithMovement();
 			entity.Add(new PositionComponent());
 			entity.Add(new VelocityComponent());
 			entity.Add(new VelocityDragComponent()).value = GameConfig.ShipDrag;
-			// TODO: entity.ConfigureWithRotation();
 			entity.Add(new RotationComponent());
+			// TODO: RotationVelocity and RotationSpeed ???
 			entity.Add(new RotationVelocityComponent());
 			entity.Add(new RotationSpeedComponent()).value = GameConfig.ShipAngularSpeed;
 
