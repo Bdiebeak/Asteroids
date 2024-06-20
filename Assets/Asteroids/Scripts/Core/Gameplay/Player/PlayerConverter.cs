@@ -2,6 +2,7 @@
 using Asteroids.Scripts.Core.Gameplay.Movement.Components;
 using Asteroids.Scripts.Core.Gameplay.Player.Components;
 using Asteroids.Scripts.Core.Gameplay.Views;
+using Asteroids.Scripts.Core.Gameplay.Wrapper.Components;
 using Asteroids.Scripts.Core.Infrastructure.Configs;
 using Asteroids.Scripts.ECS.Contexts;
 using Asteroids.Scripts.ECS.Entities;
@@ -20,6 +21,7 @@ namespace Asteroids.Scripts.Core.Gameplay.Player
 			// TODO: RotationVelocity and RotationSpeed ???
 			entity.Add(new RotationVelocityComponent());
 			entity.Add(new RotationSpeedComponent()).value = GameConfig.ShipAngularSpeed;
+			entity.Add(new KeepInScreenComponent());
 
 			TransformUpdater transformUpdater = gameObject.AddComponent<TransformUpdater>();
 			transformUpdater.Initialize(entity);

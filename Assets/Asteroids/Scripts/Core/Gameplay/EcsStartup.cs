@@ -5,12 +5,14 @@ using Asteroids.Scripts.Core.Gameplay.Input;
 using Asteroids.Scripts.Core.Gameplay.Movement;
 using Asteroids.Scripts.Core.Gameplay.Player;
 using Asteroids.Scripts.Core.Gameplay.UI.Systems;
+using Asteroids.Scripts.Core.Gameplay.Wrapper.Systems;
 using Asteroids.Scripts.Core.Infrastructure.Factories;
 using Asteroids.Scripts.Core.Infrastructure.Services.Input;
 using Asteroids.Scripts.Core.Infrastructure.Services.Time;
 using Asteroids.Scripts.Core.Infrastructure.StateMachine;
 using Asteroids.Scripts.Core.UI.Models;
 using Asteroids.Scripts.ECS.Systems.Container;
+using UnityEngine;
 
 namespace Asteroids.Scripts.Core.Gameplay
 {
@@ -25,10 +27,13 @@ namespace Asteroids.Scripts.Core.Gameplay
 		private readonly ITimeService _timeService;
 		private readonly GameScreenModel _gameScreenModel;
 		private readonly IGameStateMachine _gameStateMachine;
+		private readonly Camera _camera;
 
+		// TODO: Don't like huge constructor here. Create some SystemFactory or smth.
 		public EcsStartup(InputContext inputContext, GameplayContext gameplayContext,
 						  IInputService inputService, IGameFactory gameFactory, ITimeService timeService,
-						  GameScreenModel gameScreenModel, IGameStateMachine gameStateMachine)
+						  GameScreenModel gameScreenModel, IGameStateMachine gameStateMachine,
+						  Camera camera)
 		{
 			_inputContext = inputContext;
 			_gameplayContext = gameplayContext;
@@ -37,6 +42,7 @@ namespace Asteroids.Scripts.Core.Gameplay
 			_timeService = timeService;
 			_gameScreenModel = gameScreenModel;
 			_gameStateMachine = gameStateMachine;
+			_camera = camera;
 		}
 
 		public void Initialize()
@@ -84,6 +90,7 @@ namespace Asteroids.Scripts.Core.Gameplay
 							.Add(new SpawnEnemySystem(_gameFactory))
 							.Add(new PlayerCollisionSystem(_gameplayContext, _gameStateMachine))
 							.Add(new UpdateGameScreenModelSystem(_gameplayContext, _gameScreenModel))
+							.Add(new KeepInScreenSystem(_gameplayContext, _camera))
 							.Add(new CleanUpCollisionEventsSystem(_gameplayContext));
 		}
 	}

@@ -8,10 +8,11 @@ using UnityEngine;
 
 namespace Asteroids.Scripts.Core.Infrastructure
 {
-	// TODO: IEngineCycleBroadcaster - broadcasts engine events (Start, Update and etc.)
-	// TODO: IEnginePhysicsBroadcaster - broadcasts engine physics events (OnCollisionEnter and etc.)
 	public class GameRunner : MonoBehaviour
 	{
+		[SerializeField]
+		private Camera mainCamera;
+
 		private IContainerResolver _diContainer;
 		private IGameStateMachine _gameStateMachine;
 
@@ -43,6 +44,7 @@ namespace Asteroids.Scripts.Core.Infrastructure
 			containerBuilder.Register(new GameStateMachineInstaller());
 			containerBuilder.Register(new GameInstaller());
 			containerBuilder.Register(new UIInstaller());
+			containerBuilder.Register<Camera>(mainCamera); // TODO: spawn or smth like this.
 			return containerBuilder.Build();
 		}
 	}

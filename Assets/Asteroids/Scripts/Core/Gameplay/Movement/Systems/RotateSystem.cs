@@ -29,7 +29,7 @@ namespace Asteroids.Scripts.Core.Gameplay.Movement.Systems
 				RotationComponent rotation = entity.Get<RotationComponent>();
 				RotationVelocityComponent rotationVelocity = entity.Get<RotationVelocityComponent>();
 				rotation.value += rotationVelocity.value * _timeService.DeltaTime;
-				rotation.value = (rotation.value + 180) % 360 - 180;
+				rotation.value %= 360;
 			}
 		}
 	}

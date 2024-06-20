@@ -15,11 +15,6 @@ namespace Asteroids.Scripts.Core.Infrastructure.Factories
 			_prefabCreator = prefabCreator;
 		}
 
-		public Camera CreateMainCamera()
-		{
-			return _prefabCreator.InstantiateComponent<Camera>(AssetKeys.MainCamera);
-		}
-
 		public void CreatePlayer(Vector2 position)
 		{
 			GameObject player = _prefabCreator.Instantiate(AssetKeys.Player);
@@ -28,7 +23,6 @@ namespace Asteroids.Scripts.Core.Infrastructure.Factories
 
 		public void CreateEnemy(EnemyType enemyType, Vector2 position)
 		{
-			// TODO: don't like enum and switch.
 			GameObject enemy;
 			switch (enemyType)
 			{

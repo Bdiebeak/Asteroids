@@ -25,19 +25,20 @@ namespace Asteroids.Scripts.Core.Infrastructure.Factories
 			};
 		}
 
-		public Canvas CreateMainCanvas()
+		public TScreen CreateScreen<TScreen>() where TScreen : IScreen
+		{
+			Type screenType = typeof(TScreen);
+			Canvas canvas = GetOrCreateMainCanvas();
+			return _prefabCreator.InstantiateComponent<TScreen>(_screenKeys[screenType], canvas.transform);
+		}
+
+		private Canvas GetOrCreateMainCanvas()
 		{
 			if (_canvas == null)
 			{
 				_canvas = _prefabCreator.InstantiateComponent<Canvas>(AssetKeys.MainCanvas);
 			}
 			return _canvas;
-		}
-
-		public TScreen CreateScreen<TScreen>() where TScreen : IScreen
-		{
-			Type screenType = typeof(TScreen);
-			return _prefabCreator.InstantiateComponent<TScreen>(_screenKeys[screenType], _canvas.transform);
 		}
 	}
 }
