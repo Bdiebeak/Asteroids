@@ -1,4 +1,5 @@
 ﻿using Asteroids.Scripts.Core.Infrastructure.Services.Assets;
+using Asteroids.Scripts.Core.Infrastructure.Services.Camera;
 using Asteroids.Scripts.Core.Infrastructure.Services.Input;
 using Asteroids.Scripts.Core.Infrastructure.Services.Time;
 using Asteroids.Scripts.DI.Builder;
@@ -14,6 +15,7 @@ namespace Asteroids.Scripts.Core.Infrastructure.Installers
 			containerBuilder.Register<IPrefabCreator, PrefabCreator>();
 			containerBuilder.Register<IInputService, UnityInputService>();
 			containerBuilder.Register<ITimeService, UnityTimeService>();
+			containerBuilder.Register<ICameraProvider, CameraProvider>();
 		}
 	}
 }

@@ -1,4 +1,4 @@
-using Asteroids.Scripts.Core.Game.Contexts;
+﻿using Asteroids.Scripts.Core.Game.Contexts;
 using Asteroids.Scripts.Core.Game.Factories;
 using Asteroids.Scripts.Core.Game.Features.Collision;
 using Asteroids.Scripts.Core.Game.Features.Collision.Systems;
@@ -7,12 +7,12 @@ using Asteroids.Scripts.Core.Game.Features.Movement;
 using Asteroids.Scripts.Core.Game.Features.Spawn;
 using Asteroids.Scripts.Core.Game.Features.UI.Systems;
 using Asteroids.Scripts.Core.Game.Features.Wrapper.Systems;
+using Asteroids.Scripts.Core.Infrastructure.Services.Camera;
 using Asteroids.Scripts.Core.Infrastructure.Services.Input;
 using Asteroids.Scripts.Core.Infrastructure.Services.Time;
 using Asteroids.Scripts.Core.Infrastructure.StateMachine;
 using Asteroids.Scripts.Core.UI.Models;
 using Asteroids.Scripts.ECS.Systems.Container;
-using UnityEngine;
 
 namespace Asteroids.Scripts.Core.Game
 {
@@ -27,13 +27,13 @@ namespace Asteroids.Scripts.Core.Game
 		private readonly ITimeService _timeService;
 		private readonly GameScreenModel _gameScreenModel;
 		private readonly IGameStateMachine _gameStateMachine;
-		private readonly Camera _camera;
+		private readonly ICameraProvider _cameraProvider;
 
 		// TODO: Don't like huge constructor here. Create some SystemFactory or smth.
 		public EcsStartup(InputContext inputContext, GameplayContext gameplayContext,
 						  IInputService inputService, IGameFactory gameFactory, ITimeService timeService,
 						  GameScreenModel gameScreenModel, IGameStateMachine gameStateMachine,
-						  Camera camera)
+						  ICameraProvider cameraProvider)
 		{
 			_inputContext = inputContext;
 			_gameplayContext = gameplayContext;
@@ -42,7 +42,7 @@ namespace Asteroids.Scripts.Core.Game
 			_timeService = timeService;
 			_gameScreenModel = gameScreenModel;
 			_gameStateMachine = gameStateMachine;
-			_camera = camera;
+			_cameraProvider = cameraProvider;
 		}
 
 		public void Initialize()
@@ -88,7 +88,7 @@ namespace Asteroids.Scripts.Core.Game
 			_gameplaySystems = new SystemsContainer();
 			_gameplaySystems.Add(new SpawnFeature(_gameFactory));
 			_gameplaySystems.Add(new MovementFeature(_inputContext, _gameplayContext, _timeService));
-			_gameplaySystems.Add(new KeepInScreenSystem(_gameplayContext, _camera));
+			_gameplaySystems.Add(new KeepInScreenSystem(_gameplayContext, _cameraProvider));
 			_gameplaySystems.Add(new CollisionFeature(_gameplayContext, _gameStateMachine));
 			_gameplaySystems.Add(new UpdateGameScreenSystem(_gameplayContext, _gameScreenModel));
 			_gameplaySystems.Add(new CleanUpCollisionEventsSystem(_gameplayContext));

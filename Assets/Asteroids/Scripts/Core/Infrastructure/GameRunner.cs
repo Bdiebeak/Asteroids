@@ -10,9 +10,6 @@ namespace Asteroids.Scripts.Core.Infrastructure
 {
 	public class GameRunner : MonoBehaviour
 	{
-		[SerializeField]
-		private Camera mainCamera;
-
 		private IContainerResolver _diContainer;
 		private IGameStateMachine _gameStateMachine;
 
@@ -42,7 +39,7 @@ namespace Asteroids.Scripts.Core.Infrastructure
 			IContainerBuilder containerBuilder = new ContainerBuilder();
 			containerBuilder.Register(new ServicesInstaller());
 			containerBuilder.Register(new GameStateMachineInstaller());
-			containerBuilder.Register(new GameInstaller(mainCamera));
+			containerBuilder.Register(new GameInstaller());
 			containerBuilder.Register(new UIInstaller());
 			return containerBuilder.Build();
 		}

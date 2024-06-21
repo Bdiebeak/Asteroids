@@ -14,6 +14,11 @@ namespace Asteroids.Scripts.Core.Game.Factories
 			_prefabCreator = prefabCreator;
 		}
 
+		public Camera CreateMainCamera()
+		{
+			return _prefabCreator.InstantiateComponent<Camera>(GameAssetKeys.MainCamera);
+		}
+
 		public void CreatePlayer(Vector2 position)
 		{
 			InstantiateAt(GameAssetKeys.Player, position);
