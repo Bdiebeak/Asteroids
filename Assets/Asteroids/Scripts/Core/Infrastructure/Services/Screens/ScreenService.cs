@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using Asteroids.Scripts.Core.Infrastructure.Factories;
+using Asteroids.Scripts.Core.UI.Factory;
 
 namespace Asteroids.Scripts.Core.Infrastructure.Services.Screens
 {
 	public class ScreenService : IScreenService
 	{
 		private IScreen _activeScreen;
-		private readonly Dictionary<Type, IScreen> _screens = new();
 		private readonly IUIFactory _uiFactory;
+		private readonly Dictionary<Type, IScreen> _screens = new();
 
 		private bool HasActiveScreen => _activeScreen != null;
 

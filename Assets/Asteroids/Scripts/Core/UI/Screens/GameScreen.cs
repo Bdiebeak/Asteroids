@@ -40,17 +40,17 @@ namespace Asteroids.Scripts.Core.UI.Screens
 
 		private void UpdateScore()
 		{
-			scoreElement.SetValue(_screenModel.Score.ToString());
+			scoreElement.SetValue(_screenModel.score.ToString());
 		}
 
 		private void UpdateHints()
 		{
-			positionElement.SetValue(_screenModel.Position.ToString());
-			rotationElement.SetValue(_screenModel.Rotation.ToString("F2"));
-			velocityElement.SetValue(_screenModel.Velocity.ToString());
-			velocityMagnitudeElement.SetValue(_screenModel.VelocityMagnitude.ToString("F2"));
-			laserCountElement.SetValue($"{_screenModel.CurrentLaserCount} / {_screenModel.MaxLaserCount}");
-			laserCooldownElement.SetValue(_screenModel.LaserCooldown.ToString("F2"));
+			positionElement.SetValue(_screenModel.position.ToString());
+			rotationElement.SetValue(_screenModel.rotation.ToString("F2"));
+			velocityElement.SetValue(_screenModel.velocity.ToString());
+			velocityMagnitudeElement.SetValue(_screenModel.velocityMagnitude.ToString("F2"));
+			laserCountElement.SetValue($"{_screenModel.currentLaserCount} / {_screenModel.maxLaserCount}");
+			laserCooldownElement.SetValue(_screenModel.laserCooldown.ToString("F2"));
 		}
 	}
 }

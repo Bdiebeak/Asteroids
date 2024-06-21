@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Asteroids.Scripts.Core.Infrastructure.Factories;
+using Asteroids.Scripts.Core.Infrastructure.StateMachine.Factory;
 using Asteroids.Scripts.Core.Infrastructure.StateMachine.States;
 
 namespace Asteroids.Scripts.Core.Infrastructure.StateMachine

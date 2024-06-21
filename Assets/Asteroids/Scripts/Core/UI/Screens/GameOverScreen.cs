@@ -23,7 +23,7 @@ namespace Asteroids.Scripts.Core.UI.Screens
 
 		protected override void OnShown()
 		{
-			scoreText.SetText(_screenModel.Score.ToString());
+			scoreText.SetText(_screenModel.score.ToString());
 			restartButton.onClick.AddListener(OnRestartButtonClicked);
 		}
 

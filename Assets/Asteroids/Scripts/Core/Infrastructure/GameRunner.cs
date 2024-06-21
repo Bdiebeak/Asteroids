@@ -42,9 +42,8 @@ namespace Asteroids.Scripts.Core.Infrastructure
 			IContainerBuilder containerBuilder = new ContainerBuilder();
 			containerBuilder.Register(new ServicesInstaller());
 			containerBuilder.Register(new GameStateMachineInstaller());
-			containerBuilder.Register(new GameInstaller());
+			containerBuilder.Register(new GameInstaller(mainCamera));
 			containerBuilder.Register(new UIInstaller());
-			containerBuilder.Register<Camera>(mainCamera); // TODO: spawn or smth like this.
 			return containerBuilder.Build();
 		}
 	}

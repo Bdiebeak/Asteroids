@@ -1,4 +1,4 @@
-﻿using Asteroids.Scripts.Core.Gameplay;
+﻿using Asteroids.Scripts.Core.Game;
 using Asteroids.Scripts.Core.Infrastructure.Services.Screens;
 using Asteroids.Scripts.Core.UI.Screens;
 

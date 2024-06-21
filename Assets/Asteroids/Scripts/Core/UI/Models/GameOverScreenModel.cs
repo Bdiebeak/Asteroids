@@ -5,7 +5,7 @@ namespace Asteroids.Scripts.Core.UI.Models
 {
 	public class GameOverScreenModel
 	{
-		public int Score;
+		public int score;
 
 		private readonly IGameStateMachine _gameStateMachine;
 
