@@ -1,4 +1,4 @@
-using Asteroids.Scripts.Core.Game.Converters;
+﻿using Asteroids.Scripts.Core.Game.Converters;
 using Asteroids.Scripts.Core.Game.Features.Movement.Components;
 using Asteroids.Scripts.Core.Game.Features.Player.Components;
 using Asteroids.Scripts.Core.Game.Features.Wrapper.Components;
@@ -16,7 +16,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Player
 			entity.Add(new PlayerTagComponent());
 			entity.Add(new PositionComponent());
 			entity.Add(new VelocityComponent());
-			entity.Add(new VelocityDragComponent()).value = GameConfig.ShipDrag;
+			entity.Add(new VelocityDragComponent()).value = PlayerConfig.shipDrag;
 			entity.Add(new RotationComponent());
 			entity.Add(new RotationVelocityComponent());
 			entity.Add(new KeepInScreenComponent());

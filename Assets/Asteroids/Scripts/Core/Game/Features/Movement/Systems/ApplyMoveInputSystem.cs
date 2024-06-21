@@ -3,7 +3,7 @@ using Asteroids.Scripts.Core.Game.Features.Input.Components;
 using Asteroids.Scripts.Core.Game.Features.Movement.Components;
 using Asteroids.Scripts.Core.Game.Features.Player.Components;
 using Asteroids.Scripts.Core.Infrastructure.Extensions;
-using Asteroids.Scripts.Core.Infrastructure.Services.StaticData.Configs;
+using Asteroids.Scripts.Core.Infrastructure.Services.Configs;
 using Asteroids.Scripts.Core.Infrastructure.Services.Time;
 using Asteroids.Scripts.ECS.Components;
 using Asteroids.Scripts.ECS.Entities;
@@ -53,13 +53,13 @@ namespace Asteroids.Scripts.Core.Game.Features.Movement.Systems
 					if (moveInput.value > 0)
 					{
 						Vector2 moveVector = new(0, moveInput.value);
-						Vector2 targetVelocity = moveVector.Rotate(rotation.value).normalized * GameConfig.ShipMaxSpeed;
+						Vector2 targetVelocity = moveVector.Rotate(rotation.value).normalized * PlayerConfig.shipMaxSpeed;
 						velocity.value = Vector2.MoveTowards(velocity.value, targetVelocity,
-															 GameConfig.ShipAcceleration * _timeService.DeltaTime);
+															 PlayerConfig.shipAcceleration * _timeService.DeltaTime);
 					}
 
 					// Refill rotation input. Invert for proper rotation.
-					rotationVelocity.value = -rotateInput.value * GameConfig.ShipAngularSpeed;
+					rotationVelocity.value = -rotateInput.value * PlayerConfig.shipAngularSpeed;
 				}
 			}
 		}
