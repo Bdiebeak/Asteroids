@@ -21,13 +21,11 @@ namespace Asteroids.Scripts.Core.UI.Screens
 		protected override void OnShown()
 		{
 			startButton.onClick.AddListener(OnStartButtonClicked);
-			_screenModel.Enable();
 		}
 
 		protected override void OnClosed()
 		{
 			startButton.onClick.RemoveListener(OnStartButtonClicked);
-			_screenModel.Disable();
 		}
 
 		private void OnStartButtonClicked()

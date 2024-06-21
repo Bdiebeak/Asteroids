@@ -30,17 +30,6 @@ namespace Asteroids.Scripts.Core.UI.Screens
 			_screenModel = screenModel;
 		}
 
-		private void Start()
-		{
-			scoreElement.SetLabel("Score");
-			positionElement.SetLabel("Position");
-			rotationElement.SetLabel("Rotation");
-			velocityElement.SetLabel("Velocity");
-			velocityMagnitudeElement.SetLabel("Velocity M");
-			laserCountElement.SetLabel("Laser");
-			laserCooldownElement.SetLabel("Laser CD");
-		}
-
 		private void Update()
 		{
 			// Here can be more complicated RX-system for Screen and ScreeModel communication.

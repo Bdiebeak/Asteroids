@@ -242,7 +242,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6590176672859469815, guid: 44db622d8eb45ef42bef42637e9b41c8, type: 3}
       propertyPath: m_Name
-      value: LabelValueElement (6)
+      value: LaserCooldownElement
+      objectReference: {fileID: 0}
+    - target: {fileID: 6654739188796256106, guid: 44db622d8eb45ef42bef42637e9b41c8, type: 3}
+      propertyPath: m_text
+      value: Laser CD
       objectReference: {fileID: 0}
     - target: {fileID: 6654739188796256106, guid: 44db622d8eb45ef42bef42637e9b41c8, type: 3}
       propertyPath: m_HorizontalAlignment
@@ -363,7 +367,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6590176672859469815, guid: 44db622d8eb45ef42bef42637e9b41c8, type: 3}
       propertyPath: m_Name
-      value: LabelValueElement (3)
+      value: VelocityElement
+      objectReference: {fileID: 0}
+    - target: {fileID: 6654739188796256106, guid: 44db622d8eb45ef42bef42637e9b41c8, type: 3}
+      propertyPath: m_text
+      value: Velocity
       objectReference: {fileID: 0}
     - target: {fileID: 6654739188796256106, guid: 44db622d8eb45ef42bef42637e9b41c8, type: 3}
       propertyPath: m_HorizontalAlignment
@@ -480,7 +488,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6590176672859469815, guid: 44db622d8eb45ef42bef42637e9b41c8, type: 3}
       propertyPath: m_Name
-      value: LabelValueElement
+      value: ScoreElement
+      objectReference: {fileID: 0}
+    - target: {fileID: 6654739188796256106, guid: 44db622d8eb45ef42bef42637e9b41c8, type: 3}
+      propertyPath: m_text
+      value: score
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -597,7 +609,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6590176672859469815, guid: 44db622d8eb45ef42bef42637e9b41c8, type: 3}
       propertyPath: m_Name
-      value: LabelValueElement (2)
+      value: RotationElement
+      objectReference: {fileID: 0}
+    - target: {fileID: 6654739188796256106, guid: 44db622d8eb45ef42bef42637e9b41c8, type: 3}
+      propertyPath: m_text
+      value: Rotation
       objectReference: {fileID: 0}
     - target: {fileID: 6654739188796256106, guid: 44db622d8eb45ef42bef42637e9b41c8, type: 3}
       propertyPath: m_HorizontalAlignment
@@ -718,7 +734,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6590176672859469815, guid: 44db622d8eb45ef42bef42637e9b41c8, type: 3}
       propertyPath: m_Name
-      value: LabelValueElement (1)
+      value: PositionElement
+      objectReference: {fileID: 0}
+    - target: {fileID: 6654739188796256106, guid: 44db622d8eb45ef42bef42637e9b41c8, type: 3}
+      propertyPath: m_text
+      value: position
       objectReference: {fileID: 0}
     - target: {fileID: 6654739188796256106, guid: 44db622d8eb45ef42bef42637e9b41c8, type: 3}
       propertyPath: m_HorizontalAlignment
@@ -839,7 +859,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6590176672859469815, guid: 44db622d8eb45ef42bef42637e9b41c8, type: 3}
       propertyPath: m_Name
-      value: LabelValueElement (4)
+      value: VelocityMagnitudeElement
+      objectReference: {fileID: 0}
+    - target: {fileID: 6654739188796256106, guid: 44db622d8eb45ef42bef42637e9b41c8, type: 3}
+      propertyPath: m_text
+      value: Velocity M
       objectReference: {fileID: 0}
     - target: {fileID: 6654739188796256106, guid: 44db622d8eb45ef42bef42637e9b41c8, type: 3}
       propertyPath: m_HorizontalAlignment
@@ -960,7 +984,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6590176672859469815, guid: 44db622d8eb45ef42bef42637e9b41c8, type: 3}
       propertyPath: m_Name
-      value: LabelValueElement (5)
+      value: LaserCountElement
+      objectReference: {fileID: 0}
+    - target: {fileID: 6654739188796256106, guid: 44db622d8eb45ef42bef42637e9b41c8, type: 3}
+      propertyPath: m_text
+      value: Laser
       objectReference: {fileID: 0}
     - target: {fileID: 6654739188796256106, guid: 44db622d8eb45ef42bef42637e9b41c8, type: 3}
       propertyPath: m_HorizontalAlignment

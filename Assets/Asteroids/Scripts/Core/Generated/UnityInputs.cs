@@ -28,24 +28,6 @@ public partial class @UnityInputs: IInputActionCollection2, IDisposable
             ""id"": ""265c38f5-dd18-4d34-b198-aec58e1627ff"",
             ""actions"": [
                 {
-                    ""name"": ""BulletAttack"",
-                    ""type"": ""Button"",
-                    ""id"": ""1077f913-a9f9-41b1-acb3-b9ee0adbc744"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""LaserAttack"",
-                    ""type"": ""Button"",
-                    ""id"": ""d71b993e-7406-4384-9d78-e3777cf08fc0"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""MoveForward"",
                     ""type"": ""Value"",
                     ""id"": ""50fd2809-3aa3-4a90-988e-1facf6773553"",
@@ -64,9 +46,18 @@ public partial class @UnityInputs: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""StartLevel"",
+                    ""name"": ""BulletAttack"",
                     ""type"": ""Button"",
-                    ""id"": ""d9df9bf5-efd6-43ba-ae4e-52fb49eab8b8"",
+                    ""id"": ""1077f913-a9f9-41b1-acb3-b9ee0adbc744"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LaserAttack"",
+                    ""type"": ""Button"",
+                    ""id"": ""d71b993e-7406-4384-9d78-e3777cf08fc0"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -74,6 +65,83 @@ public partial class @UnityInputs: IInputActionCollection2, IDisposable
                 }
             ],
             ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""de31ddf3-51a2-40d6-8ac1-f130f114f40e"",
+                    ""path"": ""<Keyboard>/alt"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LaserAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0afbd135-244c-486a-888e-8e98a343c9c4"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LaserAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Arrows [Keyboard]"",
+                    ""id"": ""6953ce69-2b12-4fc1-85cf-69f0af4ef7fe"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveForward"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""0900bc92-5959-4822-bd98-2624f97c632a"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveForward"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""WASD [Keyboard]"",
+                    ""id"": ""c4590827-0b34-4746-b075-404423c3470f"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveForward"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""3e53f915-360a-410c-865e-2be4a53dfb97"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveForward"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2dae7dca-6217-46a6-ac5a-6beae29cd176"",
+                    ""path"": ""<Gamepad>/leftStick/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveForward"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
                 {
                     ""name"": """",
                     ""id"": ""abb776f3-f329-4f7b-bbf8-b577d13be018"",
@@ -172,105 +240,6 @@ public partial class @UnityInputs: IInputActionCollection2, IDisposable
                     ""action"": ""Rotate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""9992b46e-8fed-4023-8359-9432e741410e"",
-                    ""path"": ""<Keyboard>/enter"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""StartLevel"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""8c514ed6-eb21-47ff-8903-c5ef3e843f0a"",
-                    ""path"": ""<Gamepad>/start"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""StartLevel"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""de31ddf3-51a2-40d6-8ac1-f130f114f40e"",
-                    ""path"": ""<Keyboard>/alt"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""LaserAttack"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""0afbd135-244c-486a-888e-8e98a343c9c4"",
-                    ""path"": ""<Gamepad>/rightTrigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""LaserAttack"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""Arrows [Keyboard]"",
-                    ""id"": ""6953ce69-2b12-4fc1-85cf-69f0af4ef7fe"",
-                    ""path"": ""1DAxis"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""MoveForward"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""positive"",
-                    ""id"": ""0900bc92-5959-4822-bd98-2624f97c632a"",
-                    ""path"": ""<Keyboard>/upArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""MoveForward"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""WASD [Keyboard]"",
-                    ""id"": ""c4590827-0b34-4746-b075-404423c3470f"",
-                    ""path"": ""1DAxis"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""MoveForward"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""positive"",
-                    ""id"": ""3e53f915-360a-410c-865e-2be4a53dfb97"",
-                    ""path"": ""<Keyboard>/w"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""MoveForward"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""2dae7dca-6217-46a6-ac5a-6beae29cd176"",
-                    ""path"": ""<Gamepad>/leftStick/y"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""MoveForward"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -279,11 +248,10 @@ public partial class @UnityInputs: IInputActionCollection2, IDisposable
 }");
         // Game
         m_Game = asset.FindActionMap("Game", throwIfNotFound: true);
-        m_Game_BulletAttack = m_Game.FindAction("BulletAttack", throwIfNotFound: true);
-        m_Game_LaserAttack = m_Game.FindAction("LaserAttack", throwIfNotFound: true);
         m_Game_MoveForward = m_Game.FindAction("MoveForward", throwIfNotFound: true);
         m_Game_Rotate = m_Game.FindAction("Rotate", throwIfNotFound: true);
-        m_Game_StartLevel = m_Game.FindAction("StartLevel", throwIfNotFound: true);
+        m_Game_BulletAttack = m_Game.FindAction("BulletAttack", throwIfNotFound: true);
+        m_Game_LaserAttack = m_Game.FindAction("LaserAttack", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -345,20 +313,18 @@ public partial class @UnityInputs: IInputActionCollection2, IDisposable
     // Game
     private readonly InputActionMap m_Game;
     private List<IGameActions> m_GameActionsCallbackInterfaces = new List<IGameActions>();
-    private readonly InputAction m_Game_BulletAttack;
-    private readonly InputAction m_Game_LaserAttack;
     private readonly InputAction m_Game_MoveForward;
     private readonly InputAction m_Game_Rotate;
-    private readonly InputAction m_Game_StartLevel;
+    private readonly InputAction m_Game_BulletAttack;
+    private readonly InputAction m_Game_LaserAttack;
     public struct GameActions
     {
         private @UnityInputs m_Wrapper;
         public GameActions(@UnityInputs wrapper) { m_Wrapper = wrapper; }
-        public InputAction @BulletAttack => m_Wrapper.m_Game_BulletAttack;
-        public InputAction @LaserAttack => m_Wrapper.m_Game_LaserAttack;
         public InputAction @MoveForward => m_Wrapper.m_Game_MoveForward;
         public InputAction @Rotate => m_Wrapper.m_Game_Rotate;
-        public InputAction @StartLevel => m_Wrapper.m_Game_StartLevel;
+        public InputAction @BulletAttack => m_Wrapper.m_Game_BulletAttack;
+        public InputAction @LaserAttack => m_Wrapper.m_Game_LaserAttack;
         public InputActionMap Get() { return m_Wrapper.m_Game; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -368,40 +334,34 @@ public partial class @UnityInputs: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_GameActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_GameActionsCallbackInterfaces.Add(instance);
-            @BulletAttack.started += instance.OnBulletAttack;
-            @BulletAttack.performed += instance.OnBulletAttack;
-            @BulletAttack.canceled += instance.OnBulletAttack;
-            @LaserAttack.started += instance.OnLaserAttack;
-            @LaserAttack.performed += instance.OnLaserAttack;
-            @LaserAttack.canceled += instance.OnLaserAttack;
             @MoveForward.started += instance.OnMoveForward;
             @MoveForward.performed += instance.OnMoveForward;
             @MoveForward.canceled += instance.OnMoveForward;
             @Rotate.started += instance.OnRotate;
             @Rotate.performed += instance.OnRotate;
             @Rotate.canceled += instance.OnRotate;
-            @StartLevel.started += instance.OnStartLevel;
-            @StartLevel.performed += instance.OnStartLevel;
-            @StartLevel.canceled += instance.OnStartLevel;
+            @BulletAttack.started += instance.OnBulletAttack;
+            @BulletAttack.performed += instance.OnBulletAttack;
+            @BulletAttack.canceled += instance.OnBulletAttack;
+            @LaserAttack.started += instance.OnLaserAttack;
+            @LaserAttack.performed += instance.OnLaserAttack;
+            @LaserAttack.canceled += instance.OnLaserAttack;
         }
 
         private void UnregisterCallbacks(IGameActions instance)
         {
-            @BulletAttack.started -= instance.OnBulletAttack;
-            @BulletAttack.performed -= instance.OnBulletAttack;
-            @BulletAttack.canceled -= instance.OnBulletAttack;
-            @LaserAttack.started -= instance.OnLaserAttack;
-            @LaserAttack.performed -= instance.OnLaserAttack;
-            @LaserAttack.canceled -= instance.OnLaserAttack;
             @MoveForward.started -= instance.OnMoveForward;
             @MoveForward.performed -= instance.OnMoveForward;
             @MoveForward.canceled -= instance.OnMoveForward;
             @Rotate.started -= instance.OnRotate;
             @Rotate.performed -= instance.OnRotate;
             @Rotate.canceled -= instance.OnRotate;
-            @StartLevel.started -= instance.OnStartLevel;
-            @StartLevel.performed -= instance.OnStartLevel;
-            @StartLevel.canceled -= instance.OnStartLevel;
+            @BulletAttack.started -= instance.OnBulletAttack;
+            @BulletAttack.performed -= instance.OnBulletAttack;
+            @BulletAttack.canceled -= instance.OnBulletAttack;
+            @LaserAttack.started -= instance.OnLaserAttack;
+            @LaserAttack.performed -= instance.OnLaserAttack;
+            @LaserAttack.canceled -= instance.OnLaserAttack;
         }
 
         public void RemoveCallbacks(IGameActions instance)
@@ -421,10 +381,9 @@ public partial class @UnityInputs: IInputActionCollection2, IDisposable
     public GameActions @Game => new GameActions(this);
     public interface IGameActions
     {
-        void OnBulletAttack(InputAction.CallbackContext context);
-        void OnLaserAttack(InputAction.CallbackContext context);
         void OnMoveForward(InputAction.CallbackContext context);
         void OnRotate(InputAction.CallbackContext context);
-        void OnStartLevel(InputAction.CallbackContext context);
+        void OnBulletAttack(InputAction.CallbackContext context);
+        void OnLaserAttack(InputAction.CallbackContext context);
     }
 }

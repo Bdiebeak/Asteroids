@@ -8,7 +8,7 @@ namespace Asteroids.Scripts.Core.Gameplay.Views
 	public class LinkedEntityConverter : MonoConverter
 	{
 		[SerializeField]
-		private bool destroyWithEntity = true;
+		private bool destroyObjectWithEntity = true;
 
 		protected override void OnConvert(IContext context, Entity entity)
 		{
@@ -16,7 +16,7 @@ namespace Asteroids.Scripts.Core.Gameplay.Views
 			{
 				linkedEntity = gameObject.AddComponent<LinkedEntityReference>();
 			}
-			linkedEntity.Initialize(entity, destroyWithEntity);
+			linkedEntity.Initialize(entity, destroyObjectWithEntity);
 		}
 	}
 }

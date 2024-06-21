@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Asteroids.Scripts.Core.Infrastructure.Services.Input
+﻿namespace Asteroids.Scripts.Core.Infrastructure.Services.Input
 {
 	public interface IInputService
 	{
@@ -8,8 +6,5 @@ namespace Asteroids.Scripts.Core.Infrastructure.Services.Input
 		bool LaserAttack { get; }
 		float MoveForward { get; }
 		float Rotate { get; }
-		bool StartLevel { get; }
-
-		event Action StartLevelPressed;
 	}
 }
