@@ -6,12 +6,10 @@ namespace Asteroids.Scripts.Core.Infrastructure.StateMachine.States
 	public class GameOverState : IState
 	{
 		private readonly IScreenService _screenService;
-		private readonly IGameStateMachine _stateMachine;
 
-		public GameOverState(IScreenService screenService, IGameStateMachine stateMachine)
+		public GameOverState(IScreenService screenService)
 		{
 			_screenService = screenService;
-			_stateMachine = stateMachine;
 		}
 
 		public void Enter()

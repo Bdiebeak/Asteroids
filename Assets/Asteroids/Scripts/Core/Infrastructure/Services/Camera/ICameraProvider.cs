@@ -6,5 +6,7 @@ namespace Asteroids.Scripts.Core.Infrastructure.Services.Camera
 	{
 		UnityEngine.Camera MainCamera { get; }
 		Bounds Bounds { get; }
+
+		void Initialize();
 	}
 }

@@ -8,7 +8,7 @@ using Asteroids.Scripts.ECS.Components;
 using Asteroids.Scripts.ECS.Entities;
 using Asteroids.Scripts.ECS.Systems.Interfaces;
 
-namespace Asteroids.Scripts.Core.Game.Features.Player
+namespace Asteroids.Scripts.Core.Game.Features.Collision.Systems
 {
 	public class PlayerCollisionSystem : IUpdateSystem
 	{

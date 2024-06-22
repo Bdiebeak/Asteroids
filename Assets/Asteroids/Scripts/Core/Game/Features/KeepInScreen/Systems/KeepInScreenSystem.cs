@@ -1,12 +1,12 @@
 ﻿using Asteroids.Scripts.Core.Game.Contexts;
+using Asteroids.Scripts.Core.Game.Features.KeepInScreen.Components;
 using Asteroids.Scripts.Core.Game.Features.Movement.Components;
-using Asteroids.Scripts.Core.Game.Features.Wrapper.Components;
 using Asteroids.Scripts.Core.Infrastructure.Services.Camera;
 using Asteroids.Scripts.ECS.Components;
 using Asteroids.Scripts.ECS.Entities;
 using Asteroids.Scripts.ECS.Systems.Interfaces;
 
-namespace Asteroids.Scripts.Core.Game.Features.Wrapper.Systems
+namespace Asteroids.Scripts.Core.Game.Features.KeepInScreen.Systems
 {
 	public class KeepInScreenSystem : IUpdateSystem
 	{

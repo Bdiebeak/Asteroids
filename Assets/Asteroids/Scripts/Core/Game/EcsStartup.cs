@@ -1,12 +1,11 @@
 ﻿using Asteroids.Scripts.Core.Game.Contexts;
 using Asteroids.Scripts.Core.Game.Factories;
 using Asteroids.Scripts.Core.Game.Features.Collision;
-using Asteroids.Scripts.Core.Game.Features.Collision.Systems;
 using Asteroids.Scripts.Core.Game.Features.Input;
+using Asteroids.Scripts.Core.Game.Features.KeepInScreen;
 using Asteroids.Scripts.Core.Game.Features.Movement;
 using Asteroids.Scripts.Core.Game.Features.Spawn;
-using Asteroids.Scripts.Core.Game.Features.UI.Systems;
-using Asteroids.Scripts.Core.Game.Features.Wrapper.Systems;
+using Asteroids.Scripts.Core.Game.Features.UI;
 using Asteroids.Scripts.Core.Infrastructure.Services.Camera;
 using Asteroids.Scripts.Core.Infrastructure.Services.Input;
 using Asteroids.Scripts.Core.Infrastructure.Services.Time;
@@ -88,10 +87,9 @@ namespace Asteroids.Scripts.Core.Game
 			_gameplaySystems = new SystemsContainer();
 			_gameplaySystems.Add(new SpawnFeature(_gameFactory));
 			_gameplaySystems.Add(new MovementFeature(_inputContext, _gameplayContext, _timeService));
-			_gameplaySystems.Add(new KeepInScreenSystem(_gameplayContext, _cameraProvider));
+			_gameplaySystems.Add(new KeepInScreenFeature(_gameplayContext, _cameraProvider));
 			_gameplaySystems.Add(new CollisionFeature(_gameplayContext, _gameStateMachine));
-			_gameplaySystems.Add(new UpdateGameScreenSystem(_gameplayContext, _gameScreenModel));
-			_gameplaySystems.Add(new CleanUpCollisionEventsSystem(_gameplayContext));
+			_gameplaySystems.Add(new UIFeature(_gameplayContext, _gameScreenModel));
 		}
 	}
 }

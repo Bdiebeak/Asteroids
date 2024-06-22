@@ -16,7 +16,6 @@ namespace Asteroids.Scripts.Core.Infrastructure.Services.Camera
 			_gameFactory = gameFactory;
 		}
 
-		// TODO: Container IInitializable
 		public void Initialize()
 		{
 			MainCamera = _gameFactory.CreateMainCamera();
