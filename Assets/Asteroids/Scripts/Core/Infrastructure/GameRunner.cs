@@ -32,6 +32,7 @@ namespace Asteroids.Scripts.Core.Infrastructure
 		private void OnDestroy()
 		{
 			_gameStateMachine.Exit();
+			_diContainer.Dispose();
 		}
 
 		private IContainerResolver BuildContainer()

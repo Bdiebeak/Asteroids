@@ -12,6 +12,7 @@ namespace Asteroids.Scripts.DI.Resolver
 		private readonly Dictionary<Type, IDependencyDescriber> _describers = new();
 		private readonly Dictionary<Type, object> _singletons = new();
 		private readonly HashSet<Type> _currentResolves = new();
+		private readonly HashSet<IDisposable> _disposables = new();
 
 		public ContainerResolver(IEnumerable<IDependencyDescriber> dependencyDescribers)
 		{
@@ -22,6 +23,14 @@ namespace Asteroids.Scripts.DI.Resolver
 			foreach (IDependencyDescriber dependencyDescriber in dependencyDescribers)
 			{
 				_describers.Add(dependencyDescriber.RegistrationType, dependencyDescriber);
+			}
+		}
+
+		public void Dispose()
+		{
+			foreach (IDisposable disposable in _disposables)
+			{
+				disposable.Dispose();
 			}
 		}
 
@@ -119,8 +128,8 @@ namespace Asteroids.Scripts.DI.Resolver
 			{
 				instance = Activator.CreateInstance(implementationType);
 			}
-
 			InjectInto(instance);
+
 			return instance;
 		}
 
