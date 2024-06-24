@@ -2,6 +2,10 @@
 {
 	public static class EnemiesConfig
 	{
+		public static int asteroidsCount = 6;
+		public static int minUfoDelay = 30;
+		public static int maxUfoDelay = 60;
+
 		public static float asteroidSpeed = 2;
 		public static float asteroidPieceSpeed = 4;
 		public static float ufoSpeed = 8;
