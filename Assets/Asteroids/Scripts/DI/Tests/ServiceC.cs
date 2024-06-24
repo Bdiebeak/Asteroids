@@ -1,4 +1,4 @@
-﻿using Asteroids.Scripts.DI.Resolver;
+﻿using Asteroids.Scripts.DI.Attributes;
 
 namespace Asteroids.Scripts.DI.Tests
 {

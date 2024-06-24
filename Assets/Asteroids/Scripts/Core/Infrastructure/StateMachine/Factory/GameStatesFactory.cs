@@ -1,4 +1,4 @@
-﻿using Asteroids.Scripts.DI.Resolver;
+﻿using Asteroids.Scripts.DI;
 
 namespace Asteroids.Scripts.Core.Infrastructure.StateMachine.Factory
 {
@@ -7,16 +7,16 @@ namespace Asteroids.Scripts.Core.Infrastructure.StateMachine.Factory
 	/// </summary>
 	public class GameStatesFactory : IGameStatesFactory
 	{
-		private readonly IContainerResolver _containerResolver;
+		private readonly IContainer _container;
 
-		public GameStatesFactory(IContainerResolver containerResolver)
+		public GameStatesFactory(IContainer container)
 		{
-			_containerResolver = containerResolver;
+			_container = container;
 		}
 
 		public TState GetState<TState>()
 		{
-			return _containerResolver.Resolve<TState>();
+			return _container.CreateInstance<TState>();
 		}
 	}
 }

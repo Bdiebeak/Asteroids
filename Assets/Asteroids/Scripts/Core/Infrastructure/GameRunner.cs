@@ -1,16 +1,16 @@
 ﻿using Asteroids.Scripts.Core.Infrastructure.Installers;
 using Asteroids.Scripts.Core.Infrastructure.StateMachine;
 using Asteroids.Scripts.Core.Infrastructure.StateMachine.States;
+using Asteroids.Scripts.DI;
 using Asteroids.Scripts.DI.Builder;
 using Asteroids.Scripts.DI.Extensions;
-using Asteroids.Scripts.DI.Resolver;
 using UnityEngine;
 
 namespace Asteroids.Scripts.Core.Infrastructure
 {
 	public class GameRunner : MonoBehaviour
 	{
-		private IContainerResolver _diContainer;
+		private IContainer _diContainer;
 		private IGameStateMachine _gameStateMachine;
 
 		private void Awake()
@@ -35,7 +35,7 @@ namespace Asteroids.Scripts.Core.Infrastructure
 			_diContainer.Dispose();
 		}
 
-		private IContainerResolver BuildContainer()
+		private IContainer BuildContainer()
 		{
 			IContainerBuilder containerBuilder = new ContainerBuilder();
 			containerBuilder.Register(new ServicesInstaller());

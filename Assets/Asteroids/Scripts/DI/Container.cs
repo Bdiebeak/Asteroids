@@ -2,22 +2,23 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using Asteroids.Scripts.DI.Attributes;
 using Asteroids.Scripts.DI.Describers;
 using Asteroids.Scripts.DI.Exceptions;
 
-namespace Asteroids.Scripts.DI.Resolver
+namespace Asteroids.Scripts.DI
 {
-	public class ContainerResolver : IContainerResolver
+	public class Container : IContainer
 	{
 		private readonly Dictionary<Type, IDependencyDescriber> _describers = new();
 		private readonly Dictionary<Type, object> _singletons = new();
 		private readonly HashSet<Type> _currentResolves = new();
 		private readonly HashSet<IDisposable> _disposables = new();
 
-		public ContainerResolver(IEnumerable<IDependencyDescriber> dependencyDescribers)
+		public Container(IEnumerable<IDependencyDescriber> dependencyDescribers)
 		{
 			// Register container instance to inject it if needed (into factories or etc).
-			_describers.Add(typeof(IContainerResolver), new InstanceDependencyDescriber(typeof(IContainerResolver), this));
+			_describers.Add(typeof(IContainer), new InstanceDependencyDescriber(typeof(IContainer), this));
 
 			// Register dependencies from builder.
 			foreach (IDependencyDescriber dependencyDescriber in dependencyDescribers)
@@ -110,7 +111,13 @@ namespace Asteroids.Scripts.DI.Resolver
 			}
 		}
 
-		private object CreateInstance(Type implementationType)
+		public T CreateInstance<T>()
+		{
+			object instance = CreateInstance(typeof(T));
+			return (T)instance;
+		}
+
+		public object CreateInstance(Type implementationType)
 		{
 			if (implementationType.IsInterface || implementationType.IsAbstract)
 			{

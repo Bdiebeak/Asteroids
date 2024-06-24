@@ -1,6 +1,6 @@
 ﻿using Asteroids.Scripts.Core.UI.Elements;
 using Asteroids.Scripts.Core.UI.Models;
-using Asteroids.Scripts.DI.Resolver;
+using Asteroids.Scripts.DI.Attributes;
 using UnityEngine;
 
 namespace Asteroids.Scripts.Core.UI.Screens

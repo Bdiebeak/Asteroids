@@ -1,7 +1,6 @@
 ﻿using Asteroids.Scripts.DI.Builder;
 using Asteroids.Scripts.DI.Describers;
 using Asteroids.Scripts.DI.Exceptions;
-using Asteroids.Scripts.DI.Resolver;
 using NUnit.Framework;
 
 namespace Asteroids.Scripts.DI.Tests
@@ -12,9 +11,9 @@ namespace Asteroids.Scripts.DI.Tests
 		public void TestUnregisteredDependency()
 		{
 			IContainerBuilder builder = new ContainerBuilder();
-			IContainerResolver containerResolver = builder.Build();
+			IContainer container = builder.Build();
 
-			Assert.Throws<RegistrationException>(() => containerResolver.Resolve<ITestService>());
+			Assert.Throws<RegistrationException>(() => container.Resolve<ITestService>());
 		}
 
 		[Test]
@@ -24,10 +23,10 @@ namespace Asteroids.Scripts.DI.Tests
 			builder.Register(new TypeDependencyDescriber(Lifetime.Singleton, typeof(ServiceA), typeof(ServiceA)));
 			builder.Register(new TypeDependencyDescriber(Lifetime.Singleton, typeof(ServiceB), typeof(ServiceB)));
 
-			IContainerResolver containerResolver = builder.Build();
+			IContainer container = builder.Build();
 
-			Assert.Throws<CycleDependencyException>(() => containerResolver.Resolve<ServiceA>());
-			Assert.Throws<CycleDependencyException>(() => containerResolver.Resolve<ServiceB>());
+			Assert.Throws<CycleDependencyException>(() => container.Resolve<ServiceA>());
+			Assert.Throws<CycleDependencyException>(() => container.Resolve<ServiceB>());
 		}
 
 		[Test]
@@ -43,9 +42,9 @@ namespace Asteroids.Scripts.DI.Tests
 		{
 			IContainerBuilder builder = new ContainerBuilder();
 			builder.Register(new TypeDependencyDescriber(Lifetime.Singleton, typeof(ITestService), typeof(ITestService)));
-			IContainerResolver containerResolver = builder.Build();
+			IContainer container = builder.Build();
 
-			Assert.Throws<InstanceCreationException>(() => containerResolver.Resolve<ITestService>());
+			Assert.Throws<InstanceCreationException>(() => container.Resolve<ITestService>());
 		}
 	}
 }

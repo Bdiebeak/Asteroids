@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using Asteroids.Scripts.Core.Game.Contexts;
-using Asteroids.Scripts.DI.Resolver;
+using Asteroids.Scripts.DI.Attributes;
 using Asteroids.Scripts.ECS.Converters;
 using UnityEngine;
 

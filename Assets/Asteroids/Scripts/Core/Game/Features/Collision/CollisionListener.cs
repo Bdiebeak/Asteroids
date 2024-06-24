@@ -1,7 +1,7 @@
 ﻿using Asteroids.Scripts.Core.Game.Contexts;
 using Asteroids.Scripts.Core.Game.Features.Collision.Components;
 using Asteroids.Scripts.Core.Game.Views;
-using Asteroids.Scripts.DI.Resolver;
+using Asteroids.Scripts.DI.Attributes;
 using Asteroids.Scripts.ECS.Entities;
 using UnityEngine;
 

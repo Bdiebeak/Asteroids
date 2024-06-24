@@ -1,16 +1,7 @@
 ﻿using Asteroids.Scripts.Core.Game.Contexts;
 using Asteroids.Scripts.Core.Game.Factories;
-using Asteroids.Scripts.Core.Game.Features.Collision;
+using Asteroids.Scripts.Core.Game.Features.Base;
 using Asteroids.Scripts.Core.Game.Features.Input;
-using Asteroids.Scripts.Core.Game.Features.KeepInScreen;
-using Asteroids.Scripts.Core.Game.Features.Movement;
-using Asteroids.Scripts.Core.Game.Features.Spawn;
-using Asteroids.Scripts.Core.Game.Features.UI;
-using Asteroids.Scripts.Core.Infrastructure.Services.Camera;
-using Asteroids.Scripts.Core.Infrastructure.Services.Input;
-using Asteroids.Scripts.Core.Infrastructure.Services.Time;
-using Asteroids.Scripts.Core.Infrastructure.StateMachine;
-using Asteroids.Scripts.Core.UI.Models;
 using Asteroids.Scripts.ECS.Systems.Container;
 
 namespace Asteroids.Scripts.Core.Game
@@ -21,27 +12,14 @@ namespace Asteroids.Scripts.Core.Game
 		private SystemsContainer _gameplaySystems;
 		private readonly InputContext _inputContext;
 		private readonly GameplayContext _gameplayContext;
-		private readonly IInputService _inputService;
-		private readonly IGameFactory _gameFactory;
-		private readonly ITimeService _timeService;
-		private readonly GameScreenModel _gameScreenModel;
-		private readonly IGameStateMachine _gameStateMachine;
-		private readonly ICameraProvider _cameraProvider;
+		private readonly ISystemsFactory _systemsFactory;
 
-		// TODO: Don't like huge constructor here. Create some SystemFactory or smth.
 		public EcsStartup(InputContext inputContext, GameplayContext gameplayContext,
-						  IInputService inputService, IGameFactory gameFactory, ITimeService timeService,
-						  GameScreenModel gameScreenModel, IGameStateMachine gameStateMachine,
-						  ICameraProvider cameraProvider)
+						  ISystemsFactory systemsFactory)
 		{
 			_inputContext = inputContext;
 			_gameplayContext = gameplayContext;
-			_inputService = inputService;
-			_gameFactory = gameFactory;
-			_timeService = timeService;
-			_gameScreenModel = gameScreenModel;
-			_gameStateMachine = gameStateMachine;
-			_cameraProvider = cameraProvider;
+			_systemsFactory = systemsFactory;
 		}
 
 		public void Initialize()
@@ -79,17 +57,13 @@ namespace Asteroids.Scripts.Core.Game
 		private void InitializeInputSystems()
 		{
 			_inputSystems = new SystemsContainer();
-			_inputSystems.Add(new InputFeature(_inputContext, _inputService));
+			_inputSystems.Add(new InputFeature(_systemsFactory));
 		}
 
 		private void InitializeGameplaySystems()
 		{
 			_gameplaySystems = new SystemsContainer();
-			_gameplaySystems.Add(new SpawnFeature(_gameFactory));
-			_gameplaySystems.Add(new MovementFeature(_inputContext, _gameplayContext, _timeService));
-			_gameplaySystems.Add(new KeepInScreenFeature(_gameplayContext, _cameraProvider));
-			_gameplaySystems.Add(new CollisionFeature(_gameplayContext, _gameStateMachine));
-			_gameplaySystems.Add(new UIFeature(_gameplayContext, _gameScreenModel));
+			_gameplaySystems.Add(new GameplayFeature(_systemsFactory));
 		}
 	}
 }

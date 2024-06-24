@@ -1,5 +1,5 @@
 ﻿using Asteroids.Scripts.Core.UI.Models;
-using Asteroids.Scripts.DI.Resolver;
+using Asteroids.Scripts.DI.Attributes;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;

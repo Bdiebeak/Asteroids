@@ -1,25 +1,25 @@
-﻿using Asteroids.Scripts.DI.Extensions;
-using Asteroids.Scripts.DI.Resolver;
+﻿using Asteroids.Scripts.DI;
+using Asteroids.Scripts.DI.Extensions;
 using UnityEngine;
 
 namespace Asteroids.Scripts.Core.Infrastructure.Services.Assets
 {
 	public class PrefabCreator : IPrefabCreator
 	{
-		private readonly IContainerResolver _containerResolver;
+		private readonly IContainer _container;
 		private readonly IAssetProvider _assetProvider;
 
-		public PrefabCreator(IContainerResolver containerResolver, IAssetProvider assetProvider)
+		public PrefabCreator(IContainer container, IAssetProvider assetProvider)
 		{
 			_assetProvider = assetProvider;
-			_containerResolver = containerResolver;
+			_container = container;
 		}
 
 		public GameObject Instantiate(string assetKey, Transform parent = null)
 		{
 			GameObject asset = _assetProvider.Load<GameObject>(assetKey);
 			GameObject instance = Object.Instantiate(asset, parent);
-			_containerResolver.InjectGameObject(instance);
+			_container.InjectGameObject(instance);
 			return instance;
 		}
 
