@@ -1,4 +1,5 @@
 using Asteroids.Scripts.DI.Builder;
+using Asteroids.Scripts.DI.Container;
 using Asteroids.Scripts.DI.Describers;
 using Asteroids.Scripts.DI.Extensions;
 using NUnit.Framework;

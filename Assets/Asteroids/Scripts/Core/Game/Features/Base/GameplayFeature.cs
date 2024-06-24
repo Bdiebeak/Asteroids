@@ -4,6 +4,7 @@ using Asteroids.Scripts.Core.Game.Features.KeepInScreen;
 using Asteroids.Scripts.Core.Game.Features.Movement;
 using Asteroids.Scripts.Core.Game.Features.Spawn;
 using Asteroids.Scripts.Core.Game.Features.UI;
+using Asteroids.Scripts.Core.Utilities.Extensions;
 using Asteroids.Scripts.ECS.Systems.Container;
 
 namespace Asteroids.Scripts.Core.Game.Features.Base

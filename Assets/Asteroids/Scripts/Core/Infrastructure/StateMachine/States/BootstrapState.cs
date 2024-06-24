@@ -1,4 +1,4 @@
-﻿using Asteroids.Scripts.Core.Infrastructure.Services.Camera;
+﻿using Asteroids.Scripts.Core.Utilities.Services.Camera;
 
 namespace Asteroids.Scripts.Core.Infrastructure.StateMachine.States
 {

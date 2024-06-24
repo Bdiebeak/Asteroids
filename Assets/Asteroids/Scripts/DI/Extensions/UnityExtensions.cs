@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Asteroids.Scripts.DI.Container;
+using UnityEngine;
 
 namespace Asteroids.Scripts.DI.Extensions
 {

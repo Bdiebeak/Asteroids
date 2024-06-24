@@ -1,7 +1,7 @@
 ﻿using Asteroids.Scripts.Core.Game.Contexts;
 using Asteroids.Scripts.Core.Game.Features.KeepInScreen.Components;
 using Asteroids.Scripts.Core.Game.Features.Movement.Components;
-using Asteroids.Scripts.Core.Infrastructure.Services.Camera;
+using Asteroids.Scripts.Core.Utilities.Services.Camera;
 using Asteroids.Scripts.ECS.Components;
 using Asteroids.Scripts.ECS.Entities;
 using Asteroids.Scripts.ECS.Systems.Interfaces;

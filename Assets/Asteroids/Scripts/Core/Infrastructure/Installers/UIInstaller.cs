@@ -1,6 +1,6 @@
-﻿using Asteroids.Scripts.Core.Infrastructure.Services.Screens;
-using Asteroids.Scripts.Core.UI.Factory;
+﻿using Asteroids.Scripts.Core.UI.Factory;
 using Asteroids.Scripts.Core.UI.Models;
+using Asteroids.Scripts.Core.Utilities.Services.Screens;
 using Asteroids.Scripts.DI.Builder;
 using Asteroids.Scripts.DI.Extensions;
 

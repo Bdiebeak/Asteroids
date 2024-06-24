@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Asteroids.Scripts.DI.Container;
 using Asteroids.Scripts.DI.Describers;
 using Asteroids.Scripts.DI.Exceptions;
 
@@ -16,7 +17,7 @@ namespace Asteroids.Scripts.DI.Builder
 
 		public IContainer Build()
 		{
-			IContainer container = new Container(_dependencyDescribers);
+			IContainer container = new SimpleContainer(_dependencyDescribers);
 			return container;
 		}
 

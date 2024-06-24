@@ -1,7 +1,6 @@
 ﻿using Asteroids.Scripts.Core.Game;
 using Asteroids.Scripts.Core.Game.Contexts;
 using Asteroids.Scripts.Core.Game.Factories;
-using Asteroids.Scripts.Core.Game.Features.Base;
 using Asteroids.Scripts.DI.Builder;
 using Asteroids.Scripts.DI.Extensions;
 

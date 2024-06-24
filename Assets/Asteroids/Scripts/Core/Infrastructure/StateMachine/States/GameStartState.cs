@@ -1,6 +1,6 @@
 ﻿using Asteroids.Scripts.Core.Game;
-using Asteroids.Scripts.Core.Infrastructure.Services.Screens;
 using Asteroids.Scripts.Core.UI.Screens;
+using Asteroids.Scripts.Core.Utilities.Services.Screens;
 
 namespace Asteroids.Scripts.Core.Infrastructure.StateMachine.States
 {

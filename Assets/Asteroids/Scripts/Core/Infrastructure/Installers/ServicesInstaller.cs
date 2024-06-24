@@ -1,7 +1,7 @@
-﻿using Asteroids.Scripts.Core.Infrastructure.Services.Assets;
-using Asteroids.Scripts.Core.Infrastructure.Services.Camera;
-using Asteroids.Scripts.Core.Infrastructure.Services.Input;
-using Asteroids.Scripts.Core.Infrastructure.Services.Time;
+﻿using Asteroids.Scripts.Core.Utilities.Services.Assets;
+using Asteroids.Scripts.Core.Utilities.Services.Camera;
+using Asteroids.Scripts.Core.Utilities.Services.Input;
+using Asteroids.Scripts.Core.Utilities.Services.Time;
 using Asteroids.Scripts.DI.Builder;
 using Asteroids.Scripts.DI.Extensions;
 

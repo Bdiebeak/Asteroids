@@ -1,4 +1,4 @@
-﻿using Asteroids.Scripts.DI;
+﻿using Asteroids.Scripts.DI.Container;
 
 namespace Asteroids.Scripts.Core.Game.Factories
 {

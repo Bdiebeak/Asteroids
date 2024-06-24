@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Asteroids.Scripts.Core.Infrastructure.Services.Assets;
-using Asteroids.Scripts.Core.Infrastructure.Services.Screens;
 using Asteroids.Scripts.Core.UI.Screens;
+using Asteroids.Scripts.Core.Utilities.Services.Assets;
 using UnityEngine;
 
 namespace Asteroids.Scripts.Core.UI.Factory
@@ -16,6 +15,7 @@ namespace Asteroids.Scripts.Core.UI.Factory
 		public UIFactory(IPrefabCreator prefabCreator)
 		{
 			_prefabCreator = prefabCreator;
+
 			// We can get rid of it via Addressables and Labels.
 			// This keys will be filled automatically.
 			_screenKeys = new Dictionary<Type, string>()

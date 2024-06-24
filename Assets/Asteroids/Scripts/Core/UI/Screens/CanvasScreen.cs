@@ -1,5 +1,4 @@
-﻿using Asteroids.Scripts.Core.Infrastructure.Extensions;
-using Asteroids.Scripts.Core.Infrastructure.Services.Screens;
+﻿using Asteroids.Scripts.Core.Utilities.Extensions;
 using UnityEngine;
 
 namespace Asteroids.Scripts.Core.UI.Screens

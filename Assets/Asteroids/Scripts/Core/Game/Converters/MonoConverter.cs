@@ -1,11 +1,11 @@
-﻿using Asteroids.Scripts.ECS.Contexts;
-using Asteroids.Scripts.ECS.Converters;
+﻿using Asteroids.Scripts.Core.Game.Converters.Base;
+using Asteroids.Scripts.ECS.Contexts;
 using Asteroids.Scripts.ECS.Entities;
 using UnityEngine;
 
 namespace Asteroids.Scripts.Core.Game.Converters
 {
-	[RequireComponent(typeof(MonoComponentsContainer))]
+	[RequireComponent(typeof(MonoConvertersContainer))]
 	public abstract class MonoConverter : MonoBehaviour, IConverter
 	{
 		public void Convert(IContext context, Entity entity)

@@ -1,6 +1,6 @@
 ﻿using System;
 using Asteroids.Scripts.Core.Game.Features.Enemies;
-using Asteroids.Scripts.Core.Infrastructure.Services.Assets;
+using Asteroids.Scripts.Core.Utilities.Services.Assets;
 using UnityEngine;
 
 namespace Asteroids.Scripts.Core.Game.Factories
