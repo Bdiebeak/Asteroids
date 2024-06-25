@@ -1,4 +1,5 @@
 ﻿using Asteroids.Scripts.Core.Game.Contexts;
+using Asteroids.Scripts.Core.Game.Features.Destroy.Components;
 using Asteroids.Scripts.Core.Game.Features.Movement.Components;
 using Asteroids.Scripts.Core.Game.Features.Weapon.Components;
 using Asteroids.Scripts.Core.Utilities.Services.Camera;
@@ -35,8 +36,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Weapon.Systems
 					continue;
 				}
 
-				// TODO: destroy request.
-				_gameplayContext.DestroyEntity(entity);
+				entity.Add(new DestroyComponent());
 			}
 		}
 	}
