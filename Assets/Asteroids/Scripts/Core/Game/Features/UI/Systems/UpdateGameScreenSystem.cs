@@ -12,18 +12,18 @@ namespace Asteroids.Scripts.Core.Game.Features.UI.Systems
 	{
 		private readonly GameplayContext _gameplayContext;
 		private readonly GameScreenModel _gameScreenModel;
-		private readonly Mask _playerMask;
+		private readonly Mask _mask;
 
 		public UpdateGameScreenSystem(GameplayContext gameplayContext, GameScreenModel gameScreenModel)
 		{
 			_gameplayContext = gameplayContext;
 			_gameScreenModel = gameScreenModel;
-			_playerMask = new Mask().Include<PlayerTagComponent>();
+			_mask = new Mask().Include<PlayerTagComponent>();
 		}
 
 		public void Update()
 		{
-			var entities = _gameplayContext.GetEntities(_playerMask);
+			var entities = _gameplayContext.GetEntities(_mask);
 			foreach (Entity entity in entities)
 			{
 				_gameScreenModel.position = entity.Get<PositionComponent>().value;

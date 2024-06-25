@@ -1,7 +1,6 @@
 ﻿using Asteroids.Scripts.Core.Game.Factories;
 using Asteroids.Scripts.Core.Utilities.Services.Configs;
 using Asteroids.Scripts.ECS.Systems.Interfaces;
-using UnityEngine;
 
 namespace Asteroids.Scripts.Core.Game.Features.Player.Systems
 {

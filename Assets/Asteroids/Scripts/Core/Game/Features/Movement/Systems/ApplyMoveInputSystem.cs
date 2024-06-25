@@ -17,7 +17,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Movement.Systems
 		private readonly InputContext _inputContext;
 		private readonly GameplayContext _gameplayContext;
 		private readonly ITimeService _timeService;
-		private readonly Mask _moveInputMask;
+		private readonly Mask _inputMask;
 		private readonly Mask _playerMask;
 
 		public ApplyMoveInputSystem(InputContext inputContext, GameplayContext gameplayContext,
@@ -26,14 +26,14 @@ namespace Asteroids.Scripts.Core.Game.Features.Movement.Systems
 			_inputContext = inputContext;
 			_gameplayContext = gameplayContext;
 			_timeService = timeService;
-			_moveInputMask = new Mask().Include<MoveInputComponent>()
+			_inputMask = new Mask().Include<MoveInputComponent>()
 									   .Include<RotateInputComponent>();
 			_playerMask = new Mask().Include<PlayerTagComponent>();
 		}
 
 		public void Update()
 		{
-			var inputEntities = _inputContext.GetEntities(_moveInputMask);
+			var inputEntities = _inputContext.GetEntities(_inputMask);
 			var playerEntities = _gameplayContext.GetEntities(_playerMask);
 			foreach (Entity inputEntity in inputEntities)
 			{
