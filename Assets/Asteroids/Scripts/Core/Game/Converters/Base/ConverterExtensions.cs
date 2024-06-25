@@ -3,7 +3,7 @@ using Asteroids.Scripts.ECS.Entities;
 
 namespace Asteroids.Scripts.Core.Game.Converters.Base
 {
-	public static class EntityConverter
+	public static class ConverterExtensions
 	{
 		public static Entity ConvertContainer(this IContext context, IConvertersContainer container)
 		{
