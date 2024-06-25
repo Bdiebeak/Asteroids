@@ -1,8 +1,9 @@
 ﻿using Asteroids.Scripts.Core.Game.Factories;
+using Asteroids.Scripts.Core.Utilities.Services.Configs;
 using Asteroids.Scripts.ECS.Systems.Interfaces;
 using UnityEngine;
 
-namespace Asteroids.Scripts.Core.Game.Features.Spawn.Systems
+namespace Asteroids.Scripts.Core.Game.Features.Player.Systems
 {
 	public class SpawnPlayerSystem : IStartSystem
 	{
@@ -15,7 +16,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Spawn.Systems
 
 		public void Start()
 		{
-			_gameFactory.CreatePlayer(Vector2.zero);
+			_gameFactory.CreatePlayer(PlayerConfig.spawnPosition);
 		}
 	}
 }

@@ -12,6 +12,7 @@ namespace Asteroids.Scripts.Core.Utilities.Services.Configs
 		public static float bulletCooldown = 1;
 		public static float laserCooldown = 5;
 		public static int maxLaserCharges = 2;
+		public static float bulletSpeed = 15;
 
 		public static Vector2 spawnPosition = Vector2.zero;
 	}

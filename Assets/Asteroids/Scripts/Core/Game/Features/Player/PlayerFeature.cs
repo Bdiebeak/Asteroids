@@ -1,13 +1,13 @@
 ﻿using Asteroids.Scripts.Core.Game.Factories;
 using Asteroids.Scripts.Core.Game.Features.Base;
-using Asteroids.Scripts.Core.Game.Features.Spawn.Systems;
+using Asteroids.Scripts.Core.Game.Features.Player.Systems;
 using Asteroids.Scripts.ECS.Systems.Container;
 
-namespace Asteroids.Scripts.Core.Game.Features.Spawn
+namespace Asteroids.Scripts.Core.Game.Features.Player
 {
-	public class SpawnFeature : Feature
+	public class PlayerFeature : Feature
 	{
-		public SpawnFeature(ISystemsFactory systemsFactory) : base(systemsFactory) { }
+		public PlayerFeature(ISystemsFactory systemsFactory) : base(systemsFactory) { }
 
 		public override void AddTo(SystemsContainer systems)
 		{

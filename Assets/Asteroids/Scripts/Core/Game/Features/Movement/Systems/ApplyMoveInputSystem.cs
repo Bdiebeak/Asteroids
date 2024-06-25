@@ -28,10 +28,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Movement.Systems
 			_timeService = timeService;
 			_moveInputMask = new Mask().Include<MoveInputComponent>()
 									   .Include<RotateInputComponent>();
-			_playerMask = new Mask().Include<PlayerTagComponent>()
-									.Include<VelocityComponent>()
-									.Include<RotationVelocityComponent>()
-									.Include<RotationComponent>();
+			_playerMask = new Mask().Include<PlayerTagComponent>();
 		}
 
 		public void Update()

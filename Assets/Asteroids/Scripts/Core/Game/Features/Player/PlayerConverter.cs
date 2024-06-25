@@ -14,7 +14,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Player
 		protected override void OnConvert(IContext context, Entity entity)
 		{
 			entity.Add(new PlayerTagComponent());
-			entity.Add(new PositionComponent());
+			entity.Add(new PositionComponent()).value = transform.position;
 			entity.Add(new VelocityComponent());
 			entity.Add(new VelocityDragComponent()).value = PlayerConfig.shipDrag;
 			entity.Add(new RotationComponent());

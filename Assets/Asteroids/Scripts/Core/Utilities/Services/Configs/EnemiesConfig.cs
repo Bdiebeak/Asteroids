@@ -1,5 +1,6 @@
 ﻿namespace Asteroids.Scripts.Core.Utilities.Services.Configs
 {
+	// TODO: rework config service.
 	public static class EnemiesConfig
 	{
 		public static int asteroidsCount = 6;

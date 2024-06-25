@@ -5,7 +5,6 @@ namespace Asteroids.Scripts.DI.Extensions
 {
 	public static class UnityExtensions
 	{
-		// TODO: think how to make 3 functions better
 		public static GameObject InstantiatePrefab(this IContainer container, GameObject prefab)
 		{
 			GameObject gameObject = Object.Instantiate(prefab);
