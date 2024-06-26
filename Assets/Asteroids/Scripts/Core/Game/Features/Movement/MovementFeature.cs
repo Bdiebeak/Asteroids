@@ -12,9 +12,12 @@ namespace Asteroids.Scripts.Core.Game.Features.Movement
 		public override void AddTo(SystemsContainer systems)
 		{
 			systems.Add(systemsFactory.CreateSystem<ApplyMoveInputSystem>());
-			systems.Add(systemsFactory.CreateSystem<VelocityDragSystem>());
+			systems.Add(systemsFactory.CreateSystem<ApplyRotateInputSystem>());
+			systems.Add(systemsFactory.CreateSystem<DragVelocitySystem>());
 			systems.Add(systemsFactory.CreateSystem<MoveSystem>());
 			systems.Add(systemsFactory.CreateSystem<RotateSystem>());
+			systems.Add(systemsFactory.CreateSystem<FollowPositionSystem>());
+			systems.Add(systemsFactory.CreateSystem<FollowRotationSystem>());
 		}
 	}
 }

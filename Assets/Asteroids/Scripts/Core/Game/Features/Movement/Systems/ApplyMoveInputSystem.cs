@@ -26,8 +26,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Movement.Systems
 			_inputContext = inputContext;
 			_gameplayContext = gameplayContext;
 			_timeService = timeService;
-			_inputMask = new Mask().Include<MoveInputComponent>()
-									   .Include<RotateInputComponent>();
+			_inputMask = new Mask().Include<MoveInputComponent>();
 			_playerMask = new Mask().Include<PlayerTagComponent>();
 		}
 
@@ -38,12 +37,10 @@ namespace Asteroids.Scripts.Core.Game.Features.Movement.Systems
 			foreach (Entity inputEntity in inputEntities)
 			{
 				MoveInputComponent moveInput = inputEntity.Get<MoveInputComponent>();
-				RotateInputComponent rotateInput = inputEntity.Get<RotateInputComponent>();
 
 				foreach (Entity playerEntity in playerEntities)
 				{
 					VelocityComponent velocity = playerEntity.Get<VelocityComponent>();
-					RotationVelocityComponent rotationVelocity = playerEntity.Get<RotationVelocityComponent>();
 					RotationComponent rotation = playerEntity.Get<RotationComponent>();
 
 					// Handle only forward movement.
@@ -54,9 +51,6 @@ namespace Asteroids.Scripts.Core.Game.Features.Movement.Systems
 						velocity.value = Vector2.MoveTowards(velocity.value, targetVelocity,
 															 PlayerConfig.shipAcceleration * _timeService.DeltaTime);
 					}
-
-					// Refill rotation input. Invert for proper rotation.
-					rotationVelocity.value = -rotateInput.value * PlayerConfig.shipAngularSpeed;
 				}
 			}
 		}

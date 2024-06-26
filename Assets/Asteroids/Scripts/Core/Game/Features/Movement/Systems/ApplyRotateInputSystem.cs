@@ -1,32 +1,26 @@
 ﻿using Asteroids.Scripts.Core.Game.Contexts;
-using Asteroids.Scripts.Core.Game.Factories;
 using Asteroids.Scripts.Core.Game.Features.Input.Components;
 using Asteroids.Scripts.Core.Game.Features.Movement.Components;
 using Asteroids.Scripts.Core.Game.Features.Player.Components;
-using Asteroids.Scripts.Core.Utilities.Services.Time;
+using Asteroids.Scripts.Core.Utilities.Services.Configs;
 using Asteroids.Scripts.ECS.Components;
 using Asteroids.Scripts.ECS.Entities;
 using Asteroids.Scripts.ECS.Systems.Interfaces;
 
-namespace Asteroids.Scripts.Core.Game.Features.Weapon.Systems
+namespace Asteroids.Scripts.Core.Game.Features.Movement.Systems
 {
-	public class ApplyLaserAttackInputSystem : IUpdateSystem
+	public class ApplyRotateInputSystem : IUpdateSystem
 	{
 		private readonly InputContext _inputContext;
 		private readonly GameplayContext _gameplayContext;
-		private readonly IGameFactory _gameFactory;
-		private readonly ITimeService _timeService;
 		private readonly Mask _inputMask;
 		private readonly Mask _playerMask;
 
-		public ApplyLaserAttackInputSystem(InputContext inputContext, GameplayContext gameplayContext,
-										   IGameFactory gameFactory, ITimeService timeService)
+		public ApplyRotateInputSystem(InputContext inputContext, GameplayContext gameplayContext)
 		{
 			_inputContext = inputContext;
 			_gameplayContext = gameplayContext;
-			_gameFactory = gameFactory;
-			_timeService = timeService;
-			_inputMask = new Mask().Include<LaserAttackInputComponent>();
+			_inputMask = new Mask().Include<RotateInputComponent>();
 			_playerMask = new Mask().Include<PlayerTagComponent>();
 		}
 
@@ -36,17 +30,14 @@ namespace Asteroids.Scripts.Core.Game.Features.Weapon.Systems
 			var playerEntities = _gameplayContext.GetEntities(_playerMask);
 			foreach (Entity inputEntity in inputEntities)
 			{
-				LaserAttackInputComponent laserAttack = inputEntity.Get<LaserAttackInputComponent>();
-				if (laserAttack.value == false)
-				{
-					continue;
-				}
+				RotateInputComponent rotateInput = inputEntity.Get<RotateInputComponent>();
 
 				foreach (Entity playerEntity in playerEntities)
 				{
-					PositionComponent position = playerEntity.Get<PositionComponent>();
-					RotationComponent rotation = playerEntity.Get<RotationComponent>();
-					_gameFactory.CreateLaser(position.value, rotation.value);
+					RotationVelocityComponent rotationVelocity = playerEntity.Get<RotationVelocityComponent>();
+
+					// Refill rotation input. Invert for proper rotation.
+					rotationVelocity.value = -rotateInput.value * PlayerConfig.shipAngularSpeed;
 				}
 			}
 		}

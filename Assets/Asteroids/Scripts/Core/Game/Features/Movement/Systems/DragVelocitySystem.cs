@@ -8,13 +8,13 @@ using UnityEngine;
 
 namespace Asteroids.Scripts.Core.Game.Features.Movement.Systems
 {
-	public class VelocityDragSystem : IUpdateSystem
+	public class DragVelocitySystem : IUpdateSystem
 	{
 		private readonly GameplayContext _gameplayContext;
 		private readonly ITimeService _timeService;
 		private readonly Mask _mask;
 
-		public VelocityDragSystem(GameplayContext gameplayContext, ITimeService timeService)
+		public DragVelocitySystem(GameplayContext gameplayContext, ITimeService timeService)
 		{
 			_gameplayContext = gameplayContext;
 			_timeService = timeService;

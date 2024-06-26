@@ -5,7 +5,7 @@ using Asteroids.Scripts.Core.Utilities.Services.Configs;
 using Asteroids.Scripts.ECS.Contexts;
 using Asteroids.Scripts.ECS.Entities;
 
-namespace Asteroids.Scripts.Core.Game.Features.Weapon
+namespace Asteroids.Scripts.Core.Game.Features.Weapon.Converters
 {
 	public class BulletConverter : MonoConverter
 	{
@@ -13,7 +13,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Weapon
 		{
 			entity.Add(new BulletTagComponent());
 			entity.Add(new PositionComponent()).value = transform.position;
-			entity.Add(new VelocityComponent()).value = transform.up * PlayerConfig.bulletSpeed;
+			entity.Add(new VelocityComponent()).value = transform.up * WeaponsConfig.bulletSpeed;
 		}
 	}
 }

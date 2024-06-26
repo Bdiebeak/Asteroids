@@ -30,9 +30,8 @@ namespace Asteroids.Scripts.Core.Game.Features.Collision.Systems
 				Entity collidingEntity = eventComponent.collision;
 				if (bulletEntity.Has<BulletTagComponent>() && collidingEntity.Has<EnemyTagComponent>())
 				{
-					bulletEntity.Add(new DestroyComponent());
-					collidingEntity.Add(new DestroyComponent());
-					// TODO: spawn small asteroids
+					_gameplayContext.CreateEntity().Add(new DestroyRequestComponent()).target = bulletEntity;
+					_gameplayContext.CreateEntity().Add(new DestroyRequestComponent()).target = collidingEntity;
 				}
 			}
 		}

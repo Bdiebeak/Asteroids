@@ -13,6 +13,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Collision
 		{
 			systems.Add(systemsFactory.CreateSystem<DestroyPlayerOnCollisionSystem>());
 			systems.Add(systemsFactory.CreateSystem<BulletCollisonSystem>());
+			systems.Add(systemsFactory.CreateSystem<LaserCollisionSystem>());
 			systems.Add(systemsFactory.CreateSystem<CleanUpCollisionEventsSystem>());
 		}
 	}

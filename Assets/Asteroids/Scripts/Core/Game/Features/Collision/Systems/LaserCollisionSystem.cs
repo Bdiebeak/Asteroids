@@ -2,20 +2,19 @@
 using Asteroids.Scripts.Core.Game.Features.Collision.Components;
 using Asteroids.Scripts.Core.Game.Features.Destroy.Components;
 using Asteroids.Scripts.Core.Game.Features.Enemies.Components;
-using Asteroids.Scripts.Core.Game.Features.GameOver.Components;
-using Asteroids.Scripts.Core.Game.Features.Player.Components;
+using Asteroids.Scripts.Core.Game.Features.Weapon.Components;
 using Asteroids.Scripts.ECS.Components;
 using Asteroids.Scripts.ECS.Entities;
 using Asteroids.Scripts.ECS.Systems.Interfaces;
 
 namespace Asteroids.Scripts.Core.Game.Features.Collision.Systems
 {
-	public class DestroyPlayerOnCollisionSystem : IUpdateSystem
+	public class LaserCollisionSystem : IUpdateSystem
 	{
 		private readonly GameplayContext _gameplayContext;
 		private readonly Mask _mask;
 
-		public DestroyPlayerOnCollisionSystem(GameplayContext gameplayContext)
+		public LaserCollisionSystem(GameplayContext gameplayContext)
 		{
 			_gameplayContext = gameplayContext;
 			_mask = new Mask().Include<CollisionEnterEventComponent>();
@@ -27,13 +26,11 @@ namespace Asteroids.Scripts.Core.Game.Features.Collision.Systems
 			foreach (Entity entity in entities)
 			{
 				CollisionEnterEventComponent eventComponent = entity.Get<CollisionEnterEventComponent>();
-				Entity playerEntity = eventComponent.sender;
+				Entity laserEntity = eventComponent.sender;
 				Entity collidingEntity = eventComponent.collision;
-				if (playerEntity.Has<PlayerTagComponent>() && collidingEntity.Has<EnemyTagComponent>())
+				if (laserEntity.Has<LaserTagComponent>() && collidingEntity.Has<EnemyTagComponent>())
 				{
-					// TODO: one more system to call GameOver after player destroy
-					_gameplayContext.CreateEntity().Add(new DestroyRequestComponent()).target = playerEntity;
-					_gameplayContext.CreateEntity().Add(new GameOverEventComponent());
+					_gameplayContext.CreateEntity().Add(new DestroyRequestComponent()).target = collidingEntity;
 				}
 			}
 		}

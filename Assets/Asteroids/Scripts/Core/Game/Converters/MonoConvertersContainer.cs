@@ -12,12 +12,19 @@ namespace Asteroids.Scripts.Core.Game.Converters
 		[SerializeField]
 		private List<MonoConverter> converters = new();
 
+		private GameplayContext _context;
+
 		public IReadOnlyList<IConverter> Converters => converters;
 
 		[Inject]
 		public void Construct(GameplayContext context)
 		{
-			context.ConvertContainer(this);
+			_context = context;
+		}
+
+		private void Start()
+		{
+			_context.ConvertContainer(this);
 			Destroy(this);
 		}
 	}

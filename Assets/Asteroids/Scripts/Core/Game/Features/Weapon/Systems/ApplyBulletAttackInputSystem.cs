@@ -51,7 +51,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Weapon.Systems
 						continue;
 					}
 
-					playerEntity.Add(new BulletCooldownComponent()).endTime = _timeService.Time + PlayerConfig.bulletCooldown;
+					playerEntity.Add(new BulletCooldownComponent()).endTime = _timeService.Time + WeaponsConfig.bulletCooldown;
 					PositionComponent position = playerEntity.Get<PositionComponent>();
 					RotationComponent rotation = playerEntity.Get<RotationComponent>();
 					_gameFactory.CreateBullet(position.value, rotation.value);

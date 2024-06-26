@@ -36,7 +36,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Weapon.Systems
 					continue;
 				}
 
-				entity.Add(new DestroyComponent());
+				_gameplayContext.CreateEntity().Add(new DestroyRequestComponent()).target = entity;
 			}
 		}
 	}
