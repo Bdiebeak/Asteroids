@@ -9,19 +9,19 @@ using Asteroids.Scripts.ECS.Systems.Interfaces;
 
 namespace Asteroids.Scripts.Core.Game.Features.Movement.Systems
 {
-	public class ApplyRotateInputSystem : IUpdateSystem
+	public class ApplyRotationInputSystem : IUpdateSystem
 	{
 		private readonly InputContext _inputContext;
 		private readonly GameplayContext _gameplayContext;
 		private readonly Mask _inputMask;
 		private readonly Mask _playerMask;
 
-		public ApplyRotateInputSystem(InputContext inputContext, GameplayContext gameplayContext)
+		public ApplyRotationInputSystem(InputContext inputContext, GameplayContext gameplayContext)
 		{
 			_inputContext = inputContext;
 			_gameplayContext = gameplayContext;
-			_inputMask = new Mask().Include<RotateInputComponent>();
-			_playerMask = new Mask().Include<PlayerTagComponent>();
+			_inputMask = new Mask().Include<RotationInput>();
+			_playerMask = new Mask().Include<PlayerMarker>();
 		}
 
 		public void Update()
@@ -30,14 +30,14 @@ namespace Asteroids.Scripts.Core.Game.Features.Movement.Systems
 			var playerEntities = _gameplayContext.GetEntities(_playerMask);
 			foreach (Entity inputEntity in inputEntities)
 			{
-				RotateInputComponent rotateInput = inputEntity.Get<RotateInputComponent>();
+				RotationInput rotationInput = inputEntity.Get<RotationInput>();
 
 				foreach (Entity playerEntity in playerEntities)
 				{
-					RotationVelocityComponent rotationVelocity = playerEntity.Get<RotationVelocityComponent>();
+					RotationVelocity rotationVelocity = playerEntity.Get<RotationVelocity>();
 
 					// Refill rotation input. Invert for proper rotation.
-					rotationVelocity.value = -rotateInput.value * PlayerConfig.shipAngularSpeed;
+					rotationVelocity.value = -rotationInput.value * PlayerConfig.shipAngularSpeed;
 				}
 			}
 		}

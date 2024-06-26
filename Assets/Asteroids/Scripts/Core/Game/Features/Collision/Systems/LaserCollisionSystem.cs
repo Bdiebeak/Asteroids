@@ -2,6 +2,7 @@
 using Asteroids.Scripts.Core.Game.Features.Collision.Components;
 using Asteroids.Scripts.Core.Game.Features.Destroy.Components;
 using Asteroids.Scripts.Core.Game.Features.Enemies.Components;
+using Asteroids.Scripts.Core.Game.Features.Requests;
 using Asteroids.Scripts.Core.Game.Features.Weapon.Components;
 using Asteroids.Scripts.ECS.Components;
 using Asteroids.Scripts.ECS.Entities;
@@ -17,7 +18,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Collision.Systems
 		public LaserCollisionSystem(GameplayContext gameplayContext)
 		{
 			_gameplayContext = gameplayContext;
-			_mask = new Mask().Include<CollisionEnterEventComponent>();
+			_mask = new Mask().Include<CollisionEnterEvent>();
 		}
 
 		public void Update()
@@ -25,12 +26,12 @@ namespace Asteroids.Scripts.Core.Game.Features.Collision.Systems
 			var entities = _gameplayContext.GetEntities(_mask);
 			foreach (Entity entity in entities)
 			{
-				CollisionEnterEventComponent eventComponent = entity.Get<CollisionEnterEventComponent>();
-				Entity laserEntity = eventComponent.sender;
-				Entity collidingEntity = eventComponent.collision;
-				if (laserEntity.Has<LaserTagComponent>() && collidingEntity.Has<EnemyTagComponent>())
+				CollisionEnterEvent collisionEvent = entity.Get<CollisionEnterEvent>();
+				Entity laserEntity = collisionEvent.sender;
+				Entity collidingEntity = collisionEvent.collision;
+				if (laserEntity.Has<LaserMarker>() && collidingEntity.Has<EnemyMarker>())
 				{
-					_gameplayContext.CreateEntity().Add(new DestroyRequestComponent()).target = collidingEntity;
+					_gameplayContext.CreateRequest(new DestroyRequest()).target = collidingEntity;
 				}
 			}
 		}

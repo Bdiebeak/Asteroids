@@ -14,7 +14,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Movement.Systems
 		public FollowRotationSystem(GameplayContext gameplayContext)
 		{
 			_gameplayContext = gameplayContext;
-			_mask = new Mask().Include<FollowRotationComponent>();
+			_mask = new Mask().Include<FollowRotation>();
 		}
 
 		public void Update()
@@ -22,9 +22,9 @@ namespace Asteroids.Scripts.Core.Game.Features.Movement.Systems
 			var entities = _gameplayContext.GetEntities(_mask);
 			foreach (Entity entity in entities)
 			{
-				FollowRotationComponent followRotation = entity.Get<FollowRotationComponent>();
-				RotationComponent rotation = entity.Get<RotationComponent>();
-				RotationComponent targetRotation = followRotation.target.Get<RotationComponent>();
+				FollowRotation followRotation = entity.Get<FollowRotation>();
+				Rotation rotation = entity.Get<Rotation>();
+				Rotation targetRotation = followRotation.target.Get<Rotation>();
 				rotation.value = targetRotation.value;
 			}
 		}

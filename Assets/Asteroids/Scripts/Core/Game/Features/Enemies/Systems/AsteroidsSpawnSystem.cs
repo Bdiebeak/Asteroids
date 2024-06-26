@@ -23,7 +23,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Enemies.Systems
 			_gameplayContext = gameplayContext;
 			_gameFactory = gameFactory;
 			_cameraProvider = cameraProvider;
-			_mask = new Mask().Include<EnemyTagComponent>(); // TODO: asteroids only?
+			_mask = new Mask().Include<EnemyMarker>(); // TODO: asteroids only?
 		}
 
 		public void Update()

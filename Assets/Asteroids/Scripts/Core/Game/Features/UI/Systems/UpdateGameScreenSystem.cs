@@ -18,7 +18,7 @@ namespace Asteroids.Scripts.Core.Game.Features.UI.Systems
 		{
 			_gameplayContext = gameplayContext;
 			_gameScreenModel = gameScreenModel;
-			_mask = new Mask().Include<PlayerTagComponent>();
+			_mask = new Mask().Include<PlayerMarker>();
 		}
 
 		public void Update()
@@ -26,10 +26,10 @@ namespace Asteroids.Scripts.Core.Game.Features.UI.Systems
 			var entities = _gameplayContext.GetEntities(_mask);
 			foreach (Entity entity in entities)
 			{
-				_gameScreenModel.position = entity.Get<PositionComponent>().value;
-				_gameScreenModel.rotation = entity.Get<RotationComponent>().value;
-				_gameScreenModel.velocity = entity.Get<VelocityComponent>().value;
-				_gameScreenModel.velocityMagnitude = entity.Get<VelocityComponent>().value.magnitude;
+				_gameScreenModel.position = entity.Get<Position>().value;
+				_gameScreenModel.rotation = entity.Get<Rotation>().value;
+				_gameScreenModel.velocity = entity.Get<Velocity>().value;
+				_gameScreenModel.velocityMagnitude = entity.Get<Velocity>().value.magnitude;
 			}
 		}
 	}

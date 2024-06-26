@@ -34,7 +34,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Weapon.Converters
 
 		protected override void OnConvert(IContext context, Entity entity)
 		{
-			var playerEntities = context.GetEntities(new Mask().Include<PlayerTagComponent>());
+			var playerEntities = context.GetEntities(new Mask().Include<PlayerMarker>());
 			if (playerEntities.Count == 0)
 			{
 				Debug.LogError("Can't find player entity to follow.");
@@ -42,12 +42,12 @@ namespace Asteroids.Scripts.Core.Game.Features.Weapon.Converters
 			}
 
 			Entity player = playerEntities.First();
-			entity.Add(new LaserTagComponent());
-			entity.Add(new PositionComponent()).value = transform.position;
-			entity.Add(new RotationComponent());
-			entity.Add(new FollowPositionComponent()).target = player;
-			entity.Add(new FollowRotationComponent()).target = player;
-			entity.Add(new DestroyAtTimeComponent()).value = _timeService.Time + WeaponsConfig.laserActiveTime;
+			entity.Add(new LaserMarker());
+			entity.Add(new Position()).value = transform.position;
+			entity.Add(new Rotation());
+			entity.Add(new FollowPosition()).target = player;
+			entity.Add(new FollowRotation()).target = player;
+			entity.Add(new DestroyAtTime()).value = _timeService.Time + WeaponsConfig.laserActiveTime;
 			ConfigureViewSize();
 		}
 

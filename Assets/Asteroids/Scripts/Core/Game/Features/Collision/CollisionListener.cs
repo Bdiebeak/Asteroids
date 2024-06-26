@@ -20,14 +20,14 @@ namespace Asteroids.Scripts.Core.Game.Features.Collision
 
 		private void OnCollisionEnter2D(Collision2D other)
 		{
-			CollisionEnterEventComponent eventComponent = new()
+			CollisionEnterEvent collisionEvent = new()
 			{
 				sender = GetLinkedEntity().Entity,
 				collision = other.gameObject.GetComponent<LinkedEntityReference>().Entity
 			};
 
 			Entity entity = _gameplayContext.CreateEntity();
-			entity.Add(eventComponent);
+			entity.Add(collisionEvent);
 		}
 
 		private LinkedEntityReference GetLinkedEntity()

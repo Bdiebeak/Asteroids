@@ -14,7 +14,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Collision.Systems
 		public CleanUpCollisionEventsSystem(GameplayContext gameplayContext)
 		{
 			_gameplayContext = gameplayContext;
-			_mask = new Mask().Include<CollisionEnterEventComponent>();
+			_mask = new Mask().Include<CollisionEnterEvent>();
 		}
 
 		public void CleanUp()

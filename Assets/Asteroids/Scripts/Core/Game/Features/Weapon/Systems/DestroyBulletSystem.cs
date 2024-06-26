@@ -1,6 +1,7 @@
 ﻿using Asteroids.Scripts.Core.Game.Contexts;
 using Asteroids.Scripts.Core.Game.Features.Destroy.Components;
 using Asteroids.Scripts.Core.Game.Features.Movement.Components;
+using Asteroids.Scripts.Core.Game.Features.Requests;
 using Asteroids.Scripts.Core.Game.Features.Weapon.Components;
 using Asteroids.Scripts.Core.Utilities.Services.Camera;
 using Asteroids.Scripts.ECS.Components;
@@ -20,7 +21,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Weapon.Systems
 		{
 			_gameplayContext = gameplayContext;
 			_cameraProvider = cameraProvider;
-			_mask = new Mask().Include<BulletTagComponent>();
+			_mask = new Mask().Include<BulletMarker>();
 		}
 
 		public void Update()
@@ -29,14 +30,14 @@ namespace Asteroids.Scripts.Core.Game.Features.Weapon.Systems
 			foreach (Entity entity in entities)
 			{
 				Bounds bounds = _cameraProvider.Bounds;
-				Vector3 position = entity.Get<PositionComponent>().value;
+				Vector3 position = entity.Get<Position>().value;
 				position.z = bounds.center.z; // Cause Bounds.Contains works with a 3d space.
 				if (bounds.Contains(position))
 				{
 					continue;
 				}
 
-				_gameplayContext.CreateEntity().Add(new DestroyRequestComponent()).target = entity;
+				_gameplayContext.CreateRequest(new DestroyRequest()).target = entity;
 			}
 		}
 	}

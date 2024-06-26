@@ -14,7 +14,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Input
 			// TODO: change components update on events.
 			systems.Add(systemsFactory.CreateSystem<InitializeInputSystem>());
 			systems.Add(systemsFactory.CreateSystem<UpdateMoveInputSystem>());
-			systems.Add(systemsFactory.CreateSystem<UpdateRotateInputSystem>());
+			systems.Add(systemsFactory.CreateSystem<UpdateRotationInputSystem>());
 			systems.Add(systemsFactory.CreateSystem<UpdateBulletAttackInputSystem>());
 			systems.Add(systemsFactory.CreateSystem<UpdateLaserAttackInputSystem>());
 		}

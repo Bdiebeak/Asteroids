@@ -17,7 +17,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Movement.Systems
 		{
 			_gameplayContext = gameplayContext;
 			_timeService = timeService;
-			_mask = new Mask().Include<VelocityComponent>();
+			_mask = new Mask().Include<Velocity>();
 		}
 
 		public void Update()
@@ -25,8 +25,8 @@ namespace Asteroids.Scripts.Core.Game.Features.Movement.Systems
 			var movableEntities = _gameplayContext.GetEntities(_mask);
 			foreach (Entity entity in movableEntities)
 			{
-				PositionComponent position = entity.Get<PositionComponent>();
-				VelocityComponent velocity = entity.Get<VelocityComponent>();
+				Position position = entity.Get<Position>();
+				Velocity velocity = entity.Get<Velocity>();
 				position.value += velocity.value * _timeService.DeltaTime;
 			}
 		}

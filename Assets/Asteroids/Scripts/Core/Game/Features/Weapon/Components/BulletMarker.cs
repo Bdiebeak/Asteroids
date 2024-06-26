@@ -2,5 +2,5 @@
 
 namespace Asteroids.Scripts.Core.Game.Features.Weapon.Components
 {
-	public class LaserTagComponent : IComponent { }
+	public class BulletMarker : IComponent { }
 }

@@ -1,9 +1,9 @@
-﻿using Asteroids.Scripts.ECS.Components;
+﻿using Asteroids.Scripts.Core.Game.Features.Requests;
 using Asteroids.Scripts.ECS.Entities;
 
 namespace Asteroids.Scripts.Core.Game.Features.Destroy.Components
 {
-	public class DestroyRequestComponent : IComponent
+	public class DestroyRequest : IRequest
 	{
 		public Entity target;
 	}

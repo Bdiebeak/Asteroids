@@ -2,5 +2,5 @@
 
 namespace Asteroids.Scripts.Core.Game.Features.Destroy.Components
 {
-	public class DestroyComponent : IComponent { }
+	public class Destroy : IComponent { }
 }

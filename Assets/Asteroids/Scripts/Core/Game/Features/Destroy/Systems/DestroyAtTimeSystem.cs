@@ -1,5 +1,6 @@
 ﻿using Asteroids.Scripts.Core.Game.Contexts;
 using Asteroids.Scripts.Core.Game.Features.Destroy.Components;
+using Asteroids.Scripts.Core.Game.Features.Requests;
 using Asteroids.Scripts.Core.Utilities.Services.Time;
 using Asteroids.Scripts.ECS.Components;
 using Asteroids.Scripts.ECS.Entities;
@@ -17,7 +18,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Destroy.Systems
 		{
 			_gameplayContext = gameplayContext;
 			_timeService = timeService;
-			_mask = new Mask().Include<DestroyAtTimeComponent>();
+			_mask = new Mask().Include<DestroyAtTime>();
 		}
 
 		public void Update()
@@ -25,14 +26,14 @@ namespace Asteroids.Scripts.Core.Game.Features.Destroy.Systems
 			var entities = _gameplayContext.GetEntities(_mask);
 			foreach (Entity entity in entities)
 			{
-				DestroyAtTimeComponent destroyAtTime = entity.Get<DestroyAtTimeComponent>();
+				DestroyAtTime destroyAtTime = entity.Get<DestroyAtTime>();
 				if (_timeService.Time < destroyAtTime.value)
 				{
 					// Wait while current time will be greater than the time of destroy.
 					continue;
 				}
 
-				_gameplayContext.CreateEntity().Add(new DestroyRequestComponent()).target = entity;
+				_gameplayContext.CreateRequest(new DestroyRequest()).target = entity;
 			}
 		}
 	}

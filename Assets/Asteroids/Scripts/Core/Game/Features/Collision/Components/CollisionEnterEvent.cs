@@ -3,7 +3,7 @@ using Asteroids.Scripts.ECS.Entities;
 
 namespace Asteroids.Scripts.Core.Game.Features.Collision.Components
 {
-	public class CollisionEnterEventComponent : IComponent
+	public class CollisionEnterEvent : IComponent
 	{
 		public Entity sender;
 		public Entity collision;

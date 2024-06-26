@@ -11,9 +11,9 @@ namespace Asteroids.Scripts.Core.Game.Features.Weapon.Converters
 	{
 		protected override void OnConvert(IContext context, Entity entity)
 		{
-			entity.Add(new BulletTagComponent());
-			entity.Add(new PositionComponent()).value = transform.position;
-			entity.Add(new VelocityComponent()).value = transform.up * WeaponsConfig.bulletSpeed;
+			entity.Add(new BulletMarker());
+			entity.Add(new Position()).value = transform.position;
+			entity.Add(new Velocity()).value = transform.up * WeaponsConfig.bulletSpeed;
 		}
 	}
 }

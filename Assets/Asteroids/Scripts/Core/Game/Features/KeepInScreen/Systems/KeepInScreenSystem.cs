@@ -18,7 +18,7 @@ namespace Asteroids.Scripts.Core.Game.Features.KeepInScreen.Systems
 		{
 			_gameplayContext = gameplayContext;
 			_cameraProvider = cameraProvider;
-			_mask = new Mask().Include<KeepInScreenComponent>();
+			_mask = new Mask().Include<KeepInScreenMarker>();
 		}
 
 		public void Update()
@@ -26,7 +26,7 @@ namespace Asteroids.Scripts.Core.Game.Features.KeepInScreen.Systems
 			var entities = _gameplayContext.GetEntities(_mask);
 			foreach (Entity entity in entities)
 			{
-				PositionComponent position = entity.Get<PositionComponent>();
+				Position position = entity.Get<Position>();
 				if (position.value.x < _cameraProvider.Bounds.min.x)
 				{
 					position.value.x = _cameraProvider.Bounds.max.x;

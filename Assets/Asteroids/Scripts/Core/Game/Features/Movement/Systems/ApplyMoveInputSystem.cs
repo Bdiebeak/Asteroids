@@ -26,8 +26,8 @@ namespace Asteroids.Scripts.Core.Game.Features.Movement.Systems
 			_inputContext = inputContext;
 			_gameplayContext = gameplayContext;
 			_timeService = timeService;
-			_inputMask = new Mask().Include<MoveInputComponent>();
-			_playerMask = new Mask().Include<PlayerTagComponent>();
+			_inputMask = new Mask().Include<MoveInput>();
+			_playerMask = new Mask().Include<PlayerMarker>();
 		}
 
 		public void Update()
@@ -36,12 +36,12 @@ namespace Asteroids.Scripts.Core.Game.Features.Movement.Systems
 			var playerEntities = _gameplayContext.GetEntities(_playerMask);
 			foreach (Entity inputEntity in inputEntities)
 			{
-				MoveInputComponent moveInput = inputEntity.Get<MoveInputComponent>();
+				MoveInput moveInput = inputEntity.Get<MoveInput>();
 
 				foreach (Entity playerEntity in playerEntities)
 				{
-					VelocityComponent velocity = playerEntity.Get<VelocityComponent>();
-					RotationComponent rotation = playerEntity.Get<RotationComponent>();
+					Velocity velocity = playerEntity.Get<Velocity>();
+					Rotation rotation = playerEntity.Get<Rotation>();
 
 					// Handle only forward movement.
 					if (moveInput.value > 0)

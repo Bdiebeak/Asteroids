@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Asteroids.Scripts.Core.Game.Features.Movement.Components
 {
 	[Serializable]
-	public class PositionComponent : IComponent
+	public class Position : IComponent
 	{
 		public Vector2 value;
 	}

@@ -2,5 +2,5 @@
 
 namespace Asteroids.Scripts.Core.Game.Features.KeepInScreen.Components
 {
-	public class KeepInScreenComponent : IComponent { }
+	public class KeepInScreenMarker : IComponent { }
 }

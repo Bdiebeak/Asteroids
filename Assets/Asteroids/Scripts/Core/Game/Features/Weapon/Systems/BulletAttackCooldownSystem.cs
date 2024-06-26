@@ -17,7 +17,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Weapon.Systems
 		{
 			_gameplayContext = gameplayContext;
 			_timeService = timeService;
-			_mask = new Mask().Include<BulletCooldownComponent>();
+			_mask = new Mask().Include<BulletCooldown>();
 		}
 
 		public void Update()
@@ -25,13 +25,13 @@ namespace Asteroids.Scripts.Core.Game.Features.Weapon.Systems
 			var entities = _gameplayContext.GetEntities(_mask);
 			foreach (Entity entity in entities)
 			{
-				BulletCooldownComponent cooldown = entity.Get<BulletCooldownComponent>();
+				BulletCooldown cooldown = entity.Get<BulletCooldown>();
 				if (cooldown.endTime > _timeService.Time)
 				{
 					continue;
 				}
 
-				entity.Remove<BulletCooldownComponent>();
+				entity.Remove<BulletCooldown>();
 			}
 		}
 	}

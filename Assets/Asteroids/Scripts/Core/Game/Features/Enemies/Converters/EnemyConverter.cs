@@ -13,11 +13,11 @@ namespace Asteroids.Scripts.Core.Game.Features.Enemies.Converters
 	{
 		protected override void OnConvert(IContext context, Entity entity)
 		{
-			entity.Add(new EnemyTagComponent());
-			entity.Add(new PositionComponent()).value = transform.position;
-			entity.Add(new VelocityComponent()).value = Random.insideUnitCircle.normalized *
+			entity.Add(new EnemyMarker());
+			entity.Add(new Position()).value = transform.position;
+			entity.Add(new Velocity()).value = Random.insideUnitCircle.normalized *
 														EnemiesConfig.asteroidSpeed;
-			entity.Add(new KeepInScreenComponent());
+			entity.Add(new KeepInScreenMarker());
 		}
 	}
 }

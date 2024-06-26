@@ -2,7 +2,7 @@
 
 namespace Asteroids.Scripts.Core.Game.Features.Input.Components
 {
-	public class LaserAttackInputComponent : IComponent
+	public class LaserAttackInput : IComponent
 	{
 		public bool value;
 	}

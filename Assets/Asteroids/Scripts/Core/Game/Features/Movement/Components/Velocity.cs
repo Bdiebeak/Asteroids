@@ -1,11 +1,12 @@
 ﻿using System;
 using Asteroids.Scripts.ECS.Components;
+using UnityEngine;
 
 namespace Asteroids.Scripts.Core.Game.Features.Movement.Components
 {
 	[Serializable]
-	public class RotationVelocityComponent : IComponent
+	public class Velocity : IComponent
 	{
-		public float value;
+		public Vector2 value;
 	}
 }

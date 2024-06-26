@@ -17,7 +17,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Input.Systems
 		{
 			_inputContext = inputContext;
 			_inputService = inputService;
-			_mask = new Mask().Include<BulletAttackInputComponent>();
+			_mask = new Mask().Include<BulletAttackInput>();
 		}
 
 		public void Update()
@@ -25,7 +25,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Input.Systems
 			var inputEntities = _inputContext.GetEntities(_mask);
 			foreach (Entity inputEntity in inputEntities)
 			{
-				BulletAttackInputComponent bulletInput = inputEntity.Get<BulletAttackInputComponent>();
+				BulletAttackInput bulletInput = inputEntity.Get<BulletAttackInput>();
 				bulletInput.value = _inputService.BulletAttack;
 			}
 		}

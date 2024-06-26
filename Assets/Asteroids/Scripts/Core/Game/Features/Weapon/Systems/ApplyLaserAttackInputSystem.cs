@@ -26,8 +26,8 @@ namespace Asteroids.Scripts.Core.Game.Features.Weapon.Systems
 			_gameplayContext = gameplayContext;
 			_gameFactory = gameFactory;
 			_timeService = timeService;
-			_inputMask = new Mask().Include<LaserAttackInputComponent>();
-			_playerMask = new Mask().Include<PlayerTagComponent>();
+			_inputMask = new Mask().Include<LaserAttackInput>();
+			_playerMask = new Mask().Include<PlayerMarker>();
 		}
 
 		public void Update()
@@ -36,7 +36,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Weapon.Systems
 			var playerEntities = _gameplayContext.GetEntities(_playerMask);
 			foreach (Entity inputEntity in inputEntities)
 			{
-				LaserAttackInputComponent laserAttack = inputEntity.Get<LaserAttackInputComponent>();
+				LaserAttackInput laserAttack = inputEntity.Get<LaserAttackInput>();
 				if (laserAttack.value == false)
 				{
 					continue;
@@ -44,8 +44,8 @@ namespace Asteroids.Scripts.Core.Game.Features.Weapon.Systems
 
 				foreach (Entity playerEntity in playerEntities)
 				{
-					PositionComponent position = playerEntity.Get<PositionComponent>();
-					RotationComponent rotation = playerEntity.Get<RotationComponent>();
+					Position position = playerEntity.Get<Position>();
+					Rotation rotation = playerEntity.Get<Rotation>();
 					_gameFactory.CreateLaser(position.value, rotation.value);
 				}
 			}

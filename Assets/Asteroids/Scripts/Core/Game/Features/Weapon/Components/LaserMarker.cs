@@ -2,8 +2,5 @@
 
 namespace Asteroids.Scripts.Core.Game.Features.Weapon.Components
 {
-	public class BulletCooldownComponent : IComponent
-	{
-		public float endTime;
-	}
+	public class LaserMarker : IComponent { }
 }

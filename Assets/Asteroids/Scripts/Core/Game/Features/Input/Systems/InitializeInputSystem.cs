@@ -17,10 +17,10 @@ namespace Asteroids.Scripts.Core.Game.Features.Input.Systems
 		public void Start()
 		{
 			Entity entity = _inputContext.CreateEntity();
-			entity.Add(new MoveInputComponent());
-			entity.Add(new RotateInputComponent());
-			entity.Add(new BulletAttackInputComponent());
-			entity.Add(new LaserAttackInputComponent());
+			entity.Add(new MoveInput());
+			entity.Add(new RotationInput());
+			entity.Add(new BulletAttackInput());
+			entity.Add(new LaserAttackInput());
 		}
 	}
 }

@@ -7,17 +7,17 @@ using Asteroids.Scripts.ECS.Systems.Interfaces;
 
 namespace Asteroids.Scripts.Core.Game.Features.Input.Systems
 {
-	public class UpdateRotateInputSystem : IUpdateSystem
+	public class UpdateRotationInputSystem : IUpdateSystem
 	{
 		private readonly InputContext _inputContext;
 		private readonly IInputService _inputService;
 		private readonly Mask _mask;
 
-		public UpdateRotateInputSystem(InputContext inputContext, IInputService inputService)
+		public UpdateRotationInputSystem(InputContext inputContext, IInputService inputService)
 		{
 			_inputContext = inputContext;
 			_inputService = inputService;
-			_mask = new Mask().Include<RotateInputComponent>();
+			_mask = new Mask().Include<RotationInput>();
 		}
 
 		public void Update()
@@ -25,8 +25,8 @@ namespace Asteroids.Scripts.Core.Game.Features.Input.Systems
 			var inputEntities = _inputContext.GetEntities(_mask);
 			foreach (Entity inputEntity in inputEntities)
 			{
-				RotateInputComponent rotateInput = inputEntity.Get<RotateInputComponent>();
-				rotateInput.value = _inputService.Rotate;
+				RotationInput rotationInput = inputEntity.Get<RotationInput>();
+				rotationInput.value = _inputService.Rotate;
 			}
 		}
 	}

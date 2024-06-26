@@ -2,5 +2,5 @@
 
 namespace Asteroids.Scripts.Core.Game.Features.Enemies.Components
 {
-	public class EnemyTagComponent : IComponent { }
+	public class EnemyMarker : IComponent { }
 }

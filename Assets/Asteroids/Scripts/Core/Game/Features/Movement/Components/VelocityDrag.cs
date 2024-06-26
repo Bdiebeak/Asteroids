@@ -1,10 +1,9 @@
 ﻿using Asteroids.Scripts.ECS.Components;
-using Asteroids.Scripts.ECS.Entities;
 
 namespace Asteroids.Scripts.Core.Game.Features.Movement.Components
 {
-	public class FollowRotationComponent : IComponent
+	public class VelocityDrag : IComponent
 	{
-		public Entity target;
+		public float value;
 	}
 }

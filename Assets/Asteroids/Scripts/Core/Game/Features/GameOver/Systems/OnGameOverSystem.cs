@@ -18,7 +18,7 @@ namespace Asteroids.Scripts.Core.Game.Features.GameOver.Systems
 		{
 			_gameplayContext = gameplayContext;
 			_gameStateMachine = gameStateMachine;
-			_mask = new Mask().Include<GameOverEventComponent>();
+			_mask = new Mask().Include<GameOverEvent>();
 		}
 
 		public void Update()

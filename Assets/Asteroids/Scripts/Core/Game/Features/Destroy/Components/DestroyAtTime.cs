@@ -2,7 +2,7 @@
 
 namespace Asteroids.Scripts.Core.Game.Features.Destroy.Components
 {
-	public class DestroyAtTimeComponent : IComponent
+	public class DestroyAtTime : IComponent
 	{
 		public float value;
 	}

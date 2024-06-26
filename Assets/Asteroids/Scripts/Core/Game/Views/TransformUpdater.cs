@@ -15,15 +15,15 @@ namespace Asteroids.Scripts.Core.Game.Views
 
 		private void Update()
 		{
-			if (_entity.Has<PositionComponent>())
+			if (_entity.Has<Position>())
 			{
-				PositionComponent position = _entity.Get<PositionComponent>();
+				Position position = _entity.Get<Position>();
 				transform.position = position.value;
 			}
 
-			if (_entity.Has<RotationComponent>())
+			if (_entity.Has<Rotation>())
 			{
-				RotationComponent rotation = _entity.Get<RotationComponent>();
+				Rotation rotation = _entity.Get<Rotation>();
 				transform.rotation = Quaternion.Euler(0, 0, rotation.value);
 			}
 		}
