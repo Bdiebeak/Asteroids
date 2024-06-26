@@ -2,6 +2,7 @@
 using Asteroids.Scripts.Core.Game.Features.Collision;
 using Asteroids.Scripts.Core.Game.Features.Destroy;
 using Asteroids.Scripts.Core.Game.Features.Enemies;
+using Asteroids.Scripts.Core.Game.Features.GameOver;
 using Asteroids.Scripts.Core.Game.Features.KeepInScreen;
 using Asteroids.Scripts.Core.Game.Features.Movement;
 using Asteroids.Scripts.Core.Game.Features.Player;
@@ -21,10 +22,11 @@ namespace Asteroids.Scripts.Core.Game.Features.Base
 			systems.Add(new PlayerFeature(systemsFactory));
 			systems.Add(new EnemiesFeature(systemsFactory));
 			systems.Add(new MovementFeature(systemsFactory));
+			systems.Add(new KeepInScreenFeature(systemsFactory));
 			systems.Add(new WeaponFeature(systemsFactory));
 			systems.Add(new CollisionFeature(systemsFactory));
-			systems.Add(new KeepInScreenFeature(systemsFactory));
 			systems.Add(new UIFeature(systemsFactory));
+			systems.Add(new GameOverFeature(systemsFactory));
 			systems.Add(new DestroyFeature(systemsFactory));
 		}
 	}
