@@ -23,7 +23,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Enemies.Systems
 			_gameplayContext = gameplayContext;
 			_gameFactory = gameFactory;
 			_cameraProvider = cameraProvider;
-			_mask = new Mask().Include<EnemyTagComponent>();
+			_mask = new Mask().Include<EnemyTagComponent>(); // TODO: asteroids only?
 		}
 
 		public void Update()
@@ -35,8 +35,9 @@ namespace Asteroids.Scripts.Core.Game.Features.Enemies.Systems
 			}
 
 			// TODO: respawn Asteroids request ?
+			// System which detects destroy of Asteroid and create its pieces.
 			Bounds bounds = _cameraProvider.Bounds;
-			for (int i = 0; i < EnemiesConfig.asteroidsCount; i++)
+			for (int i = 0; i < EnemiesConfig.asteroidsWaveCount; i++)
 			{
 				Vector2 position = Vector2.zero;
 				float random = Random.Range(0f, 1f);

@@ -2,7 +2,6 @@
 using Asteroids.Scripts.Core.Game.Features.KeepInScreen.Components;
 using Asteroids.Scripts.Core.Game.Features.Movement.Components;
 using Asteroids.Scripts.Core.Game.Features.Player.Components;
-using Asteroids.Scripts.Core.Game.Views;
 using Asteroids.Scripts.Core.Utilities.Services.Configs;
 using Asteroids.Scripts.ECS.Contexts;
 using Asteroids.Scripts.ECS.Entities;
@@ -20,9 +19,6 @@ namespace Asteroids.Scripts.Core.Game.Features.Player
 			entity.Add(new RotationComponent());
 			entity.Add(new RotationVelocityComponent());
 			entity.Add(new KeepInScreenComponent());
-
-			TransformUpdater transformUpdater = gameObject.AddComponent<TransformUpdater>();
-			transformUpdater.Initialize(entity);
 		}
 	}
 }

@@ -1,7 +1,8 @@
-﻿using Asteroids.Scripts.ECS.Contexts;
+﻿using Asteroids.Scripts.Core.Game.Converters.Base;
+using Asteroids.Scripts.ECS.Contexts;
 using Asteroids.Scripts.ECS.Entities;
 
-namespace Asteroids.Scripts.Core.Game.Converters.Base
+namespace Asteroids.Scripts.Core.Game.Converters
 {
 	public static class ConverterExtensions
 	{

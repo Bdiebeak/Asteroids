@@ -19,9 +19,6 @@ namespace Asteroids.Scripts.Core.Game.Features.Enemies
 			entity.Add(new VelocityComponent()).value = Random.insideUnitCircle.normalized *
 														EnemiesConfig.asteroidSpeed;
 			entity.Add(new KeepInScreenComponent());
-
-			TransformUpdater transformUpdater = gameObject.AddComponent<TransformUpdater>();
-			transformUpdater.Initialize(entity);
 		}
 	}
 }

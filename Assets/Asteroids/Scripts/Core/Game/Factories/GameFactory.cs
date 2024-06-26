@@ -55,6 +55,11 @@ namespace Asteroids.Scripts.Core.Game.Factories
 			Instantiate(GameAssetKeys.Bullet, position, rotation);
 		}
 
+		public void CreateLaser(Vector2 position, float rotation)
+		{
+			Instantiate(GameAssetKeys.Laser, position, rotation);
+		}
+
 		private GameObject Instantiate(string assetKey)
 		{
 			GameObject prefab = _assetProvider.Load<GameObject>(assetKey);
