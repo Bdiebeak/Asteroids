@@ -1,7 +1,7 @@
 ﻿using Asteroids.Scripts.Core.Game.Features.Requests;
 using Asteroids.Scripts.ECS.Entities;
 
-namespace Asteroids.Scripts.Core.Game.Features.Destroy.Components
+namespace Asteroids.Scripts.Core.Game.Features.Destroy.Requests
 {
 	public class DestroyRequest : IRequest
 	{

@@ -1,8 +1,9 @@
 ﻿using Asteroids.Scripts.Core.Game.Contexts;
-using Asteroids.Scripts.Core.Game.Factories;
 using Asteroids.Scripts.Core.Game.Features.Destroy.Components;
 using Asteroids.Scripts.Core.Game.Features.Enemies.Components;
+using Asteroids.Scripts.Core.Game.Features.Enemies.Requests;
 using Asteroids.Scripts.Core.Game.Features.Movement.Components;
+using Asteroids.Scripts.Core.Game.Features.Requests;
 using Asteroids.Scripts.Core.Utilities.Services.Configs;
 using Asteroids.Scripts.ECS.Components;
 using Asteroids.Scripts.ECS.Entities;
@@ -13,13 +14,11 @@ namespace Asteroids.Scripts.Core.Game.Features.Enemies.Systems
 	public class AsteroidPiecesSpawnSystem : IUpdateSystem
 	{
 		private readonly GameplayContext _gameplayContext;
-		private readonly IGameFactory _gameFactory;
 		private readonly Mask _mask;
 
-		public AsteroidPiecesSpawnSystem(GameplayContext gameplayContext, IGameFactory gameFactory)
+		public AsteroidPiecesSpawnSystem(GameplayContext gameplayContext)
 		{
 			_gameplayContext = gameplayContext;
-			_gameFactory = gameFactory;
 			_mask = new Mask().Include<AsteroidMarker>()
 							  .Include<ToDestroy>();
 		}
@@ -30,10 +29,11 @@ namespace Asteroids.Scripts.Core.Game.Features.Enemies.Systems
 			foreach (Entity entity in entities)
 			{
 				Position position = entity.Get<Position>();
-				for (int i = 0; i < EnemiesConfig.asteroidPiecesCount; i++)
+				_gameplayContext.CreateRequest(new SpawnAsteroidPiecesRequest
 				{
-					_gameFactory.CreateEnemy(EnemyType.AsteroidPiece, position.value);
-				}
+					position = position.value,
+					count = EnemiesConfig.asteroidPiecesCount
+				});
 			}
 		}
 	}

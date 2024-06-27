@@ -1,5 +1,6 @@
 ﻿using Asteroids.Scripts.Core.Game.Contexts;
 using Asteroids.Scripts.Core.Game.Features.Destroy.Components;
+using Asteroids.Scripts.Core.Game.Features.Destroy.Requests;
 using Asteroids.Scripts.Core.Game.Features.Requests;
 using Asteroids.Scripts.ECS.Components;
 using Asteroids.Scripts.ECS.Entities;
@@ -8,12 +9,12 @@ using UnityEngine;
 
 namespace Asteroids.Scripts.Core.Game.Features.Destroy.Systems
 {
-	public class DestroyRequestSystem : IUpdateSystem, ICleanUpSystem
+	public class HandleDestroyRequestSystem : IUpdateSystem, ICleanUpSystem
 	{
 		private readonly GameplayContext _gameplayContext;
 		private readonly Mask _mask;
 
-		public DestroyRequestSystem(GameplayContext gameplayContext)
+		public HandleDestroyRequestSystem(GameplayContext gameplayContext)
 		{
 			_gameplayContext = gameplayContext;
 			_mask = new Mask().Include<DestroyRequest>();

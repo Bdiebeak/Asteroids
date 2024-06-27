@@ -13,6 +13,10 @@ namespace Asteroids.Scripts.Core.Game.Features.Enemies
 		{
 			systems.Add(systemsFactory.CreateSystem<AsteroidsSpawnSystem>());
 			systems.Add(systemsFactory.CreateSystem<AsteroidPiecesSpawnSystem>());
+			systems.Add(systemsFactory.CreateSystem<UfoSpawnSystem>());
+			systems.Add(systemsFactory.CreateSystem<HandleSpawnAsteroidsRequestSystem>());
+			systems.Add(systemsFactory.CreateSystem<HandleSpawnAsteroidPiecesRequestSystem>());
+			systems.Add(systemsFactory.CreateSystem<HandleSpawnUfoRequestSystem>());
 		}
 	}
 }

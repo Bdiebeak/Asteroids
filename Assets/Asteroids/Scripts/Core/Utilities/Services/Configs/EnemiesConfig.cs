@@ -9,8 +9,8 @@
 		public static int maxUfoDelay = 60;
 
 		public static float asteroidSpeed = 2;
-		public static float asteroidPieceSpeed = 4;
-		public static float ufoSpeed = 8;
+		public static float asteroidPieceSpeed = 3;
+		public static float ufoSpeed = 5;
 
 		public static float asteroidScore = 50;
 		public static float asteroidPieceScore = 75;

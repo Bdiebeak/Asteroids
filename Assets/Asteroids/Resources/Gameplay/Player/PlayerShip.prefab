@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 905243687171133496}
   - component: {fileID: -5092606968468643246}
-  - component: {fileID: 2661159631872551660}
+  - component: {fileID: 8608270863718776839}
   - component: {fileID: -9106795613916617222}
   - component: {fileID: 8344598413667046934}
   - component: {fileID: -4894526412597027016}
@@ -150,8 +150,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!68 &2661159631872551660
-EdgeCollider2D:
+--- !u!60 &8608270863718776839
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -183,16 +183,21 @@ EdgeCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   m_Points:
-  - {x: -0.25, y: -0.2}
-  - {x: 0, y: 0.4}
-  - {x: 0.25, y: -0.2}
-  - {x: -0.25, y: -0.2}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
+    m_Paths:
+    - - {x: 0.25, y: -0.2}
+      - {x: 0, y: 0.4}
+      - {x: -0.25, y: -0.2}
+  m_UseDelaunayMesh: 0
 --- !u!114 &-9106795613916617222
 MonoBehaviour:
   m_ObjectHideFlags: 0
