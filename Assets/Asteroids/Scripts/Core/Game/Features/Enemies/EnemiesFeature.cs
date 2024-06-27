@@ -12,6 +12,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Enemies
 		public override void AddTo(SystemsContainer systems)
 		{
 			systems.Add(systemsFactory.CreateSystem<AsteroidsSpawnSystem>());
+			systems.Add(systemsFactory.CreateSystem<AsteroidPiecesSpawnSystem>());
 		}
 	}
 }

@@ -4,6 +4,7 @@
 	public static class EnemiesConfig
 	{
 		public static int asteroidsWaveCount = 6;
+		public static int asteroidPiecesCount = 2;
 		public static int minUfoDelay = 30;
 		public static int maxUfoDelay = 60;
 

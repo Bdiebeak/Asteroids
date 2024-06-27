@@ -14,7 +14,8 @@ namespace Asteroids.Scripts.Core.Game.Features.Enemies.Systems
 		private readonly GameplayContext _gameplayContext;
 		private readonly IGameFactory _gameFactory;
 		private readonly ICameraProvider _cameraProvider;
-		private readonly Mask _mask;
+		private readonly Mask _asteroidsMask;
+		private readonly Mask _piecesMask;
 
 		public AsteroidsSpawnSystem(GameplayContext gameplayContext,
 									IGameFactory gameFactory,
@@ -23,13 +24,15 @@ namespace Asteroids.Scripts.Core.Game.Features.Enemies.Systems
 			_gameplayContext = gameplayContext;
 			_gameFactory = gameFactory;
 			_cameraProvider = cameraProvider;
-			_mask = new Mask().Include<EnemyMarker>(); // TODO: asteroids only?
+			_asteroidsMask = new Mask().Include<AsteroidMarker>();
+			_piecesMask = new Mask().Include<AsteroidPieceMarker>();
 		}
 
 		public void Update()
 		{
-			var entities = _gameplayContext.GetEntities(_mask);
-			if (entities.Count > 0)
+			var asteroids = _gameplayContext.GetEntities(_asteroidsMask);
+			var asteroidPieces = _gameplayContext.GetEntities(_piecesMask);
+			if (asteroids.Count + asteroidPieces.Count > 0)
 			{
 				return;
 			}

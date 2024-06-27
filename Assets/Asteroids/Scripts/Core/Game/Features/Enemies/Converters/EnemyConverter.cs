@@ -16,7 +16,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Enemies.Converters
 			entity.Add(new EnemyMarker());
 			entity.Add(new Position()).value = transform.position;
 			entity.Add(new Velocity()).value = Random.insideUnitCircle.normalized *
-														EnemiesConfig.asteroidSpeed;
+											   EnemiesConfig.asteroidSpeed;
 			entity.Add(new KeepInScreenMarker());
 		}
 	}

@@ -11,9 +11,9 @@ namespace Asteroids.Scripts.Core.Game.Features.Destroy
 
 		public override void AddTo(SystemsContainer systems)
 		{
+			systems.Add(systemsFactory.CreateSystem<DestroySystem>()); // First to make entities live one more frame.
 			systems.Add(systemsFactory.CreateSystem<DestroyAtTimeSystem>());
 			systems.Add(systemsFactory.CreateSystem<DestroyRequestSystem>());
-			systems.Add(systemsFactory.CreateSystem<DestroySystem>());
 		}
 	}
 }
