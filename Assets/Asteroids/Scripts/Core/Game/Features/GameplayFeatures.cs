@@ -1,4 +1,5 @@
 ﻿using Asteroids.Scripts.Core.Game.Factories;
+using Asteroids.Scripts.Core.Game.Features.Base;
 using Asteroids.Scripts.Core.Game.Features.Collision;
 using Asteroids.Scripts.Core.Game.Features.Destroy;
 using Asteroids.Scripts.Core.Game.Features.Enemies;
@@ -8,14 +9,13 @@ using Asteroids.Scripts.Core.Game.Features.Movement;
 using Asteroids.Scripts.Core.Game.Features.Player;
 using Asteroids.Scripts.Core.Game.Features.UI;
 using Asteroids.Scripts.Core.Game.Features.Weapon;
-using Asteroids.Scripts.Core.Utilities.Extensions;
 using Asteroids.Scripts.ECS.Systems.Container;
 
-namespace Asteroids.Scripts.Core.Game.Features.Base
+namespace Asteroids.Scripts.Core.Game.Features
 {
-	public class GameplayFeature : Feature
+	public class GameplayFeatures : Feature
 	{
-		public GameplayFeature(ISystemsFactory systemsFactory) : base(systemsFactory) { }
+		public GameplayFeatures(ISystemsFactory systemsFactory) : base(systemsFactory) { }
 
 		public override void AddTo(SystemsContainer systems)
 		{

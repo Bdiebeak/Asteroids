@@ -1,5 +1,6 @@
 ﻿using Asteroids.Scripts.Core.Game.Contexts;
 using Asteroids.Scripts.Core.Game.Factories;
+using Asteroids.Scripts.Core.Game.Features;
 using Asteroids.Scripts.Core.Game.Features.Base;
 using Asteroids.Scripts.Core.Game.Features.Input;
 using Asteroids.Scripts.Core.Utilities.Extensions;
@@ -58,13 +59,13 @@ namespace Asteroids.Scripts.Core.Game
 		private void InitializeInputSystems()
 		{
 			_inputSystems = new SystemsContainer();
-			_inputSystems.Add(new InputFeature(_systemsFactory));
+			_inputSystems.Add(new InputFeatures(_systemsFactory));
 		}
 
 		private void InitializeGameplaySystems()
 		{
 			_gameplaySystems = new SystemsContainer();
-			_gameplaySystems.Add(new GameplayFeature(_systemsFactory));
+			_gameplaySystems.Add(new GameplayFeatures(_systemsFactory));
 		}
 	}
 }

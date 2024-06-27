@@ -21,7 +21,8 @@ namespace Asteroids.Scripts.Core.Game.Features.Weapon.Systems
 		{
 			_gameplayContext = gameplayContext;
 			_cameraProvider = cameraProvider;
-			_mask = new Mask().Include<BulletMarker>();
+			_mask = new Mask().Include<BulletMarker>()
+							  .Exclude<ToDestroy>();
 		}
 
 		public void Update()
