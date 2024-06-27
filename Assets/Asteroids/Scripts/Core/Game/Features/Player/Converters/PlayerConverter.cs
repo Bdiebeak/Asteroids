@@ -14,9 +14,14 @@ namespace Asteroids.Scripts.Core.Game.Features.Player.Converters
 		{
 			entity.Add(new PlayerMarker());
 			entity.Add(new Position()).value = transform.position;
-			entity.Add(new Velocity());
-			entity.Add(new VelocityDrag()).value = PlayerConfig.shipDrag;
+			entity.Add(new MoveDirection());
+			entity.Add(new MoveSpeed()).value = PlayerConfig.shipMoveSpeed;
+			entity.Add(new MoveVelocity());
+			entity.Add(new MoveAcceleration()).value = PlayerConfig.shipAcceleration;
+			entity.Add(new MoveDeceleration()).value = PlayerConfig.shipDeceleration;
 			entity.Add(new Rotation());
+			entity.Add(new RotationDirection());
+			entity.Add(new RotationSpeed()).value = PlayerConfig.shipRotationSpeed;
 			entity.Add(new RotationVelocity());
 			entity.Add(new KeepInBoundsMarker());
 		}

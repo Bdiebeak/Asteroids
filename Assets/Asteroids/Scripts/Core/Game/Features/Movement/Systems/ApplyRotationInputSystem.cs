@@ -2,7 +2,6 @@
 using Asteroids.Scripts.Core.Game.Features.Input.Components;
 using Asteroids.Scripts.Core.Game.Features.Movement.Components;
 using Asteroids.Scripts.Core.Game.Features.Player.Components;
-using Asteroids.Scripts.Core.Utilities.Services.Configs;
 using Asteroids.Scripts.ECS.Components;
 using Asteroids.Scripts.ECS.Entities;
 using Asteroids.Scripts.ECS.Systems.Interfaces;
@@ -34,10 +33,8 @@ namespace Asteroids.Scripts.Core.Game.Features.Movement.Systems
 
 				foreach (Entity playerEntity in playerEntities)
 				{
-					RotationVelocity rotationVelocity = playerEntity.Get<RotationVelocity>();
-
-					// Refill rotation input. Invert for proper rotation.
-					rotationVelocity.value = -rotationInput.value * PlayerConfig.shipAngularSpeed;
+					RotationDirection rotationDirection = playerEntity.Get<RotationDirection>();
+					rotationDirection.value = rotationInput.value;
 				}
 			}
 		}

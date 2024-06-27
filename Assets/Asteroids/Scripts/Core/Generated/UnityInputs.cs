@@ -41,7 +41,7 @@ public partial class @UnityInputs: IInputActionCollection2, IDisposable
                     ""type"": ""Value"",
                     ""id"": ""40821956-d787-4f43-8592-73d3e02ffe5c"",
                     ""expectedControlType"": ""Axis"",
-                    ""processors"": """",
+                    ""processors"": ""Invert"",
                     ""interactions"": """",
                     ""initialStateCheck"": true
                 },

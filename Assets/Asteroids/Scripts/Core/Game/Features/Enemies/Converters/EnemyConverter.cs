@@ -13,6 +13,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Enemies.Converters
 		{
 			entity.Add(new EnemyMarker());
 			entity.Add(new Position()).value = transform.position;
+			entity.Add(new MoveVelocity());
 			entity.Add(new KeepInBoundsMarker());
 		}
 	}

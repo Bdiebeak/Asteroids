@@ -12,8 +12,8 @@ namespace Asteroids.Scripts.Core.Game.Features.Enemies.Converters
 	{
 		protected override void OnConvert(IContext context, Entity entity)
 		{
-			entity.Add(new Velocity()).value = Random.insideUnitCircle.normalized *
-											   EnemiesConfig.asteroidSpeed;
+			entity.Add(new MoveDirection()).value = Random.insideUnitCircle.normalized;
+			entity.Add(new MoveSpeed()).value = EnemiesConfig.asteroidSpeed;
 			entity.Add(new AsteroidMarker());
 		}
 	}

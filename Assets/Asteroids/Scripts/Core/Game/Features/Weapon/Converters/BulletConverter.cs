@@ -13,7 +13,9 @@ namespace Asteroids.Scripts.Core.Game.Features.Weapon.Converters
 		{
 			entity.Add(new BulletMarker());
 			entity.Add(new Position()).value = transform.position;
-			entity.Add(new Velocity()).value = transform.up * WeaponsConfig.bulletSpeed;
+			entity.Add(new MoveDirection()).value = transform.up;
+			entity.Add(new MoveSpeed()).value = WeaponsConfig.bulletSpeed;
+			entity.Add(new MoveVelocity());
 		}
 	}
 }

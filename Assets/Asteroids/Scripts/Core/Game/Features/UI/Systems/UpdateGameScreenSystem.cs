@@ -28,8 +28,8 @@ namespace Asteroids.Scripts.Core.Game.Features.UI.Systems
 			{
 				_gameScreenModel.position = entity.Get<Position>().value;
 				_gameScreenModel.rotation = entity.Get<Rotation>().value;
-				_gameScreenModel.velocity = entity.Get<Velocity>().value;
-				_gameScreenModel.velocityMagnitude = entity.Get<Velocity>().value.magnitude;
+				_gameScreenModel.velocity = entity.Get<MoveVelocity>().value;
+				_gameScreenModel.velocityMagnitude = entity.Get<MoveVelocity>().value.magnitude;
 			}
 		}
 	}

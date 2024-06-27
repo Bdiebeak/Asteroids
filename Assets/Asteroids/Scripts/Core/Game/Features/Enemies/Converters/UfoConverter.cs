@@ -18,13 +18,14 @@ namespace Asteroids.Scripts.Core.Game.Features.Enemies.Converters
 			var playerEntities = context.GetEntities(new Mask().Include<PlayerMarker>());
 			if (playerEntities.Count == 0)
 			{
-				Debug.LogError("Can't find player to follow.");
+				Debug.LogError("Can't find player entity to follow.");
 				return;
 			}
 
-			entity.Add(new ChaseTarget()).target = playerEntities.First();
-			entity.Add(new Velocity()).value = Random.insideUnitCircle.normalized *
-											   EnemiesConfig.ufoSpeed;
+			Entity player = playerEntities.First();
+			entity.Add(new ChaseTarget()).target = player;
+			entity.Add(new MoveDirection()).value = Random.insideUnitCircle.normalized;
+			entity.Add(new MoveSpeed()).value = EnemiesConfig.ufoSpeed;
 			entity.Add(new UfoMarker());
 		}
 	}

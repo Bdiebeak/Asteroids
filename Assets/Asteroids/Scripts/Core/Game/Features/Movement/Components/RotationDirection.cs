@@ -2,7 +2,7 @@
 
 namespace Asteroids.Scripts.Core.Game.Features.Movement.Components
 {
-	public class RotationVelocity : IComponent
+	public class RotationDirection : IComponent
 	{
 		public float value;
 	}

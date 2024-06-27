@@ -33,9 +33,8 @@ namespace Asteroids.Scripts.Core.Game.Features.Movement.Systems
 
 				Position position = entity.Get<Position>();
 				Position targetPosition = target.Get<Position>();
-				Velocity velocity = entity.Get<Velocity>();
-				// TODO: don't like magnitude here - better to use MoveDirection and Speed
-				velocity.value = (targetPosition.value - position.value).normalized * velocity.value.magnitude;
+				MoveDirection moveDirection = entity.Get<MoveDirection>();
+				moveDirection.value = (targetPosition.value - position.value).normalized;
 			}
 		}
 	}

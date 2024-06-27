@@ -26,8 +26,8 @@ namespace Asteroids.Scripts.Core.Game.Features.Movement.Systems
 			foreach (Entity entity in movableEntities)
 			{
 				Rotation rotation = entity.Get<Rotation>();
-				RotationVelocity rotationVelocity = entity.Get<RotationVelocity>();
-				rotation.value += rotationVelocity.value * _timeService.DeltaTime;
+				RotationVelocity velocity = entity.Get<RotationVelocity>();
+				rotation.value += velocity.value * _timeService.DeltaTime;
 				rotation.value %= 360;
 			}
 		}

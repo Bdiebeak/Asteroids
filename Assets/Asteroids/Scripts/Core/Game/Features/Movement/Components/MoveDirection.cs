@@ -1,9 +1,10 @@
 ﻿using Asteroids.Scripts.ECS.Components;
+using UnityEngine;
 
 namespace Asteroids.Scripts.Core.Game.Features.Movement.Components
 {
-	public class RotationVelocity : IComponent
+	public class MoveDirection : IComponent
 	{
-		public float value;
+		public Vector2 value;
 	}
 }
