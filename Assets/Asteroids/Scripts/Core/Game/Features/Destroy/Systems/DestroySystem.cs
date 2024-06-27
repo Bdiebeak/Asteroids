@@ -14,7 +14,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Destroy.Systems
 		public DestroySystem(GameplayContext gameplayContext)
 		{
 			_gameplayContext = gameplayContext;
-			_mask = new Mask().Include<Components.Destroy>();
+			_mask = new Mask().Include<ToDestroy>();
 		}
 
 		public void Update()

@@ -16,6 +16,7 @@ namespace Asteroids.Scripts.Core.Utilities.Services.Camera
 			_gameFactory = gameFactory;
 		}
 
+		// TODO: is it ok to use GameFactory here?
 		public void Initialize()
 		{
 			MainCamera = _gameFactory.CreateMainCamera();

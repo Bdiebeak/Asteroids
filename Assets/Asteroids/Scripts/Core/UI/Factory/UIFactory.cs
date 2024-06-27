@@ -20,7 +20,7 @@ namespace Asteroids.Scripts.Core.UI.Factory
 			_container = container;
 			_assetProvider = assetProvider;
 
-			// We can get rid of it via Addressables and Labels.
+			// Don't like this part, but can get rid of it via Addressables and Labels.
 			// This keys will be filled automatically.
 			_screenKeys = new Dictionary<Type, string>()
 			{

@@ -3,6 +3,7 @@ using Asteroids.Scripts.Core.Game.Features.Movement.Components;
 using Asteroids.Scripts.ECS.Components;
 using Asteroids.Scripts.ECS.Entities;
 using Asteroids.Scripts.ECS.Systems.Interfaces;
+using UnityEngine;
 
 namespace Asteroids.Scripts.Core.Game.Features.Movement.Systems
 {
@@ -23,8 +24,15 @@ namespace Asteroids.Scripts.Core.Game.Features.Movement.Systems
 			foreach (Entity entity in entities)
 			{
 				FollowPosition followPosition = entity.Get<FollowPosition>();
+				Entity target = followPosition.target;
+				if (_gameplayContext.IsActive(target) == false)
+				{
+					Debug.LogError("Target entity isn't active. Can't follow it's position.");
+					continue;
+				}
+
 				Position position = entity.Get<Position>();
-				Position targetPosition = followPosition.target.Get<Position>();
+				Position targetPosition = target.Get<Position>();
 				position.value = targetPosition.value;
 			}
 		}

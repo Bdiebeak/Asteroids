@@ -25,16 +25,19 @@ namespace Asteroids.Scripts.Core.Game.Features.Destroy.Systems
 			foreach (Entity entity in entities)
 			{
 				DestroyRequest destroyRequest = entity.Get<DestroyRequest>();
-				if (destroyRequest.target == null)
+
+				if (_gameplayContext.IsActive(destroyRequest.target) == false)
 				{
-					Debug.LogError("Entity is null, can't destroy it.");
+					Debug.LogError("Entity isn't active, can't destroy it.");
 					continue;
 				}
-				if (destroyRequest.target.Has<Components.Destroy>())
+
+				if (destroyRequest.target.Has<ToDestroy>())
 				{
 					continue;
 				}
-				destroyRequest.target.Add(new Components.Destroy());
+
+				destroyRequest.target.Add(new ToDestroy());
 			}
 		}
 

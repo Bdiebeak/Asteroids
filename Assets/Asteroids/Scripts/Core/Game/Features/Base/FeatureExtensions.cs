@@ -1,7 +1,6 @@
-﻿using Asteroids.Scripts.Core.Game.Features.Base;
-using Asteroids.Scripts.ECS.Systems.Container;
+﻿using Asteroids.Scripts.ECS.Systems.Container;
 
-namespace Asteroids.Scripts.Core.Utilities.Extensions
+namespace Asteroids.Scripts.Core.Game.Features.Base
 {
 	public static class FeatureExtensions
 	{

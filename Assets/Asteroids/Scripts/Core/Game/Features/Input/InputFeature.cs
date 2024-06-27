@@ -11,7 +11,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Input
 
 		public override void AddTo(SystemsContainer systems)
 		{
-			// TODO: change components update on events.
+			// TODO: change components update on events?
 			systems.Add(systemsFactory.CreateSystem<InitializeInputSystem>());
 			systems.Add(systemsFactory.CreateSystem<UpdateMoveInputSystem>());
 			systems.Add(systemsFactory.CreateSystem<UpdateRotationInputSystem>());

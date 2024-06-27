@@ -27,6 +27,11 @@ namespace Asteroids.Scripts.ECS.Contexts
 			entity.Destroy();
 		}
 
+		public bool IsActive(Entity entity)
+		{
+			return entity != null && _entities.Contains(entity);
+		}
+
 		public IReadOnlyCollection<Entity> GetEntities()
 		{
 			return _entities;
