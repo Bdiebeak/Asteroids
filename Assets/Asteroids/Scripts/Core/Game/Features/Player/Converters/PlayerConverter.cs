@@ -1,7 +1,7 @@
 ﻿using Asteroids.Scripts.Core.Game.Converters;
-using Asteroids.Scripts.Core.Game.Features.KeepInScreen.Components;
 using Asteroids.Scripts.Core.Game.Features.Movement.Components;
 using Asteroids.Scripts.Core.Game.Features.Player.Components;
+using Asteroids.Scripts.Core.Game.Features.WorldBounds.Components;
 using Asteroids.Scripts.Core.Utilities.Services.Configs;
 using Asteroids.Scripts.ECS.Contexts;
 using Asteroids.Scripts.ECS.Entities;
@@ -18,7 +18,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Player.Converters
 			entity.Add(new VelocityDrag()).value = PlayerConfig.shipDrag;
 			entity.Add(new Rotation());
 			entity.Add(new RotationVelocity());
-			entity.Add(new KeepInScreenMarker());
+			entity.Add(new KeepInBoundsMarker());
 		}
 	}
 }

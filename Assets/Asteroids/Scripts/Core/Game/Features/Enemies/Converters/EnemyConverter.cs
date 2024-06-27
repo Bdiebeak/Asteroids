@@ -1,7 +1,7 @@
 ﻿using Asteroids.Scripts.Core.Game.Converters;
 using Asteroids.Scripts.Core.Game.Features.Enemies.Components;
-using Asteroids.Scripts.Core.Game.Features.KeepInScreen.Components;
 using Asteroids.Scripts.Core.Game.Features.Movement.Components;
+using Asteroids.Scripts.Core.Game.Features.WorldBounds.Components;
 using Asteroids.Scripts.ECS.Contexts;
 using Asteroids.Scripts.ECS.Entities;
 
@@ -13,7 +13,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Enemies.Converters
 		{
 			entity.Add(new EnemyMarker());
 			entity.Add(new Position()).value = transform.position;
-			entity.Add(new KeepInScreenMarker());
+			entity.Add(new KeepInBoundsMarker());
 		}
 	}
 }

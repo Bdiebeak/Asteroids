@@ -4,11 +4,12 @@ using Asteroids.Scripts.Core.Game.Features.Collision;
 using Asteroids.Scripts.Core.Game.Features.Destroy;
 using Asteroids.Scripts.Core.Game.Features.Enemies;
 using Asteroids.Scripts.Core.Game.Features.GameOver;
-using Asteroids.Scripts.Core.Game.Features.KeepInScreen;
 using Asteroids.Scripts.Core.Game.Features.Movement;
 using Asteroids.Scripts.Core.Game.Features.Player;
+using Asteroids.Scripts.Core.Game.Features.Player.Systems;
 using Asteroids.Scripts.Core.Game.Features.UI;
 using Asteroids.Scripts.Core.Game.Features.Weapon;
+using Asteroids.Scripts.Core.Game.Features.WorldBounds;
 using Asteroids.Scripts.ECS.Systems.Container;
 
 namespace Asteroids.Scripts.Core.Game.Features
@@ -22,12 +23,13 @@ namespace Asteroids.Scripts.Core.Game.Features
 			systems.Add(new PlayerFeature(systemsFactory));
 			systems.Add(new EnemiesFeature(systemsFactory));
 			systems.Add(new MovementFeature(systemsFactory));
-			systems.Add(new KeepInScreenFeature(systemsFactory));
+			systems.Add(new WorldBoundsFeature(systemsFactory));
 			systems.Add(new WeaponFeature(systemsFactory));
 			systems.Add(new CollisionFeature(systemsFactory));
 			systems.Add(new UIFeature(systemsFactory));
 			systems.Add(new GameOverFeature(systemsFactory));
 			systems.Add(new DestroyFeature(systemsFactory));
+			systems.Add(systemsFactory.CreateSystem<GameOverSystem>()); // TODO: last to end game int the end of frame.
 		}
 	}
 }

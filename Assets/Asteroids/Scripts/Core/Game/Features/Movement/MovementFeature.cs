@@ -18,6 +18,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Movement
 			systems.Add(systemsFactory.CreateSystem<RotateSystem>());
 			systems.Add(systemsFactory.CreateSystem<FollowPositionSystem>());
 			systems.Add(systemsFactory.CreateSystem<FollowRotationSystem>());
+			systems.Add(systemsFactory.CreateSystem<HandleTeleportRequestSystem>());
 		}
 	}
 }

@@ -23,7 +23,6 @@ namespace Asteroids.Scripts.Core.Utilities.Services.Camera
 			Bounds = CalculateBounds();
 		}
 
-		// TODO: different bounds for Player teleportation and Enemies ?
 		private Bounds CalculateBounds()
 		{
 			float screenAspect = (float)Screen.width / Screen.height;
