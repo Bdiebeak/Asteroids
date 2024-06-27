@@ -45,8 +45,8 @@ namespace Asteroids.Scripts.Core.Game.Features.Weapon.Converters
 			entity.Add(new LaserMarker());
 			entity.Add(new Position()).value = transform.position;
 			entity.Add(new Rotation());
-			entity.Add(new FollowPosition()).target = player;
-			entity.Add(new FollowRotation()).target = player;
+			entity.Add(new CopyTargetPosition()).target = player;
+			entity.Add(new CopyTargetRotation()).target = player;
 			entity.Add(new DestroyAtTime()).value = _timeService.Time + WeaponsConfig.laserActiveTime;
 			ConfigureViewSize();
 		}

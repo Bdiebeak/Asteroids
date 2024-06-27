@@ -7,15 +7,15 @@ using UnityEngine;
 
 namespace Asteroids.Scripts.Core.Game.Features.Movement.Systems
 {
-	public class FollowPositionSystem : IUpdateSystem
+	public class ChaseTargetSystem : IUpdateSystem
 	{
 		private readonly GameplayContext _gameplayContext;
 		private readonly Mask _mask;
 
-		public FollowPositionSystem(GameplayContext gameplayContext)
+		public ChaseTargetSystem(GameplayContext gameplayContext)
 		{
 			_gameplayContext = gameplayContext;
-			_mask = new Mask().Include<FollowPosition>();
+			_mask = new Mask().Include<ChaseTarget>();
 		}
 
 		public void Update()
@@ -23,17 +23,19 @@ namespace Asteroids.Scripts.Core.Game.Features.Movement.Systems
 			var entities = _gameplayContext.GetEntities(_mask);
 			foreach (Entity entity in entities)
 			{
-				FollowPosition followPosition = entity.Get<FollowPosition>();
-				Entity target = followPosition.target;
+				ChaseTarget chaseTarget = entity.Get<ChaseTarget>();
+				Entity target = chaseTarget.target;
 				if (_gameplayContext.IsActive(target) == false)
 				{
-					Debug.LogError("Target entity isn't active. Can't follow it's position.");
+					Debug.LogError("Can't follow entity, it isn't active.");
 					continue;
 				}
 
 				Position position = entity.Get<Position>();
 				Position targetPosition = target.Get<Position>();
-				position.value = targetPosition.value;
+				Velocity velocity = entity.Get<Velocity>();
+				// TODO: don't like magnitude here - better to use MoveDirection and Speed
+				velocity.value = (targetPosition.value - position.value).normalized * velocity.value.magnitude;
 			}
 		}
 	}

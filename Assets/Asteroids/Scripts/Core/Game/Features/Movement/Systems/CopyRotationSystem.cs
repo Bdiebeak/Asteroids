@@ -7,15 +7,15 @@ using UnityEngine;
 
 namespace Asteroids.Scripts.Core.Game.Features.Movement.Systems
 {
-	public class FollowRotationSystem : IUpdateSystem
+	public class CopyRotationSystem : IUpdateSystem
 	{
 		private readonly GameplayContext _gameplayContext;
 		private readonly Mask _mask;
 
-		public FollowRotationSystem(GameplayContext gameplayContext)
+		public CopyRotationSystem(GameplayContext gameplayContext)
 		{
 			_gameplayContext = gameplayContext;
-			_mask = new Mask().Include<FollowRotation>();
+			_mask = new Mask().Include<CopyTargetRotation>();
 		}
 
 		public void Update()
@@ -23,8 +23,8 @@ namespace Asteroids.Scripts.Core.Game.Features.Movement.Systems
 			var entities = _gameplayContext.GetEntities(_mask);
 			foreach (Entity entity in entities)
 			{
-				FollowRotation followRotation = entity.Get<FollowRotation>();
-				Entity target = followRotation.target;
+				CopyTargetRotation copyTargetRotation = entity.Get<CopyTargetRotation>();
+				Entity target = copyTargetRotation.target;
 				if (_gameplayContext.IsActive(target) == false)
 				{
 					Debug.LogError("Target entity isn't active. Can't follow it's rotation.");

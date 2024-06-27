@@ -13,11 +13,12 @@ namespace Asteroids.Scripts.Core.Game.Features.Movement
 		{
 			systems.Add(systemsFactory.CreateSystem<ApplyMoveInputSystem>());
 			systems.Add(systemsFactory.CreateSystem<ApplyRotationInputSystem>());
+			systems.Add(systemsFactory.CreateSystem<ChaseTargetSystem>());
 			systems.Add(systemsFactory.CreateSystem<DragVelocitySystem>());
 			systems.Add(systemsFactory.CreateSystem<MoveSystem>());
 			systems.Add(systemsFactory.CreateSystem<RotateSystem>());
-			systems.Add(systemsFactory.CreateSystem<FollowPositionSystem>());
-			systems.Add(systemsFactory.CreateSystem<FollowRotationSystem>());
+			systems.Add(systemsFactory.CreateSystem<CopyPositionSystem>());
+			systems.Add(systemsFactory.CreateSystem<CopyRotationSystem>());
 			systems.Add(systemsFactory.CreateSystem<HandleTeleportRequestSystem>());
 		}
 	}

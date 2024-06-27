@@ -3,7 +3,7 @@ using Asteroids.Scripts.ECS.Entities;
 
 namespace Asteroids.Scripts.Core.Game.Features.Movement.Components
 {
-	public class FollowPosition : IComponent
+	public class CopyTargetRotation : IComponent
 	{
 		public Entity target;
 	}
