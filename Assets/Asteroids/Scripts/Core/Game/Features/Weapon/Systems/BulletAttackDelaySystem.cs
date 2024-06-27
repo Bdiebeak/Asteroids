@@ -7,17 +7,17 @@ using Asteroids.Scripts.ECS.Systems.Interfaces;
 
 namespace Asteroids.Scripts.Core.Game.Features.Weapon.Systems
 {
-	public class BulletAttackCooldownSystem : IUpdateSystem
+	public class BulletAttackDelaySystem : IUpdateSystem
 	{
 		private readonly GameplayContext _gameplayContext;
 		private readonly ITimeService _timeService;
 		private readonly Mask _mask;
 
-		public BulletAttackCooldownSystem(GameplayContext gameplayContext, ITimeService timeService)
+		public BulletAttackDelaySystem(GameplayContext gameplayContext, ITimeService timeService)
 		{
 			_gameplayContext = gameplayContext;
 			_timeService = timeService;
-			_mask = new Mask().Include<BulletCooldown>();
+			_mask = new Mask().Include<BulletAttackDelay>();
 		}
 
 		public void Update()
@@ -25,13 +25,13 @@ namespace Asteroids.Scripts.Core.Game.Features.Weapon.Systems
 			var entities = _gameplayContext.GetEntities(_mask);
 			foreach (Entity entity in entities)
 			{
-				BulletCooldown cooldown = entity.Get<BulletCooldown>();
-				if (cooldown.endTime > _timeService.Time)
+				BulletAttackDelay attackDelay = entity.Get<BulletAttackDelay>();
+				if (attackDelay.endTime > _timeService.Time)
 				{
 					continue;
 				}
 
-				entity.Remove<BulletCooldown>();
+				entity.Remove<BulletAttackDelay>();
 			}
 		}
 	}

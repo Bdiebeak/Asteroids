@@ -2,7 +2,7 @@
 
 namespace Asteroids.Scripts.Core.Game.Features.Weapon.Components
 {
-	public class BulletCooldown : IComponent
+	public class BulletAttackDelay : IComponent
 	{
 		public float endTime;
 	}

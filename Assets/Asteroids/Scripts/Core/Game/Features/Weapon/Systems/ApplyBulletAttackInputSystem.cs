@@ -46,12 +46,13 @@ namespace Asteroids.Scripts.Core.Game.Features.Weapon.Systems
 
 				foreach (Entity playerEntity in playerEntities)
 				{
-					if (playerEntity.Has<BulletCooldown>())
+					if (playerEntity.Has<BulletAttackDelay>())
 					{
 						continue;
 					}
+					playerEntity.Add(new BulletAttackDelay()).endTime = _timeService.Time +
+																		WeaponsConfig.bulletAttackDelay;
 
-					playerEntity.Add(new BulletCooldown()).endTime = _timeService.Time + WeaponsConfig.bulletCooldown;
 					Position position = playerEntity.Get<Position>();
 					Rotation rotation = playerEntity.Get<Rotation>();
 					_gameFactory.CreateBullet(position.value, rotation.value);

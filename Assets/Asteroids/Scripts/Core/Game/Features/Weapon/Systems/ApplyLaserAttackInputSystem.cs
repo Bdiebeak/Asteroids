@@ -3,6 +3,8 @@ using Asteroids.Scripts.Core.Game.Factories;
 using Asteroids.Scripts.Core.Game.Features.Input.Components;
 using Asteroids.Scripts.Core.Game.Features.Movement.Components;
 using Asteroids.Scripts.Core.Game.Features.Player.Components;
+using Asteroids.Scripts.Core.Game.Features.Weapon.Components;
+using Asteroids.Scripts.Core.Utilities.Services.Configs;
 using Asteroids.Scripts.Core.Utilities.Services.Time;
 using Asteroids.Scripts.ECS.Components;
 using Asteroids.Scripts.ECS.Entities;
@@ -44,6 +46,21 @@ namespace Asteroids.Scripts.Core.Game.Features.Weapon.Systems
 
 				foreach (Entity playerEntity in playerEntities)
 				{
+					LaserCharges laserCharges = playerEntity.Get<LaserCharges>();
+					if (laserCharges.value == 0)
+					{
+						continue;
+					}
+
+					if (playerEntity.Has<LaserAttackDelay>())
+					{
+						continue;
+					}
+
+					laserCharges.value--;
+					playerEntity.Add(new LaserAttackDelay()).endTime = _timeService.Time +
+																	   WeaponsConfig.laserAttackDelay;
+
 					Position position = playerEntity.Get<Position>();
 					Rotation rotation = playerEntity.Get<Rotation>();
 					_gameFactory.CreateLaser(position.value, rotation.value);

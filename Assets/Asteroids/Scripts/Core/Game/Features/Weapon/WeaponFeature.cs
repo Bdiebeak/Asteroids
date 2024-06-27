@@ -12,9 +12,10 @@ namespace Asteroids.Scripts.Core.Game.Features.Weapon
 		public override void AddTo(SystemsContainer systems)
 		{
 			systems.Add(systemsFactory.CreateSystem<ApplyBulletAttackInputSystem>());
-			systems.Add(systemsFactory.CreateSystem<BulletAttackCooldownSystem>());
+			systems.Add(systemsFactory.CreateSystem<BulletAttackDelaySystem>());
 			systems.Add(systemsFactory.CreateSystem<ApplyLaserAttackInputSystem>());
-
+			systems.Add(systemsFactory.CreateSystem<LaserAttackDelaySystem>());
+			systems.Add(systemsFactory.CreateSystem<ChargeLaserSystem>());
 			systems.Add(systemsFactory.CreateSystem<DestroyBulletSystem>());
 		}
 	}
