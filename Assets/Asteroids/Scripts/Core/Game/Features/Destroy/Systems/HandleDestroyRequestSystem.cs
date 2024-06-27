@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace Asteroids.Scripts.Core.Game.Features.Destroy.Systems
 {
-	public class HandleDestroyRequestSystem : IUpdateSystem, ICleanUpSystem
+	public class HandleDestroyRequestSystem : IUpdateSystem
 	{
 		private readonly GameplayContext _gameplayContext;
 		private readonly Mask _mask;
@@ -40,10 +40,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Destroy.Systems
 
 				destroyRequest.target.Add(new ToDestroy());
 			}
-		}
 
-		public void CleanUp()
-		{
 			_gameplayContext.DestroyRequests<DestroyRequest>();
 		}
 	}

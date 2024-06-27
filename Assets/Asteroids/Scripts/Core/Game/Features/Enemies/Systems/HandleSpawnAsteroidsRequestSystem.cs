@@ -11,7 +11,7 @@ using UnityEngine;
 
 namespace Asteroids.Scripts.Core.Game.Features.Enemies.Systems
 {
-	public class HandleSpawnAsteroidsRequestSystem : IUpdateSystem, ICleanUpSystem
+	public class HandleSpawnAsteroidsRequestSystem : IUpdateSystem
 	{
 		private readonly GameplayContext _gameplayContext;
 		private readonly IGameFactory _gameFactory;
@@ -39,10 +39,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Enemies.Systems
 					_gameFactory.CreateEnemy(EnemyType.Asteroid, position);
 				}
 			}
-		}
 
-		public void CleanUp()
-		{
 			_gameplayContext.DestroyRequests<SpawnAsteroidsRequest>();
 		}
 	}

@@ -11,7 +11,7 @@ using UnityEngine;
 
 namespace Asteroids.Scripts.Core.Game.Features.Enemies.Systems
 {
-	public class HandleSpawnUfoRequestSystem : IUpdateSystem, ICleanUpSystem
+	public class HandleSpawnUfoRequestSystem : IUpdateSystem
 	{
 		private readonly GameplayContext _gameplayContext;
 		private readonly IGameFactory _gameFactory;
@@ -35,10 +35,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Enemies.Systems
 				Vector2 position = _cameraProvider.Bounds.GetRandomEdgePosition();
 				_gameFactory.CreateEnemy(EnemyType.Ufo, position);
 			}
-		}
 
-		public void CleanUp()
-		{
 			_gameplayContext.DestroyRequests<SpawnUfoRequest>();
 		}
 	}

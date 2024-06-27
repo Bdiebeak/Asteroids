@@ -27,7 +27,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Enemies.Systems
 		public void Start()
 		{
 			Entity entity = _gameplayContext.CreateEntity();
-			entity.Add(new UfoSpawnTime()).value = GetRandomSpawnTime();
+			entity.Add(new UfoSpawnTime()).value = RandomNextSpawnTime();
 		}
 
 		public void Update()
@@ -40,14 +40,14 @@ namespace Asteroids.Scripts.Core.Game.Features.Enemies.Systems
 				{
 					continue;
 				}
-				spawnTime.value = _timeService.Time + GetRandomSpawnTime();
+				spawnTime.value = RandomNextSpawnTime();
 				_gameplayContext.CreateRequest(new SpawnUfoRequest());
 			}
 		}
 
-		private float GetRandomSpawnTime()
+		private float RandomNextSpawnTime()
 		{
-			return Random.Range(EnemiesConfig.minUfoDelay, EnemiesConfig.maxUfoDelay);
+			return _timeService.Time + Random.Range(EnemiesConfig.minUfoDelay, EnemiesConfig.maxUfoDelay);
 		}
 	}
 }

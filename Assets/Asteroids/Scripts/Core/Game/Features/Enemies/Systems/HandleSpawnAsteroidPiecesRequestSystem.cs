@@ -8,7 +8,7 @@ using Asteroids.Scripts.ECS.Systems.Interfaces;
 
 namespace Asteroids.Scripts.Core.Game.Features.Enemies.Systems
 {
-	public class HandleSpawnAsteroidPiecesRequestSystem : IUpdateSystem, ICleanUpSystem
+	public class HandleSpawnAsteroidPiecesRequestSystem : IUpdateSystem
 	{
 		private readonly GameplayContext _gameplayContext;
 		private readonly IGameFactory _gameFactory;
@@ -33,10 +33,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Enemies.Systems
 					_gameFactory.CreateEnemy(EnemyType.AsteroidPiece, spawnRequest.position);
 				}
 			}
-		}
 
-		public void CleanUp()
-		{
 			_gameplayContext.DestroyRequests<SpawnAsteroidPiecesRequest>();
 		}
 	}
