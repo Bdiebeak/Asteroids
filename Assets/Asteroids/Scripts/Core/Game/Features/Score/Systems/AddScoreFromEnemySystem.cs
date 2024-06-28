@@ -19,7 +19,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Score.Systems
 		{
 			_gameplayContext = gameplayContext;
 			_mask = new Mask().Include<EnemyMarker>()
-							  .Include<Components.ScoreWorth>()
+							  .Include<Components.ScorePoints>()
 							  .Include<ToDestroy>();
 		}
 
@@ -28,7 +28,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Score.Systems
 			var entities = _gameplayContext.GetEntities(_mask);
 			foreach (Entity entity in entities)
 			{
-				ScoreWorth score = entity.Get<ScoreWorth>();
+				ScorePoints score = entity.Get<ScorePoints>();
 				_gameplayContext.CreateRequest(new AddScoreRequest()
 				{
 					value = score.value

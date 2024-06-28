@@ -46,7 +46,7 @@ namespace Asteroids.Scripts.Core.Game
 			_gameplaySystems.CleanUp();
 		}
 
-		// TODO: destroy?
+		// TODO: destroy for system containers?
 		public void Stop()
 		{
 			_inputSystems.Stop();

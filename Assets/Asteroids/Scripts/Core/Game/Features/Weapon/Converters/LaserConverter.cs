@@ -44,7 +44,6 @@ namespace Asteroids.Scripts.Core.Game.Features.Weapon.Converters
 			entity.Add(new Rotation());
 			entity.Add(new CopyTargetPosition()).target = player;
 			entity.Add(new CopyTargetRotation()).target = player;
-			// TODO: this is logic in monobeh isn't it?
 			entity.Add(new DestroyAtTime()).value = _timeService.Time + WeaponsConfig.laserActiveTime;
 			ConfigureViewSize();
 		}

@@ -14,14 +14,14 @@ namespace Asteroids.Scripts.Core.Game.Features.Enemies.Systems
 	{
 		private readonly GameplayContext _gameplayContext;
 		private readonly IGameFactory _gameFactory;
-		private readonly ICameraProvider _cameraProvider;
+		private readonly ICameraService _cameraService;
 
 		public HandleSpawnAsteroidsRequestSystem(GameplayContext gameplayContext,
-												 IGameFactory gameFactory, ICameraProvider cameraProvider)
+												 IGameFactory gameFactory, ICameraService cameraService)
 		{
 			_gameplayContext = gameplayContext;
 			_gameFactory = gameFactory;
-			_cameraProvider = cameraProvider;
+			_cameraService = cameraService;
 		}
 
 		public void Update()
@@ -32,7 +32,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Enemies.Systems
 				SpawnAsteroidsRequest spawnRequest = entity.Get<SpawnAsteroidsRequest>();
 				for (int i = 0; i < spawnRequest.count; i++)
 				{
-					Vector2 position = _cameraProvider.Bounds.GetRandomEdgePosition();
+					Vector2 position = _cameraService.Bounds.GetRandomEdgePosition();
 					_gameFactory.CreateEnemy(EnemyType.Asteroid, position);
 				}
 			}

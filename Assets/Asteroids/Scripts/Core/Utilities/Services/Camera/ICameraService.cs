@@ -2,11 +2,11 @@
 
 namespace Asteroids.Scripts.Core.Utilities.Services.Camera
 {
-	public interface ICameraProvider
+	public interface ICameraService
 	{
 		UnityEngine.Camera MainCamera { get; }
 		Bounds Bounds { get; }
 
-		void Initialize();
+		void Initialize(UnityEngine.Camera mainCamera);
 	}
 }

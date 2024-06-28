@@ -28,7 +28,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Enemies.Converters
 			entity.Add(new MoveDirection()).value = Random.insideUnitCircle.normalized;
 			entity.Add(new MoveSpeed()).value = EnemiesConfig.ufoSpeed;
 			entity.Add(new UfoMarker());
-			entity.Add(new ScoreWorth()).value = EnemiesConfig.ufoScore;
+			entity.Add(new ScorePoints()).value = EnemiesConfig.ufoScore;
 		}
 	}
 }

@@ -14,7 +14,7 @@ namespace Asteroids.Scripts.Core.Infrastructure.Installers
 			containerBuilder.Register<IAssetProvider, ResourcesAssetProvider>();
 			containerBuilder.Register<IInputService, UnityInputService>();
 			containerBuilder.Register<ITimeService, UnityTimeService>();
-			containerBuilder.Register<ICameraProvider, CameraProvider>();
+			containerBuilder.Register<ICameraService, CameraService>();
 		}
 	}
 }

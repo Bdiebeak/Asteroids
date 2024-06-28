@@ -16,7 +16,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Enemies.Converters
 			entity.Add(new MoveDirection()).value = Random.insideUnitCircle.normalized;
 			entity.Add(new MoveSpeed()).value = EnemiesConfig.asteroidPieceSpeed;
 			entity.Add(new AsteroidPieceMarker());
-			entity.Add(new ScoreWorth()).value = EnemiesConfig.asteroidPieceScore;
+			entity.Add(new ScorePoints()).value = EnemiesConfig.asteroidPieceScore;
 		}
 	}
 }

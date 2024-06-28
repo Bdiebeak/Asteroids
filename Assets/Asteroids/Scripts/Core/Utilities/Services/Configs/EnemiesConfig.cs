@@ -1,6 +1,6 @@
 ﻿namespace Asteroids.Scripts.Core.Utilities.Services.Configs
 {
-	// TODO: rework config service.
+	// TODO: rework config service set up through Scriptable Object.
 	public static class EnemiesConfig
 	{
 		public static int asteroidsWaveCount = 6;

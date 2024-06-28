@@ -2,8 +2,7 @@
 
 namespace Asteroids.Scripts.Core.Game.Features.Score.Components
 {
-	// TODO: rename
-	public class ScoreWorth : IComponent
+	public class ScorePoints : IComponent
 	{
 		public int value;
 	}

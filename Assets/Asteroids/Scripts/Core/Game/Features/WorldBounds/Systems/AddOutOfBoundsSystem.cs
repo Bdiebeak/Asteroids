@@ -13,13 +13,13 @@ namespace Asteroids.Scripts.Core.Game.Features.WorldBounds.Systems
 	public class AddOutOfBoundsSystem : IUpdateSystem
 	{
 		private readonly GameplayContext _gameplayContext;
-		private readonly ICameraProvider _cameraProvider;
+		private readonly ICameraService _cameraService;
 		private readonly Mask _movableMask;
 
-		public AddOutOfBoundsSystem(GameplayContext gameplayContext, ICameraProvider cameraProvider)
+		public AddOutOfBoundsSystem(GameplayContext gameplayContext, ICameraService cameraService)
 		{
 			_gameplayContext = gameplayContext;
-			_cameraProvider = cameraProvider;
+			_cameraService = cameraService;
 			_movableMask = new Mask().Include<Position>()
 									 .Exclude<OutOfBoundsMarker>();
 		}
@@ -29,7 +29,7 @@ namespace Asteroids.Scripts.Core.Game.Features.WorldBounds.Systems
 			var entities = _gameplayContext.GetEntities(_movableMask);
 			foreach (Entity entity in entities)
 			{
-				Bounds bounds = _cameraProvider.Bounds;
+				Bounds bounds = _cameraService.Bounds;
 				Position position = entity.Get<Position>();
 				if (bounds.IsInBounds(position.value))
 				{

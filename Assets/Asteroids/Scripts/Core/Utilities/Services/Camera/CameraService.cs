@@ -1,25 +1,16 @@
-﻿using Asteroids.Scripts.Core.Game.Factories;
-using Asteroids.Scripts.Core.Utilities.Services.Configs;
+﻿using Asteroids.Scripts.Core.Utilities.Services.Configs;
 using UnityEngine;
 
 namespace Asteroids.Scripts.Core.Utilities.Services.Camera
 {
-	public class CameraProvider : ICameraProvider
+	public class CameraService : ICameraService
 	{
 		public UnityEngine.Camera MainCamera { get; private set; }
 		public Bounds Bounds { get; private set; }
 
-		private readonly IGameFactory _gameFactory;
-
-		public CameraProvider(IGameFactory gameFactory)
+		public void Initialize(UnityEngine.Camera mainCamera)
 		{
-			_gameFactory = gameFactory;
-		}
-
-		// TODO: is it ok to use GameFactory here?
-		public void Initialize()
-		{
-			MainCamera = _gameFactory.CreateMainCamera();
+			MainCamera = mainCamera;
 			Bounds = CalculateBounds();
 		}
 

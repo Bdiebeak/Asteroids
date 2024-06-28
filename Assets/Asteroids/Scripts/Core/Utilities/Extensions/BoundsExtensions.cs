@@ -31,5 +31,27 @@ namespace Asteroids.Scripts.Core.Utilities.Extensions
 			Vector3 worldPosition = new(position.x, position.y, bounds.center.z);
 			return bounds.Contains(worldPosition);
 		}
+
+		public static Vector2 GetOppositeEdgePosition(this Bounds bound, Vector2 position)
+		{
+			if (position.x < bound.min.x)
+			{
+				position.x = bound.max.x;
+			}
+			else if (position.x > bound.max.x)
+			{
+				position.x = bound.min.x;
+			}
+
+			if (position.y < bound.min.y)
+			{
+				position.y = bound.max.y;
+			}
+			else if (position.y > bound.max.y)
+			{
+				position.y = bound.min.y;
+			}
+			return position;
+		}
 	}
 }

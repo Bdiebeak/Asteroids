@@ -29,7 +29,7 @@ namespace Asteroids.Scripts.Core.Game.Features
 			systems.Add(new ScoreFeature(systemsFactory));
 			systems.Add(new UIFeature(systemsFactory));
 			systems.Add(new DestroyFeature(systemsFactory));
-			systems.Add(systemsFactory.CreateSystem<GameOverSystem>()); // TODO: last to end game int the end of frame.
+			systems.Add(systemsFactory.CreateSystem<GameOverSystem>()); // TODO: last to end game in the end of frame.
 		}
 	}
 }
