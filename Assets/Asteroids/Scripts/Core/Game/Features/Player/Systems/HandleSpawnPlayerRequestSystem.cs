@@ -14,20 +14,18 @@ namespace Asteroids.Scripts.Core.Game.Features.Player.Systems
 	{
 		private readonly GameplayContext _gameplayContext;
 		private readonly IGameFactory _gameFactory;
-		private readonly Mask _mask;
 		private readonly Mask _playerMask;
 
 		public HandleSpawnPlayerRequestSystem(GameplayContext gameplayContext, IGameFactory gameFactory)
 		{
 			_gameplayContext = gameplayContext;
 			_gameFactory = gameFactory;
-			_mask = new Mask().Include<SpawnPlayerRequest>();
 			_playerMask = new Mask().Include<PlayerMarker>();
 		}
 
 		public void Update()
 		{
-			var entities = _gameplayContext.GetEntities(_mask);
+			var entities = _gameplayContext.GetRequests<SpawnPlayerRequest>();
 			var playerEntities = _gameplayContext.GetEntities(_playerMask);
 			foreach (Entity entity in entities)
 			{

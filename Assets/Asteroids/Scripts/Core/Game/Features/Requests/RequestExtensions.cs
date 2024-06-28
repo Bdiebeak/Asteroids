@@ -1,4 +1,5 @@
-﻿using Asteroids.Scripts.ECS.Components;
+﻿using System.Collections.Generic;
+using Asteroids.Scripts.ECS.Components;
 using Asteroids.Scripts.ECS.Contexts;
 using Asteroids.Scripts.ECS.Entities;
 
@@ -18,6 +19,11 @@ namespace Asteroids.Scripts.Core.Game.Features.Requests
 			{
 				context.DestroyEntity(entity);
 			}
+		}
+
+		public static IReadOnlyCollection<Entity> GetRequests<TRequest>(this IContext context) where TRequest : IRequest
+		{
+			return context.GetEntities(new Mask().Include<TRequest>());
 		}
 	}
 }
