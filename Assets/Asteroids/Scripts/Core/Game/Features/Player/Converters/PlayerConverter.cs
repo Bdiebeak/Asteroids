@@ -1,6 +1,7 @@
 ﻿using Asteroids.Scripts.Core.Game.Converters;
 using Asteroids.Scripts.Core.Game.Features.Movement.Components;
 using Asteroids.Scripts.Core.Game.Features.Player.Components;
+using Asteroids.Scripts.Core.Game.Features.Score.Components;
 using Asteroids.Scripts.Core.Game.Features.Weapon.Components;
 using Asteroids.Scripts.Core.Game.Features.WorldBounds.Components;
 using Asteroids.Scripts.Core.Utilities.Services.Configs;
@@ -28,6 +29,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Player.Converters
 			entity.Add(new LaserCooldown());
 			entity.Add(new LaserCharges()).value = WeaponsConfig.laserCharges;
 			entity.Add(new LaserMaxCharges()).value = WeaponsConfig.laserCharges;
+			entity.Add(new ScoreCounter());
 		}
 	}
 }

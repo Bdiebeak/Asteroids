@@ -1,6 +1,7 @@
 ﻿using Asteroids.Scripts.Core.Game.Contexts;
 using Asteroids.Scripts.Core.Game.Features.Movement.Components;
 using Asteroids.Scripts.Core.Game.Features.Player.Components;
+using Asteroids.Scripts.Core.Game.Features.Score.Components;
 using Asteroids.Scripts.Core.Game.Features.Weapon.Components;
 using Asteroids.Scripts.Core.UI.Models;
 using Asteroids.Scripts.Core.Utilities.Services.Time;
@@ -31,6 +32,7 @@ namespace Asteroids.Scripts.Core.Game.Features.UI.Systems
 			var entities = _gameplayContext.GetEntities(_playerMask);
 			foreach (Entity entity in entities)
 			{
+				_gameScreenModel.score = entity.Get<ScoreCounter>().value;
 				_gameScreenModel.position = entity.Get<Position>().value;
 				_gameScreenModel.rotation = entity.Get<Rotation>().value;
 				_gameScreenModel.velocity = entity.Get<MoveVelocity>().value;

@@ -12,8 +12,8 @@
 		public static float asteroidPieceSpeed = 3;
 		public static float ufoSpeed = 1.5f;
 
-		public static float asteroidScore = 50;
-		public static float asteroidPieceScore = 75;
-		public static float ufoScore = 100;
+		public static int asteroidScore = 50;
+		public static int asteroidPieceScore = 75;
+		public static int ufoScore = 100;
 	}
 }

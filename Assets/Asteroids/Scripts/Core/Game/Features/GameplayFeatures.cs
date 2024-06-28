@@ -6,6 +6,7 @@ using Asteroids.Scripts.Core.Game.Features.Enemies;
 using Asteroids.Scripts.Core.Game.Features.Movement;
 using Asteroids.Scripts.Core.Game.Features.Player;
 using Asteroids.Scripts.Core.Game.Features.Player.Systems;
+using Asteroids.Scripts.Core.Game.Features.Score;
 using Asteroids.Scripts.Core.Game.Features.UI;
 using Asteroids.Scripts.Core.Game.Features.Weapon;
 using Asteroids.Scripts.Core.Game.Features.WorldBounds;
@@ -25,6 +26,7 @@ namespace Asteroids.Scripts.Core.Game.Features
 			systems.Add(new WorldBoundsFeature(systemsFactory));
 			systems.Add(new WeaponFeatures(systemsFactory));
 			systems.Add(new CollisionFeature(systemsFactory));
+			systems.Add(new ScoreFeature(systemsFactory));
 			systems.Add(new UIFeature(systemsFactory));
 			systems.Add(new DestroyFeature(systemsFactory));
 			systems.Add(systemsFactory.CreateSystem<GameOverSystem>()); // TODO: last to end game int the end of frame.
