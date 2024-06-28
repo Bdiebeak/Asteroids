@@ -25,12 +25,8 @@ namespace Asteroids.Scripts.Core.Game.Features.Movement.Systems
 			{
 				RotationDirection direction = entity.Get<RotationDirection>();
 				RotationSpeed speed = entity.Get<RotationSpeed>();
-
-				if (entity.Has<RotationVelocity>() == false)
-				{
-					entity.Add(new RotationVelocity());
-				}
 				RotationVelocity velocity = entity.Get<RotationVelocity>();
+
 				float targetVelocity = direction.value * speed.value;
 				velocity.value = targetVelocity;
 			}

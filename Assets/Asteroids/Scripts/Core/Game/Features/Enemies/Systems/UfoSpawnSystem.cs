@@ -36,7 +36,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Enemies.Systems
 			foreach (Entity entity in entities)
 			{
 				UfoSpawnTime spawnTime = entity.Get<UfoSpawnTime>();
-				if (spawnTime.value > _timeService.Time)
+				if (_timeService.Time < spawnTime.value)
 				{
 					continue;
 				}

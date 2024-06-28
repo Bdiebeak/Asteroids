@@ -1,4 +1,6 @@
-﻿using Asteroids.Scripts.Core.Game.Factories;
+﻿using Asteroids.Scripts.Core.Game.Contexts;
+using Asteroids.Scripts.Core.Game.Features.Player.Requests;
+using Asteroids.Scripts.Core.Game.Features.Requests;
 using Asteroids.Scripts.Core.Utilities.Services.Configs;
 using Asteroids.Scripts.ECS.Systems.Interfaces;
 
@@ -6,16 +8,19 @@ namespace Asteroids.Scripts.Core.Game.Features.Player.Systems
 {
 	public class SpawnPlayerSystem : IStartSystem
 	{
-		private readonly IGameFactory _gameFactory;
+		private readonly GameplayContext _gameplayContext;
 
-		public SpawnPlayerSystem(IGameFactory gameFactory)
+		public SpawnPlayerSystem(GameplayContext gameplayContext)
 		{
-			_gameFactory = gameFactory;
+			_gameplayContext = gameplayContext;
 		}
 
 		public void Start()
 		{
-			_gameFactory.CreatePlayer(PlayerConfig.spawnPosition);
+			_gameplayContext.CreateRequest(new SpawnPlayerRequest
+			{
+				position = PlayerConfig.spawnPosition
+			});
 		}
 	}
 }

@@ -38,6 +38,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Weapon.Systems
 			var playerEntities = _gameplayContext.GetEntities(_playerMask);
 			foreach (Entity inputEntity in inputEntities)
 			{
+				// TODO: event
 				LaserAttackInput laserAttack = inputEntity.Get<LaserAttackInput>();
 				if (laserAttack.value == false)
 				{

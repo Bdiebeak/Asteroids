@@ -23,7 +23,7 @@ namespace Asteroids.Scripts.Core.Game.Features
 			systems.Add(new EnemiesFeature(systemsFactory));
 			systems.Add(new MovementFeature(systemsFactory));
 			systems.Add(new WorldBoundsFeature(systemsFactory));
-			systems.Add(new WeaponFeature(systemsFactory));
+			systems.Add(new WeaponFeatures(systemsFactory));
 			systems.Add(new CollisionFeature(systemsFactory));
 			systems.Add(new UIFeature(systemsFactory));
 			systems.Add(new DestroyFeature(systemsFactory));

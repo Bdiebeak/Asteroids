@@ -39,7 +39,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Weapon.Systems
 
 				// TODO: сразу восстановит один заряд, нужно событие
 				LaserCooldown cooldown = entity.Get<LaserCooldown>();
-				if (cooldown.endTime > _timeService.Time)
+				if (_timeService.Time < cooldown.endTime)
 				{
 					continue;
 				}

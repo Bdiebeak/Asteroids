@@ -26,7 +26,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Weapon.Systems
 			foreach (Entity entity in entities)
 			{
 				BulletAttackDelay attackDelay = entity.Get<BulletAttackDelay>();
-				if (attackDelay.endTime > _timeService.Time)
+				if (_timeService.Time < attackDelay.endTime)
 				{
 					continue;
 				}

@@ -24,5 +24,12 @@ namespace Asteroids.Scripts.Core.Utilities.Extensions
 			}
 			return position;
 		}
+
+		public static bool IsInBounds(this Bounds bounds, Vector2 position)
+		{
+			// We should use same Z coordinate, because Bounds.Contains works with a 3d space.
+			Vector3 worldPosition = new(position.x, position.y, bounds.center.z);
+			return bounds.Contains(worldPosition);
+		}
 	}
 }

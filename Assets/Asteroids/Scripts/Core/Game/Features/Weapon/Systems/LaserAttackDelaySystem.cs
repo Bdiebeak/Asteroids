@@ -7,11 +7,9 @@ using Asteroids.Scripts.ECS.Systems.Interfaces;
 
 namespace Asteroids.Scripts.Core.Game.Features.Weapon.Systems
 {
-	// TODO: this is a copy of BulletAttackDelaySystem
-	// think about how to use general logic here - create hierarchy or smth like this.
-	// Player - Weapons - Bullet Weapon - Attack Delay, Attack
-	//                  - Laser Weapon - Attack Delay,
-	// Delay feature - will be used by Weapons and UFO Spawner
+	// It looks like a copy of BulletAttackDelaySystem.
+	// We can create a new feature (e.g. DelayFeature) to implement similar delay logic,
+	// but I don't want to complicate this project because it has final requirements.
 	public class LaserAttackDelaySystem : IUpdateSystem
 	{
 		private readonly GameplayContext _gameplayContext;
@@ -31,7 +29,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Weapon.Systems
 			foreach (Entity entity in entities)
 			{
 				LaserAttackDelay attackDelay = entity.Get<LaserAttackDelay>();
-				if (attackDelay.endTime > _timeService.Time)
+				if (_timeService.Time < attackDelay.endTime)
 				{
 					continue;
 				}
