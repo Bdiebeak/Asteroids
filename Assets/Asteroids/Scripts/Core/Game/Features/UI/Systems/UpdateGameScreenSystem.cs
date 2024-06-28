@@ -15,7 +15,7 @@ namespace Asteroids.Scripts.Core.Game.Features.UI.Systems
 		private readonly GameplayContext _gameplayContext;
 		private readonly GameScreenModel _gameScreenModel;
 		private readonly ITimeService _timeService;
-		private readonly Mask _mask;
+		private readonly Mask _playerMask;
 
 		public UpdateGameScreenSystem(GameplayContext gameplayContext,
 									  GameScreenModel gameScreenModel, ITimeService timeService)
@@ -23,12 +23,12 @@ namespace Asteroids.Scripts.Core.Game.Features.UI.Systems
 			_gameplayContext = gameplayContext;
 			_gameScreenModel = gameScreenModel;
 			_timeService = timeService;
-			_mask = new Mask().Include<PlayerMarker>();
+			_playerMask = new Mask().Include<PlayerMarker>();
 		}
 
 		public void Update()
 		{
-			var entities = _gameplayContext.GetEntities(_mask);
+			var entities = _gameplayContext.GetEntities(_playerMask);
 			foreach (Entity entity in entities)
 			{
 				_gameScreenModel.position = entity.Get<Position>().value;

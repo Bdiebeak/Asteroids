@@ -13,18 +13,18 @@ namespace Asteroids.Scripts.Core.Game.Features.Destroy.Systems
 	{
 		private readonly GameplayContext _gameplayContext;
 		private readonly ITimeService _timeService;
-		private readonly Mask _mask;
+		private readonly Mask _destroyAtTimeMask;
 
 		public DestroyAtTimeSystem(GameplayContext gameplayContext, ITimeService timeService)
 		{
 			_gameplayContext = gameplayContext;
 			_timeService = timeService;
-			_mask = new Mask().Include<DestroyAtTime>();
+			_destroyAtTimeMask = new Mask().Include<DestroyAtTime>();
 		}
 
 		public void Update()
 		{
-			var entities = _gameplayContext.GetEntities(_mask);
+			var entities = _gameplayContext.GetEntities(_destroyAtTimeMask);
 			foreach (Entity entity in entities)
 			{
 				DestroyAtTime destroyAtTime = entity.Get<DestroyAtTime>();

@@ -10,17 +10,17 @@ namespace Asteroids.Scripts.Core.Game.Features.Movement.Systems
 	public class ChaseTargetSystem : IUpdateSystem
 	{
 		private readonly GameplayContext _gameplayContext;
-		private readonly Mask _mask;
+		private readonly Mask _chaseTargetMask;
 
 		public ChaseTargetSystem(GameplayContext gameplayContext)
 		{
 			_gameplayContext = gameplayContext;
-			_mask = new Mask().Include<ChaseTarget>();
+			_chaseTargetMask = new Mask().Include<ChaseTarget>();
 		}
 
 		public void Update()
 		{
-			var entities = _gameplayContext.GetEntities(_mask);
+			var entities = _gameplayContext.GetEntities(_chaseTargetMask);
 			foreach (Entity entity in entities)
 			{
 				Entity target = entity.Get<ChaseTarget>().target;

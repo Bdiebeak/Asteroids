@@ -14,17 +14,17 @@ namespace Asteroids.Scripts.Core.Game.Features.Collision.Systems
 	public class LaserCollisionSystem : IUpdateSystem
 	{
 		private readonly GameplayContext _gameplayContext;
-		private readonly Mask _mask;
+		private readonly Mask _collisionMask;
 
 		public LaserCollisionSystem(GameplayContext gameplayContext)
 		{
 			_gameplayContext = gameplayContext;
-			_mask = new Mask().Include<CollisionEnterEvent>();
+			_collisionMask = new Mask().Include<CollisionEnterEvent>();
 		}
 
 		public void Update()
 		{
-			var entities = _gameplayContext.GetEntities(_mask);
+			var entities = _gameplayContext.GetEntities(_collisionMask);
 			foreach (Entity entity in entities)
 			{
 				CollisionEnterEvent collisionEvent = entity.Get<CollisionEnterEvent>();

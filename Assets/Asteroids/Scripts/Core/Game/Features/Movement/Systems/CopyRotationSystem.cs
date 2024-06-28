@@ -10,17 +10,17 @@ namespace Asteroids.Scripts.Core.Game.Features.Movement.Systems
 	public class CopyRotationSystem : IUpdateSystem
 	{
 		private readonly GameplayContext _gameplayContext;
-		private readonly Mask _mask;
+		private readonly Mask _copyTargetMask;
 
 		public CopyRotationSystem(GameplayContext gameplayContext)
 		{
 			_gameplayContext = gameplayContext;
-			_mask = new Mask().Include<CopyTargetRotation>();
+			_copyTargetMask = new Mask().Include<CopyTargetRotation>();
 		}
 
 		public void Update()
 		{
-			var entities = _gameplayContext.GetEntities(_mask);
+			var entities = _gameplayContext.GetEntities(_copyTargetMask);
 			foreach (Entity entity in entities)
 			{
 				Entity target = entity.Get<CopyTargetRotation>().target;

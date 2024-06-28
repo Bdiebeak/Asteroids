@@ -11,21 +11,21 @@ namespace Asteroids.Scripts.Core.Game.Features.Input.Systems
 	{
 		private readonly InputContext _inputContext;
 		private readonly IInputService _inputService;
-		private readonly Mask _mask;
+		private readonly Mask _rotationInputMask;
 
 		public UpdateRotationInputSystem(InputContext inputContext, IInputService inputService)
 		{
 			_inputContext = inputContext;
 			_inputService = inputService;
-			_mask = new Mask().Include<RotationInput>();
+			_rotationInputMask = new Mask().Include<RotationInput>();
 		}
 
 		public void Update()
 		{
-			var inputEntities = _inputContext.GetEntities(_mask);
-			foreach (Entity inputEntity in inputEntities)
+			var entities = _inputContext.GetEntities(_rotationInputMask);
+			foreach (Entity entity in entities)
 			{
-				RotationInput rotationInput = inputEntity.Get<RotationInput>();
+				RotationInput rotationInput = entity.Get<RotationInput>();
 				rotationInput.value = _inputService.Rotate;
 			}
 		}

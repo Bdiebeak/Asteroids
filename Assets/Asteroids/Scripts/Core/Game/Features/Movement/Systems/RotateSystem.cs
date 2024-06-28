@@ -11,18 +11,18 @@ namespace Asteroids.Scripts.Core.Game.Features.Movement.Systems
 	{
 		private readonly GameplayContext _gameplayContext;
 		private readonly ITimeService _timeService;
-		private readonly Mask _mask;
+		private readonly Mask _rotatableMask;
 
 		public RotateSystem(GameplayContext gameplayContext, ITimeService timeService)
 		{
 			_gameplayContext = gameplayContext;
 			_timeService = timeService;
-			_mask = new Mask().Include<RotationVelocity>();
+			_rotatableMask = new Mask().Include<RotationVelocity>();
 		}
 
 		public void Update()
 		{
-			var movableEntities = _gameplayContext.GetEntities(_mask);
+			var movableEntities = _gameplayContext.GetEntities(_rotatableMask);
 			foreach (Entity entity in movableEntities)
 			{
 				Rotation rotation = entity.Get<Rotation>();

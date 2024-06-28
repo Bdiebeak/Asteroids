@@ -13,19 +13,19 @@ namespace Asteroids.Scripts.Core.Game.Features.Player.Systems
 	{
 		private readonly GameplayContext _gameplayContext;
 		private readonly IGameStateMachine _stateMachine;
-		private readonly Mask _mask;
+		private readonly Mask _playerMask;
 
 		public GameOverSystem(GameplayContext gameplayContext, IGameStateMachine stateMachine)
 		{
 			_gameplayContext = gameplayContext;
 			_stateMachine = stateMachine;
-			_mask = new Mask().Include<PlayerMarker>()
-							  .Include<ToDestroy>();
+			_playerMask = new Mask().Include<PlayerMarker>()
+									.Include<ToDestroy>();
 		}
 
 		public void Update()
 		{
-			var entities = _gameplayContext.GetEntities(_mask);
+			var entities = _gameplayContext.GetEntities(_playerMask);
 			foreach (Entity entity in entities)
 			{
 				_stateMachine.Enter<GameOverState>();

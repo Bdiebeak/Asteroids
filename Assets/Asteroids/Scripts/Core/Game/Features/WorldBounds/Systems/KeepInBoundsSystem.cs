@@ -15,19 +15,19 @@ namespace Asteroids.Scripts.Core.Game.Features.WorldBounds.Systems
 	{
 		private readonly GameplayContext _gameplayContext;
 		private readonly ICameraProvider _cameraProvider;
-		private readonly Mask _mask;
+		private readonly Mask _keepInBoundsMask;
 
 		public KeepInBoundsSystem(GameplayContext gameplayContext, ICameraProvider cameraProvider)
 		{
 			_gameplayContext = gameplayContext;
 			_cameraProvider = cameraProvider;
-			_mask = new Mask().Include<KeepInBoundsMarker>()
+			_keepInBoundsMask = new Mask().Include<KeepInBoundsMarker>()
 							  .Include<OutOfBoundsMarker>();
 		}
 
 		public void Update()
 		{
-			var entities = _gameplayContext.GetEntities(_mask);
+			var entities = _gameplayContext.GetEntities(_keepInBoundsMask);
 			foreach (Entity entity in entities)
 			{
 				Vector2 position = entity.Get<Position>().value;

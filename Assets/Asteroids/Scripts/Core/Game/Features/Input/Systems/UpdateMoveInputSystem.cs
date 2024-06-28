@@ -11,21 +11,21 @@ namespace Asteroids.Scripts.Core.Game.Features.Input.Systems
 	{
 		private readonly InputContext _inputContext;
 		private readonly IInputService _inputService;
-		private readonly Mask _mask;
+		private readonly Mask _moveInputMask;
 
 		public UpdateMoveInputSystem(InputContext inputContext, IInputService inputService)
 		{
 			_inputContext = inputContext;
 			_inputService = inputService;
-			_mask = new Mask().Include<MoveInput>();
+			_moveInputMask = new Mask().Include<MoveInput>();
 		}
 
 		public void Update()
 		{
-			var inputEntities = _inputContext.GetEntities(_mask);
-			foreach (Entity inputEntity in inputEntities)
+			var entities = _inputContext.GetEntities(_moveInputMask);
+			foreach (Entity entity in entities)
 			{
-				MoveInput moveInput = inputEntity.Get<MoveInput>();
+				MoveInput moveInput = entity.Get<MoveInput>();
 				moveInput.value = _inputService.MoveForward;
 			}
 		}

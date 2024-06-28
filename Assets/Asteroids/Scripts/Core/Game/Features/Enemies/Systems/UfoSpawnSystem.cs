@@ -15,13 +15,13 @@ namespace Asteroids.Scripts.Core.Game.Features.Enemies.Systems
 	{
 		private readonly GameplayContext _gameplayContext;
 		private readonly ITimeService _timeService;
-		private readonly Mask _mask;
+		private readonly Mask _spawnTimerMask;
 
 		public UfoSpawnSystem(GameplayContext gameplayContext, ITimeService timeService)
 		{
 			_gameplayContext = gameplayContext;
 			_timeService = timeService;
-			_mask = new Mask().Include<UfoSpawnTime>();
+			_spawnTimerMask = new Mask().Include<UfoSpawnTime>();
 		}
 
 		public void Start()
@@ -32,7 +32,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Enemies.Systems
 
 		public void Update()
 		{
-			var entities = _gameplayContext.GetEntities(_mask);
+			var entities = _gameplayContext.GetEntities(_spawnTimerMask);
 			foreach (Entity entity in entities)
 			{
 				UfoSpawnTime spawnTime = entity.Get<UfoSpawnTime>();

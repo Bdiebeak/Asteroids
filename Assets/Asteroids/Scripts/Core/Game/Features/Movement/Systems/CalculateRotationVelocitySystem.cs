@@ -9,18 +9,18 @@ namespace Asteroids.Scripts.Core.Game.Features.Movement.Systems
 	public class CalculateRotationVelocitySystem : IUpdateSystem
 	{
 		private readonly GameplayContext _gameplayContext;
-		private readonly Mask _mask;
+		private readonly Mask _rotatableMask;
 
 		public CalculateRotationVelocitySystem(GameplayContext gameplayContext)
 		{
 			_gameplayContext = gameplayContext;
-			_mask = new Mask().Include<RotationDirection>()
-							  .Include<RotationSpeed>();
+			_rotatableMask = new Mask().Include<RotationDirection>()
+									   .Include<RotationSpeed>();
 		}
 
 		public void Update()
 		{
-			var entities = _gameplayContext.GetEntities(_mask);
+			var entities = _gameplayContext.GetEntities(_rotatableMask);
 			foreach (Entity entity in entities)
 			{
 				RotationDirection direction = entity.Get<RotationDirection>();

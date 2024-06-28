@@ -12,19 +12,19 @@ namespace Asteroids.Scripts.Core.Game.Features.Movement.Systems
 	{
 		private readonly GameplayContext _gameplayContext;
 		private readonly ITimeService _timeService;
-		private readonly Mask _mask;
+		private readonly Mask _movableMask;
 
 		public CalculateMoveVelocitySystem(GameplayContext gameplayContext, ITimeService timeService)
 		{
 			_gameplayContext = gameplayContext;
 			_timeService = timeService;
-			_mask = new Mask().Include<MoveDirection>()
-							  .Include<MoveSpeed>();
+			_movableMask = new Mask().Include<MoveDirection>()
+									 .Include<MoveSpeed>();
 		}
 
 		public void Update()
 		{
-			var entities = _gameplayContext.GetEntities(_mask);
+			var entities = _gameplayContext.GetEntities(_movableMask);
 			foreach (Entity entity in entities)
 			{
 				MoveDirection direction = entity.Get<MoveDirection>();

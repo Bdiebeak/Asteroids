@@ -13,19 +13,19 @@ namespace Asteroids.Scripts.Core.Game.Features.Weapon.Systems
 	public class DestroyBulletSystem : IUpdateSystem
 	{
 		private readonly GameplayContext _gameplayContext;
-		private readonly Mask _mask;
+		private readonly Mask _bulletMask;
 
 		public DestroyBulletSystem(GameplayContext gameplayContext)
 		{
 			_gameplayContext = gameplayContext;
-			_mask = new Mask().Include<BulletMarker>()
-							  .Include<OutOfBoundsMarker>()
-							  .Exclude<ToDestroy>();
+			_bulletMask = new Mask().Include<BulletMarker>()
+									.Include<OutOfBoundsMarker>()
+									.Exclude<ToDestroy>();
 		}
 
 		public void Update()
 		{
-			var entities = _gameplayContext.GetEntities(_mask);
+			var entities = _gameplayContext.GetEntities(_bulletMask);
 			foreach (Entity entity in entities)
 			{
 				_gameplayContext.CreateRequest(new DestroyRequest()).target = entity;

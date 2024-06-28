@@ -12,19 +12,19 @@ namespace Asteroids.Scripts.Core.Game.Features.Weapon.Systems
 	{
 		private readonly GameplayContext _gameplayContext;
 		private readonly ITimeService _timeService;
-		private readonly Mask _mask;
+		private readonly Mask _cooldownMask;
 
 		public ChargeLaserSystem(GameplayContext gameplayContext, ITimeService timeService)
 		{
 			_gameplayContext = gameplayContext;
 			_timeService = timeService;
-			_mask = new Mask().Include<LaserCooldown>()
-							  .Include<LaserCharges>();
+			_cooldownMask = new Mask().Include<LaserCooldown>()
+									  .Include<LaserCharges>();
 		}
 
 		public void Update()
 		{
-			var entities = _gameplayContext.GetEntities(_mask);
+			var entities = _gameplayContext.GetEntities(_cooldownMask);
 			foreach (Entity entity in entities)
 			{
 				LaserCharges charges = entity.Get<LaserCharges>();

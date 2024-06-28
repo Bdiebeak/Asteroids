@@ -14,18 +14,18 @@ namespace Asteroids.Scripts.Core.Game.Features.Enemies.Systems
 	public class AsteroidPiecesSpawnSystem : IUpdateSystem
 	{
 		private readonly GameplayContext _gameplayContext;
-		private readonly Mask _mask;
+		private readonly Mask _asteroidMask;
 
 		public AsteroidPiecesSpawnSystem(GameplayContext gameplayContext)
 		{
 			_gameplayContext = gameplayContext;
-			_mask = new Mask().Include<AsteroidMarker>()
-							  .Include<ToDestroy>();
+			_asteroidMask = new Mask().Include<AsteroidMarker>()
+									  .Include<ToDestroy>();
 		}
 
 		public void Update()
 		{
-			var entities = _gameplayContext.GetEntities(_mask);
+			var entities = _gameplayContext.GetEntities(_asteroidMask);
 			foreach (Entity entity in entities)
 			{
 				Position position = entity.Get<Position>();
