@@ -1,5 +1,6 @@
 ﻿using Asteroids.Scripts.Core.Game.Contexts;
 using Asteroids.Scripts.Core.Game.Factories;
+using Asteroids.Scripts.Core.Game.Features.Events;
 using Asteroids.Scripts.Core.Game.Features.Input.Components;
 using Asteroids.Scripts.Core.Game.Features.Movement.Components;
 using Asteroids.Scripts.Core.Game.Features.Player.Components;
@@ -18,7 +19,6 @@ namespace Asteroids.Scripts.Core.Game.Features.Weapon.Systems
 		private readonly GameplayContext _gameplayContext;
 		private readonly IGameFactory _gameFactory;
 		private readonly ITimeService _timeService;
-		private readonly Mask _inputMask;
 		private readonly Mask _playerMask;
 
 		public ApplyLaserAttackInputSystem(InputContext inputContext, GameplayContext gameplayContext,
@@ -28,23 +28,15 @@ namespace Asteroids.Scripts.Core.Game.Features.Weapon.Systems
 			_gameplayContext = gameplayContext;
 			_gameFactory = gameFactory;
 			_timeService = timeService;
-			_inputMask = new Mask().Include<LaserAttackInput>();
 			_playerMask = new Mask().Include<PlayerMarker>();
 		}
 
 		public void Update()
 		{
-			var inputEntities = _inputContext.GetEntities(_inputMask);
+			var eventEntities = _inputContext.GetEvents<LaserAttackPerformedEvent>();
 			var playerEntities = _gameplayContext.GetEntities(_playerMask);
-			foreach (Entity inputEntity in inputEntities)
+			foreach (Entity eventEntity in eventEntities)
 			{
-				// TODO: event
-				LaserAttackInput laserAttack = inputEntity.Get<LaserAttackInput>();
-				if (laserAttack.value == false)
-				{
-					continue;
-				}
-
 				foreach (Entity playerEntity in playerEntities)
 				{
 					LaserCharges laserCharges = playerEntity.Get<LaserCharges>();

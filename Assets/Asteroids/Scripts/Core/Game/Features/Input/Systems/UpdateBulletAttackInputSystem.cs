@@ -1,8 +1,7 @@
 ﻿using Asteroids.Scripts.Core.Game.Contexts;
+using Asteroids.Scripts.Core.Game.Features.Events;
 using Asteroids.Scripts.Core.Game.Features.Input.Components;
 using Asteroids.Scripts.Core.Utilities.Services.Input;
-using Asteroids.Scripts.ECS.Components;
-using Asteroids.Scripts.ECS.Entities;
 using Asteroids.Scripts.ECS.Systems.Interfaces;
 
 namespace Asteroids.Scripts.Core.Game.Features.Input.Systems
@@ -11,22 +10,19 @@ namespace Asteroids.Scripts.Core.Game.Features.Input.Systems
 	{
 		private readonly InputContext _inputContext;
 		private readonly IInputService _inputService;
-		private readonly Mask _mask;
 
 		public UpdateBulletAttackInputSystem(InputContext inputContext, IInputService inputService)
 		{
 			_inputContext = inputContext;
 			_inputService = inputService;
-			_mask = new Mask().Include<BulletAttackInput>();
 		}
 
 		public void Update()
 		{
-			var inputEntities = _inputContext.GetEntities(_mask);
-			foreach (Entity inputEntity in inputEntities)
+			_inputContext.DestroyEvents<BulletAttackPerformedEvent>();
+			if (_inputService.BulletAttack)
 			{
-				BulletAttackInput bulletInput = inputEntity.Get<BulletAttackInput>();
-				bulletInput.value = _inputService.BulletAttack;
+				_inputContext.CreateEvent(new BulletAttackPerformedEvent());
 			}
 		}
 	}

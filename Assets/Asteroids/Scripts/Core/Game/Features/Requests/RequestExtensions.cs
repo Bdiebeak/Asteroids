@@ -13,8 +13,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Requests
 
 		public static void DestroyRequests<TRequest>(this IContext context) where TRequest : IRequest
 		{
-			Mask mask = new Mask().Include<TRequest>();
-			var entities = context.GetEntities(mask);
+			var entities = context.GetEntities(new Mask().Include<TRequest>());
 			foreach (Entity entity in entities)
 			{
 				context.DestroyEntity(entity);

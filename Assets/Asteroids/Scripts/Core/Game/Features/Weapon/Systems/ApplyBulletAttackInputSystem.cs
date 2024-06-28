@@ -1,5 +1,6 @@
 ﻿using Asteroids.Scripts.Core.Game.Contexts;
 using Asteroids.Scripts.Core.Game.Factories;
+using Asteroids.Scripts.Core.Game.Features.Events;
 using Asteroids.Scripts.Core.Game.Features.Input.Components;
 using Asteroids.Scripts.Core.Game.Features.Movement.Components;
 using Asteroids.Scripts.Core.Game.Features.Player.Components;
@@ -18,7 +19,6 @@ namespace Asteroids.Scripts.Core.Game.Features.Weapon.Systems
 		private readonly GameplayContext _gameplayContext;
 		private readonly IGameFactory _gameFactory;
 		private readonly ITimeService _timeService;
-		private readonly Mask _inputMask;
 		private readonly Mask _playerMask;
 
 		public ApplyBulletAttackInputSystem(InputContext inputContext, GameplayContext gameplayContext,
@@ -28,23 +28,20 @@ namespace Asteroids.Scripts.Core.Game.Features.Weapon.Systems
 			_gameplayContext = gameplayContext;
 			_gameFactory = gameFactory;
 			_timeService = timeService;
-			_inputMask = new Mask().Include<BulletAttackInput>();
 			_playerMask = new Mask().Include<PlayerMarker>();
 		}
 
 		public void Update()
 		{
-			var inputEntities = _inputContext.GetEntities(_inputMask);
-			var playerEntities = _gameplayContext.GetEntities(_playerMask);
-			foreach (Entity inputEntity in inputEntities)
+			if (_inputContext.HasEvent<BulletAttackPerformedEvent>() == false)
 			{
-				// TODO: event
-				BulletAttackInput bulletAttack = inputEntity.Get<BulletAttackInput>();
-				if (bulletAttack.value == false)
-				{
-					continue;
-				}
+				return;
+			}
 
+			var eventEntities = _inputContext.GetEvents<BulletAttackPerformedEvent>();
+			var playerEntities = _gameplayContext.GetEntities(_playerMask);
+			foreach (Entity eventEntity in eventEntities)
+			{
 				foreach (Entity playerEntity in playerEntities)
 				{
 					if (playerEntity.Has<BulletAttackDelay>())
