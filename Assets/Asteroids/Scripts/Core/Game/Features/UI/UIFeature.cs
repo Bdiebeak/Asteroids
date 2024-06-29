@@ -11,7 +11,7 @@ namespace Asteroids.Scripts.Core.Game.Features.UI
 
 		public override void AddTo(SystemsContainer systems)
 		{
-			systems.Add(systemsFactory.CreateSystem<UpdateGameScreenSystem>());
+			systems.Add(systemsFactory.CreateSystem<UpdateScreenModelsSystem>());
 		}
 	}
 }

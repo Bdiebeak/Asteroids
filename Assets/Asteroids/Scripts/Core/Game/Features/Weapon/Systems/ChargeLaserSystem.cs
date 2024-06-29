@@ -18,7 +18,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Weapon.Systems
 		{
 			_gameplayContext = gameplayContext;
 			_timeService = timeService;
-			_cooldownMask = new Mask().Include<LaserCooldown>()
+			_cooldownMask = new Mask().Include<LaserChargeTime>()
 									  .Include<LaserCharges>();
 		}
 
@@ -38,12 +38,12 @@ namespace Asteroids.Scripts.Core.Game.Features.Weapon.Systems
 				}
 
 				// TODO: сразу восстановит один заряд, нужно событие
-				LaserCooldown cooldown = entity.Get<LaserCooldown>();
-				if (_timeService.Time < cooldown.endTime)
+				LaserChargeTime chargeTime = entity.Get<LaserChargeTime>();
+				if (_timeService.Time < chargeTime.value)
 				{
 					continue;
 				}
-				cooldown.endTime = _timeService.Time + WeaponsConfig.laserCooldown;
+				chargeTime.value = _timeService.Time + WeaponsConfig.laserCooldown;
 
 				int newValue = charges.value + 1;
 				if (entity.Has<LaserMaxCharges>())

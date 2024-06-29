@@ -19,7 +19,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Score.Systems
 		{
 			_gameplayContext = gameplayContext;
 			_mask = new Mask().Include<EnemyMarker>()
-							  .Include<Components.ScorePoints>()
+							  .Include<ScorePoints>()
 							  .Include<ToDestroy>();
 		}
 

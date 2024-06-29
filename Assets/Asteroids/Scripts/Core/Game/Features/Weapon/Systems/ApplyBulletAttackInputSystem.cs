@@ -33,11 +33,6 @@ namespace Asteroids.Scripts.Core.Game.Features.Weapon.Systems
 
 		public void Update()
 		{
-			if (_inputContext.HasEvent<BulletAttackPerformedEvent>() == false)
-			{
-				return;
-			}
-
 			var eventEntities = _inputContext.GetEvents<BulletAttackPerformedEvent>();
 			var playerEntities = _gameplayContext.GetEntities(_playerMask);
 			foreach (Entity eventEntity in eventEntities)
