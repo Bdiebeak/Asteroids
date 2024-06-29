@@ -27,7 +27,7 @@ namespace Asteroids.Scripts.Core.Game.Features
 			systems.Add(new CollisionFeature(systemsFactory));
 			systems.Add(new ScoreFeature(systemsFactory));
 			systems.Add(new UIFeature(systemsFactory));
-			systems.Add(new DestroyFeature(systemsFactory));
+			systems.Add(new DestroyFeature(systemsFactory)); // Have to be last in features order.
 		}
 	}
 }

@@ -11,10 +11,10 @@ namespace Asteroids.Scripts.Core.Game.Features.Collision
 
 		public override void AddTo(SystemsContainer systems)
 		{
+			systems.Add(systemsFactory.CreateSystem<HandleCollisionEnterRequestSystem>());
 			systems.Add(systemsFactory.CreateSystem<DestroyPlayerCollisionSystem>());
 			systems.Add(systemsFactory.CreateSystem<BulletCollisonSystem>());
 			systems.Add(systemsFactory.CreateSystem<LaserCollisionSystem>());
-			systems.Add(systemsFactory.CreateSystem<CleanUpCollisionEventsSystem>()); // TODO: should be here?
 		}
 	}
 }

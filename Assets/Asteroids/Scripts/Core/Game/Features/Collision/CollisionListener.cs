@@ -1,8 +1,8 @@
 ﻿using Asteroids.Scripts.Core.Game.Contexts;
-using Asteroids.Scripts.Core.Game.Features.Collision.Components;
+using Asteroids.Scripts.Core.Game.Features.Collision.Requests;
+using Asteroids.Scripts.Core.Game.Features.Requests;
 using Asteroids.Scripts.Core.Game.Views;
 using Asteroids.Scripts.DI.Attributes;
-using Asteroids.Scripts.ECS.Entities;
 using UnityEngine;
 
 namespace Asteroids.Scripts.Core.Game.Features.Collision
@@ -20,14 +20,11 @@ namespace Asteroids.Scripts.Core.Game.Features.Collision
 
 		private void OnCollisionEnter2D(Collision2D other)
 		{
-			CollisionEnterEvent collisionEvent = new()
+			_gameplayContext.CreateRequest(new ProvideCollisionEnterRequest()
 			{
 				sender = GetLinkedEntity().Entity,
 				collision = other.gameObject.GetComponent<LinkedEntityReference>().Entity
-			};
-
-			Entity entity = _gameplayContext.CreateEntity();
-			entity.Add(collisionEvent);
+			});
 		}
 
 		private LinkedEntityReference GetLinkedEntity()

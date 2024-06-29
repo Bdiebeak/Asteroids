@@ -7,7 +7,6 @@ using Asteroids.Scripts.Core.Game.Features.Weapon.Components;
 using Asteroids.Scripts.ECS.Components;
 using Asteroids.Scripts.ECS.Entities;
 using Asteroids.Scripts.ECS.Systems.Interfaces;
-using UnityEngine;
 
 namespace Asteroids.Scripts.Core.Game.Features.Collision.Systems
 {
@@ -30,12 +29,6 @@ namespace Asteroids.Scripts.Core.Game.Features.Collision.Systems
 				CollisionEnterEvent collisionEvent = entity.Get<CollisionEnterEvent>();
 				Entity senderEntity = collisionEvent.sender;
 				Entity collisionEntity = collisionEvent.collision;
-
-				if (_gameplayContext.AreEntitiesAlive(senderEntity, collisionEntity) == false)
-				{
-					Debug.LogError("Collision entities aren't active. One of them or all are null or destroyed.");
-					continue;
-				}
 
 				if (senderEntity.Has<BulletMarker>() && collisionEntity.Has<EnemyMarker>())
 				{
