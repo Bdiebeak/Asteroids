@@ -3,6 +3,8 @@ using Asteroids.Scripts.Core.Game.Factories;
 using Asteroids.Scripts.Core.Game.Features;
 using Asteroids.Scripts.Core.Game.Features.Base;
 using Asteroids.Scripts.ECS.Systems.Container;
+using Asteroids.Scripts.ECS.Unity.Debug;
+using UnityEngine;
 
 namespace Asteroids.Scripts.Core.Game
 {
@@ -10,6 +12,7 @@ namespace Asteroids.Scripts.Core.Game
 	{
 		private SystemsContainer _inputSystems;
 		private SystemsContainer _gameplaySystems;
+		private GameObject _debugObject;
 		private readonly InputContext _inputContext;
 		private readonly GameplayContext _gameplayContext;
 		private readonly ISystemsFactory _systemsFactory;
@@ -26,6 +29,7 @@ namespace Asteroids.Scripts.Core.Game
 		{
 			InitializeInputSystems();
 			InitializeGameplaySystems();
+			InitializeDebug();
 		}
 
 		public void Start()
@@ -46,7 +50,7 @@ namespace Asteroids.Scripts.Core.Game
 			_gameplaySystems.CleanUp();
 		}
 
-		// TODO: destroy for system containers?
+		// TODO: destroy for system containers - they do logic after stop sometimes?
 		public void Stop()
 		{
 			_inputSystems.Stop();
@@ -65,6 +69,15 @@ namespace Asteroids.Scripts.Core.Game
 		{
 			_gameplaySystems = new SystemsContainer();
 			_gameplaySystems.Add(new GameplayFeatures(_systemsFactory));
+		}
+
+		private void InitializeDebug()
+		{
+			_debugObject = new GameObject("EcsDebug");
+			Object.DontDestroyOnLoad(_debugObject);
+
+			_debugObject.AddComponent<ContextDrawer>().Initialize(_inputContext, _debugObject.transform);
+			_debugObject.AddComponent<ContextDrawer>().Initialize(_gameplayContext, _debugObject.transform);
 		}
 	}
 }

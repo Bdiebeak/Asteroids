@@ -8,15 +8,11 @@ namespace Asteroids.Scripts.ECS.Entities
 {
 	public class Entity
 	{
+		public event Action<IComponent> ComponentAdded;
+		public event Action<IComponent> ComponentRemoved;
 		public event Action Destroyed;
 
 		private readonly Dictionary<Type, IComponent> _components = new();
-
-		public void Destroy()
-		{
-			_components.Clear();
-			Destroyed?.Invoke();
-		}
 
 		public IReadOnlyCollection<IComponent> GetComponents()
 		{
@@ -32,6 +28,7 @@ namespace Asteroids.Scripts.ECS.Entities
 			}
 
 			_components[componentType] = component;
+			ComponentAdded?.Invoke(component);
 			return component;
 		}
 
@@ -54,6 +51,7 @@ namespace Asteroids.Scripts.ECS.Entities
 				throw new NoComponentException($"Entity doesn't have component {componentType}. Can't remove.");
 			}
 
+			ComponentRemoved?.Invoke(_components[componentType]);
 			_components.Remove(componentType);
 		}
 
@@ -71,6 +69,12 @@ namespace Asteroids.Scripts.ECS.Entities
 		public bool HasAny(params Type[] componentTypes)
 		{
 			return componentTypes.Any(componentType => _components.ContainsKey(componentType));
+		}
+
+		internal void Destroy()
+		{
+			_components.Clear();
+			Destroyed?.Invoke();
 		}
 	}
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Asteroids.Scripts.ECS.Components;
@@ -8,12 +9,15 @@ namespace Asteroids.Scripts.ECS.Contexts
 {
 	public class Context : IContext
 	{
+		public event Action<Entity> EntityCreated;
+
 		private readonly HashSet<Entity> _entities = new();
 
 		public Entity CreateEntity()
 		{
 			Entity newEntity = new();
 			_entities.Add(newEntity);
+			EntityCreated?.Invoke(newEntity);
 			return newEntity;
 		}
 
