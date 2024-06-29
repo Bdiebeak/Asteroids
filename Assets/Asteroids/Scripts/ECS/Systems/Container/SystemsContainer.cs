@@ -8,7 +8,7 @@ namespace Asteroids.Scripts.ECS.Systems.Container
 		private readonly List<IStartSystem> _startSystems = new();
 		private readonly List<IUpdateSystem> _updateSystems = new();
 		private readonly List<ICleanUpSystem> _cleanUpSystems = new();
-		private readonly List<IStopSystem> _stopSystems = new();
+		private readonly List<IDestroySystem> _destroySystems = new();
 
 		public SystemsContainer Add(ISystem system)
 		{
@@ -24,9 +24,9 @@ namespace Asteroids.Scripts.ECS.Systems.Container
 			{
 				_cleanUpSystems.Add(cleanUpSystem);
 			}
-			if (system is IStopSystem stopSystem)
+			if (system is IDestroySystem destroySystem)
 			{
-				_stopSystems.Add(stopSystem);
+				_destroySystems.Add(destroySystem);
 			}
 
 			return this;
@@ -34,34 +34,39 @@ namespace Asteroids.Scripts.ECS.Systems.Container
 
 		public void Start()
 		{
-			foreach (IStartSystem system in _startSystems)
+			for (int i = 0; i < _startSystems.Count; i++)
 			{
-				system.Start();
+				_startSystems[i].Start();
 			}
 		}
 
 		public void Update()
 		{
-			foreach (IUpdateSystem system in _updateSystems)
+			for (int i = 0; i < _updateSystems.Count; i++)
 			{
-				system.Update();
+				_updateSystems[i].Update();
 			}
 		}
 
 		public void CleanUp()
 		{
-			foreach (ICleanUpSystem system in _cleanUpSystems)
+			for (int i = 0; i < _cleanUpSystems.Count; i++)
 			{
-				system.CleanUp();
+				_cleanUpSystems[i].CleanUp();
 			}
 		}
 
-		public void Stop()
+		public void Destroy()
 		{
-			foreach (IStopSystem system in _stopSystems)
+			for (int i = 0; i < _destroySystems.Count; i++)
 			{
-				system.Stop();
+				_destroySystems[i].Destroy();
 			}
+
+			_startSystems.Clear();
+			_updateSystems.Clear();
+			_cleanUpSystems.Clear();
+			_destroySystems.Clear();
 		}
 	}
 }

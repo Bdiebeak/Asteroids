@@ -18,6 +18,7 @@ namespace Asteroids.Scripts.Core.Infrastructure.StateMachine.States
 		public void Enter()
 		{
 			_screenService.Show<GameScreen>();
+			_ecsStartup.Initialize();
 			_ecsStartup.Start();
 		}
 
@@ -29,7 +30,7 @@ namespace Asteroids.Scripts.Core.Infrastructure.StateMachine.States
 
 		public void Exit()
 		{
-			_ecsStartup.Stop();
+			_ecsStartup.Destroy();
 		}
 	}
 }

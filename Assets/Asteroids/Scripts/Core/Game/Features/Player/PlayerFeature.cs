@@ -13,6 +13,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Player
 		{
 			systems.Add(systemsFactory.CreateSystem<SpawnPlayerSystem>());
 			systems.Add(systemsFactory.CreateSystem<HandleSpawnPlayerRequestSystem>());
+			systems.Add(systemsFactory.CreateSystem<GameOverSystem>());
 		}
 	}
 }

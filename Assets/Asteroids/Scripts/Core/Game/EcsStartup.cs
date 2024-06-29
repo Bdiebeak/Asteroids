@@ -34,29 +34,37 @@ namespace Asteroids.Scripts.Core.Game
 
 		public void Start()
 		{
-			_inputSystems.Start();
-			_gameplaySystems.Start();
+			_inputSystems?.Start();
+			_gameplaySystems?.Start();
 		}
 
 		public void Update()
 		{
-			_inputSystems.Update();
-			_gameplaySystems.Update();
+			_inputSystems?.Update();
+			_gameplaySystems?.Update();
 		}
 
 		public void CleanUp()
 		{
-			_inputSystems.CleanUp();
-			_gameplaySystems.CleanUp();
+			_inputSystems?.CleanUp();
+			_gameplaySystems?.CleanUp();
 		}
 
-		// TODO: destroy for system containers - they do logic after stop sometimes?
-		public void Stop()
+		public void Destroy()
 		{
-			_inputSystems.Stop();
-			_gameplaySystems.Stop();
+			if (_inputSystems != null)
+			{
+				_inputSystems.Destroy();
+				_inputSystems = null;
+			}
+			if (_gameplaySystems != null)
+			{
+				_gameplaySystems.Destroy();
+				_gameplaySystems = null;
+			}
 			_inputContext.Destroy();
 			_gameplayContext.Destroy();
+			Object.Destroy(_debugObject); // TODO: don't like this work with debug
 		}
 
 		private void InitializeInputSystems()

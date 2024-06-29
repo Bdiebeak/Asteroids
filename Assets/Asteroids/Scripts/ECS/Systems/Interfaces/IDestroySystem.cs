@@ -1,7 +1,7 @@
 ﻿namespace Asteroids.Scripts.ECS.Systems.Interfaces
 {
-	public interface IStopSystem : ISystem
+	public interface IDestroySystem : ISystem
 	{
-		void Stop();
+		void Destroy();
 	}
 }
