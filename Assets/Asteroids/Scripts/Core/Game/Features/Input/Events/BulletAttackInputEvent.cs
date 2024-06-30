@@ -2,5 +2,5 @@
 
 namespace Asteroids.Scripts.Core.Game.Features.Input.Components
 {
-	public class LaserAttackPerformedEvent : IEvent { }
+	public class BulletAttackInputEvent : IEvent { }
 }

@@ -25,9 +25,9 @@ namespace Asteroids.Scripts.Core.Game.Features.Player.Systems
 
 		public void Update()
 		{
-			var entities = _gameplayContext.GetRequests<SpawnPlayerRequest>();
+			var requestEntities = _gameplayContext.GetRequests<SpawnPlayerRequest>();
 			var playerEntities = _gameplayContext.GetEntities(_playerMask);
-			foreach (Entity entity in entities)
+			foreach (Entity requestEntity in requestEntities)
 			{
 				if (playerEntities.Count > 0)
 				{
@@ -35,7 +35,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Player.Systems
 					continue;
 				}
 
-				SpawnPlayerRequest spawnRequest = entity.Get<SpawnPlayerRequest>();
+				SpawnPlayerRequest spawnRequest = requestEntity.Get<SpawnPlayerRequest>();
 				_gameFactory.CreatePlayer(spawnRequest.position);
 			}
 

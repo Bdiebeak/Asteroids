@@ -19,10 +19,10 @@ namespace Asteroids.Scripts.Core.Game.Features.Input.Systems
 
 		public void Update()
 		{
-			_inputContext.DestroyEvents<BulletAttackPerformedEvent>();
-			if (_inputService.BulletAttack)
+			_inputContext.DestroyEvents<BulletAttackInputEvent>();
+			if (_inputService.WasPrimaryAttackPressedThisFrame)
 			{
-				_inputContext.CreateEvent(new BulletAttackPerformedEvent());
+				_inputContext.CreateEvent(new BulletAttackInputEvent());
 			}
 		}
 	}

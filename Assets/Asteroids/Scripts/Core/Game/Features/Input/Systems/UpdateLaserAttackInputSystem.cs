@@ -19,10 +19,10 @@ namespace Asteroids.Scripts.Core.Game.Features.Input.Systems
 
 		public void Update()
 		{
-			_inputContext.DestroyEvents<LaserAttackPerformedEvent>();
-			if (_inputService.LaserAttack)
+			_inputContext.DestroyEvents<LaserAttackInputEvent>();
+			if (_inputService.WasSecondaryAttackPressedThisFrame)
 			{
-				_inputContext.CreateEvent(new LaserAttackPerformedEvent());
+				_inputContext.CreateEvent(new LaserAttackInputEvent());
 			}
 		}
 	}

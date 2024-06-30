@@ -4,7 +4,8 @@ using Asteroids.Scripts.ECS.Entities;
 namespace Asteroids.Scripts.Core.Game.Features.Collision.Requests
 {
 	/// <summary>
-	/// This request will be verified for the existence of colliding entities.
+	/// This is an intermediate event for <see cref="CollisionListener"/> and ECS communication.
+	/// It will be verified for the existence of colliding entities and converted into event.
 	/// </summary>
 	public class ProvideCollisionEnterRequest : IRequest
 	{

@@ -30,7 +30,8 @@ namespace Asteroids.Scripts.Core.Game.Features.Movement.Systems
 					continue;
 				}
 
-				target.Get<Position>().value = request.position;
+				Position position = target.Get<Position>();
+				position.value = request.position;
 			}
 
 			_gameplayContext.DestroyRequests<TeleportRequest>();

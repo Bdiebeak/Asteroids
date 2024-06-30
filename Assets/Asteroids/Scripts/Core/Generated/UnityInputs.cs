@@ -46,7 +46,7 @@ public partial class @UnityInputs: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""BulletAttack"",
+                    ""name"": ""PrimaryAttack"",
                     ""type"": ""Button"",
                     ""id"": ""1077f913-a9f9-41b1-acb3-b9ee0adbc744"",
                     ""expectedControlType"": ""Button"",
@@ -55,7 +55,7 @@ public partial class @UnityInputs: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""LaserAttack"",
+                    ""name"": ""SecondaryAttack"",
                     ""type"": ""Button"",
                     ""id"": ""d71b993e-7406-4384-9d78-e3777cf08fc0"",
                     ""expectedControlType"": ""Button"",
@@ -72,7 +72,7 @@ public partial class @UnityInputs: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""LaserAttack"",
+                    ""action"": ""SecondaryAttack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -83,7 +83,7 @@ public partial class @UnityInputs: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""LaserAttack"",
+                    ""action"": ""SecondaryAttack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -138,7 +138,7 @@ public partial class @UnityInputs: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""BulletAttack"",
+                    ""action"": ""PrimaryAttack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -149,7 +149,7 @@ public partial class @UnityInputs: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""BulletAttack"",
+                    ""action"": ""PrimaryAttack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -228,8 +228,8 @@ public partial class @UnityInputs: IInputActionCollection2, IDisposable
         m_Game = asset.FindActionMap("Game", throwIfNotFound: true);
         m_Game_MoveForward = m_Game.FindAction("MoveForward", throwIfNotFound: true);
         m_Game_Rotate = m_Game.FindAction("Rotate", throwIfNotFound: true);
-        m_Game_BulletAttack = m_Game.FindAction("BulletAttack", throwIfNotFound: true);
-        m_Game_LaserAttack = m_Game.FindAction("LaserAttack", throwIfNotFound: true);
+        m_Game_PrimaryAttack = m_Game.FindAction("PrimaryAttack", throwIfNotFound: true);
+        m_Game_SecondaryAttack = m_Game.FindAction("SecondaryAttack", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -293,16 +293,16 @@ public partial class @UnityInputs: IInputActionCollection2, IDisposable
     private List<IGameActions> m_GameActionsCallbackInterfaces = new List<IGameActions>();
     private readonly InputAction m_Game_MoveForward;
     private readonly InputAction m_Game_Rotate;
-    private readonly InputAction m_Game_BulletAttack;
-    private readonly InputAction m_Game_LaserAttack;
+    private readonly InputAction m_Game_PrimaryAttack;
+    private readonly InputAction m_Game_SecondaryAttack;
     public struct GameActions
     {
         private @UnityInputs m_Wrapper;
         public GameActions(@UnityInputs wrapper) { m_Wrapper = wrapper; }
         public InputAction @MoveForward => m_Wrapper.m_Game_MoveForward;
         public InputAction @Rotate => m_Wrapper.m_Game_Rotate;
-        public InputAction @BulletAttack => m_Wrapper.m_Game_BulletAttack;
-        public InputAction @LaserAttack => m_Wrapper.m_Game_LaserAttack;
+        public InputAction @PrimaryAttack => m_Wrapper.m_Game_PrimaryAttack;
+        public InputAction @SecondaryAttack => m_Wrapper.m_Game_SecondaryAttack;
         public InputActionMap Get() { return m_Wrapper.m_Game; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -318,12 +318,12 @@ public partial class @UnityInputs: IInputActionCollection2, IDisposable
             @Rotate.started += instance.OnRotate;
             @Rotate.performed += instance.OnRotate;
             @Rotate.canceled += instance.OnRotate;
-            @BulletAttack.started += instance.OnBulletAttack;
-            @BulletAttack.performed += instance.OnBulletAttack;
-            @BulletAttack.canceled += instance.OnBulletAttack;
-            @LaserAttack.started += instance.OnLaserAttack;
-            @LaserAttack.performed += instance.OnLaserAttack;
-            @LaserAttack.canceled += instance.OnLaserAttack;
+            @PrimaryAttack.started += instance.OnPrimaryAttack;
+            @PrimaryAttack.performed += instance.OnPrimaryAttack;
+            @PrimaryAttack.canceled += instance.OnPrimaryAttack;
+            @SecondaryAttack.started += instance.OnSecondaryAttack;
+            @SecondaryAttack.performed += instance.OnSecondaryAttack;
+            @SecondaryAttack.canceled += instance.OnSecondaryAttack;
         }
 
         private void UnregisterCallbacks(IGameActions instance)
@@ -334,12 +334,12 @@ public partial class @UnityInputs: IInputActionCollection2, IDisposable
             @Rotate.started -= instance.OnRotate;
             @Rotate.performed -= instance.OnRotate;
             @Rotate.canceled -= instance.OnRotate;
-            @BulletAttack.started -= instance.OnBulletAttack;
-            @BulletAttack.performed -= instance.OnBulletAttack;
-            @BulletAttack.canceled -= instance.OnBulletAttack;
-            @LaserAttack.started -= instance.OnLaserAttack;
-            @LaserAttack.performed -= instance.OnLaserAttack;
-            @LaserAttack.canceled -= instance.OnLaserAttack;
+            @PrimaryAttack.started -= instance.OnPrimaryAttack;
+            @PrimaryAttack.performed -= instance.OnPrimaryAttack;
+            @PrimaryAttack.canceled -= instance.OnPrimaryAttack;
+            @SecondaryAttack.started -= instance.OnSecondaryAttack;
+            @SecondaryAttack.performed -= instance.OnSecondaryAttack;
+            @SecondaryAttack.canceled -= instance.OnSecondaryAttack;
         }
 
         public void RemoveCallbacks(IGameActions instance)
@@ -361,7 +361,7 @@ public partial class @UnityInputs: IInputActionCollection2, IDisposable
     {
         void OnMoveForward(InputAction.CallbackContext context);
         void OnRotate(InputAction.CallbackContext context);
-        void OnBulletAttack(InputAction.CallbackContext context);
-        void OnLaserAttack(InputAction.CallbackContext context);
+        void OnPrimaryAttack(InputAction.CallbackContext context);
+        void OnSecondaryAttack(InputAction.CallbackContext context);
     }
 }

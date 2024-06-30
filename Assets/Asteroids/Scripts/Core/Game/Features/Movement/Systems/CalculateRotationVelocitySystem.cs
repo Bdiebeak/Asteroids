@@ -15,7 +15,8 @@ namespace Asteroids.Scripts.Core.Game.Features.Movement.Systems
 		{
 			_gameplayContext = gameplayContext;
 			_rotatableMask = new Mask().Include<RotationDirection>()
-									   .Include<RotationSpeed>();
+									   .Include<RotationSpeed>()
+									   .Include<RotationVelocity>();
 		}
 
 		public void Update()

@@ -2,9 +2,9 @@
 {
 	public interface IInputService
 	{
-		bool BulletAttack { get; }
-		bool LaserAttack { get; }
 		float MoveForward { get; }
 		float Rotate { get; }
+		bool WasPrimaryAttackPressedThisFrame { get; }
+		bool WasSecondaryAttackPressedThisFrame { get; }
 	}
 }

@@ -19,7 +19,8 @@ namespace Asteroids.Scripts.Core.Game.Features.Movement.Systems
 			_gameplayContext = gameplayContext;
 			_timeService = timeService;
 			_movableMask = new Mask().Include<MoveDirection>()
-									 .Include<MoveSpeed>();
+									 .Include<MoveSpeed>()
+									 .Include<MoveVelocity>();
 		}
 
 		public void Update()
