@@ -44,12 +44,6 @@ namespace Asteroids.Scripts.Core.Game
 			_gameplaySystems?.Update();
 		}
 
-		public void CleanUp()
-		{
-			_inputSystems?.CleanUp();
-			_gameplaySystems?.CleanUp();
-		}
-
 		public void Destroy()
 		{
 			if (_inputSystems != null)

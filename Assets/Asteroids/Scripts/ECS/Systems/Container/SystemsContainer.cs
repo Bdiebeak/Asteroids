@@ -7,7 +7,6 @@ namespace Asteroids.Scripts.ECS.Systems.Container
 	{
 		private readonly List<IStartSystem> _startSystems = new();
 		private readonly List<IUpdateSystem> _updateSystems = new();
-		private readonly List<ICleanUpSystem> _cleanUpSystems = new();
 		private readonly List<IDestroySystem> _destroySystems = new();
 
 		public SystemsContainer Add(ISystem system)
@@ -19,10 +18,6 @@ namespace Asteroids.Scripts.ECS.Systems.Container
 			if (system is IUpdateSystem updateSystem)
 			{
 				_updateSystems.Add(updateSystem);
-			}
-			if (system is ICleanUpSystem cleanUpSystem)
-			{
-				_cleanUpSystems.Add(cleanUpSystem);
 			}
 			if (system is IDestroySystem destroySystem)
 			{
@@ -48,14 +43,6 @@ namespace Asteroids.Scripts.ECS.Systems.Container
 			}
 		}
 
-		public void CleanUp()
-		{
-			for (int i = 0; i < _cleanUpSystems.Count; i++)
-			{
-				_cleanUpSystems[i].CleanUp();
-			}
-		}
-
 		public void Destroy()
 		{
 			for (int i = 0; i < _destroySystems.Count; i++)
@@ -65,7 +52,6 @@ namespace Asteroids.Scripts.ECS.Systems.Container
 
 			_startSystems.Clear();
 			_updateSystems.Clear();
-			_cleanUpSystems.Clear();
 			_destroySystems.Clear();
 		}
 	}
