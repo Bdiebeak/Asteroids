@@ -46,7 +46,14 @@ namespace Asteroids.Scripts.Core.Game.Features.UI.Systems
 				_gameScreenModel.velocityMagnitude = velocity.magnitude;
 				_gameScreenModel.currentLaserCount = entity.Get<LaserCharges>().value;
 				_gameScreenModel.maxLaserCount = entity.Get<LaserMaxCharges>().value;
-				_gameScreenModel.laserCooldown = entity.Get<LaserChargeTime>().value - _timeService.Time;
+				if (entity.Has<LaserChargeTime>() == false)
+				{
+					_gameScreenModel.laserCooldown = 0;
+				}
+				else
+				{
+					_gameScreenModel.laserCooldown = entity.Get<LaserChargeTime>().value - _timeService.Time;
+				}
 			}
 		}
 	}

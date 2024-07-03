@@ -33,28 +33,18 @@ namespace Asteroids.Scripts.Core.Game.Features.Weapon.Systems
 					LaserMaxCharges maxCharges = entity.Get<LaserMaxCharges>();
 					if (charges.value == maxCharges.value)
 					{
+						entity.Remove<LaserChargeTime>();
 						continue;
 					}
 				}
 
-				// TODO: сразу восстановит один заряд, нужно событие
 				LaserChargeTime chargeTime = entity.Get<LaserChargeTime>();
 				if (_timeService.Time < chargeTime.value)
 				{
 					continue;
 				}
 				chargeTime.value = _timeService.Time + WeaponsConfig.laserCooldown;
-
-				int newValue = charges.value + 1;
-				if (entity.Has<LaserMaxCharges>())
-				{
-					LaserMaxCharges maxCharges = entity.Get<LaserMaxCharges>();
-					if (newValue > maxCharges.value)
-					{
-						newValue = maxCharges.value;
-					}
-				}
-				charges.value = newValue;
+				charges.value++;
 			}
 		}
 	}

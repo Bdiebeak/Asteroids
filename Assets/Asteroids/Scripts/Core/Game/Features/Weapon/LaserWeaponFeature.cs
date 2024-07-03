@@ -12,6 +12,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Weapon
 		public override void AddTo(SystemsContainer systems)
 		{
 			systems.Add(systemsFactory.CreateSystem<ApplyLaserAttackInputSystem>());
+			systems.Add(systemsFactory.CreateSystem<HandleShootLaserRequestSystem>());
 			systems.Add(systemsFactory.CreateSystem<LaserAttackDelaySystem>());
 			systems.Add(systemsFactory.CreateSystem<ChargeLaserSystem>());
 		}

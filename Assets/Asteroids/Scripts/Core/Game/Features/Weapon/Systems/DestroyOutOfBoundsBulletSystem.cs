@@ -10,12 +10,12 @@ using Asteroids.Scripts.ECS.Systems.Interfaces;
 
 namespace Asteroids.Scripts.Core.Game.Features.Weapon.Systems
 {
-	public class DestroyBulletSystem : IUpdateSystem
+	public class DestroyOutOfBoundsBulletSystem : IUpdateSystem
 	{
 		private readonly GameplayContext _gameplayContext;
 		private readonly Mask _bulletMask;
 
-		public DestroyBulletSystem(GameplayContext gameplayContext)
+		public DestroyOutOfBoundsBulletSystem(GameplayContext gameplayContext)
 		{
 			_gameplayContext = gameplayContext;
 			_bulletMask = new Mask().Include<BulletMarker>()

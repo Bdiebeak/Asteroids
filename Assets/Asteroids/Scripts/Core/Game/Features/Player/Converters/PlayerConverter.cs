@@ -26,7 +26,6 @@ namespace Asteroids.Scripts.Core.Game.Features.Player.Converters
 			entity.Add(new RotationSpeed()).value = PlayerConfig.shipRotationSpeed;
 			entity.Add(new RotationVelocity());
 			entity.Add(new KeepInBoundsMarker());
-			entity.Add(new LaserChargeTime());
 			entity.Add(new LaserCharges()).value = WeaponsConfig.laserCharges;
 			entity.Add(new LaserMaxCharges()).value = WeaponsConfig.laserCharges;
 			entity.Add(new ScoreCounter());

@@ -4,7 +4,6 @@ using Asteroids.Scripts.Core.Game.Features.Destroy.Requests;
 using Asteroids.Scripts.Core.Game.Features.Requests;
 using Asteroids.Scripts.ECS.Entities;
 using Asteroids.Scripts.ECS.Systems.Interfaces;
-using UnityEngine;
 
 namespace Asteroids.Scripts.Core.Game.Features.Destroy.Systems
 {
@@ -26,7 +25,6 @@ namespace Asteroids.Scripts.Core.Game.Features.Destroy.Systems
 
 				if (_gameplayContext.IsActive(destroyRequest.target) == false)
 				{
-					Debug.LogError("Entity isn't active, can't destroy it.");
 					continue;
 				}
 
