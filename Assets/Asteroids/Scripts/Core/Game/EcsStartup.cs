@@ -1,10 +1,9 @@
 ﻿using Asteroids.Scripts.Core.Game.Contexts;
 using Asteroids.Scripts.Core.Game.Factories;
 using Asteroids.Scripts.Core.Game.Features;
-using Asteroids.Scripts.Core.Game.Features.Base;
+using Asteroids.Scripts.ECS.Features;
 using Asteroids.Scripts.ECS.Systems.Container;
 using Asteroids.Scripts.ECS.Unity.Debug;
-using UnityEngine;
 
 namespace Asteroids.Scripts.Core.Game
 {
@@ -12,7 +11,6 @@ namespace Asteroids.Scripts.Core.Game
 	{
 		private SystemsContainer _inputSystems;
 		private SystemsContainer _gameplaySystems;
-		private GameObject _debugObject;
 		private readonly InputContext _inputContext;
 		private readonly GameplayContext _gameplayContext;
 		private readonly ISystemsFactory _systemsFactory;
@@ -29,7 +27,6 @@ namespace Asteroids.Scripts.Core.Game
 		{
 			InitializeInputSystems();
 			InitializeGameplaySystems();
-			InitializeDebug();
 		}
 
 		public void Start()
@@ -46,40 +43,30 @@ namespace Asteroids.Scripts.Core.Game
 
 		public void Destroy()
 		{
-			if (_inputSystems != null)
-			{
-				_inputSystems.Destroy();
-				_inputSystems = null;
-			}
-			if (_gameplaySystems != null)
-			{
-				_gameplaySystems.Destroy();
-				_gameplaySystems = null;
-			}
+			_inputSystems?.Destroy();
+			_inputSystems = null;
+			_gameplaySystems?.Destroy();
+			_gameplaySystems = null;
 			_inputContext.Destroy();
 			_gameplayContext.Destroy();
-			Object.Destroy(_debugObject); // TODO: don't like this work with debug
 		}
 
 		private void InitializeInputSystems()
 		{
 			_inputSystems = new SystemsContainer();
+#if UNITY_EDITOR
+			_inputSystems.Add(new UnityDebugFeature(_inputContext));
+#endif
 			_inputSystems.Add(new InputFeatures(_systemsFactory));
 		}
 
 		private void InitializeGameplaySystems()
 		{
 			_gameplaySystems = new SystemsContainer();
+#if UNITY_EDITOR
+			_gameplaySystems.Add(new UnityDebugFeature(_gameplayContext));
+#endif
 			_gameplaySystems.Add(new GameplayFeatures(_systemsFactory));
-		}
-
-		private void InitializeDebug()
-		{
-			_debugObject = new GameObject("EcsDebug");
-			Object.DontDestroyOnLoad(_debugObject);
-
-			_debugObject.AddComponent<ContextDrawer>().Initialize(_inputContext, _debugObject.transform);
-			_debugObject.AddComponent<ContextDrawer>().Initialize(_gameplayContext, _debugObject.transform);
 		}
 	}
 }
