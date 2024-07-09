@@ -8,6 +8,6 @@ namespace Asteroids.Scripts.Core.Game.Features.Weapon.Requests
 	{
 		public Entity shooter;
 		public Vector2 position;
-		public float rotation;
+		public Vector2 direction;
 	}
 }

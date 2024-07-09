@@ -7,7 +7,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Destroy.Listeners
 	{
 		private Entity _entity;
 
-		public override void Initialize(Entity entity)
+		public override void Construct(Entity entity)
 		{
 			_entity = entity;
 			_entity.Destroyed += OnEntityDestroyed;

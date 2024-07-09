@@ -12,7 +12,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Weapon.Listeners
 		[SerializeField]
 		private GameObject view;
 
-		public override void Initialize(Entity entity)
+		public override void Construct(Entity entity)
 		{
 			ConfigureViewSize();
 		}

@@ -11,12 +11,12 @@ namespace Asteroids.Scripts.Core.Game.Views
 
 		public Entity LinkedEntity { get; private set; }
 
-		public void Initialize(Entity entity)
+		public void Construct(Entity entity)
 		{
 			LinkedEntity = entity;
 			foreach (EcsListener listener in listeners)
 			{
-				listener.Initialize(entity);
+				listener.Construct(entity);
 			}
 		}
 	}

@@ -23,7 +23,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Movement.Systems
 			var entities = _gameplayContext.GetEntities(_chaseTargetMask);
 			foreach (Entity entity in entities)
 			{
-				Entity target = entity.Get<ChaseTarget>().target;
+				Entity target = entity.Get<ChaseTarget>().value;
 				if (_gameplayContext.IsActive(target) == false)
 				{
 					Debug.LogError("Can't follow entity, it isn't active.");

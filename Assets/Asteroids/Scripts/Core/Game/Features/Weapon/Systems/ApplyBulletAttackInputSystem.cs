@@ -1,14 +1,15 @@
 ﻿using Asteroids.Scripts.Core.Game.Contexts;
 using Asteroids.Scripts.Core.Game.Features.Events;
-using Asteroids.Scripts.Core.Game.Features.Input.Components;
 using Asteroids.Scripts.Core.Game.Features.Input.Events;
 using Asteroids.Scripts.Core.Game.Features.Movement.Components;
 using Asteroids.Scripts.Core.Game.Features.Player.Components;
 using Asteroids.Scripts.Core.Game.Features.Requests;
 using Asteroids.Scripts.Core.Game.Features.Weapon.Requests;
+using Asteroids.Scripts.Core.Utilities.Extensions;
 using Asteroids.Scripts.ECS.Components;
 using Asteroids.Scripts.ECS.Entities;
 using Asteroids.Scripts.ECS.Systems.Interfaces;
+using UnityEngine;
 
 namespace Asteroids.Scripts.Core.Game.Features.Weapon.Systems
 {
@@ -39,7 +40,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Weapon.Systems
 					{
 						   shooter = playerEntity,
 						   position = position.value,
-						   rotation = rotation.value
+						   direction = Vector2.up.Rotate(rotation.value)
 					});
 				}
 			}

@@ -46,7 +46,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Weapon.Systems
 				shooter.Add(new BulletAttackDelay()).endTime = _timeService.Time +
 															   WeaponsConfig.bulletAttackDelay;
 
-				_gameFactory.CreateBullet(shootRequest.position, shootRequest.rotation);
+				_gameFactory.CreateBullet(shootRequest.position, shootRequest.direction);
 			}
 
 			_gameplayContext.DestroyRequests<ShootBulletRequest>();

@@ -30,7 +30,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Enemies.Systems
 			foreach (Entity entity in entities)
 			{
 				Vector2 position = _cameraService.Bounds.GetRandomEdgePosition();
-				_gameFactory.CreateEnemy(EnemyType.Ufo, position);
+				_gameFactory.CreateUfo(position);
 			}
 
 			_gameplayContext.DestroyRequests<SpawnUfoRequest>();

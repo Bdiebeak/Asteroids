@@ -27,7 +27,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Enemies.Systems
 				SpawnAsteroidPiecesRequest spawnRequest = entity.Get<SpawnAsteroidPiecesRequest>();
 				for (int i = 0; i < spawnRequest.count; i++)
 				{
-					_gameFactory.CreateEnemy(EnemyType.AsteroidPiece, spawnRequest.position);
+					_gameFactory.CreateAsteroidPiece(spawnRequest.position);
 				}
 			}
 

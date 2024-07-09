@@ -9,7 +9,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Movement.Listeners
 	{
 		private Entity _entity;
 
-		public override void Initialize(Entity entity)
+		public override void Construct(Entity entity)
 		{
 			_entity = entity;
 		}

@@ -66,7 +66,8 @@ namespace Asteroids.Scripts.Core.Game.Features.Weapon.Systems
 
 			Position position = shooter.Get<Position>();
 			Rotation rotation = shooter.Get<Rotation>();
-			_gameFactory.CreateLaser(position.value, rotation.value);
+			float destroyTime = _timeService.Time + WeaponsConfig.laserActiveTime;
+			_gameFactory.CreateLaser(position.value, rotation.value, shooter, destroyTime);
 		}
 
 		_gameplayContext.DestroyRequests<ShootLaserRequest>();
