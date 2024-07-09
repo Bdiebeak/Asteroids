@@ -1,18 +1,23 @@
-﻿using Asteroids.Scripts.ECS.Entities;
+﻿using System.Collections.Generic;
+using Asteroids.Scripts.ECS.Entities;
 using UnityEngine;
 
 namespace Asteroids.Scripts.Core.Game.Views
 {
-	public abstract class EntityView : MonoBehaviour
+	public class EntityView : MonoBehaviour
 	{
-		protected Entity entity;
+		[SerializeField]
+		private List<EcsListener> listeners = new();
 
-		public void Construct(Entity entity)
+		public Entity LinkedEntity { get; private set; }
+
+		public void Initialize(Entity entity)
 		{
-			this.entity = entity;
-			OnConstruct();
+			LinkedEntity = entity;
+			foreach (EcsListener listener in listeners)
+			{
+				listener.Initialize(entity);
+			}
 		}
-
-		protected abstract void OnConstruct();
 	}
 }

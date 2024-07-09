@@ -8,10 +8,11 @@ using UnityEngine;
 
 namespace Asteroids.Scripts.Core.Game.Features.Collision
 {
-	public class CollisionListener : MonoBehaviour
+	[RequireComponent(typeof(EntityView))]
+	public class CollisionProvider : MonoBehaviour
 	{
 		private GameplayContext _gameplayContext;
-		private LinkedEntityReference _linkedEntity;
+		private EntityView _entityView;
 
 		[Inject]
 		public void Construct(GameplayContext gameplayContext)
@@ -21,20 +22,20 @@ namespace Asteroids.Scripts.Core.Game.Features.Collision
 
 		private void Awake()
 		{
-			_linkedEntity = gameObject.GetComponent<LinkedEntityReference>();
+			_entityView = gameObject.GetComponent<EntityView>();
 		}
 
 		private void OnCollisionEnter2D(Collision2D other)
 		{
-			if (other.gameObject.TryGetComponent(out LinkedEntityReference collisionEntityReference) == false)
+			if (other.gameObject.TryGetComponent(out EntityView collisionEntityView) == false)
 			{
-				throw new Exception($"Can't find {nameof(LinkedEntityReference)} on colliding object.");
+				throw new Exception($"Can't find {nameof(EntityView)} on colliding object.");
 			}
 
 			_gameplayContext.CreateRequest(new ProvideCollisionEnterRequest()
 			{
-				sender = _linkedEntity.Entity,
-				collision = collisionEntityReference.Entity
+				sender = _entityView.LinkedEntity,
+				collision = collisionEntityView.LinkedEntity
 			});
 		}
 	}

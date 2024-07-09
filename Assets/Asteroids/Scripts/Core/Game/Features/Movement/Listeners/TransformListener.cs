@@ -1,14 +1,15 @@
 ﻿using Asteroids.Scripts.Core.Game.Features.Movement.Components;
+using Asteroids.Scripts.Core.Game.Views;
 using Asteroids.Scripts.ECS.Entities;
 using UnityEngine;
 
-namespace Asteroids.Scripts.Core.Game.Views
+namespace Asteroids.Scripts.Core.Game.Features.Movement.Listeners
 {
-	public class TransformUpdater : MonoBehaviour
+	public class TransformListener : EcsListener
 	{
 		private Entity _entity;
 
-		public void Initialize(Entity entity)
+		public override void Initialize(Entity entity)
 		{
 			_entity = entity;
 		}

@@ -11,7 +11,10 @@ GameObject:
   - component: {fileID: 6518261691429691319}
   - component: {fileID: -6166365619362463165}
   - component: {fileID: 4287052993367841705}
+  - component: {fileID: 2390271680543412474}
   - component: {fileID: -1998971496716055507}
+  - component: {fileID: -8807843980193143296}
+  - component: {fileID: -3193773332359422790}
   m_Layer: 8
   m_Name: Bullet
   m_TagString: Untagged
@@ -97,6 +100,21 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &2390271680543412474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4955772524057635137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a6d4970629448c49725e6a670feb61c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  listeners:
+  - {fileID: -8807843980193143296}
+  - {fileID: -3193773332359422790}
 --- !u!114 &-1998971496716055507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -107,6 +125,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 718653d37ced4b0b9fbe9bc9260ab83b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-8807843980193143296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4955772524057635137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e7be03cfc004a008444e877626e7afb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-3193773332359422790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4955772524057635137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 873a2970536447548b006e5d08a0c04c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5629534643168995386
