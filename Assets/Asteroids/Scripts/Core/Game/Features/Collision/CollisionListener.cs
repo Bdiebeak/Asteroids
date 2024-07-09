@@ -1,4 +1,5 @@
-﻿using Asteroids.Scripts.Core.Game.Contexts;
+﻿using System;
+using Asteroids.Scripts.Core.Game.Contexts;
 using Asteroids.Scripts.Core.Game.Features.Collision.Requests;
 using Asteroids.Scripts.Core.Game.Features.Requests;
 using Asteroids.Scripts.Core.Game.Views;
@@ -18,22 +19,23 @@ namespace Asteroids.Scripts.Core.Game.Features.Collision
 			_gameplayContext = gameplayContext;
 		}
 
-		private void OnCollisionEnter2D(Collision2D other)
+		private void Awake()
 		{
-			_gameplayContext.CreateRequest(new ProvideCollisionEnterRequest()
-			{
-				sender = GetLinkedEntity().Entity,
-				collision = other.gameObject.GetComponent<LinkedEntityReference>().Entity
-			});
+			_linkedEntity = gameObject.GetComponent<LinkedEntityReference>();
 		}
 
-		private LinkedEntityReference GetLinkedEntity()
+		private void OnCollisionEnter2D(Collision2D other)
 		{
-			if (_linkedEntity == null)
+			if (other.gameObject.TryGetComponent(out LinkedEntityReference collisionEntityReference) == false)
 			{
-				_linkedEntity = gameObject.GetComponent<LinkedEntityReference>();
+				throw new Exception($"Can't find {nameof(LinkedEntityReference)} on colliding object.");
 			}
-			return _linkedEntity;
+
+			_gameplayContext.CreateRequest(new ProvideCollisionEnterRequest()
+			{
+				sender = _linkedEntity.Entity,
+				collision = collisionEntityReference.Entity
+			});
 		}
 	}
 }

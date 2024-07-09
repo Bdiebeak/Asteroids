@@ -7,23 +7,9 @@ namespace Asteroids.Scripts.Core.Game.Views
 	{
 		public Entity Entity { get; private set; }
 
-		public void Initialize(Entity linkedEntity, bool destroyWithEntity)
+		public void Construct(Entity linkedEntity)
 		{
 			Entity = linkedEntity;
-			if (destroyWithEntity)
-			{
-				Entity.Destroyed += EntityOnDestroyed;
-			}
-		}
-
-		private void OnDestroy()
-		{
-			Entity.Destroyed -= EntityOnDestroyed;
-		}
-
-		private void EntityOnDestroyed()
-		{
-			Destroy(gameObject);
 		}
 	}
 }
