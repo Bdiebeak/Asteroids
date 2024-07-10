@@ -2,9 +2,9 @@
     "name": "Asteroids.DI.Tests",
     "rootNamespace": "",
     "references": [
+        "Asteroids.DI",
         "UnityEngine.TestRunner",
-        "UnityEditor.TestRunner",
-        "Asteroids.DI"
+        "UnityEditor.TestRunner"
     ],
     "includePlatforms": [
         "Editor"

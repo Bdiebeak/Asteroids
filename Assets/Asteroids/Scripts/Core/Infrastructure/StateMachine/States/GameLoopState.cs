@@ -4,7 +4,7 @@ using Asteroids.Scripts.Core.Utilities.Services.Screens;
 
 namespace Asteroids.Scripts.Core.Infrastructure.StateMachine.States
 {
-	public class GameLoopState : IState
+	public class GameLoopState : BaseState
 	{
 		private readonly EcsStartup _ecsStartup;
 		private readonly IScreenService _screenService;
@@ -15,19 +15,19 @@ namespace Asteroids.Scripts.Core.Infrastructure.StateMachine.States
 			_screenService = screenService;
 		}
 
-		public void Enter()
+		public override void Enter()
 		{
 			_screenService.Show<GameScreen>();
 			_ecsStartup.Initialize();
 			_ecsStartup.Start();
 		}
 
-		public void Update()
+		public override void Update()
 		{
 			_ecsStartup.Update();
 		}
 
-		public void Exit()
+		public override void Exit()
 		{
 			_ecsStartup.Destroy();
 		}

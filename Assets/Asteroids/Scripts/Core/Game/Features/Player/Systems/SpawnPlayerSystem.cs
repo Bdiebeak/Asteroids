@@ -1,6 +1,6 @@
 ﻿using Asteroids.Scripts.Core.Game.Contexts;
 using Asteroids.Scripts.Core.Game.Features.Player.Requests;
-using Asteroids.Scripts.Core.Game.Features.Requests;
+using Asteroids.Scripts.Core.Game.Requests;
 using Asteroids.Scripts.Core.Utilities.Services.Configs;
 using Asteroids.Scripts.ECS.Systems.Interfaces;
 
@@ -19,7 +19,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Player.Systems
 		{
 			_gameplayContext.CreateRequest(new SpawnPlayerRequest
 			{
-				position = PlayerConfig.spawnPosition
+				position = PlayerConfig.SpawnPosition
 			});
 		}
 	}

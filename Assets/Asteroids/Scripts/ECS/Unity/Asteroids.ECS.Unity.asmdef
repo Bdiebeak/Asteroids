@@ -1,0 +1,16 @@
+{
+    "name": "Asteroids.ECS.Unity",
+    "rootNamespace": "",
+    "references": [
+        "GUID:5178717d90867e04db6287c11d535cdf"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

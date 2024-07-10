@@ -1,9 +1,8 @@
 ﻿using Asteroids.Scripts.Core.Utilities.Services.Assets;
-using Asteroids.Scripts.Core.Utilities.Services.Camera;
+using Asteroids.Scripts.Core.Utilities.Services.GameCamera;
 using Asteroids.Scripts.Core.Utilities.Services.Input;
 using Asteroids.Scripts.Core.Utilities.Services.Time;
 using Asteroids.Scripts.DI.Builder;
-using Asteroids.Scripts.DI.Extensions;
 
 namespace Asteroids.Scripts.Core.Infrastructure.Installers
 {

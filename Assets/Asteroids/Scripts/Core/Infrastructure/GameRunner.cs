@@ -3,7 +3,6 @@ using Asteroids.Scripts.Core.Infrastructure.StateMachine;
 using Asteroids.Scripts.Core.Infrastructure.StateMachine.States;
 using Asteroids.Scripts.DI.Builder;
 using Asteroids.Scripts.DI.Container;
-using Asteroids.Scripts.DI.Extensions;
 using UnityEngine;
 
 namespace Asteroids.Scripts.Core.Infrastructure

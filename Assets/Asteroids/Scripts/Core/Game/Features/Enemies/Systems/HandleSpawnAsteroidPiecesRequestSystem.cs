@@ -1,7 +1,7 @@
 ﻿using Asteroids.Scripts.Core.Game.Contexts;
 using Asteroids.Scripts.Core.Game.Factories;
 using Asteroids.Scripts.Core.Game.Features.Enemies.Requests;
-using Asteroids.Scripts.Core.Game.Features.Requests;
+using Asteroids.Scripts.Core.Game.Requests;
 using Asteroids.Scripts.ECS.Entities;
 using Asteroids.Scripts.ECS.Systems.Interfaces;
 

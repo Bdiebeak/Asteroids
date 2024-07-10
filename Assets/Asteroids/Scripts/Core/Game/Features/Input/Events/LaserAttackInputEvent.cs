@@ -1,4 +1,4 @@
-﻿using Asteroids.Scripts.Core.Game.Features.Events;
+﻿using Asteroids.Scripts.Core.Game.Events;
 
 namespace Asteroids.Scripts.Core.Game.Features.Input.Events
 {

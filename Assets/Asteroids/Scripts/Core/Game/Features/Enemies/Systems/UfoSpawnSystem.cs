@@ -1,7 +1,7 @@
 ﻿using Asteroids.Scripts.Core.Game.Contexts;
 using Asteroids.Scripts.Core.Game.Features.Enemies.Components;
 using Asteroids.Scripts.Core.Game.Features.Enemies.Requests;
-using Asteroids.Scripts.Core.Game.Features.Requests;
+using Asteroids.Scripts.Core.Game.Requests;
 using Asteroids.Scripts.Core.Utilities.Services.Configs;
 using Asteroids.Scripts.Core.Utilities.Services.Time;
 using Asteroids.Scripts.ECS.Components;
@@ -21,13 +21,13 @@ namespace Asteroids.Scripts.Core.Game.Features.Enemies.Systems
 		{
 			_gameplayContext = gameplayContext;
 			_timeService = timeService;
-			_spawnTimerMask = new Mask().Include<UfoSpawnTime>();
+			_spawnTimerMask = new Mask().Include<UfoSpawner>();
 		}
 
 		public void Start()
 		{
 			Entity entity = _gameplayContext.CreateEntity();
-			entity.Add(new UfoSpawnTime()).value = RandomNextSpawnTime();
+			entity.Add(new UfoSpawner()).spawnTime = RandomNextSpawnTime();
 		}
 
 		public void Update()
@@ -35,19 +35,19 @@ namespace Asteroids.Scripts.Core.Game.Features.Enemies.Systems
 			var entities = _gameplayContext.GetEntities(_spawnTimerMask);
 			foreach (Entity entity in entities)
 			{
-				UfoSpawnTime spawnTime = entity.Get<UfoSpawnTime>();
-				if (_timeService.Time < spawnTime.value)
+				UfoSpawner spawnTime = entity.Get<UfoSpawner>();
+				if (_timeService.Time < spawnTime.spawnTime)
 				{
 					continue;
 				}
-				spawnTime.value = RandomNextSpawnTime();
+				spawnTime.spawnTime = RandomNextSpawnTime();
 				_gameplayContext.CreateRequest(new SpawnUfoRequest());
 			}
 		}
 
 		private float RandomNextSpawnTime()
 		{
-			return _timeService.Time + Random.Range(EnemiesConfig.minUfoDelay, EnemiesConfig.maxUfoDelay);
+			return _timeService.Time + Random.Range(EnemiesConfig.MinUfoDelay, EnemiesConfig.MaxUfoDelay);
 		}
 	}
 }

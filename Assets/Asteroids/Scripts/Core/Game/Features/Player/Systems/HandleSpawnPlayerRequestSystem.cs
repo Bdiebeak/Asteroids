@@ -2,7 +2,7 @@
 using Asteroids.Scripts.Core.Game.Factories;
 using Asteroids.Scripts.Core.Game.Features.Player.Components;
 using Asteroids.Scripts.Core.Game.Features.Player.Requests;
-using Asteroids.Scripts.Core.Game.Features.Requests;
+using Asteroids.Scripts.Core.Game.Requests;
 using Asteroids.Scripts.ECS.Components;
 using Asteroids.Scripts.ECS.Entities;
 using Asteroids.Scripts.ECS.Systems.Interfaces;

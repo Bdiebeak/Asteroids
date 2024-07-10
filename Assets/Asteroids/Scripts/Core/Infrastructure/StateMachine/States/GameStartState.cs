@@ -3,7 +3,7 @@ using Asteroids.Scripts.Core.Utilities.Services.Screens;
 
 namespace Asteroids.Scripts.Core.Infrastructure.StateMachine.States
 {
-	public class GameStartState : IState
+	public class GameStartState : BaseState
 	{
 		private readonly IScreenService _screenService;
 
@@ -12,12 +12,9 @@ namespace Asteroids.Scripts.Core.Infrastructure.StateMachine.States
 			_screenService = screenService;
 		}
 
-		public void Enter()
+		public override void Enter()
 		{
 			_screenService.Show<GameStartScreen>();
 		}
-
-		public void Update() { }
-		public void Exit() { }
 	}
 }

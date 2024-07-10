@@ -10,7 +10,7 @@ using Asteroids.Scripts.Core.Game.Views;
 using Asteroids.Scripts.Core.Utilities.Services.Assets;
 using Asteroids.Scripts.Core.Utilities.Services.Configs;
 using Asteroids.Scripts.DI.Container;
-using Asteroids.Scripts.DI.Extensions;
+using Asteroids.Scripts.DI.Unity.Extensions;
 using Asteroids.Scripts.ECS.Entities;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -44,17 +44,17 @@ namespace Asteroids.Scripts.Core.Game.Factories
 			entity.Add(new PlayerMarker());
 			entity.Add(new Position()).value = position;
 			entity.Add(new MoveDirection());
-			entity.Add(new MoveSpeed()).value = PlayerConfig.shipMoveSpeed;
+			entity.Add(new MoveSpeed()).value = PlayerConfig.MoveSpeed;
 			entity.Add(new MoveVelocity());
-			entity.Add(new MoveAcceleration()).value = PlayerConfig.shipAcceleration;
-			entity.Add(new MoveDeceleration()).value = PlayerConfig.shipDeceleration;
+			entity.Add(new MoveAcceleration()).value = PlayerConfig.Acceleration;
+			entity.Add(new MoveDeceleration()).value = PlayerConfig.Deceleration;
 			entity.Add(new Rotation());
 			entity.Add(new RotationDirection());
-			entity.Add(new RotationSpeed()).value = PlayerConfig.shipRotationSpeed;
+			entity.Add(new RotationSpeed()).value = PlayerConfig.RotationSpeed;
 			entity.Add(new RotationVelocity());
 			entity.Add(new KeepInBoundsMarker());
-			entity.Add(new LaserCharges()).value = WeaponsConfig.laserCharges;
-			entity.Add(new LaserMaxCharges()).value = WeaponsConfig.laserCharges;
+			entity.Add(new LaserCharges()).value = WeaponsConfig.LaserCharges;
+			entity.Add(new LaserMaxCharges()).value = WeaponsConfig.LaserCharges;
 			entity.Add(new ScoreCounter());
 
 			EntityView view = Instantiate(GameAssetKeys.Player, position).GetComponent<EntityView>();
@@ -71,10 +71,10 @@ namespace Asteroids.Scripts.Core.Game.Factories
 			entity.Add(new AsteroidMarker());
 			entity.Add(new Position()).value = position;
 			entity.Add(new MoveDirection()).value = Random.insideUnitCircle.normalized;
-			entity.Add(new MoveSpeed()).value = EnemiesConfig.asteroidSpeed;
+			entity.Add(new MoveSpeed()).value = EnemiesConfig.AsteroidSpeed;
 			entity.Add(new MoveVelocity());
 			entity.Add(new KeepInBoundsMarker());
-			entity.Add(new ScorePoints()).value = EnemiesConfig.asteroidScore;
+			entity.Add(new ScorePoints()).value = EnemiesConfig.AsteroidScore;
 
 			EntityView view = Instantiate(GameAssetKeys.Asteroid, position).GetComponent<EntityView>();
 			view.Construct(entity);
@@ -89,10 +89,10 @@ namespace Asteroids.Scripts.Core.Game.Factories
 			entity.Add(new AsteroidPieceMarker());
 			entity.Add(new Position()).value = position;
 			entity.Add(new MoveDirection()).value = Random.insideUnitCircle.normalized;
-			entity.Add(new MoveSpeed()).value = EnemiesConfig.asteroidPieceSpeed;
+			entity.Add(new MoveSpeed()).value = EnemiesConfig.AsteroidPieceSpeed;
 			entity.Add(new MoveVelocity());
 			entity.Add(new KeepInBoundsMarker());
-			entity.Add(new ScorePoints()).value = EnemiesConfig.asteroidPieceScore;
+			entity.Add(new ScorePoints()).value = EnemiesConfig.AsteroidPieceScore;
 
 			EntityView view = Instantiate(GameAssetKeys.AsteroidPiece, position).GetComponent<EntityView>();
 			view.Construct(entity);
@@ -113,11 +113,11 @@ namespace Asteroids.Scripts.Core.Game.Factories
 			entity.Add(new UfoMarker());
 			entity.Add(new Position()).value = position;
 			entity.Add(new MoveDirection()).value = Random.insideUnitCircle.normalized;
-			entity.Add(new MoveSpeed()).value = EnemiesConfig.ufoSpeed;
+			entity.Add(new MoveSpeed()).value = EnemiesConfig.UfoSpeed;
 			entity.Add(new MoveVelocity());
 			entity.Add(new KeepInBoundsMarker());
 			entity.Add(new ChaseTarget()).value = _player;
-			entity.Add(new ScorePoints()).value = EnemiesConfig.ufoScore;
+			entity.Add(new ScorePoints()).value = EnemiesConfig.UfoScore;
 
 			EntityView view = Instantiate(GameAssetKeys.Ufo, position).GetComponent<EntityView>();
 			view.Construct(entity);
@@ -131,7 +131,7 @@ namespace Asteroids.Scripts.Core.Game.Factories
 			entity.Add(new BulletMarker());
 			entity.Add(new Position()).value = position;
 			entity.Add(new MoveDirection()).value = direction;
-			entity.Add(new MoveSpeed()).value = WeaponsConfig.bulletSpeed;
+			entity.Add(new MoveSpeed()).value = WeaponsConfig.BulletSpeed;
 			entity.Add(new MoveVelocity());
 
 			EntityView view = Instantiate(GameAssetKeys.Bullet, position).GetComponent<EntityView>();

@@ -1,19 +1,18 @@
 ﻿namespace Asteroids.Scripts.Core.Utilities.Services.Configs
 {
-	// TODO: rework config service set up through Scriptable Object.
 	public static class EnemiesConfig
 	{
-		public static int asteroidsWaveCount = 6;
-		public static int asteroidPiecesCount = 2;
-		public static int minUfoDelay = 30;
-		public static int maxUfoDelay = 60;
+		public const int AsteroidsWaveCount = 6;
+		public const int AsteroidPiecesCount = 2;
+		public const int MinUfoDelay = 30;
+		public const int MaxUfoDelay = 60;
 
-		public static float asteroidSpeed = 2;
-		public static float asteroidPieceSpeed = 3;
-		public static float ufoSpeed = 1.5f;
+		public const float AsteroidSpeed = 2;
+		public const float AsteroidPieceSpeed = 3;
+		public const float UfoSpeed = 1.5f;
 
-		public static int asteroidScore = 50;
-		public static int asteroidPieceScore = 75;
-		public static int ufoScore = 100;
+		public const int AsteroidScore = 50;
+		public const int AsteroidPieceScore = 75;
+		public const int UfoScore = 100;
 	}
 }

@@ -1,9 +1,9 @@
 ﻿using Asteroids.Scripts.Core.Game.Contexts;
 using Asteroids.Scripts.Core.Game.Factories;
 using Asteroids.Scripts.Core.Game.Features.Enemies.Requests;
-using Asteroids.Scripts.Core.Game.Features.Requests;
+using Asteroids.Scripts.Core.Game.Requests;
 using Asteroids.Scripts.Core.Utilities.Extensions;
-using Asteroids.Scripts.Core.Utilities.Services.Camera;
+using Asteroids.Scripts.Core.Utilities.Services.GameCamera;
 using Asteroids.Scripts.ECS.Entities;
 using Asteroids.Scripts.ECS.Systems.Interfaces;
 using UnityEngine;

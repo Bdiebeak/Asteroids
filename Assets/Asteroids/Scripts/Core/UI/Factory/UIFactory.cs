@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Asteroids.Scripts.Core.UI.Screens;
 using Asteroids.Scripts.Core.Utilities.Services.Assets;
 using Asteroids.Scripts.DI.Container;
-using Asteroids.Scripts.DI.Extensions;
+using Asteroids.Scripts.DI.Unity.Extensions;
 using UnityEngine;
 
 namespace Asteroids.Scripts.Core.UI.Factory
@@ -22,7 +22,7 @@ namespace Asteroids.Scripts.Core.UI.Factory
 
 			// Don't like this part, but can get rid of it via Addressables and Labels.
 			// This keys will be filled automatically.
-			_screenKeys = new Dictionary<Type, string>()
+			_screenKeys = new Dictionary<Type, string>
 			{
 				{typeof(GameStartScreen), UIAssetKeys.StartScreen},
 				{typeof(GameScreen), UIAssetKeys.GameScreen},

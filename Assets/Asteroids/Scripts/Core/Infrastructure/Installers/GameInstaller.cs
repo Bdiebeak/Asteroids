@@ -2,7 +2,6 @@
 using Asteroids.Scripts.Core.Game.Contexts;
 using Asteroids.Scripts.Core.Game.Factories;
 using Asteroids.Scripts.DI.Builder;
-using Asteroids.Scripts.DI.Extensions;
 
 namespace Asteroids.Scripts.Core.Infrastructure.Installers
 {

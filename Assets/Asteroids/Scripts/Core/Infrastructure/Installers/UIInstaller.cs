@@ -2,7 +2,6 @@
 using Asteroids.Scripts.Core.UI.Models;
 using Asteroids.Scripts.Core.Utilities.Services.Screens;
 using Asteroids.Scripts.DI.Builder;
-using Asteroids.Scripts.DI.Extensions;
 
 namespace Asteroids.Scripts.Core.Infrastructure.Installers
 {

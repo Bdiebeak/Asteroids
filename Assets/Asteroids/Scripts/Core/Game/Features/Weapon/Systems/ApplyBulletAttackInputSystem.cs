@@ -1,10 +1,10 @@
 ﻿using Asteroids.Scripts.Core.Game.Contexts;
-using Asteroids.Scripts.Core.Game.Features.Events;
+using Asteroids.Scripts.Core.Game.Events;
 using Asteroids.Scripts.Core.Game.Features.Input.Events;
 using Asteroids.Scripts.Core.Game.Features.Movement.Components;
 using Asteroids.Scripts.Core.Game.Features.Player.Components;
-using Asteroids.Scripts.Core.Game.Features.Requests;
 using Asteroids.Scripts.Core.Game.Features.Weapon.Requests;
+using Asteroids.Scripts.Core.Game.Requests;
 using Asteroids.Scripts.Core.Utilities.Extensions;
 using Asteroids.Scripts.ECS.Components;
 using Asteroids.Scripts.ECS.Entities;

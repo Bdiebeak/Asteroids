@@ -1,8 +1,8 @@
 ﻿using Asteroids.Scripts.Core.Game.Contexts;
 using Asteroids.Scripts.Core.Game.Factories;
-using Asteroids.Scripts.Core.Game.Features.Requests;
 using Asteroids.Scripts.Core.Game.Features.Weapon.Components;
 using Asteroids.Scripts.Core.Game.Features.Weapon.Requests;
+using Asteroids.Scripts.Core.Game.Requests;
 using Asteroids.Scripts.Core.Utilities.Services.Configs;
 using Asteroids.Scripts.Core.Utilities.Services.Time;
 using Asteroids.Scripts.ECS.Entities;
@@ -44,7 +44,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Weapon.Systems
 					continue;
 				}
 				shooter.Add(new BulletAttackDelay()).endTime = _timeService.Time +
-															   WeaponsConfig.bulletAttackDelay;
+															   WeaponsConfig.BulletAttackDelay;
 
 				_gameFactory.CreateBullet(shootRequest.position, shootRequest.direction);
 			}

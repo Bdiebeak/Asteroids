@@ -1,7 +1,6 @@
 using Asteroids.Scripts.DI.Builder;
 using Asteroids.Scripts.DI.Container;
 using Asteroids.Scripts.DI.Describers;
-using Asteroids.Scripts.DI.Extensions;
 using NUnit.Framework;
 
 namespace Asteroids.Scripts.DI.Tests
@@ -102,7 +101,7 @@ namespace Asteroids.Scripts.DI.Tests
 			IContainerBuilder builder = new ContainerBuilder();
 			builder.Register(new TypeDependencyDescriber(Lifetime.Singleton, typeof(ITestService), typeof(TestService)));
 			IContainer container = builder.Build();
-			ServiceC serviceC = new ServiceC();
+			ServiceC serviceC = new();
 			container.InjectInto(serviceC);
 
 			Assert.IsNotNull(serviceC.Service);

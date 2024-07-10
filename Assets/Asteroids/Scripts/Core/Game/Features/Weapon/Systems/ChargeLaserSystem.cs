@@ -43,7 +43,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Weapon.Systems
 				{
 					continue;
 				}
-				chargeTime.value = _timeService.Time + WeaponsConfig.laserCooldown;
+				chargeTime.value = _timeService.Time + WeaponsConfig.LaserCooldown;
 				charges.value++;
 			}
 		}

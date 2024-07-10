@@ -29,6 +29,7 @@ namespace Asteroids.Scripts.DI.Container
 
 		public void Dispose()
 		{
+			_disposables.Remove(this); // To avoid infinity loop, cause container is registered too.
 			foreach (IDisposable disposable in _disposables)
 			{
 				disposable.Dispose();
@@ -80,10 +81,14 @@ namespace Asteroids.Scripts.DI.Container
 						throw new ArgumentOutOfRangeException(nameof(describer));
 				}
 
-				// Cache instance if it's singleton.
+				// Cache instance in required fields.
 				if (describer.Lifetime == Lifetime.Singleton)
 				{
 					_singletons.Add(describer.RegistrationType, instance);
+				}
+				if (instance is IDisposable disposable)
+				{
+					_disposables.Add(disposable);
 				}
 				return instance;
 			}

@@ -4,9 +4,9 @@ namespace Asteroids.Scripts.DI.Describers
 {
 	public class InstanceDependencyDescriber : IDependencyDescriber
 	{
-		public Lifetime Lifetime { get; private set; }
-		public Type RegistrationType { get; private set; }
-		public object Instance { get; private set; }
+		public Lifetime Lifetime { get; }
+		public Type RegistrationType { get; }
+		public object Instance { get; }
 
 		public InstanceDependencyDescriber(Type dependencyType, object instance)
 		{

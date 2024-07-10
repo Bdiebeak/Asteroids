@@ -1,19 +1,25 @@
 ﻿using Asteroids.Scripts.Core.Game.Factories;
-using Asteroids.Scripts.Core.Game.Features.Base;
 using Asteroids.Scripts.Core.Game.Features.Player.Systems;
+using Asteroids.Scripts.ECS.Features;
 using Asteroids.Scripts.ECS.Systems.Container;
 
 namespace Asteroids.Scripts.Core.Game.Features.Player
 {
 	public class PlayerFeature : Feature
 	{
-		public PlayerFeature(ISystemsFactory systemsFactory) : base(systemsFactory) { }
+		private readonly ISystemsFactory _systemsFactory;
+
+		public PlayerFeature(ISystemsFactory systemsFactory)
+		{
+			_systemsFactory = systemsFactory;
+		}
 
 		public override void AddTo(SystemsContainer systems)
 		{
-			systems.Add(systemsFactory.CreateSystem<SpawnPlayerSystem>());
-			systems.Add(systemsFactory.CreateSystem<HandleSpawnPlayerRequestSystem>());
-			systems.Add(systemsFactory.CreateSystem<GameOverSystem>());
+			systems.Add(_systemsFactory.CreateSystem<SpawnPlayerSystem>());
+			systems.Add(_systemsFactory.CreateSystem<HandleSpawnPlayerRequestSystem>());
+			systems.Add(_systemsFactory.CreateSystem<DestroyPlayerOnEnemyContactSystem>());
+			systems.Add(_systemsFactory.CreateSystem<GameOverSystem>());
 		}
 	}
 }

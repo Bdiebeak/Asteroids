@@ -3,7 +3,7 @@ using Asteroids.Scripts.Core.Game.Features.Destroy.Components;
 using Asteroids.Scripts.Core.Game.Features.Enemies.Components;
 using Asteroids.Scripts.Core.Game.Features.Enemies.Requests;
 using Asteroids.Scripts.Core.Game.Features.Movement.Components;
-using Asteroids.Scripts.Core.Game.Features.Requests;
+using Asteroids.Scripts.Core.Game.Requests;
 using Asteroids.Scripts.Core.Utilities.Services.Configs;
 using Asteroids.Scripts.ECS.Components;
 using Asteroids.Scripts.ECS.Entities;
@@ -32,7 +32,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Enemies.Systems
 				_gameplayContext.CreateRequest(new SpawnAsteroidPiecesRequest
 				{
 					position = position.value,
-					count = EnemiesConfig.asteroidPiecesCount
+					count = EnemiesConfig.AsteroidPiecesCount
 				});
 			}
 		}

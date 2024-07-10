@@ -1,4 +1,4 @@
-﻿using Asteroids.Scripts.Core.Game.Features.Requests;
+﻿using Asteroids.Scripts.Core.Game.Requests;
 using Asteroids.Scripts.ECS.Entities;
 
 namespace Asteroids.Scripts.Core.Game.Features.Collision.Requests

@@ -7,22 +7,22 @@ namespace Asteroids.Scripts.Core.Infrastructure.StateMachine
 	public class GameStateMachine : IGameStateMachine
 	{
 		private readonly IGameStatesFactory _statesFactory;
-		private readonly Dictionary<Type, IState> _states = new();
+		private readonly Dictionary<Type, BaseState> _states = new();
 
-		public IState CurrentState { get; private set; }
+		public BaseState CurrentState { get; private set; }
 
 		public GameStateMachine(IGameStatesFactory statesFactory)
 		{
 			_statesFactory = statesFactory;
 		}
 
-		public void Register<TState>(TState state) where TState : IState
+		public void Register<TState>(TState state) where TState : BaseState
 		{
 			Type stateType = typeof(TState);
 			_states[stateType] = state;
 		}
 
-		public void Enter<TState>() where TState : IState
+		public void Enter<TState>() where TState : BaseState
 		{
 			Type newType = typeof(TState);
 			if (_states.ContainsKey(newType) == false)

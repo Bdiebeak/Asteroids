@@ -1,9 +1,8 @@
 ﻿using Asteroids.Scripts.Core.Game.Contexts;
 using Asteroids.Scripts.Core.Game.Factories;
-using Asteroids.Scripts.Core.Game.Features.Movement.Components;
-using Asteroids.Scripts.Core.Game.Features.Requests;
 using Asteroids.Scripts.Core.Game.Features.Weapon.Components;
 using Asteroids.Scripts.Core.Game.Features.Weapon.Requests;
+using Asteroids.Scripts.Core.Game.Requests;
 using Asteroids.Scripts.Core.Utilities.Services.Configs;
 using Asteroids.Scripts.Core.Utilities.Services.Time;
 using Asteroids.Scripts.ECS.Entities;
@@ -32,8 +31,8 @@ namespace Asteroids.Scripts.Core.Game.Features.Weapon.Systems
 		foreach (Entity entity in entities)
 		{
 			ShootLaserRequest shootRequest = entity.Get<ShootLaserRequest>();
-			Entity shooter = shootRequest.shooter;
 
+			Entity shooter = shootRequest.shooter;
 			if (_gameplayContext.IsActive(shooter) == false)
 			{
 				Debug.LogError("Shooter entity isn't alive.");
@@ -51,23 +50,21 @@ namespace Asteroids.Scripts.Core.Game.Features.Weapon.Systems
 				continue;
 			}
 
+			charges.value--;
 			if (shooter.Has<LaserChargeTime>() == false)
 			{
-				shooter.Add(new LaserChargeTime()
+				shooter.Add(new LaserChargeTime
 				{
 					value = _timeService.Time +
-							WeaponsConfig.laserCooldown
+							WeaponsConfig.LaserCooldown
 				});
 			}
 
-			charges.value--;
 			shooter.Add(new LaserAttackDelay()).endTime = _timeService.Time +
-														  WeaponsConfig.laserAttackDelay;
+														  WeaponsConfig.LaserAttackDelay;
 
-			Position position = shooter.Get<Position>();
-			Rotation rotation = shooter.Get<Rotation>();
-			float destroyTime = _timeService.Time + WeaponsConfig.laserActiveTime;
-			_gameFactory.CreateLaser(position.value, rotation.value, shooter, destroyTime);
+			float destroyTime = _timeService.Time + WeaponsConfig.LaserActiveTime;
+			_gameFactory.CreateLaser(shootRequest.position, shootRequest.rotation, shooter, destroyTime);
 		}
 
 		_gameplayContext.DestroyRequests<ShootLaserRequest>();

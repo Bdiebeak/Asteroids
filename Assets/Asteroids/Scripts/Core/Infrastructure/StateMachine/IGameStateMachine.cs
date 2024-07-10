@@ -4,9 +4,9 @@ namespace Asteroids.Scripts.Core.Infrastructure.StateMachine
 {
 	public interface IGameStateMachine
 	{
-		IState CurrentState { get; }
-		void Register<TState>(TState state) where TState : IState;
-		void Enter<TState>() where TState : IState;
+		BaseState CurrentState { get; }
+		void Register<TState>(TState state) where TState : BaseState;
+		void Enter<TState>() where TState : BaseState;
 		void Update();
 		void Exit();
 	}

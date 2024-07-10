@@ -1,10 +1,10 @@
 ﻿using Asteroids.Scripts.Core.Game.Factories;
-using Asteroids.Scripts.Core.Utilities.Services.Camera;
+using Asteroids.Scripts.Core.Utilities.Services.GameCamera;
 using UnityEngine;
 
 namespace Asteroids.Scripts.Core.Infrastructure.StateMachine.States
 {
-	public class BootstrapState : IState
+	public class BootstrapState : BaseState
 	{
 		private readonly IGameStateMachine _stateMachine;
 		private readonly IGameFactory _gameFactory;
@@ -18,14 +18,11 @@ namespace Asteroids.Scripts.Core.Infrastructure.StateMachine.States
 			_cameraService = cameraService;
 		}
 
-		public void Enter()
+		public override void Enter()
 		{
 			InitializeServices();
 			_stateMachine.Enter<GameStartState>();
 		}
-
-		public void Update() { }
-		public void Exit() { }
 
 		private void InitializeServices()
 		{
