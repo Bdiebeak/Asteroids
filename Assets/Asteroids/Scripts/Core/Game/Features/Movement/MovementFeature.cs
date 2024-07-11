@@ -21,11 +21,11 @@ namespace Asteroids.Scripts.Core.Game.Features.Movement
 			systems.Add(_systemsFactory.CreateSystem<ChaseTargetSystem>());
 			systems.Add(_systemsFactory.CreateSystem<CopyPositionSystem>());
 			systems.Add(_systemsFactory.CreateSystem<CopyRotationSystem>());
-			systems.Add(_systemsFactory.CreateSystem<HandleTeleportRequestSystem>());
 			systems.Add(_systemsFactory.CreateSystem<CalculateMoveVelocitySystem>());
 			systems.Add(_systemsFactory.CreateSystem<CalculateRotationVelocitySystem>());
 			systems.Add(_systemsFactory.CreateSystem<MoveSystem>());
 			systems.Add(_systemsFactory.CreateSystem<RotateSystem>());
+			systems.Add(_systemsFactory.CreateSystem<HandleTeleportRequestSystem>());
 		}
 	}
 }

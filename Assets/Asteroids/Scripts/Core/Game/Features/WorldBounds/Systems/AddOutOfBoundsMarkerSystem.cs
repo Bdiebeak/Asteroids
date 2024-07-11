@@ -10,18 +10,18 @@ using UnityEngine;
 
 namespace Asteroids.Scripts.Core.Game.Features.WorldBounds.Systems
 {
-	public class RemoveOutOfBoundsSystem : IUpdateSystem
+	public class AddOutOfBoundsMarkerSystem : IUpdateSystem
 	{
 		private readonly GameplayContext _gameplayContext;
 		private readonly ICameraService _cameraService;
 		private readonly Mask _movableMask;
 
-		public RemoveOutOfBoundsSystem(GameplayContext gameplayContext, ICameraService cameraService)
+		public AddOutOfBoundsMarkerSystem(GameplayContext gameplayContext, ICameraService cameraService)
 		{
 			_gameplayContext = gameplayContext;
 			_cameraService = cameraService;
 			_movableMask = new Mask().Include<Position>()
-									 .Include<OutOfBoundsMarker>();
+									 .Exclude<OutOfBoundsMarker>();
 		}
 
 		public void Update()
@@ -31,11 +31,11 @@ namespace Asteroids.Scripts.Core.Game.Features.WorldBounds.Systems
 			{
 				Bounds bounds = _cameraService.Bounds;
 				Position position = entity.Get<Position>();
-				if (bounds.IsInBounds(position.value) == false)
+				if (bounds.IsInBounds(position.value))
 				{
 					continue;
 				}
-				entity.Remove<OutOfBoundsMarker>();
+				entity.Add(new OutOfBoundsMarker());
 			}
 		}
 	}

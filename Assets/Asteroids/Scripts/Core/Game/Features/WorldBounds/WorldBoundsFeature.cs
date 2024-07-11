@@ -16,8 +16,8 @@ namespace Asteroids.Scripts.Core.Game.Features.WorldBounds
 
 		public override void AddTo(SystemsContainer systems)
 		{
-			systems.Add(_systemsFactory.CreateSystem<AddOutOfBoundsSystem>());
-			systems.Add(_systemsFactory.CreateSystem<RemoveOutOfBoundsSystem>());
+			systems.Add(_systemsFactory.CreateSystem<AddOutOfBoundsMarkerSystem>());
+			systems.Add(_systemsFactory.CreateSystem<RemoveOutOfBoundsMarkerSystem>());
 			systems.Add(_systemsFactory.CreateSystem<KeepInBoundsSystem>());
 		}
 	}

@@ -9,8 +9,6 @@ using Asteroids.Scripts.Core.Game.Features.WorldBounds.Components;
 using Asteroids.Scripts.Core.Game.Views;
 using Asteroids.Scripts.Core.Utilities.Services.Assets;
 using Asteroids.Scripts.Core.Utilities.Services.Configs;
-using Asteroids.Scripts.DI.Container;
-using Asteroids.Scripts.DI.Unity.Extensions;
 using Asteroids.Scripts.ECS.Entities;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -20,21 +18,18 @@ namespace Asteroids.Scripts.Core.Game.Factories
 	public class GameFactory : IGameFactory
 	{
 		private readonly GameplayContext _gameplayContext;
-		private readonly IContainer _container;
-		private readonly IAssetProvider _assetProvider;
+		private readonly IPrefabCreator _prefabCreator;
 		private Entity _player;
 
-		public GameFactory(GameplayContext gameplayContext,
-						   IContainer container, IAssetProvider assetProvider)
+		public GameFactory(GameplayContext gameplayContext, IPrefabCreator prefabCreator)
 		{
 			_gameplayContext = gameplayContext;
-			_container = container;
-			_assetProvider = assetProvider;
+			_prefabCreator = prefabCreator;
 		}
 
 		public Camera CreateMainCamera()
 		{
-			GameObject instance = Instantiate(GameAssetKeys.MainCamera);
+			GameObject instance = _prefabCreator.Instantiate(GameAssetKeys.MainCamera);
 			return instance.GetComponent<Camera>();
 		}
 
@@ -57,7 +52,8 @@ namespace Asteroids.Scripts.Core.Game.Factories
 			entity.Add(new LaserMaxCharges()).value = WeaponsConfig.LaserCharges;
 			entity.Add(new ScoreCounter());
 
-			EntityView view = Instantiate(GameAssetKeys.Player, position).GetComponent<EntityView>();
+			EntityView view = _prefabCreator.Instantiate(GameAssetKeys.Player, position)
+											.GetComponent<EntityView>();
 			view.Construct(entity);
 
 			_player = entity;
@@ -76,7 +72,8 @@ namespace Asteroids.Scripts.Core.Game.Factories
 			entity.Add(new KeepInBoundsMarker());
 			entity.Add(new ScorePoints()).value = EnemiesConfig.AsteroidScore;
 
-			EntityView view = Instantiate(GameAssetKeys.Asteroid, position).GetComponent<EntityView>();
+			EntityView view = _prefabCreator.Instantiate(GameAssetKeys.Asteroid, position)
+											.GetComponent<EntityView>();
 			view.Construct(entity);
 
 			return entity;
@@ -94,7 +91,8 @@ namespace Asteroids.Scripts.Core.Game.Factories
 			entity.Add(new KeepInBoundsMarker());
 			entity.Add(new ScorePoints()).value = EnemiesConfig.AsteroidPieceScore;
 
-			EntityView view = Instantiate(GameAssetKeys.AsteroidPiece, position).GetComponent<EntityView>();
+			EntityView view = _prefabCreator.Instantiate(GameAssetKeys.AsteroidPiece, position)
+											.GetComponent<EntityView>();
 			view.Construct(entity);
 
 			return entity;
@@ -119,7 +117,8 @@ namespace Asteroids.Scripts.Core.Game.Factories
 			entity.Add(new ChaseTarget()).value = _player;
 			entity.Add(new ScorePoints()).value = EnemiesConfig.UfoScore;
 
-			EntityView view = Instantiate(GameAssetKeys.Ufo, position).GetComponent<EntityView>();
+			EntityView view = _prefabCreator.Instantiate(GameAssetKeys.Ufo, position)
+											.GetComponent<EntityView>();
 			view.Construct(entity);
 
 			return entity;
@@ -134,7 +133,8 @@ namespace Asteroids.Scripts.Core.Game.Factories
 			entity.Add(new MoveSpeed()).value = WeaponsConfig.BulletSpeed;
 			entity.Add(new MoveVelocity());
 
-			EntityView view = Instantiate(GameAssetKeys.Bullet, position).GetComponent<EntityView>();
+			EntityView view = _prefabCreator.Instantiate(GameAssetKeys.Bullet, position)
+											.GetComponent<EntityView>();
 			view.Construct(entity);
 
 			return entity;
@@ -150,28 +150,11 @@ namespace Asteroids.Scripts.Core.Game.Factories
 			entity.Add(new CopyTargetRotation()).target = shooter;
 			entity.Add(new DestroyAtTime()).value = destroyTime;
 
-			EntityView view = Instantiate(GameAssetKeys.Laser, position, rotation).GetComponent<EntityView>();
+			EntityView view = _prefabCreator.Instantiate(GameAssetKeys.Laser, position, rotation)
+											.GetComponent<EntityView>();
 			view.Construct(entity);
 
 			return entity;
-		}
-
-		private GameObject Instantiate(string assetKey)
-		{
-			GameObject prefab = _assetProvider.Load<GameObject>(assetKey);
-			return _container.InstantiatePrefab(prefab);
-		}
-
-		private GameObject Instantiate(string assetKey, Vector2 position)
-		{
-			GameObject prefab = _assetProvider.Load<GameObject>(assetKey);
-			return _container.InstantiatePrefab(prefab, position, Quaternion.identity);
-		}
-
-		private GameObject Instantiate(string assetKey, Vector2 position, float rotation)
-		{
-			GameObject prefab = _assetProvider.Load<GameObject>(assetKey);
-			return _container.InstantiatePrefab(prefab, position, Quaternion.Euler(0, 0, rotation));
 		}
 	}
 }
