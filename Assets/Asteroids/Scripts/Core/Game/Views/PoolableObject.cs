@@ -17,11 +17,8 @@ namespace Asteroids.Scripts.Core.Game.Views
 			_pool.Release(this);
 		}
 
-		public void OnGet(Vector2 position, Quaternion rotation, Transform parent = null)
+		public void OnGet()
 		{
-			transform.position = position;
-			transform.rotation = rotation;
-			transform.parent = parent;
 			gameObject.SetActive(true);
 		}
 

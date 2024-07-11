@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Asteroids.Scripts.Core.Game.Contexts;
 using Asteroids.Scripts.Core.Game.Features.Destroy.Components;
 using Asteroids.Scripts.Core.Game.Features.Enemies.Components;
@@ -187,20 +187,30 @@ namespace Asteroids.Scripts.Core.Game.Factories
 				{
 					pool = new ObjectPool<PoolableObject>(() =>
 														  {
-															  return CreateInstance(prefab, position, rotation, parent).GetComponent<PoolableObject>();
+															  return CreateInstance(prefab, parent).GetComponent<PoolableObject>();
 														  },
-														  poolable => poolable.OnGet(position, rotation, parent),
+														  poolable => poolable.OnGet(),
 														  poolable => poolable.OnRelease(),
 														  poolable => poolable.OnDestroy());
 					_pools[prefabKey] = pool;
 				}
 
 				PoolableObject poolable = pool.Get();
+				poolable.transform.position = position;
+				poolable.transform.rotation = rotation;
+				poolable.transform.parent = parent;
 				poolable.Initialize(pool);
 				return poolable.gameObject;
 			}
 
 			return CreateInstance(prefab, position, rotation, parent);
+		}
+
+		private GameObject CreateInstance(GameObject prefab, Transform parent = null)
+		{
+			GameObject instance = Object.Instantiate(prefab, parent);
+			_container.InjectGameObject(instance);
+			return instance;
 		}
 
 		private GameObject CreateInstance(GameObject prefab, Vector3 position, Quaternion rotation, Transform parent = null)
