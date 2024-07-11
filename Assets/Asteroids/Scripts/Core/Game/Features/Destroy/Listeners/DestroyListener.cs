@@ -1,4 +1,4 @@
-﻿using Asteroids.Scripts.Core.Game.Views;
+﻿using Asteroids.Scripts.Core.Game.Behaviours;
 using Asteroids.Scripts.ECS.Entities;
 
 namespace Asteroids.Scripts.Core.Game.Features.Destroy.Listeners

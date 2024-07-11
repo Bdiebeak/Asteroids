@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Pool;
 
-namespace Asteroids.Scripts.Core.Game.Views
+namespace Asteroids.Scripts.Core.Game.Behaviours
 {
 	public class PoolableObject : MonoBehaviour
 	{

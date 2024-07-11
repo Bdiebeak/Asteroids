@@ -2,7 +2,7 @@
 using Asteroids.Scripts.ECS.Entities;
 using UnityEngine;
 
-namespace Asteroids.Scripts.Core.Game.Views
+namespace Asteroids.Scripts.Core.Game.Behaviours
 {
 	public class EntityView : MonoBehaviour
 	{

@@ -1,5 +1,5 @@
-﻿using Asteroids.Scripts.Core.Game.Features.Movement.Components;
-using Asteroids.Scripts.Core.Game.Views;
+﻿using Asteroids.Scripts.Core.Game.Behaviours;
+using Asteroids.Scripts.Core.Game.Features.Movement.Components;
 using Asteroids.Scripts.ECS.Entities;
 using UnityEngine;
 

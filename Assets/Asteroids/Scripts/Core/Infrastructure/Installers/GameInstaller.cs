@@ -9,6 +9,8 @@ namespace Asteroids.Scripts.Core.Infrastructure.Installers
 	{
 		public void InstallTo(IContainerBuilder containerBuilder)
 		{
+			containerBuilder.Register<IEntityFactory, EntityFactory>();
+			containerBuilder.Register<IViewFactory, ViewFactory>();
 			containerBuilder.Register<IGameFactory, GameFactory>();
 			containerBuilder.Register<ISystemsFactory, SystemsFactory>();
 			containerBuilder.Register<InputContext>();
