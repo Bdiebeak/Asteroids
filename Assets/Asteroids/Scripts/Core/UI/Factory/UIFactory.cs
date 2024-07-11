@@ -2,19 +2,24 @@
 using System.Collections.Generic;
 using Asteroids.Scripts.Core.UI.Screens;
 using Asteroids.Scripts.Core.Utilities.Services.Assets;
+using Asteroids.Scripts.DI.Container;
+using Asteroids.Scripts.DI.Unity.Extensions;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace Asteroids.Scripts.Core.UI.Factory
 {
 	public class UIFactory : IUIFactory
 	{
 		private Canvas _canvas;
-		private readonly IPrefabCreator _prefabCreator;
+		private readonly IContainer _container;
+		private readonly IAssetProvider _assetProvider;
 		private readonly Dictionary<Type, string> _screenKeys;
 
-		public UIFactory(IPrefabCreator prefabCreator)
+		public UIFactory(IContainer container, IAssetProvider assetProvider)
 		{
-			_prefabCreator = prefabCreator;
+			_container = container;
+			_assetProvider = assetProvider;
 
 			// Don't like this part, but can get rid of it via Addressables and Labels.
 			// This keys will be filled automatically.
@@ -30,18 +35,24 @@ namespace Asteroids.Scripts.Core.UI.Factory
 		{
 			Type screenType = typeof(TScreen);
 			Canvas canvas = GetOrCreateMainCanvas();
-			return _prefabCreator.Instantiate(_screenKeys[screenType], canvas.transform)
-								 .GetComponent<TScreen>();
+			return Instantiate(_screenKeys[screenType], canvas.transform).GetComponent<TScreen>();
 		}
 
 		private Canvas GetOrCreateMainCanvas()
 		{
 			if (_canvas == null)
 			{
-				_canvas = _prefabCreator.Instantiate(UIAssetKeys.MainCanvas)
-										.GetComponent<Canvas>();
+				_canvas = Instantiate(UIAssetKeys.MainCanvas).GetComponent<Canvas>();
 			}
 			return _canvas;
+		}
+
+		private GameObject Instantiate(string assetKey, Transform parent = null)
+		{
+			GameObject prefab = _assetProvider.Load<GameObject>(assetKey);
+			GameObject instance = Object.Instantiate(prefab, parent);
+			_container.InjectGameObject(instance);
+			return instance;
 		}
 	}
 }

@@ -20,7 +20,15 @@ namespace Asteroids.Scripts.Core.Game.Features.Destroy.Listeners
 
 		private void OnEntityDestroyed()
 		{
-			Destroy(gameObject);
+			_entity.Destroyed -= OnEntityDestroyed;
+			if (TryGetComponent(out PoolableObject poolable))
+			{
+				poolable.Release();
+			}
+			else
+			{
+				Destroy(gameObject);
+			}
 		}
 	}
 }
