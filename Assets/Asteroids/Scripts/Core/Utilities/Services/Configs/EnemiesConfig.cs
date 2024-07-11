@@ -1,5 +1,6 @@
 ﻿namespace Asteroids.Scripts.Core.Utilities.Services.Configs
 {
+	// TODO: IConfigService - DefaultConfigService with base values.
 	public static class EnemiesConfig
 	{
 		public const int AsteroidsWaveCount = 6;

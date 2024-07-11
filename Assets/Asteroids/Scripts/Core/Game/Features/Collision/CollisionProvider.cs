@@ -1,9 +1,9 @@
 ﻿using System;
 using Asteroids.Scripts.Core.Game.Contexts;
 using Asteroids.Scripts.Core.Game.Features.Collision.Requests;
-using Asteroids.Scripts.Core.Game.Requests;
 using Asteroids.Scripts.Core.Game.Views;
 using Asteroids.Scripts.DI.Attributes;
+using Asteroids.Scripts.ECS.Requests;
 using UnityEngine;
 
 namespace Asteroids.Scripts.Core.Game.Features.Collision

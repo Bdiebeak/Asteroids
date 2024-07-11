@@ -3,7 +3,7 @@ using Asteroids.Scripts.ECS.Components;
 using Asteroids.Scripts.ECS.Contexts;
 using Asteroids.Scripts.ECS.Entities;
 
-namespace Asteroids.Scripts.Core.Game.Requests
+namespace Asteroids.Scripts.ECS.Requests
 {
 	public static class RequestExtensions
 	{

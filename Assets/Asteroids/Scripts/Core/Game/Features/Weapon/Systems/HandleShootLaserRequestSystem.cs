@@ -2,10 +2,10 @@
 using Asteroids.Scripts.Core.Game.Factories;
 using Asteroids.Scripts.Core.Game.Features.Weapon.Components;
 using Asteroids.Scripts.Core.Game.Features.Weapon.Requests;
-using Asteroids.Scripts.Core.Game.Requests;
 using Asteroids.Scripts.Core.Utilities.Services.Configs;
 using Asteroids.Scripts.Core.Utilities.Services.Time;
 using Asteroids.Scripts.ECS.Entities;
+using Asteroids.Scripts.ECS.Requests;
 using Asteroids.Scripts.ECS.Systems.Interfaces;
 using UnityEngine;
 

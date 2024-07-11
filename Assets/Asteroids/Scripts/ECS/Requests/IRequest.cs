@@ -1,6 +1,6 @@
 ﻿using Asteroids.Scripts.ECS.Components;
 
-namespace Asteroids.Scripts.Core.Game.Requests
+namespace Asteroids.Scripts.ECS.Requests
 {
 	public interface IRequest : IComponent { }
 }

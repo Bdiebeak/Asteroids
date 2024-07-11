@@ -1,9 +1,9 @@
 ﻿using Asteroids.Scripts.Core.Game.Contexts;
-using Asteroids.Scripts.Core.Game.Events;
 using Asteroids.Scripts.Core.Game.Features.Collision.Events;
 using Asteroids.Scripts.Core.Game.Features.Collision.Requests;
-using Asteroids.Scripts.Core.Game.Requests;
 using Asteroids.Scripts.ECS.Entities;
+using Asteroids.Scripts.ECS.Events;
+using Asteroids.Scripts.ECS.Requests;
 using Asteroids.Scripts.ECS.Systems.Interfaces;
 using UnityEngine;
 

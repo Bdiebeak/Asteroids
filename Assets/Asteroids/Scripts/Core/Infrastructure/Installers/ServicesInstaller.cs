@@ -11,6 +11,7 @@ namespace Asteroids.Scripts.Core.Infrastructure.Installers
 		public void InstallTo(IContainerBuilder containerBuilder)
 		{
 			containerBuilder.Register<IAssetProvider, ResourcesAssetProvider>();
+			containerBuilder.Register<IPrefabCreator, PrefabCreator>();
 			containerBuilder.Register<IInputService, UnityInputService>();
 			containerBuilder.Register<ITimeService, UnityTimeService>();
 			containerBuilder.Register<ICameraService, CameraService>();

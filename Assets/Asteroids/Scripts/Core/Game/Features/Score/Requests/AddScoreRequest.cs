@@ -1,4 +1,4 @@
-﻿using Asteroids.Scripts.Core.Game.Requests;
+﻿using Asteroids.Scripts.ECS.Requests;
 
 namespace Asteroids.Scripts.Core.Game.Features.Score.Requests
 {

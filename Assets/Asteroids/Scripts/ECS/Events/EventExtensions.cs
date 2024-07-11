@@ -3,7 +3,7 @@ using Asteroids.Scripts.ECS.Components;
 using Asteroids.Scripts.ECS.Contexts;
 using Asteroids.Scripts.ECS.Entities;
 
-namespace Asteroids.Scripts.Core.Game.Events
+namespace Asteroids.Scripts.ECS.Events
 {
 	public static class EventExtensions
 	{

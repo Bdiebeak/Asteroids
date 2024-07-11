@@ -1,10 +1,10 @@
 ﻿using Asteroids.Scripts.Core.Game.Contexts;
 using Asteroids.Scripts.Core.Game.Features.Destroy.Components;
 using Asteroids.Scripts.Core.Game.Features.Destroy.Requests;
-using Asteroids.Scripts.Core.Game.Requests;
 using Asteroids.Scripts.Core.Utilities.Services.Time;
 using Asteroids.Scripts.ECS.Components;
 using Asteroids.Scripts.ECS.Entities;
+using Asteroids.Scripts.ECS.Requests;
 using Asteroids.Scripts.ECS.Systems.Interfaces;
 
 namespace Asteroids.Scripts.Core.Game.Features.Destroy.Systems

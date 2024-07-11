@@ -1,7 +1,7 @@
 ﻿using Asteroids.Scripts.Core.Game.Contexts;
-using Asteroids.Scripts.Core.Game.Events;
 using Asteroids.Scripts.Core.Game.Features.Input.Events;
 using Asteroids.Scripts.Core.Utilities.Services.Input;
+using Asteroids.Scripts.ECS.Events;
 using Asteroids.Scripts.ECS.Systems.Interfaces;
 
 namespace Asteroids.Scripts.Core.Game.Features.Input.Systems
