@@ -2,7 +2,7 @@
 
 namespace Asteroids.Scripts.Core.Game.Features.Weapon.Components
 {
-	public class LaserMaxCharges : IComponent
+	public class MaxCharges : IComponent
 	{
 		public int value;
 	}

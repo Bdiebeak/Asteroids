@@ -37,7 +37,7 @@ namespace Asteroids.Scripts.Core.Game.Factories
 
 		public void CreateAsteroid(Vector2 position)
 		{
-			Entity entity = _entityFactory.CreateAsteroid(position, Random.insideUnitCircle,
+			Entity entity = _entityFactory.CreateAsteroid(position, Random.insideUnitCircle.normalized,
 														  EnemiesConfig.AsteroidSpeed, EnemiesConfig.AsteroidScore);
 			EntityView view = _viewFactory.CreateView(GameAssetKeys.Asteroid, position);
 			view.Construct(entity);
@@ -45,7 +45,7 @@ namespace Asteroids.Scripts.Core.Game.Factories
 
 		public void CreateAsteroidPiece(Vector2 position)
 		{
-			Entity entity = _entityFactory.CreateAsteroidPiece(position, Random.insideUnitCircle,
+			Entity entity = _entityFactory.CreateAsteroidPiece(position, Random.insideUnitCircle.normalized,
 															   EnemiesConfig.AsteroidPieceSpeed, EnemiesConfig.AsteroidPieceScore);
 			EntityView view = _viewFactory.CreateView(GameAssetKeys.AsteroidPiece, position);
 			view.Construct(entity);

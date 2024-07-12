@@ -2,8 +2,8 @@
 
 namespace Asteroids.Scripts.Core.Game.Features.Weapon.Components
 {
-	public class LaserChargeTime : IComponent
+	public class AttackDelay : IComponent
 	{
-		public float value;
+		public float endTime;
 	}
 }

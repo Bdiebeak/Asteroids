@@ -21,10 +21,10 @@ namespace Asteroids.Scripts.Core.Game.Features.Player.Systems
 
 		public void Update()
 		{
-			var entities = _gameplayContext.GetEvents<CollisionEnterEvent>();
+			var entities = _gameplayContext.GetEvents<ValidCollisionEnterEvent>();
 			foreach (Entity entity in entities)
 			{
-				CollisionEnterEvent collisionEvent = entity.Get<CollisionEnterEvent>();
+				ValidCollisionEnterEvent collisionEvent = entity.Get<ValidCollisionEnterEvent>();
 				Entity senderEntity = collisionEvent.sender;
 				Entity collisionEntity = collisionEvent.collision;
 

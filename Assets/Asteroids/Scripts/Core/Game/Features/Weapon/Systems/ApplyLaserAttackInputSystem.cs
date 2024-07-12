@@ -1,7 +1,7 @@
 ﻿using Asteroids.Scripts.Core.Game.Contexts;
 using Asteroids.Scripts.Core.Game.Features.Input.Events;
-using Asteroids.Scripts.Core.Game.Features.Movement.Components;
 using Asteroids.Scripts.Core.Game.Features.Player.Components;
+using Asteroids.Scripts.Core.Game.Features.Weapon.Components;
 using Asteroids.Scripts.Core.Game.Features.Weapon.Requests;
 using Asteroids.Scripts.ECS.Components;
 using Asteroids.Scripts.ECS.Entities;
@@ -32,13 +32,11 @@ namespace Asteroids.Scripts.Core.Game.Features.Weapon.Systems
 			{
 				foreach (Entity playerEntity in playerEntities)
 				{
-					Position position = playerEntity.Get<Position>();
-					Rotation rotation = playerEntity.Get<Rotation>();
-					_gameplayContext.CreateRequest(new ShootLaserRequest
+					LaserWeapon weapon = playerEntity.Get<LaserWeapon>();
+					_gameplayContext.CreateRequest(new ShootRequest
 					{
 						   shooter = playerEntity,
-						   position = position.value,
-						   rotation = rotation.value
+						   weapon = weapon.value
 					});
 				}
 			}

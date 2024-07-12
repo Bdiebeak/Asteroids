@@ -8,42 +8,53 @@ using Asteroids.Scripts.ECS.Systems.Interfaces;
 
 namespace Asteroids.Scripts.Core.Game.Features.Weapon.Systems
 {
-	public class ChargeLaserSystem : IUpdateSystem
+	public class ChargeWeaponSystem : IUpdateSystem
 	{
 		private readonly GameplayContext _gameplayContext;
 		private readonly ITimeService _timeService;
 		private readonly Mask _cooldownMask;
 
-		public ChargeLaserSystem(GameplayContext gameplayContext, ITimeService timeService)
+		public ChargeWeaponSystem(GameplayContext gameplayContext, ITimeService timeService)
 		{
 			_gameplayContext = gameplayContext;
 			_timeService = timeService;
-			_cooldownMask = new Mask().Include<LaserChargeTime>()
-									  .Include<LaserCharges>();
+			_cooldownMask = new Mask().Include<Charges>();
 		}
 
+		// TODO: split logic - add and remove in different systems
 		public void Update()
 		{
 			var entities = _gameplayContext.GetEntities(_cooldownMask);
 			foreach (Entity entity in entities)
 			{
-				LaserCharges charges = entity.Get<LaserCharges>();
-				if (entity.Has<LaserMaxCharges>())
+				Charges charges = entity.Get<Charges>();
+				if (entity.Has<MaxCharges>())
 				{
-					LaserMaxCharges maxCharges = entity.Get<LaserMaxCharges>();
+					MaxCharges maxCharges = entity.Get<MaxCharges>();
 					if (charges.value == maxCharges.value)
 					{
-						entity.Remove<LaserChargeTime>();
+						if (entity.Has<ChargeTime>())
+						{
+							entity.Remove<ChargeTime>();
+						}
 						continue;
+					}
+
+					if (charges.value < maxCharges.value)
+					{
+						if (entity.Has<ChargeTime>() == false)
+						{
+							entity.Add(new ChargeTime()).value = _timeService.Time + WeaponsConfig.LaserCooldown; // TODO: don't use config
+						}
 					}
 				}
 
-				LaserChargeTime chargeTime = entity.Get<LaserChargeTime>();
+				ChargeTime chargeTime = entity.Get<ChargeTime>();
 				if (_timeService.Time < chargeTime.value)
 				{
 					continue;
 				}
-				chargeTime.value = _timeService.Time + WeaponsConfig.LaserCooldown;
+				chargeTime.value = _timeService.Time + WeaponsConfig.LaserCooldown; // TODO: don't use config
 				charges.value++;
 			}
 		}

@@ -2,10 +2,12 @@
 using Asteroids.Scripts.Core.Game.Features.Destroy.Components;
 using Asteroids.Scripts.Core.Game.Features.Enemies.Components;
 using Asteroids.Scripts.Core.Game.Features.Movement.Components;
+using Asteroids.Scripts.Core.Game.Features.Owners.Components;
 using Asteroids.Scripts.Core.Game.Features.Player.Components;
 using Asteroids.Scripts.Core.Game.Features.Score.Components;
 using Asteroids.Scripts.Core.Game.Features.Weapon.Components;
 using Asteroids.Scripts.Core.Game.Features.WorldBounds.Components;
+using Asteroids.Scripts.Core.Utilities.Services.Configs;
 using Asteroids.Scripts.ECS.Entities;
 using UnityEngine;
 
@@ -37,8 +39,8 @@ namespace Asteroids.Scripts.Core.Game.Factories
 			entity.Add(new RotationSpeed()).value = rotationSpeed;
 			entity.Add(new RotationVelocity());
 			entity.Add(new KeepInBoundsMarker());
-			entity.Add(new LaserCharges()).value = maxLaserCharges;
-			entity.Add(new LaserMaxCharges()).value = maxLaserCharges;
+			entity.Add(new BulletWeapon()).value = CreateBulletWeapon(entity);
+			entity.Add(new LaserWeapon()).value = CreateLaserWeapon(entity);
 			entity.Add(new ScoreCounter());
 			_player = entity;
 			return entity;
@@ -107,6 +109,27 @@ namespace Asteroids.Scripts.Core.Game.Factories
 			entity.Add(new CopyTargetPosition()).target = shooter;
 			entity.Add(new CopyTargetRotation()).target = shooter;
 			entity.Add(new DestroyAtTime()).value = destroyTime;
+			return entity;
+		}
+
+		// TODO: use ChargeTime and AttackDelay as params during creation
+		private Entity CreateBulletWeapon(Entity owner)
+		{
+			Entity entity = _gameplayContext.CreateEntity();
+			entity.Add(new WeaponMarker());
+			entity.Add(new BulletWeaponMarker());
+			entity.Add(new Owner()).value = owner;
+			return entity;
+		}
+
+		private Entity CreateLaserWeapon(Entity owner)
+		{
+			Entity entity = _gameplayContext.CreateEntity();
+			entity.Add(new WeaponMarker());
+			entity.Add(new LaserWeaponMarker());
+			entity.Add(new Charges()).value = WeaponsConfig.LaserCharges;
+			entity.Add(new MaxCharges()).value = WeaponsConfig.LaserCharges;
+			entity.Add(new Owner()).value = owner;
 			return entity;
 		}
 	}

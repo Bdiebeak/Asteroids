@@ -32,7 +32,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Enemies.Systems
 				_gameplayContext.CreateRequest(new SpawnAsteroidPiecesRequest
 				{
 					position = position.value,
-					count = EnemiesConfig.AsteroidPiecesCount
+					count = EnemiesConfig.AsteroidPiecesCount // TODO: keep it in Component
 				});
 			}
 		}

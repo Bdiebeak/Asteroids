@@ -7,20 +7,17 @@ using Asteroids.Scripts.ECS.Systems.Interfaces;
 
 namespace Asteroids.Scripts.Core.Game.Features.Weapon.Systems
 {
-	// It looks like a copy of BulletAttackDelaySystem.
-	// We can create a new feature (e.g. DelayFeature) to implement similar delay logic,
-	// but I don't want to complicate this project because it has final requirements.
-	public class LaserAttackDelaySystem : IUpdateSystem
+	public class DelayWeaponAttackSystem : IUpdateSystem
 	{
 		private readonly GameplayContext _gameplayContext;
 		private readonly ITimeService _timeService;
 		private readonly Mask _attackDelayMask;
 
-		public LaserAttackDelaySystem(GameplayContext gameplayContext, ITimeService timeService)
+		public DelayWeaponAttackSystem(GameplayContext gameplayContext, ITimeService timeService)
 		{
 			_gameplayContext = gameplayContext;
 			_timeService = timeService;
-			_attackDelayMask = new Mask().Include<LaserAttackDelay>();
+			_attackDelayMask = new Mask().Include<AttackDelay>();
 		}
 
 		public void Update()
@@ -28,13 +25,13 @@ namespace Asteroids.Scripts.Core.Game.Features.Weapon.Systems
 			var entities = _gameplayContext.GetEntities(_attackDelayMask);
 			foreach (Entity entity in entities)
 			{
-				LaserAttackDelay attackDelay = entity.Get<LaserAttackDelay>();
+				AttackDelay attackDelay = entity.Get<AttackDelay>();
 				if (_timeService.Time < attackDelay.endTime)
 				{
 					continue;
 				}
 
-				entity.Remove<LaserAttackDelay>();
+				entity.Remove<AttackDelay>();
 			}
 		}
 	}

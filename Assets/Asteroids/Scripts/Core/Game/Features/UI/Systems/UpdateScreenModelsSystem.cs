@@ -4,7 +4,6 @@ using Asteroids.Scripts.Core.Game.Features.Player.Components;
 using Asteroids.Scripts.Core.Game.Features.Score.Components;
 using Asteroids.Scripts.Core.Game.Features.Weapon.Components;
 using Asteroids.Scripts.Core.UI.Models;
-using Asteroids.Scripts.Core.Utilities.Services.Time;
 using Asteroids.Scripts.ECS.Components;
 using Asteroids.Scripts.ECS.Entities;
 using Asteroids.Scripts.ECS.Systems.Interfaces;
@@ -17,16 +16,14 @@ namespace Asteroids.Scripts.Core.Game.Features.UI.Systems
 		private readonly GameplayContext _gameplayContext;
 		private readonly GameScreenModel _gameScreenModel;
 		private readonly GameOverScreenModel _gameOverScreenModel;
-		private readonly ITimeService _timeService;
 		private readonly Mask _playerMask;
 
-		public UpdateScreenModelsSystem(GameplayContext gameplayContext, GameScreenModel gameScreenModel,
-									  GameOverScreenModel gameOverScreenModel, ITimeService timeService)
+		public UpdateScreenModelsSystem(GameplayContext gameplayContext,
+										GameScreenModel gameScreenModel, GameOverScreenModel gameOverScreenModel)
 		{
 			_gameplayContext = gameplayContext;
 			_gameScreenModel = gameScreenModel;
 			_gameOverScreenModel = gameOverScreenModel;
-			_timeService = timeService;
 			_playerMask = new Mask().Include<PlayerMarker>();
 		}
 
@@ -44,15 +41,18 @@ namespace Asteroids.Scripts.Core.Game.Features.UI.Systems
 				_gameScreenModel.rotation = entity.Get<Rotation>().value;
 				_gameScreenModel.velocity = velocity;
 				_gameScreenModel.velocityMagnitude = velocity.magnitude;
-				_gameScreenModel.currentLaserCount = entity.Get<LaserCharges>().value;
-				_gameScreenModel.maxLaserCount = entity.Get<LaserMaxCharges>().value;
-				if (entity.Has<LaserChargeTime>() == false)
+
+				Entity laserWeapon = entity.Get<LaserWeapon>().value;
+				_gameScreenModel.currentLaserCount = laserWeapon.Get<Charges>().value;
+				_gameScreenModel.maxLaserCount = laserWeapon.Get<MaxCharges>().value;
+				if (laserWeapon.Has<ChargeTime>())
 				{
-					_gameScreenModel.laserCooldown = 0;
+					ChargeTime chargeTime = laserWeapon.Get<ChargeTime>();
+					_gameScreenModel.laserCooldown = chargeTime.value;
 				}
 				else
 				{
-					_gameScreenModel.laserCooldown = entity.Get<LaserChargeTime>().value - _timeService.Time;
+					_gameScreenModel.laserCooldown = 0;
 				}
 			}
 		}

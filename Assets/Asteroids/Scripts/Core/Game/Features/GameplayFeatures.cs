@@ -3,6 +3,7 @@ using Asteroids.Scripts.Core.Game.Features.Collision;
 using Asteroids.Scripts.Core.Game.Features.Destroy;
 using Asteroids.Scripts.Core.Game.Features.Enemies;
 using Asteroids.Scripts.Core.Game.Features.Movement;
+using Asteroids.Scripts.Core.Game.Features.Owners;
 using Asteroids.Scripts.Core.Game.Features.Player;
 using Asteroids.Scripts.Core.Game.Features.Score;
 using Asteroids.Scripts.Core.Game.Features.UI;
@@ -24,6 +25,7 @@ namespace Asteroids.Scripts.Core.Game.Features
 
 		public override void AddTo(SystemsContainer systems)
 		{
+			systems.Add(new OwnerFeature(_systemsFactory));
 			systems.Add(new PlayerFeature(_systemsFactory));
 			systems.Add(new EnemiesFeature(_systemsFactory));
 			systems.Add(new MovementFeature(_systemsFactory));
