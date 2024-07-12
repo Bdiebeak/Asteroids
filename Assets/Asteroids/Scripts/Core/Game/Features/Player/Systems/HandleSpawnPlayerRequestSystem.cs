@@ -1,5 +1,5 @@
 ﻿using Asteroids.Scripts.Core.Game.Contexts;
-using Asteroids.Scripts.Core.Game.Factories;
+using Asteroids.Scripts.Core.Game.Factories.Game;
 using Asteroids.Scripts.Core.Game.Features.Player.Components;
 using Asteroids.Scripts.Core.Game.Features.Player.Requests;
 using Asteroids.Scripts.ECS.Components;
@@ -20,7 +20,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Player.Systems
 		{
 			_gameplayContext = gameplayContext;
 			_gameFactory = gameFactory;
-			_playerMask = new Mask().Include<PlayerMarker>();
+			_playerMask = new Mask().Include<PlayerComponent>();
 		}
 
 		public void Update()

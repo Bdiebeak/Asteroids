@@ -14,9 +14,9 @@ namespace Asteroids.Scripts.Core.Game.Features.Movement.Systems
 		public CalculateRotationVelocitySystem(GameplayContext gameplayContext)
 		{
 			_gameplayContext = gameplayContext;
-			_rotatableMask = new Mask().Include<RotationDirection>()
-									   .Include<RotationSpeed>()
-									   .Include<RotationVelocity>();
+			_rotatableMask = new Mask().Include<RotationDirectionComponent>()
+									   .Include<RotationSpeedComponent>()
+									   .Include<RotationVelocityComponent>();
 		}
 
 		public void Update()
@@ -24,9 +24,9 @@ namespace Asteroids.Scripts.Core.Game.Features.Movement.Systems
 			var entities = _gameplayContext.GetEntities(_rotatableMask);
 			foreach (Entity entity in entities)
 			{
-				RotationDirection direction = entity.Get<RotationDirection>();
-				RotationSpeed speed = entity.Get<RotationSpeed>();
-				RotationVelocity velocity = entity.Get<RotationVelocity>();
+				RotationDirectionComponent direction = entity.Get<RotationDirectionComponent>();
+				RotationSpeedComponent speed = entity.Get<RotationSpeedComponent>();
+				RotationVelocityComponent velocity = entity.Get<RotationVelocityComponent>();
 
 				float targetVelocity = direction.value * speed.value;
 				velocity.value = targetVelocity;

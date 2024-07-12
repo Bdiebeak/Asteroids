@@ -17,7 +17,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Input.Systems
 		{
 			_inputContext = inputContext;
 			_inputService = inputService;
-			_rotationInputMask = new Mask().Include<RotationInput>();
+			_rotationInputMask = new Mask().Include<RotationInputComponent>();
 		}
 
 		public void Update()
@@ -25,7 +25,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Input.Systems
 			var entities = _inputContext.GetEntities(_rotationInputMask);
 			foreach (Entity entity in entities)
 			{
-				RotationInput rotationInput = entity.Get<RotationInput>();
+				RotationInputComponent rotationInput = entity.Get<RotationInputComponent>();
 				rotationInput.value = _inputService.Rotate;
 			}
 		}

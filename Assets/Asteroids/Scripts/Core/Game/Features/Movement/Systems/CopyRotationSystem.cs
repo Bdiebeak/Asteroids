@@ -15,7 +15,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Movement.Systems
 		public CopyRotationSystem(GameplayContext gameplayContext)
 		{
 			_gameplayContext = gameplayContext;
-			_copyTargetMask = new Mask().Include<CopyTargetRotation>();
+			_copyTargetMask = new Mask().Include<CopyTargetRotationComponent>();
 		}
 
 		public void Update()
@@ -23,15 +23,15 @@ namespace Asteroids.Scripts.Core.Game.Features.Movement.Systems
 			var entities = _gameplayContext.GetEntities(_copyTargetMask);
 			foreach (Entity entity in entities)
 			{
-				Entity target = entity.Get<CopyTargetRotation>().target;
+				Entity target = entity.Get<CopyTargetRotationComponent>().target;
 				if (_gameplayContext.IsActive(target) == false)
 				{
 					Debug.LogError("Target entity isn't active. Can't follow it's rotation.");
 					continue;
 				}
 
-				Rotation rotation = entity.Get<Rotation>();
-				Rotation targetRotation = target.Get<Rotation>();
+				RotationComponent rotation = entity.Get<RotationComponent>();
+				RotationComponent targetRotation = target.Get<RotationComponent>();
 				rotation.value = targetRotation.value;
 			}
 		}

@@ -17,7 +17,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Input.Systems
 		{
 			_inputContext = inputContext;
 			_inputService = inputService;
-			_moveInputMask = new Mask().Include<MoveInput>();
+			_moveInputMask = new Mask().Include<MoveInputComponent>();
 		}
 
 		public void Update()
@@ -25,7 +25,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Input.Systems
 			var entities = _inputContext.GetEntities(_moveInputMask);
 			foreach (Entity entity in entities)
 			{
-				MoveInput moveInput = entity.Get<MoveInput>();
+				MoveInputComponent moveInput = entity.Get<MoveInputComponent>();
 				moveInput.value = _inputService.MoveForward;
 			}
 		}

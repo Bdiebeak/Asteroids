@@ -1,5 +1,5 @@
 ﻿using Asteroids.Scripts.Core.Game.Contexts;
-using Asteroids.Scripts.Core.Game.Factories;
+using Asteroids.Scripts.Core.Game.Factories.Game;
 using Asteroids.Scripts.Core.Game.Features.Enemies.Requests;
 using Asteroids.Scripts.Core.Utilities.Extensions;
 using Asteroids.Scripts.Core.Utilities.Services.GameCamera;

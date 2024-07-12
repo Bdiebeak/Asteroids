@@ -1,4 +1,5 @@
 ﻿using Asteroids.Scripts.Core.Game.Contexts;
+using Asteroids.Scripts.Core.Game.Factories.Entities;
 using Asteroids.Scripts.Core.Game.Features.Enemies.Components;
 using Asteroids.Scripts.Core.Game.Features.Enemies.Requests;
 using Asteroids.Scripts.Core.Utilities.Services.Configs;
@@ -14,20 +15,22 @@ namespace Asteroids.Scripts.Core.Game.Features.Enemies.Systems
 	public class UfoSpawnSystem : IStartSystem, IUpdateSystem
 	{
 		private readonly GameplayContext _gameplayContext;
+		private readonly IEntityFactory _entityFactory;
 		private readonly ITimeService _timeService;
 		private readonly Mask _spawnTimerMask;
 
-		public UfoSpawnSystem(GameplayContext gameplayContext, ITimeService timeService)
+		public UfoSpawnSystem(GameplayContext gameplayContext,
+							  IEntityFactory entityFactory, ITimeService timeService)
 		{
 			_gameplayContext = gameplayContext;
+			_entityFactory = entityFactory;
 			_timeService = timeService;
-			_spawnTimerMask = new Mask().Include<UfoSpawner>();
+			_spawnTimerMask = new Mask().Include<UfoSpawnerComponent>();
 		}
 
 		public void Start()
 		{
-			Entity entity = _gameplayContext.CreateEntity();
-			entity.Add(new UfoSpawner()).spawnTime = RandomNextSpawnTime();
+			_entityFactory.CreateUfoSpawner(RandomNextSpawnTime());
 		}
 
 		public void Update()
@@ -35,19 +38,21 @@ namespace Asteroids.Scripts.Core.Game.Features.Enemies.Systems
 			var entities = _gameplayContext.GetEntities(_spawnTimerMask);
 			foreach (Entity entity in entities)
 			{
-				UfoSpawner spawnTime = entity.Get<UfoSpawner>();
-				if (_timeService.Time < spawnTime.spawnTime)
+				UfoSpawnTimerComponent spawnTimer = entity.Get<UfoSpawnTimerComponent>();
+				if (spawnTimer.value > 0)
 				{
+					spawnTimer.value -= _timeService.DeltaTime;
 					continue;
 				}
-				spawnTime.spawnTime = RandomNextSpawnTime();
+
+				spawnTimer.value = RandomNextSpawnTime();
 				_gameplayContext.CreateRequest(new SpawnUfoRequest());
 			}
 		}
 
 		private float RandomNextSpawnTime()
 		{
-			return _timeService.Time + Random.Range(EnemiesConfig.MinUfoDelay, EnemiesConfig.MaxUfoDelay);
+			return Random.Range(EnemiesConfig.MinUfoDelay, EnemiesConfig.MaxUfoDelay);
 		}
 	}
 }

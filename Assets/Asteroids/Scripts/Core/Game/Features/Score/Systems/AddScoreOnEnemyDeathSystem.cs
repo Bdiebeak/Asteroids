@@ -13,22 +13,22 @@ namespace Asteroids.Scripts.Core.Game.Features.Score.Systems
 	public class AddScoreOnEnemyDeathSystem : IUpdateSystem
 	{
 		private readonly GameplayContext _gameplayContext;
-		private readonly Mask _mask;
+		private readonly Mask _enemyMask;
 
 		public AddScoreOnEnemyDeathSystem(GameplayContext gameplayContext)
 		{
 			_gameplayContext = gameplayContext;
-			_mask = new Mask().Include<EnemyMarker>()
-							  .Include<ScorePoints>()
-							  .Include<ToDestroy>();
+			_enemyMask = new Mask().Include<EnemyComponent>()
+								   .Include<ScoreRewardComponent>()
+								   .Include<ToDestroyComponent>();
 		}
 
 		public void Update()
 		{
-			var entities = _gameplayContext.GetEntities(_mask);
+			var entities = _gameplayContext.GetEntities(_enemyMask);
 			foreach (Entity entity in entities)
 			{
-				ScorePoints score = entity.Get<ScorePoints>();
+				ScoreRewardComponent score = entity.Get<ScoreRewardComponent>();
 				_gameplayContext.CreateRequest(new AddScoreRequest
 				{
 					value = score.value

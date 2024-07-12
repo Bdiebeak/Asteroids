@@ -28,7 +28,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Player.Systems
 				Entity senderEntity = collisionEvent.sender;
 				Entity collisionEntity = collisionEvent.collision;
 
-				if (senderEntity.Has<PlayerMarker>() && collisionEntity.Has<EnemyMarker>())
+				if (senderEntity.Has<PlayerComponent>() && collisionEntity.Has<EnemyComponent>())
 				{
 					_gameplayContext.CreateRequest(new DestroyRequest()).target = senderEntity;
 				}

@@ -2,7 +2,7 @@
 using Asteroids.Scripts.Core.Game.Features.Movement.Components;
 using Asteroids.Scripts.Core.Game.Features.Player.Components;
 using Asteroids.Scripts.Core.Game.Features.Score.Components;
-using Asteroids.Scripts.Core.Game.Features.Weapon.Components;
+using Asteroids.Scripts.Core.Game.Features.Weapons.Components;
 using Asteroids.Scripts.Core.UI.Models;
 using Asteroids.Scripts.ECS.Components;
 using Asteroids.Scripts.ECS.Entities;
@@ -24,7 +24,7 @@ namespace Asteroids.Scripts.Core.Game.Features.UI.Systems
 			_gameplayContext = gameplayContext;
 			_gameScreenModel = gameScreenModel;
 			_gameOverScreenModel = gameOverScreenModel;
-			_playerMask = new Mask().Include<PlayerMarker>();
+			_playerMask = new Mask().Include<PlayerComponent>();
 		}
 
 		public void Update()
@@ -32,28 +32,45 @@ namespace Asteroids.Scripts.Core.Game.Features.UI.Systems
 			var entities = _gameplayContext.GetEntities(_playerMask);
 			foreach (Entity entity in entities)
 			{
-				int score = entity.Get<ScoreCounter>().value;
-				Vector2 velocity = entity.Get<MoveVelocity>().value;
+				UpdateScoreData(entity);
+				UpdateTransformData(entity);
+				UpdateWeaponsData(entity);
+			}
+		}
 
-				_gameOverScreenModel.score = score;
-				_gameScreenModel.score = score;
-				_gameScreenModel.position = entity.Get<Position>().value;
-				_gameScreenModel.rotation = entity.Get<Rotation>().value;
-				_gameScreenModel.velocity = velocity;
-				_gameScreenModel.velocityMagnitude = velocity.magnitude;
+		private void UpdateScoreData(Entity player)
+		{
+			int score = player.Get<ScoreCounterComponent>().value;
 
-				Entity laserWeapon = entity.Get<LaserWeapon>().value;
-				_gameScreenModel.currentLaserCount = laserWeapon.Get<Charges>().value;
-				_gameScreenModel.maxLaserCount = laserWeapon.Get<MaxCharges>().value;
-				if (laserWeapon.Has<ChargeTime>())
-				{
-					ChargeTime chargeTime = laserWeapon.Get<ChargeTime>();
-					_gameScreenModel.laserCooldown = chargeTime.value;
-				}
-				else
-				{
-					_gameScreenModel.laserCooldown = 0;
-				}
+			_gameOverScreenModel.score = score;
+			_gameScreenModel.score = score;
+		}
+
+		private void UpdateTransformData(Entity player)
+		{
+			Vector2 velocity = player.Get<MoveVelocityComponent>().value;
+
+			_gameScreenModel.position = player.Get<PositionComponent>().value;
+			_gameScreenModel.rotation = player.Get<RotationComponent>().value;
+			_gameScreenModel.velocity = velocity;
+			_gameScreenModel.velocityMagnitude = velocity.magnitude;
+		}
+
+		private void UpdateWeaponsData(Entity player)
+		{
+			Entity laserWeapon = player.Get<LaserWeaponReference>().value;
+			ChargesComponent charges = laserWeapon.Get<ChargesComponent>();
+
+			_gameScreenModel.currentLaserCount = charges.value;
+			_gameScreenModel.maxLaserCount = charges.maxValue;
+			if (laserWeapon.Has<ChargeDelayTimerComponent>())
+			{
+				ChargeDelayTimerComponent chargeDelayTimer = laserWeapon.Get<ChargeDelayTimerComponent>();
+				_gameScreenModel.laserCooldown = chargeDelayTimer.value;
+			}
+			else
+			{
+				_gameScreenModel.laserCooldown = 0;
 			}
 		}
 	}

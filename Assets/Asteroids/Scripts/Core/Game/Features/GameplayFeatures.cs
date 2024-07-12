@@ -1,13 +1,13 @@
-﻿using Asteroids.Scripts.Core.Game.Factories;
+﻿using Asteroids.Scripts.Core.Game.Factories.Systems;
 using Asteroids.Scripts.Core.Game.Features.Collision;
 using Asteroids.Scripts.Core.Game.Features.Destroy;
 using Asteroids.Scripts.Core.Game.Features.Enemies;
 using Asteroids.Scripts.Core.Game.Features.Movement;
-using Asteroids.Scripts.Core.Game.Features.Owners;
+using Asteroids.Scripts.Core.Game.Features.Owner;
 using Asteroids.Scripts.Core.Game.Features.Player;
 using Asteroids.Scripts.Core.Game.Features.Score;
 using Asteroids.Scripts.Core.Game.Features.UI;
-using Asteroids.Scripts.Core.Game.Features.Weapon;
+using Asteroids.Scripts.Core.Game.Features.Weapons;
 using Asteroids.Scripts.Core.Game.Features.WorldBounds;
 using Asteroids.Scripts.ECS.Features;
 using Asteroids.Scripts.ECS.Systems.Container;

@@ -13,24 +13,24 @@ namespace Asteroids.Scripts.Core.Game.Features.Destroy.Systems
 	{
 		private readonly GameplayContext _gameplayContext;
 		private readonly ITimeService _timeService;
-		private readonly Mask _destroyAtTimeMask;
+		private readonly Mask _destroyTimerMask;
 
 		public DestroyAtTimeSystem(GameplayContext gameplayContext, ITimeService timeService)
 		{
 			_gameplayContext = gameplayContext;
 			_timeService = timeService;
-			_destroyAtTimeMask = new Mask().Include<DestroyAtTime>();
+			_destroyTimerMask = new Mask().Include<DestroyTimerComponent>();
 		}
 
 		public void Update()
 		{
-			var entities = _gameplayContext.GetEntities(_destroyAtTimeMask);
+			var entities = _gameplayContext.GetEntities(_destroyTimerMask);
 			foreach (Entity entity in entities)
 			{
-				DestroyAtTime destroyAtTime = entity.Get<DestroyAtTime>();
-				if (_timeService.Time < destroyAtTime.value)
+				DestroyTimerComponent destroyTimer = entity.Get<DestroyTimerComponent>();
+				if (destroyTimer.value > 0)
 				{
-					// Wait while current time will be greater than the time of destroy.
+					destroyTimer.value -= _timeService.DeltaTime;
 					continue;
 				}
 

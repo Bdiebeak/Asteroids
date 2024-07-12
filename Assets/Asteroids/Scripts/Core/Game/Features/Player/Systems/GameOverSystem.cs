@@ -19,8 +19,8 @@ namespace Asteroids.Scripts.Core.Game.Features.Player.Systems
 		{
 			_gameplayContext = gameplayContext;
 			_stateMachine = stateMachine;
-			_playerMask = new Mask().Include<PlayerMarker>()
-									.Include<ToDestroy>();
+			_playerMask = new Mask().Include<PlayerComponent>()
+									.Include<ToDestroyComponent>();
 		}
 
 		public void Update()

@@ -15,7 +15,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Movement.Systems
 		public ChaseTargetSystem(GameplayContext gameplayContext)
 		{
 			_gameplayContext = gameplayContext;
-			_chaseTargetMask = new Mask().Include<ChaseTarget>();
+			_chaseTargetMask = new Mask().Include<ChaseTargetComponent>();
 		}
 
 		public void Update()
@@ -23,16 +23,16 @@ namespace Asteroids.Scripts.Core.Game.Features.Movement.Systems
 			var entities = _gameplayContext.GetEntities(_chaseTargetMask);
 			foreach (Entity entity in entities)
 			{
-				Entity target = entity.Get<ChaseTarget>().value;
+				Entity target = entity.Get<ChaseTargetComponent>().value;
 				if (_gameplayContext.IsActive(target) == false)
 				{
 					Debug.LogError("Can't follow entity, it isn't active.");
 					continue;
 				}
 
-				Position position = entity.Get<Position>();
-				Position targetPosition = target.Get<Position>();
-				MoveDirection moveDirection = entity.Get<MoveDirection>();
+				PositionComponent position = entity.Get<PositionComponent>();
+				PositionComponent targetPosition = target.Get<PositionComponent>();
+				MoveDirectionComponent moveDirection = entity.Get<MoveDirectionComponent>();
 				moveDirection.value = (targetPosition.value - position.value).normalized;
 			}
 		}

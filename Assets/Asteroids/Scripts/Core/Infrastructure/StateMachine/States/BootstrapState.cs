@@ -1,4 +1,4 @@
-﻿using Asteroids.Scripts.Core.Game.Factories;
+﻿using Asteroids.Scripts.Core.Game.Factories.Game;
 using Asteroids.Scripts.Core.Utilities.Services.GameCamera;
 using UnityEngine;
 

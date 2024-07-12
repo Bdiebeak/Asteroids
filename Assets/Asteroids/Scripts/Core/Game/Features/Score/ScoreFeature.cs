@@ -1,4 +1,4 @@
-﻿using Asteroids.Scripts.Core.Game.Factories;
+﻿using Asteroids.Scripts.Core.Game.Factories.Systems;
 using Asteroids.Scripts.Core.Game.Features.Score.Systems;
 using Asteroids.Scripts.ECS.Features;
 using Asteroids.Scripts.ECS.Systems.Container;

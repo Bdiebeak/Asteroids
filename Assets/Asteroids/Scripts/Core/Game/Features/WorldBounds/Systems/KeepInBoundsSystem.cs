@@ -22,8 +22,8 @@ namespace Asteroids.Scripts.Core.Game.Features.WorldBounds.Systems
 		{
 			_gameplayContext = gameplayContext;
 			_cameraService = cameraService;
-			_keepInBoundsMask = new Mask().Include<KeepInBoundsMarker>()
-										  .Include<OutOfBoundsMarker>();
+			_keepInBoundsMask = new Mask().Include<KeepInBoundsComponent>()
+										  .Include<OutOfBoundsComponent>();
 		}
 
 		public void Update()
@@ -31,7 +31,7 @@ namespace Asteroids.Scripts.Core.Game.Features.WorldBounds.Systems
 			var entities = _gameplayContext.GetEntities(_keepInBoundsMask);
 			foreach (Entity entity in entities)
 			{
-				Position position = entity.Get<Position>();
+				PositionComponent position = entity.Get<PositionComponent>();
 				Vector2 newPosition = _cameraService.Bounds.GetOppositeEdgePosition(position.value);
 				_gameplayContext.CreateRequest(new TeleportRequest
 				{

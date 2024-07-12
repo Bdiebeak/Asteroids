@@ -19,8 +19,8 @@ namespace Asteroids.Scripts.Core.Game.Features.Movement.Systems
 		{
 			_inputContext = inputContext;
 			_gameplayContext = gameplayContext;
-			_inputMask = new Mask().Include<RotationInput>();
-			_playerMask = new Mask().Include<PlayerMarker>();
+			_inputMask = new Mask().Include<RotationInputComponent>();
+			_playerMask = new Mask().Include<PlayerComponent>();
 		}
 
 		public void Update()
@@ -29,11 +29,11 @@ namespace Asteroids.Scripts.Core.Game.Features.Movement.Systems
 			var playerEntities = _gameplayContext.GetEntities(_playerMask);
 			foreach (Entity inputEntity in inputEntities)
 			{
-				RotationInput rotationInput = inputEntity.Get<RotationInput>();
+				RotationInputComponent rotationInput = inputEntity.Get<RotationInputComponent>();
 
 				foreach (Entity playerEntity in playerEntities)
 				{
-					RotationDirection rotationDirection = playerEntity.Get<RotationDirection>();
+					RotationDirectionComponent rotationDirection = playerEntity.Get<RotationDirectionComponent>();
 					rotationDirection.value = rotationInput.value;
 				}
 			}

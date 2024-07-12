@@ -25,6 +25,7 @@ namespace Asteroids.Scripts.Core.Infrastructure.StateMachine.States
 		public override void Update()
 		{
 			_ecsStartup.Update();
+			_ecsStartup.CleanUp();
 		}
 
 		public override void Exit()

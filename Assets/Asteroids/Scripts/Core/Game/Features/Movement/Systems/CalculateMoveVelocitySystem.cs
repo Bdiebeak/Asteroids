@@ -18,9 +18,9 @@ namespace Asteroids.Scripts.Core.Game.Features.Movement.Systems
 		{
 			_gameplayContext = gameplayContext;
 			_timeService = timeService;
-			_movableMask = new Mask().Include<MoveDirection>()
-									 .Include<MoveSpeed>()
-									 .Include<MoveVelocity>();
+			_movableMask = new Mask().Include<MoveDirectionComponent>()
+									 .Include<MoveSpeedComponent>()
+									 .Include<MoveVelocityComponent>();
 		}
 
 		public void Update()
@@ -28,9 +28,9 @@ namespace Asteroids.Scripts.Core.Game.Features.Movement.Systems
 			var entities = _gameplayContext.GetEntities(_movableMask);
 			foreach (Entity entity in entities)
 			{
-				MoveDirection direction = entity.Get<MoveDirection>();
-				MoveSpeed speed = entity.Get<MoveSpeed>();
-				MoveVelocity velocity = entity.Get<MoveVelocity>();
+				MoveDirectionComponent direction = entity.Get<MoveDirectionComponent>();
+				MoveSpeedComponent speed = entity.Get<MoveSpeedComponent>();
+				MoveVelocityComponent velocity = entity.Get<MoveVelocityComponent>();
 				Vector2 currentVelocity = velocity.value;
 				Vector2 targetVelocity = direction.value * speed.value;
 
@@ -47,9 +47,9 @@ namespace Asteroids.Scripts.Core.Game.Features.Movement.Systems
 
 		private Vector2 Accelerate(Entity entity, Vector2 currentVelocity, Vector2 targetVelocity)
 		{
-			if (entity.Has<MoveAcceleration>())
+			if (entity.Has<MoveAccelerationComponent>())
 			{
-				float acceleration = entity.Get<MoveAcceleration>().value;
+				float acceleration = entity.Get<MoveAccelerationComponent>().value;
 				if (acceleration <= 0)
 				{
 					Debug.LogWarning($"Acceleration has weird value {acceleration}. Should be greater than zero.");
@@ -61,9 +61,9 @@ namespace Asteroids.Scripts.Core.Game.Features.Movement.Systems
 
 		private Vector2 Decelerate(Entity entity, Vector2 currentVelocity, Vector2 targetVelocity)
 		{
-			if (entity.Has<MoveDeceleration>())
+			if (entity.Has<MoveDecelerationComponent>())
 			{
-				float deceleration = entity.Get<MoveDeceleration>().value;
+				float deceleration = entity.Get<MoveDecelerationComponent>().value;
 				if (deceleration <= 0)
 				{
 					Debug.LogWarning($"Deceleration has weird value {deceleration}. Should be greater than zero.");

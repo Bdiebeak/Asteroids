@@ -17,8 +17,8 @@ namespace Asteroids.Scripts.ECS.Unity.Debug
 		public override void AddTo(SystemsContainer systems)
 		{
 			systems.Add(new DebugContextSystem(_context));
-			// systems.Add(new EventsLogSystem(_context));
-			// systems.Add(new RequestsLogSystem(_context));
+			systems.Add(new EventsLogSystem(_context));
+			systems.Add(new RequestsLogSystem(_context));
 		}
 	}
 }

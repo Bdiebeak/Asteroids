@@ -30,7 +30,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Movement.Systems
 					continue;
 				}
 
-				Position position = target.Get<Position>();
+				PositionComponent position = target.Get<PositionComponent>();
 				position.value = request.position;
 			}
 

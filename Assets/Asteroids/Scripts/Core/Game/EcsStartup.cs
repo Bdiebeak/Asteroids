@@ -1,5 +1,5 @@
 ﻿using Asteroids.Scripts.Core.Game.Contexts;
-using Asteroids.Scripts.Core.Game.Factories;
+using Asteroids.Scripts.Core.Game.Factories.Systems;
 using Asteroids.Scripts.Core.Game.Features;
 using Asteroids.Scripts.ECS.Features;
 using Asteroids.Scripts.ECS.Systems.Container;
@@ -39,6 +39,12 @@ namespace Asteroids.Scripts.Core.Game
 		{
 			_inputSystems?.Update();
 			_gameplaySystems?.Update();
+		}
+
+		public void CleanUp()
+		{
+			_inputSystems?.CleanUp();
+			_gameplaySystems?.CleanUp();
 		}
 
 		public void Destroy()

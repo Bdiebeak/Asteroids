@@ -38,7 +38,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Collision
 													"It's required to provide collision event in ECS world.");
 			}
 
-			_gameplayContext.CreateRequest(new ProvideCollisionEnterRequest
+			_gameplayContext.CreateRequest(new CollisionEnterRequest
 			{
 				sender = _entityView.LinkedEntity,
 				collision = collisionEntityView.LinkedEntity

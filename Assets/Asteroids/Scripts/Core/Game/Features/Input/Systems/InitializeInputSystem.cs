@@ -17,8 +17,8 @@ namespace Asteroids.Scripts.Core.Game.Features.Input.Systems
 		public void Start()
 		{
 			Entity entity = _inputContext.CreateEntity();
-			entity.Add(new MoveInput());
-			entity.Add(new RotationInput());
+			entity.Add(new MoveInputComponent());
+			entity.Add(new RotationInputComponent());
 		}
 	}
 }

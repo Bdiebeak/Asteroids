@@ -11,20 +11,20 @@ namespace Asteroids.Scripts.Core.Game.Features.Enemies.Systems
 	public class AsteroidsSpawnSystem : IUpdateSystem
 	{
 		private readonly GameplayContext _gameplayContext;
-		private readonly Mask _asteroidsMask;
-		private readonly Mask _piecesMask;
+		private readonly Mask _asteroidMask;
+		private readonly Mask _pieceMask;
 
 		public AsteroidsSpawnSystem(GameplayContext gameplayContext)
 		{
 			_gameplayContext = gameplayContext;
-			_asteroidsMask = new Mask().Include<AsteroidMarker>();
-			_piecesMask = new Mask().Include<AsteroidPieceMarker>();
+			_asteroidMask = new Mask().Include<AsteroidComponent>();
+			_pieceMask = new Mask().Include<AsteroidPieceComponent>();
 		}
 
 		public void Update()
 		{
-			var asteroids = _gameplayContext.GetEntities(_asteroidsMask);
-			var asteroidPieces = _gameplayContext.GetEntities(_piecesMask);
+			var asteroids = _gameplayContext.GetEntities(_asteroidMask);
+			var asteroidPieces = _gameplayContext.GetEntities(_pieceMask);
 			if (asteroids.Count + asteroidPieces.Count > 0)
 			{
 				return;

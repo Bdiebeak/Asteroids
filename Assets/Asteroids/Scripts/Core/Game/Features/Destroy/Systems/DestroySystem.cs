@@ -9,17 +9,17 @@ namespace Asteroids.Scripts.Core.Game.Features.Destroy.Systems
 	public class DestroySystem : IUpdateSystem
 	{
 		private readonly GameplayContext _gameplayContext;
-		private readonly Mask _toDestroyMask;
+		private readonly Mask _destroyMask;
 
 		public DestroySystem(GameplayContext gameplayContext)
 		{
 			_gameplayContext = gameplayContext;
-			_toDestroyMask = new Mask().Include<ToDestroy>();
+			_destroyMask = new Mask().Include<ToDestroyComponent>();
 		}
 
 		public void Update()
 		{
-			var entities = _gameplayContext.GetEntities(_toDestroyMask);
+			var entities = _gameplayContext.GetEntities(_destroyMask);
 			foreach (Entity entity in entities)
 			{
 				_gameplayContext.DestroyEntity(entity);

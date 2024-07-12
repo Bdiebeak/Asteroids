@@ -17,7 +17,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Movement.Systems
 		{
 			_gameplayContext = gameplayContext;
 			_timeService = timeService;
-			_rotatableMask = new Mask().Include<RotationVelocity>();
+			_rotatableMask = new Mask().Include<RotationVelocityComponent>();
 		}
 
 		public void Update()
@@ -25,8 +25,8 @@ namespace Asteroids.Scripts.Core.Game.Features.Movement.Systems
 			var movableEntities = _gameplayContext.GetEntities(_rotatableMask);
 			foreach (Entity entity in movableEntities)
 			{
-				Rotation rotation = entity.Get<Rotation>();
-				RotationVelocity velocity = entity.Get<RotationVelocity>();
+				RotationComponent rotation = entity.Get<RotationComponent>();
+				RotationVelocityComponent velocity = entity.Get<RotationVelocityComponent>();
 				rotation.value += velocity.value * _timeService.DeltaTime;
 				rotation.value %= 360;
 			}

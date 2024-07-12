@@ -16,7 +16,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Score.Systems
 		public HandleAddScoreRequestSystem(GameplayContext gameplayContext)
 		{
 			_gameplayContext = gameplayContext;
-			_scoreCounterMask = new Mask().Include<ScoreCounter>();
+			_scoreCounterMask = new Mask().Include<ScoreCounterComponent>();
 		}
 
 		public void Update()
@@ -29,7 +29,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Score.Systems
 
 				foreach (Entity counterEntity in scoreCounterEntities)
 				{
-					ScoreCounter scoreCounter = counterEntity.Get<ScoreCounter>();
+					ScoreCounterComponent scoreCounter = counterEntity.Get<ScoreCounterComponent>();
 					scoreCounter.value += addRequest.value;
 				}
 			}

@@ -28,12 +28,12 @@ namespace Asteroids.Scripts.Core.Game.Features.Destroy.Systems
 					continue;
 				}
 
-				if (destroyRequest.target.Has<ToDestroy>())
+				if (destroyRequest.target.Has<ToDestroyComponent>())
 				{
 					continue;
 				}
 
-				destroyRequest.target.Add(new ToDestroy());
+				destroyRequest.target.Add(new ToDestroyComponent());
 			}
 
 			_gameplayContext.DestroyRequests<DestroyRequest>();

@@ -20,12 +20,12 @@ namespace Asteroids.Scripts.Core.Game.Features.Collision.Systems
 
 		public void Update()
 		{
-			_gameplayContext.DestroyEvents<CollisionEnterEvent>();
+			_gameplayContext.DestroyEvents<ValidCollisionEnterEvent>();
 
-			var entities = _gameplayContext.GetRequests<ProvideCollisionEnterRequest>();
+			var entities = _gameplayContext.GetRequests<CollisionEnterRequest>();
 			foreach (Entity entity in entities)
 			{
-				ProvideCollisionEnterRequest collisionRequest = entity.Get<ProvideCollisionEnterRequest>();
+				CollisionEnterRequest collisionRequest = entity.Get<CollisionEnterRequest>();
 				Entity senderEntity = collisionRequest.sender;
 				Entity collisionEntity = collisionRequest.collision;
 
@@ -36,14 +36,14 @@ namespace Asteroids.Scripts.Core.Game.Features.Collision.Systems
 					continue;
 				}
 
-				_gameplayContext.CreateEvent(new CollisionEnterEvent
+				_gameplayContext.CreateEvent(new ValidCollisionEnterEvent
 				{
 					sender = senderEntity,
 					collision = collisionEntity
 				});
 			}
 
-			_gameplayContext.DestroyRequests<ProvideCollisionEnterRequest>();
+			_gameplayContext.DestroyRequests<CollisionEnterRequest>();
 		}
 	}
 }
