@@ -9,17 +9,20 @@ namespace Asteroids.Scripts.Core.Game.Features.Player.Systems
 	public class SpawnPlayerSystem : IStartSystem
 	{
 		private readonly GameplayContext _gameplayContext;
+		private readonly IConfigService _configService;
 
-		public SpawnPlayerSystem(GameplayContext gameplayContext)
+		public SpawnPlayerSystem(GameplayContext gameplayContext, IConfigService configService)
 		{
 			_gameplayContext = gameplayContext;
+			_configService = configService;
 		}
 
 		public void Start()
 		{
+			PlayerConfig playerConfig = _configService.PlayerConfig;
 			_gameplayContext.CreateRequest(new SpawnPlayerRequest
 			{
-				position = PlayerConfig.SpawnPosition
+				position = playerConfig.SpawnPoint
 			});
 		}
 	}

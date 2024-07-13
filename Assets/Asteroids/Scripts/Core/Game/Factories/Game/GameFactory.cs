@@ -2,7 +2,6 @@ using Asteroids.Scripts.Core.Game.Behaviours;
 using Asteroids.Scripts.Core.Game.Factories.Entities;
 using Asteroids.Scripts.Core.Game.Factories.Views;
 using Asteroids.Scripts.Core.Utilities.Services.Assets;
-using Asteroids.Scripts.Core.Utilities.Services.Configs;
 using Asteroids.Scripts.ECS.Entities;
 using UnityEngine;
 
@@ -30,49 +29,42 @@ namespace Asteroids.Scripts.Core.Game.Factories.Game
 
 		public void CreatePlayer(Vector2 position)
 		{
-			Entity entity = _entityFactory.CreatePlayer(position, PlayerConfig.MoveSpeed, PlayerConfig.RotationSpeed,
-														PlayerConfig.Acceleration, PlayerConfig.Deceleration,
-														WeaponsConfig.BulletAttackDelay, WeaponsConfig.LaserAttackDelay,
-														WeaponsConfig.LaserCooldown, WeaponsConfig.LaserCharges);
+			Entity entity = _entityFactory.CreatePlayer(position);
 			EntityView view = _viewFactory.CreateView(GameAssetKeys.Player, position);
 			view.Construct(entity);
 		}
 
-		public void CreateAsteroid(Vector2 position)
+		public void CreateAsteroid(Vector2 position, Vector2 direction)
 		{
-			Entity entity = _entityFactory.CreateAsteroid(position, Random.insideUnitCircle.normalized,
-														  EnemiesConfig.AsteroidPiecesCount,
-														  EnemiesConfig.AsteroidSpeed, EnemiesConfig.AsteroidScore);
+			Entity entity = _entityFactory.CreateAsteroid(position, direction);
 			EntityView view = _viewFactory.CreateView(GameAssetKeys.Asteroid, position);
 			view.Construct(entity);
 		}
 
-		public void CreateAsteroidPiece(Vector2 position)
+		public void CreateAsteroidPiece(Vector2 position, Vector2 direction)
 		{
-			Entity entity = _entityFactory.CreateAsteroidPiece(position, Random.insideUnitCircle.normalized,
-															   EnemiesConfig.AsteroidPieceSpeed,
-															   EnemiesConfig.AsteroidPieceScore);
+			Entity entity = _entityFactory.CreateAsteroidPiece(position, direction);
 			EntityView view = _viewFactory.CreateView(GameAssetKeys.AsteroidPiece, position);
 			view.Construct(entity);
 		}
 
 		public void CreateUfo(Vector2 position)
 		{
-			Entity entity = _entityFactory.CreateUfo(position, EnemiesConfig.UfoSpeed, EnemiesConfig.UfoScore);
+			Entity entity = _entityFactory.CreateUfo(position);
 			EntityView view = _viewFactory.CreateView(GameAssetKeys.Ufo, position);
 			view.Construct(entity);
 		}
 
 		public void CreateBullet(Vector2 position, Vector2 direction)
 		{
-			Entity entity = _entityFactory.CreateBullet(position, direction, WeaponsConfig.BulletSpeed);
+			Entity entity = _entityFactory.CreateBullet(position, direction);
 			EntityView view = _viewFactory.CreateView(GameAssetKeys.Bullet, position);
 			view.Construct(entity);
 		}
 
 		public void CreateLaser(Vector2 position, float rotation, Entity shooter)
 		{
-			Entity entity = _entityFactory.CreateLaser(position, rotation, shooter, WeaponsConfig.LaserActiveTime);
+			Entity entity = _entityFactory.CreateLaser(position, rotation, shooter);
 			EntityView view = _viewFactory.CreateView(GameAssetKeys.Laser, position, rotation);
 			view.Construct(entity);
 		}

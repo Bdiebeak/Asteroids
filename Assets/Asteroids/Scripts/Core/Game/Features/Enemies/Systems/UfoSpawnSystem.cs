@@ -17,14 +17,16 @@ namespace Asteroids.Scripts.Core.Game.Features.Enemies.Systems
 		private readonly GameplayContext _gameplayContext;
 		private readonly IEntityFactory _entityFactory;
 		private readonly ITimeService _timeService;
+		private readonly IConfigService _configService;
 		private readonly Mask _spawnTimerMask;
 
-		public UfoSpawnSystem(GameplayContext gameplayContext,
-							  IEntityFactory entityFactory, ITimeService timeService)
+		public UfoSpawnSystem(GameplayContext gameplayContext, IEntityFactory entityFactory,
+							  ITimeService timeService, IConfigService configService)
 		{
 			_gameplayContext = gameplayContext;
 			_entityFactory = entityFactory;
 			_timeService = timeService;
+			_configService = configService;
 			_spawnTimerMask = new Mask().Include<UfoSpawnerComponent>();
 		}
 
@@ -52,7 +54,8 @@ namespace Asteroids.Scripts.Core.Game.Features.Enemies.Systems
 
 		private float RandomNextSpawnTime()
 		{
-			return Random.Range(EnemiesConfig.MinUfoDelay, EnemiesConfig.MaxUfoDelay);
+			UfoConfig ufoConfig = _configService.UfoConfig;
+			return Random.Range(ufoConfig.MinSpawnTime, ufoConfig.MaxSpawnTime);
 		}
 	}
 }

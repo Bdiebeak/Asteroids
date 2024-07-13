@@ -11,12 +11,14 @@ namespace Asteroids.Scripts.Core.Game.Features.Enemies.Systems
 	public class AsteroidsSpawnSystem : IUpdateSystem
 	{
 		private readonly GameplayContext _gameplayContext;
+		private readonly IConfigService _configService;
 		private readonly Mask _asteroidMask;
 		private readonly Mask _pieceMask;
 
-		public AsteroidsSpawnSystem(GameplayContext gameplayContext)
+		public AsteroidsSpawnSystem(GameplayContext gameplayContext, IConfigService configService)
 		{
 			_gameplayContext = gameplayContext;
+			_configService = configService;
 			_asteroidMask = new Mask().Include<AsteroidComponent>();
 			_pieceMask = new Mask().Include<AsteroidPieceComponent>();
 		}
@@ -30,9 +32,10 @@ namespace Asteroids.Scripts.Core.Game.Features.Enemies.Systems
 				return;
 			}
 
+			AsteroidConfig asteroidConfig = _configService.AsteroidConfig;
 			_gameplayContext.CreateRequest(new SpawnAsteroidsRequest
 			{
-				count = EnemiesConfig.AsteroidsWaveCount
+				count = asteroidConfig.SpawnCount
 			});
 		}
 	}

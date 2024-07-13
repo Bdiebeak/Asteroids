@@ -4,6 +4,7 @@ using Asteroids.Scripts.Core.Game.Features.Enemies.Requests;
 using Asteroids.Scripts.ECS.Entities;
 using Asteroids.Scripts.ECS.Requests;
 using Asteroids.Scripts.ECS.Systems.Interfaces;
+using UnityEngine;
 
 namespace Asteroids.Scripts.Core.Game.Features.Enemies.Systems
 {
@@ -27,7 +28,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Enemies.Systems
 				SpawnAsteroidPiecesRequest spawnRequest = entity.Get<SpawnAsteroidPiecesRequest>();
 				for (int i = 0; i < spawnRequest.count; i++)
 				{
-					_gameFactory.CreateAsteroidPiece(spawnRequest.position);
+					_gameFactory.CreateAsteroidPiece(spawnRequest.position, Random.insideUnitCircle.normalized);
 				}
 			}
 

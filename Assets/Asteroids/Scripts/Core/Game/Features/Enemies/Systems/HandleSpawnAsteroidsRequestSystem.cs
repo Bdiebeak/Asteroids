@@ -33,7 +33,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Enemies.Systems
 				for (int i = 0; i < spawnRequest.count; i++)
 				{
 					Vector2 position = _cameraService.Bounds.GetRandomEdgePosition();
-					_gameFactory.CreateAsteroid(position);
+					_gameFactory.CreateAsteroid(position, Random.insideUnitCircle.normalized);
 				}
 			}
 

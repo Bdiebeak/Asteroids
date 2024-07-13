@@ -2,12 +2,12 @@
 
 namespace Asteroids.Scripts.Core.Utilities.Services.Configs
 {
-	public static class PlayerConfig
+	public class PlayerConfig
 	{
-		public const float RotationSpeed = 200f;
-		public const float Acceleration = 9f;
-		public const float Deceleration = 1.25f;
-		public const float MoveSpeed = 8.5f;
-		public static readonly Vector2 SpawnPosition = Vector2.zero;
+		public float MoveSpeed = 8.5f;
+		public float MoveAcceleration = 9f;
+		public float MoveDeceleration = 1.25f;
+		public float RotationSpeed = 200f;
+		public Vector2 SpawnPoint = Vector2.zero;
 	}
 }
