@@ -53,8 +53,9 @@ namespace Asteroids.Scripts.Core.Game
 			_inputSystems = null;
 			_gameplaySystems?.Destroy();
 			_gameplaySystems = null;
-			_inputContext.Destroy();
-			_gameplayContext.Destroy();
+
+			_inputContext.Reset();
+			_gameplayContext.Reset();
 		}
 
 		private void InitializeInputSystems()

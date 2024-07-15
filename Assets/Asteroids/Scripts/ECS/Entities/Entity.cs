@@ -8,8 +8,6 @@ namespace Asteroids.Scripts.ECS.Entities
 {
 	public class Entity
 	{
-		public event Action<IComponent> ComponentAdded;
-		public event Action<IComponent> ComponentRemoved;
 		public event Action Destroyed;
 
 		private readonly Dictionary<Type, IComponent> _components = new();
@@ -28,43 +26,61 @@ namespace Asteroids.Scripts.ECS.Entities
 
 		public TComponent Add<TComponent>(TComponent component) where TComponent : IComponent
 		{
-			Type componentType = typeof(TComponent);
+			Type componentType = component.GetType();
+			return (TComponent)Add(componentType, component);
+		}
+
+		public IComponent Add(Type componentType, IComponent component)
+		{
 			if (_components.ContainsKey(componentType))
 			{
 				throw new AddComponentException($"Entity already has component {componentType}. Can't add.");
 			}
 
 			_components[componentType] = component;
-			ComponentAdded?.Invoke(component);
 			return component;
 		}
 
 		public TComponent Get<TComponent>() where TComponent : IComponent
 		{
 			Type componentType = typeof(TComponent);
-			if (Has<TComponent>() == false)
+			return (TComponent)Get(componentType);
+		}
+
+		public IComponent Get(Type componentType)
+		{
+			if (Has(componentType) == false)
 			{
 				throw new NoComponentException($"Entity doesn't have component {componentType}. Can't get.");
 			}
 
-			return (TComponent)_components[componentType];
+			return _components[componentType];
 		}
 
 		public void Remove<TComponent>() where TComponent : IComponent
 		{
 			Type componentType = typeof(TComponent);
-			if (Has<TComponent>() == false)
+			Remove(componentType);
+		}
+
+		public void Remove(Type componentType)
+		{
+			if (Has(componentType) == false)
 			{
 				throw new NoComponentException($"Entity doesn't have component {componentType}. Can't remove.");
 			}
 
-			ComponentRemoved?.Invoke(_components[componentType]);
 			_components.Remove(componentType);
 		}
 
 		public bool Has<TComponent>() where TComponent : IComponent
 		{
 			Type componentType = typeof(TComponent);
+			return Has(componentType);
+		}
+
+		public bool Has(Type componentType)
+		{
 			return _components.ContainsKey(componentType);
 		}
 

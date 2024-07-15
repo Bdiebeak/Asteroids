@@ -72,12 +72,13 @@ namespace Asteroids.Scripts.ECS.Contexts
 			return entities;
 		}
 
-		public void Destroy()
+		public void Reset()
 		{
 			while (_entities.Count > 0)
 			{
 				DestroyEntity(_entities.First());
 			}
+			_creationIndex = 0;
 		}
 	}
 }
