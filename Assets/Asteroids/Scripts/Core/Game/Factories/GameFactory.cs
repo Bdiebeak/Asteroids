@@ -1,11 +1,8 @@
 using System.Collections.Generic;
 using Asteroids.Scripts.Core.Game.Behaviours;
-using Asteroids.Scripts.Core.Game.Contexts;
-using Asteroids.Scripts.Core.Game.Factories.EntityBuilders;
 using Asteroids.Scripts.Core.Game.Features.Movement.Components;
 using Asteroids.Scripts.Core.Utilities.Pool;
 using Asteroids.Scripts.Core.Utilities.Services.Assets;
-using Asteroids.Scripts.Core.Utilities.Services.Configs;
 using Asteroids.Scripts.DI.Container;
 using Asteroids.Scripts.DI.Unity.Extensions;
 using Asteroids.Scripts.ECS.Entities;
@@ -13,22 +10,17 @@ using UnityEngine;
 
 namespace Asteroids.Scripts.Core.Game.Factories
 {
+	// TODO: refactoring
 	public class GameFactory : IGameFactory
 	{
 		private readonly IContainer _container;
-		private readonly GameplayContext _gameplayContext;
 		private readonly IAssetProvider _assetProvider;
-		private readonly IConfigService _configService;
 		private readonly Dictionary<string, IPool> _pools = new();
-		private Entity _playerEntity;
 
-		public GameFactory(IContainer container, GameplayContext gameplayContext,
-						   IAssetProvider assetProvider, IConfigService configService)
+		public GameFactory(IContainer container, IAssetProvider assetProvider)
 		{
 			_container = container;
-			_gameplayContext = gameplayContext;
 			_assetProvider = assetProvider;
-			_configService = configService;
 		}
 
 		public Camera CreateMainCamera()
@@ -37,83 +29,40 @@ namespace Asteroids.Scripts.Core.Game.Factories
 			return camera.GetComponent<Camera>();
 		}
 
-		public void CreatePlayer(Vector2 position)
+		public void CreatePlayerView(Entity entity)
 		{
-			GameObject player = Instantiate(GameAssetKeys.Player, position, 0);
-			Entity playerEntity = new PlayerBuilder(_configService.PlayerConfig,
-													_configService.BulletWeaponConfig,
-													_configService.LaserWeaponConfig)
-								  .With(new PositionComponent { value = position })
-								  .Build(_gameplayContext);
-			player.GetComponent<EntityView>().Construct(playerEntity);
-			_playerEntity = playerEntity;
+			EntityView view = CreateView(GameAssetKeys.Player, entity.Get<PositionComponent>().value, entity.Get<RotationComponent>().value);
+			view.Construct(entity);
 		}
 
-		public void CreateAsteroid(Vector2 position, Vector2 moveDirection)
+		public void CreateAsteroidView(Entity entity)
 		{
-			GameObject asteroid = Instantiate(GameAssetKeys.Asteroid, position, 0);
-			Entity asteroidEntity = new AsteroidBuilder(_configService.AsteroidConfig)
-									.With(new PositionComponent { value = position })
-									.With(new MoveDirectionComponent { value = moveDirection })
-									.Build(_gameplayContext);
-			asteroid.GetComponent<EntityView>().Construct(asteroidEntity);
+			EntityView view = CreateView(GameAssetKeys.Asteroid, entity.Get<PositionComponent>().value);
+			view.Construct(entity);
 		}
 
-		public void CreateAsteroidPiece(Vector2 position, Vector2 moveDirection)
+		public void CreateAsteroidPieceView(Entity entity)
 		{
-			GameObject piece = Instantiate(GameAssetKeys.AsteroidPiece, position, 0);
-			Entity pieceEntity = new AsteroidPieceBuilder(_configService.AsteroidPieceConfig)
-								 .With(new PositionComponent { value = position })
-								 .With(new MoveDirectionComponent { value = moveDirection })
-								 .Build(_gameplayContext);
-			piece.GetComponent<EntityView>().Construct(pieceEntity);
+			EntityView view = CreateView(GameAssetKeys.AsteroidPiece, entity.Get<PositionComponent>().value);
+			view.Construct(entity);
 		}
 
-		public void CreateUfo(Vector2 position)
+		public void CreateUfoView(Entity entity)
 		{
-			GameObject ufo = Instantiate(GameAssetKeys.Ufo, position, 0);
-			Entity ufoEntity = new UfoBuilder(_configService.UfoConfig)
-							   .With(new PositionComponent { value = position })
-							   .With(new ChaseTargetComponent { targetEntityId = _playerEntity.Id })
-							   .Build(_gameplayContext);
-			ufo.GetComponent<EntityView>().Construct(ufoEntity);
+			EntityView view = CreateView(GameAssetKeys.Ufo, entity.Get<PositionComponent>().value);
+			view.Construct(entity);
 		}
 
-		public void CreateBullet(Vector2 position, Vector2 moveDirection)
+		public void CreateBulletView(Entity entity)
 		{
-			GameObject bullet = Instantiate(GameAssetKeys.Bullet, position, 0);
-			Entity bulletEntity = new BulletBuilder(_configService.BulletWeaponConfig)
-								  .With(new PositionComponent { value = position })
-								  .With(new MoveDirectionComponent { value = moveDirection })
-								  .Build(_gameplayContext);
-			bullet.GetComponent<EntityView>().Construct(bulletEntity);
+			EntityView view = CreateView(GameAssetKeys.Bullet, entity.Get<PositionComponent>().value);
+			view.Construct(entity);
 		}
 
-		public void CreateLaser(Vector2 position, float rotation, int shooterId)
+		public void CreateLaserView(Entity entity)
 		{
-			GameObject laser = Instantiate(GameAssetKeys.Laser, position, 0);
-			Entity laserEntity = new LaserBuilder(_configService.LaserWeaponConfig)
-								 .With(new PositionComponent { value = position })
-								 .With(new RotationComponent { value = rotation })
-								 .With(new CopyTargetPositionComponent { targetEntityId = shooterId })
-								 .With(new CopyTargetRotationComponent { targetEntityId = shooterId })
-								 .Build(_gameplayContext);
-			laser.GetComponent<EntityView>().Construct(laserEntity);
-		}
-
-		/// <summary>
-		/// This function spawns prefab and changes its Transform values.
-		/// </summary>
-		/// <param name="prefabKey"> Prefab key to load it via AssetProvider. </param>
-		/// <param name="position"> New instance position. </param>
-		/// <param name="rotation"> New instance rotation. </param>
-		/// <param name="parent"> New instance parent. </param>
-		/// <returns> New created object. </returns>
-		private GameObject Instantiate(string prefabKey, Vector2 position, float rotation, Transform parent = null)
-		{
-			GameObject prefab = _assetProvider.Load<GameObject>(prefabKey);
-			GameObject instance = GetInstance(prefab, position, Quaternion.Euler(0, 0, rotation));
-			return instance;
+			EntityView view = CreateView(GameAssetKeys.Laser, entity.Get<PositionComponent>().value, entity.Get<RotationComponent>().value);
+			view.Construct(entity);
 		}
 
 		/// <summary>
@@ -130,7 +79,13 @@ namespace Asteroids.Scripts.Core.Game.Factories
 			return instance;
 		}
 
-		// TODO: refactoring
+		public EntityView CreateView(string assetKey, Vector3 position, float rotation = 0)
+		{
+			GameObject prefab = _assetProvider.Load<GameObject>(assetKey);
+			GameObject instance = GetInstance(prefab, position, Quaternion.Euler(0, 0, rotation));
+			return instance.GetComponent<EntityView>();
+		}
+
 		private GameObject GetInstance(GameObject prefab, Vector3 position, Quaternion rotation)
 		{
 			string prefabKey = prefab.name;
@@ -143,10 +98,11 @@ namespace Asteroids.Scripts.Core.Game.Factories
 				}
 
 				PoolableObject poolable = pool.Get();
+				poolable.Initialize(pool);
 				Transform poolableTransform = poolable.transform;
 				poolableTransform.position = position;
 				poolableTransform.rotation = rotation;
-				poolable.Initialize(pool);
+
 				return poolable.gameObject;
 			}
 

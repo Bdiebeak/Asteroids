@@ -1,5 +1,4 @@
 ﻿using Asteroids.Scripts.Core.Game.Contexts;
-using Asteroids.Scripts.Core.Game.Factories.EntityBuilders;
 using Asteroids.Scripts.Core.Game.Features.Enemies.Components;
 using Asteroids.Scripts.Core.Game.Features.Enemies.Requests;
 using Asteroids.Scripts.Core.Utilities.Extensions;
@@ -34,9 +33,9 @@ namespace Asteroids.Scripts.Core.Game.Features.Enemies.Systems
 
 		public void Start()
 		{
-			new UfoSpawnBuilder()
-				.With(new UfoSpawnTimerComponent{ value = RandomNextSpawnTime() })
-				.Build(_gameplayContext);
+			Entity spawner = _gameplayContext.CreateEntity();
+			spawner.Add(new UfoSpawnerComponent());
+			spawner.Add(new UfoSpawnTimerComponent()).value = RandomizeNextSpawnTime();
 		}
 
 		public void Update()
@@ -50,7 +49,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Enemies.Systems
 					spawnTimer.value -= _timeService.DeltaTime;
 					continue;
 				}
-				spawnTimer.value = RandomNextSpawnTime();
+				spawnTimer.value = RandomizeNextSpawnTime();
 
 				UfoConfig ufoConfig = _configService.UfoConfig;
 				for (int i = 0; i < ufoConfig.spawnCount; i++)
@@ -63,7 +62,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Enemies.Systems
 			}
 		}
 
-		private float RandomNextSpawnTime()
+		private float RandomizeNextSpawnTime()
 		{
 			UfoConfig ufoConfig = _configService.UfoConfig;
 			return Random.Range(ufoConfig.minSpawnTime, ufoConfig.maxSpawnTime);
