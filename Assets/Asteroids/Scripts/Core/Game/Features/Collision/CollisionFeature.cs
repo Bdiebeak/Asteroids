@@ -1,4 +1,4 @@
-﻿using Asteroids.Scripts.Core.Game.Factories.Systems;
+﻿using Asteroids.Scripts.Core.Game.Factories;
 using Asteroids.Scripts.Core.Game.Features.Collision.Systems;
 using Asteroids.Scripts.ECS.Features;
 using Asteroids.Scripts.ECS.Systems.Container;
@@ -7,16 +7,16 @@ namespace Asteroids.Scripts.Core.Game.Features.Collision
 {
 	public class CollisionFeature : Feature
 	{
-		private readonly ISystemsFactory _systemsFactory;
+		private readonly ISystemFactory _systemFactory;
 
-		public CollisionFeature(ISystemsFactory systemsFactory)
+		public CollisionFeature(ISystemFactory systemFactory)
 		{
-			_systemsFactory = systemsFactory;
+			_systemFactory = systemFactory;
 		}
 
 		public override void AddTo(SystemsContainer systems)
 		{
-			systems.Add(_systemsFactory.CreateSystem<CleanUpCollisionEventsSystem>());
+			systems.Add(_systemFactory.CreateSystem<CleanUpCollisionEventsSystem>());
 		}
 	}
 }

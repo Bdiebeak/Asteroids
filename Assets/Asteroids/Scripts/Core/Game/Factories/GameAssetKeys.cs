@@ -1,4 +1,4 @@
-﻿namespace Asteroids.Scripts.Core.Game.Factories.Game
+﻿namespace Asteroids.Scripts.Core.Game.Factories
 {
 	public static class GameAssetKeys
 	{

@@ -1,5 +1,5 @@
 ﻿using Asteroids.Scripts.Core.Game.Contexts;
-using Asteroids.Scripts.Core.Game.Factories.Systems;
+using Asteroids.Scripts.Core.Game.Factories;
 using Asteroids.Scripts.Core.Game.Features;
 using Asteroids.Scripts.ECS.Features;
 using Asteroids.Scripts.ECS.Systems.Container;
@@ -13,14 +13,14 @@ namespace Asteroids.Scripts.Core.Game
 		private SystemsContainer _gameplaySystems;
 		private readonly InputContext _inputContext;
 		private readonly GameplayContext _gameplayContext;
-		private readonly ISystemsFactory _systemsFactory;
+		private readonly ISystemFactory _systemFactory;
 
 		public EcsStartup(InputContext inputContext, GameplayContext gameplayContext,
-						  ISystemsFactory systemsFactory)
+						  ISystemFactory systemFactory)
 		{
 			_inputContext = inputContext;
 			_gameplayContext = gameplayContext;
-			_systemsFactory = systemsFactory;
+			_systemFactory = systemFactory;
 		}
 
 		public void Initialize()
@@ -63,7 +63,7 @@ namespace Asteroids.Scripts.Core.Game
 #if UNITY_EDITOR
 			_inputSystems.Add(new UnityDebugFeature(_inputContext));
 #endif
-			_inputSystems.Add(new InputFeatures(_systemsFactory));
+			_inputSystems.Add(new InputFeatures(_systemFactory));
 		}
 
 		private void InitializeGameplaySystems()
@@ -72,7 +72,7 @@ namespace Asteroids.Scripts.Core.Game
 #if UNITY_EDITOR
 			_gameplaySystems.Add(new UnityDebugFeature(_gameplayContext));
 #endif
-			_gameplaySystems.Add(new GameplayFeatures(_systemsFactory));
+			_gameplaySystems.Add(new GameplayFeatures(_systemFactory));
 		}
 	}
 }

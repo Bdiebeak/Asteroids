@@ -1,12 +1,12 @@
 ﻿using Asteroids.Scripts.DI.Container;
 
-namespace Asteroids.Scripts.Core.Game.Factories.Systems
+namespace Asteroids.Scripts.Core.Game.Factories
 {
-	public class SystemsFactory : ISystemsFactory
+	public class SystemFactory : ISystemFactory
 	{
 		private readonly IContainer _container;
 
-		public SystemsFactory(IContainer container)
+		public SystemFactory(IContainer container)
 		{
 			_container = container;
 		}

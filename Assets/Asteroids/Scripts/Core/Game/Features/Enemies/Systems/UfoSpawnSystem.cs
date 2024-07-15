@@ -1,5 +1,5 @@
 ﻿using Asteroids.Scripts.Core.Game.Contexts;
-using Asteroids.Scripts.Core.Game.Factories.Entities;
+using Asteroids.Scripts.Core.Game.Factories.EntityBuilders;
 using Asteroids.Scripts.Core.Game.Features.Enemies.Components;
 using Asteroids.Scripts.Core.Game.Features.Enemies.Requests;
 using Asteroids.Scripts.Core.Utilities.Extensions;
@@ -17,18 +17,15 @@ namespace Asteroids.Scripts.Core.Game.Features.Enemies.Systems
 	public class UfoSpawnSystem : IStartSystem, IUpdateSystem
 	{
 		private readonly GameplayContext _gameplayContext;
-		private readonly IEntityFactory _entityFactory;
 		private readonly ITimeService _timeService;
 		private readonly ICameraService _cameraService;
 		private readonly IConfigService _configService;
 		private readonly Mask _spawnTimerMask;
 
 		public UfoSpawnSystem(GameplayContext gameplayContext,
-							  IEntityFactory entityFactory, ITimeService timeService,
-							  ICameraService cameraService, IConfigService configService)
+							  ITimeService timeService, ICameraService cameraService, IConfigService configService)
 		{
 			_gameplayContext = gameplayContext;
-			_entityFactory = entityFactory;
 			_timeService = timeService;
 			_cameraService = cameraService;
 			_configService = configService;
@@ -37,7 +34,9 @@ namespace Asteroids.Scripts.Core.Game.Features.Enemies.Systems
 
 		public void Start()
 		{
-			_entityFactory.CreateUfoSpawner(RandomNextSpawnTime());
+			new UfoSpawnBuilder()
+				.With(new UfoSpawnTimerComponent{ value = RandomNextSpawnTime() })
+				.Build(_gameplayContext);
 		}
 
 		public void Update()

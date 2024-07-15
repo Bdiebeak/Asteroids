@@ -1,4 +1,4 @@
-﻿using Asteroids.Scripts.Core.Game.Factories.Systems;
+﻿using Asteroids.Scripts.Core.Game.Factories;
 using Asteroids.Scripts.Core.Game.Features.WorldBounds.Systems;
 using Asteroids.Scripts.ECS.Features;
 using Asteroids.Scripts.ECS.Systems.Container;
@@ -7,18 +7,18 @@ namespace Asteroids.Scripts.Core.Game.Features.WorldBounds
 {
 	public class WorldBoundsFeature : Feature
 	{
-		private readonly ISystemsFactory _systemsFactory;
+		private readonly ISystemFactory _systemFactory;
 
-		public WorldBoundsFeature(ISystemsFactory systemsFactory)
+		public WorldBoundsFeature(ISystemFactory systemFactory)
 		{
-			_systemsFactory = systemsFactory;
+			_systemFactory = systemFactory;
 		}
 
 		public override void AddTo(SystemsContainer systems)
 		{
-			systems.Add(_systemsFactory.CreateSystem<MarkOutOfBoundsEntitiesSystem>());
-			systems.Add(_systemsFactory.CreateSystem<UnmarkOutOfBoundsEntitiesSystem>());
-			systems.Add(_systemsFactory.CreateSystem<KeepInBoundsSystem>());
+			systems.Add(_systemFactory.CreateSystem<MarkOutOfBoundsEntitiesSystem>());
+			systems.Add(_systemFactory.CreateSystem<UnmarkOutOfBoundsEntitiesSystem>());
+			systems.Add(_systemFactory.CreateSystem<KeepInBoundsSystem>());
 		}
 	}
 }

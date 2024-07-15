@@ -1,4 +1,4 @@
-﻿using Asteroids.Scripts.Core.Game.Factories.Systems;
+﻿using Asteroids.Scripts.Core.Game.Factories;
 using Asteroids.Scripts.Core.Game.Features.Movement.Systems;
 using Asteroids.Scripts.ECS.Features;
 using Asteroids.Scripts.ECS.Systems.Container;
@@ -7,25 +7,25 @@ namespace Asteroids.Scripts.Core.Game.Features.Movement
 {
 	public class MovementFeature : Feature
 	{
-		private readonly ISystemsFactory _systemsFactory;
+		private readonly ISystemFactory _systemFactory;
 
-		public MovementFeature(ISystemsFactory systemsFactory)
+		public MovementFeature(ISystemFactory systemFactory)
 		{
-			_systemsFactory = systemsFactory;
+			_systemFactory = systemFactory;
 		}
 
 		public override void AddTo(SystemsContainer systems)
 		{
-			systems.Add(_systemsFactory.CreateSystem<ApplyMoveInputSystem>());
-			systems.Add(_systemsFactory.CreateSystem<ApplyRotationInputSystem>());
-			systems.Add(_systemsFactory.CreateSystem<ChaseTargetSystem>());
-			systems.Add(_systemsFactory.CreateSystem<CopyPositionSystem>());
-			systems.Add(_systemsFactory.CreateSystem<CopyRotationSystem>());
-			systems.Add(_systemsFactory.CreateSystem<CalculateMoveVelocitySystem>());
-			systems.Add(_systemsFactory.CreateSystem<CalculateRotationVelocitySystem>());
-			systems.Add(_systemsFactory.CreateSystem<MoveSystem>());
-			systems.Add(_systemsFactory.CreateSystem<RotateSystem>());
-			systems.Add(_systemsFactory.CreateSystem<HandleTeleportRequestSystem>());
+			systems.Add(_systemFactory.CreateSystem<ApplyMoveInputSystem>());
+			systems.Add(_systemFactory.CreateSystem<ApplyRotationInputSystem>());
+			systems.Add(_systemFactory.CreateSystem<ChaseTargetSystem>());
+			systems.Add(_systemFactory.CreateSystem<CopyPositionSystem>());
+			systems.Add(_systemFactory.CreateSystem<CopyRotationSystem>());
+			systems.Add(_systemFactory.CreateSystem<CalculateMoveVelocitySystem>());
+			systems.Add(_systemFactory.CreateSystem<CalculateRotationVelocitySystem>());
+			systems.Add(_systemFactory.CreateSystem<MoveSystem>());
+			systems.Add(_systemFactory.CreateSystem<RotateSystem>());
+			systems.Add(_systemFactory.CreateSystem<HandleTeleportRequestSystem>());
 		}
 	}
 }

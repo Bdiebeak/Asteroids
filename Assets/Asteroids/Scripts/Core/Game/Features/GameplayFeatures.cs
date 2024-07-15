@@ -1,4 +1,4 @@
-﻿using Asteroids.Scripts.Core.Game.Factories.Systems;
+﻿using Asteroids.Scripts.Core.Game.Factories;
 using Asteroids.Scripts.Core.Game.Features.Collision;
 using Asteroids.Scripts.Core.Game.Features.Destroy;
 using Asteroids.Scripts.Core.Game.Features.Enemies;
@@ -16,25 +16,25 @@ namespace Asteroids.Scripts.Core.Game.Features
 {
 	public class GameplayFeatures : Feature
 	{
-		private readonly ISystemsFactory _systemsFactory;
+		private readonly ISystemFactory _systemFactory;
 
-		public GameplayFeatures(ISystemsFactory systemsFactory)
+		public GameplayFeatures(ISystemFactory systemFactory)
 		{
-			_systemsFactory = systemsFactory;
+			_systemFactory = systemFactory;
 		}
 
 		public override void AddTo(SystemsContainer systems)
 		{
-			systems.Add(new PlayerFeature(_systemsFactory));
-			systems.Add(new EnemiesFeature(_systemsFactory));
-			systems.Add(new WorldBoundsFeature(_systemsFactory));
-			systems.Add(new MovementFeature(_systemsFactory));
-			systems.Add(new WeaponFeatures(_systemsFactory));
-			systems.Add(new ScoreFeature(_systemsFactory));
-			systems.Add(new OwnerFeature(_systemsFactory));
-			systems.Add(new UIFeature(_systemsFactory));
-			systems.Add(new CollisionFeature(_systemsFactory));
-			systems.Add(new DestroyFeature(_systemsFactory)); // Have to be last in features order.
+			systems.Add(new PlayerFeature(_systemFactory));
+			systems.Add(new EnemiesFeature(_systemFactory));
+			systems.Add(new WorldBoundsFeature(_systemFactory));
+			systems.Add(new MovementFeature(_systemFactory));
+			systems.Add(new WeaponFeatures(_systemFactory));
+			systems.Add(new ScoreFeature(_systemFactory));
+			systems.Add(new OwnerFeature(_systemFactory));
+			systems.Add(new UIFeature(_systemFactory));
+			systems.Add(new CollisionFeature(_systemFactory));
+			systems.Add(new DestroyFeature(_systemFactory)); // Have to be last in features order.
 		}
 	}
 }

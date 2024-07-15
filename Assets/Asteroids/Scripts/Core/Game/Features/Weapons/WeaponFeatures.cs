@@ -1,4 +1,4 @@
-﻿using Asteroids.Scripts.Core.Game.Factories.Systems;
+﻿using Asteroids.Scripts.Core.Game.Factories;
 using Asteroids.Scripts.Core.Game.Features.Weapons.Systems;
 using Asteroids.Scripts.ECS.Features;
 using Asteroids.Scripts.ECS.Systems.Container;
@@ -7,29 +7,29 @@ namespace Asteroids.Scripts.Core.Game.Features.Weapons
 {
 	public class WeaponFeatures : Feature
 	{
-		private readonly ISystemsFactory _systemsFactory;
+		private readonly ISystemFactory _systemFactory;
 
-		public WeaponFeatures(ISystemsFactory systemsFactory)
+		public WeaponFeatures(ISystemFactory systemFactory)
 		{
-			_systemsFactory = systemsFactory;
+			_systemFactory = systemFactory;
 		}
 
 		public override void AddTo(SystemsContainer systems)
 		{
-			systems.Add(_systemsFactory.CreateSystem<ApplyBulletAttackInputSystem>());
-			systems.Add(_systemsFactory.CreateSystem<ApplyLaserAttackInputSystem>());
-			systems.Add(_systemsFactory.CreateSystem<HandleShootRequestSystem>());
-			systems.Add(_systemsFactory.CreateSystem<AddAttackDelaySystem>());
-			systems.Add(_systemsFactory.CreateSystem<DecreaseChargesSystem>());
-			systems.Add(_systemsFactory.CreateSystem<StartWeaponChargingSystem>());
-			systems.Add(_systemsFactory.CreateSystem<ShootBulletSystem>());
-			systems.Add(_systemsFactory.CreateSystem<ShootLaserSystem>());
-			systems.Add(_systemsFactory.CreateSystem<DestroyOutOfBoundsBulletSystem>());
-			systems.Add(_systemsFactory.CreateSystem<BulletCollisonSystem>());
-			systems.Add(_systemsFactory.CreateSystem<LaserCollisionSystem>());
-			systems.Add(_systemsFactory.CreateSystem<TickWeaponAttackDelaySystem>());
-			systems.Add(_systemsFactory.CreateSystem<TickWeaponChargeSystem>());
-			systems.Add(_systemsFactory.CreateSystem<CleanUpShotWeaponSystem>());
+			systems.Add(_systemFactory.CreateSystem<ApplyBulletAttackInputSystem>());
+			systems.Add(_systemFactory.CreateSystem<ApplyLaserAttackInputSystem>());
+			systems.Add(_systemFactory.CreateSystem<HandleShootRequestSystem>());
+			systems.Add(_systemFactory.CreateSystem<AddAttackDelaySystem>());
+			systems.Add(_systemFactory.CreateSystem<DecreaseChargesSystem>());
+			systems.Add(_systemFactory.CreateSystem<StartWeaponChargingSystem>());
+			systems.Add(_systemFactory.CreateSystem<ShootBulletSystem>());
+			systems.Add(_systemFactory.CreateSystem<ShootLaserSystem>());
+			systems.Add(_systemFactory.CreateSystem<DestroyOutOfBoundsBulletSystem>());
+			systems.Add(_systemFactory.CreateSystem<BulletCollisonSystem>());
+			systems.Add(_systemFactory.CreateSystem<LaserCollisionSystem>());
+			systems.Add(_systemFactory.CreateSystem<TickWeaponAttackDelaySystem>());
+			systems.Add(_systemFactory.CreateSystem<TickWeaponChargeSystem>());
+			systems.Add(_systemFactory.CreateSystem<CleanUpShotWeaponSystem>());
 		}
 	}
 }

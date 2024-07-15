@@ -1,4 +1,4 @@
-﻿using Asteroids.Scripts.Core.Game.Factories.Systems;
+﻿using Asteroids.Scripts.Core.Game.Factories;
 using Asteroids.Scripts.Core.Game.Features.Score.Systems;
 using Asteroids.Scripts.ECS.Features;
 using Asteroids.Scripts.ECS.Systems.Container;
@@ -7,17 +7,17 @@ namespace Asteroids.Scripts.Core.Game.Features.Score
 {
 	public class ScoreFeature : Feature
 	{
-		private readonly ISystemsFactory _systemsFactory;
+		private readonly ISystemFactory _systemFactory;
 
-		public ScoreFeature(ISystemsFactory systemsFactory)
+		public ScoreFeature(ISystemFactory systemFactory)
 		{
-			_systemsFactory = systemsFactory;
+			_systemFactory = systemFactory;
 		}
 
 		public override void AddTo(SystemsContainer systems)
 		{
-			systems.Add(_systemsFactory.CreateSystem<AddScoreOnEnemyDeathSystem>());
-			systems.Add(_systemsFactory.CreateSystem<HandleAddScoreRequestSystem>());
+			systems.Add(_systemFactory.CreateSystem<AddScoreOnEnemyDeathSystem>());
+			systems.Add(_systemFactory.CreateSystem<HandleAddScoreRequestSystem>());
 		}
 	}
 }
