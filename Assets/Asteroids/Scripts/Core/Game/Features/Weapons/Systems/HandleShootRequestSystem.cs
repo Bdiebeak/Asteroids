@@ -23,7 +23,6 @@ namespace Asteroids.Scripts.Core.Game.Features.Weapons.Systems
 			foreach (Entity entity in entities)
 			{
 				ShootRequest shootRequest = entity.Get<ShootRequest>();
-
 				if (_gameplayContext.TryGetEntity(shootRequest.weaponEntityId, out Entity weapon) == false)
 				{
 					Debug.LogError("Can't get weapon.");

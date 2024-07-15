@@ -38,7 +38,6 @@ namespace Asteroids.Scripts.Core.Game.Features.Weapons.Systems
 
 				PositionComponent position = shooter.Get<PositionComponent>();
 				RotationComponent rotation = shooter.Get<RotationComponent>();
-
 				_gameFactory.CreateLaser(position.value, rotation.value, shooter.Id);
 			}
 		}

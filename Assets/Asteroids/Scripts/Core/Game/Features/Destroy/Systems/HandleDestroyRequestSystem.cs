@@ -23,7 +23,6 @@ namespace Asteroids.Scripts.Core.Game.Features.Destroy.Systems
 			foreach (Entity entity in entities)
 			{
 				DestroyRequest destroyRequest = entity.Get<DestroyRequest>();
-
 				if (_gameplayContext.TryGetEntity(destroyRequest.targetEntityId, out Entity target) == false)
 				{
 					Debug.LogError("Can't get entity to destroy.");
