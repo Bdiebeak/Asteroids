@@ -4,6 +4,7 @@ using Asteroids.Scripts.Core.Game.Factories.Entities;
 using Asteroids.Scripts.Core.Game.Factories.Game;
 using Asteroids.Scripts.Core.Game.Factories.Systems;
 using Asteroids.Scripts.Core.Game.Factories.Views;
+using Asteroids.Scripts.Core.Infrastructure.StateMachine;
 using Asteroids.Scripts.DI.Builder;
 
 namespace Asteroids.Scripts.Core.Infrastructure.Installers
@@ -12,7 +13,9 @@ namespace Asteroids.Scripts.Core.Infrastructure.Installers
 	{
 		public void InstallTo(IContainerBuilder containerBuilder)
 		{
-			// TODO: don't like 3 different factories
+			containerBuilder.Register<IGameStateMachine, GameStateMachine>();
+			containerBuilder.Register<IGameStatesFactory, GameStatesFactory>();
+			// TODO: don't like 3 different factories, rework and refactor it.
 			containerBuilder.Register<IEntityFactory, EntityFactory>();
 			containerBuilder.Register<IViewFactory, ViewFactory>();
 			containerBuilder.Register<IGameFactory, GameFactory>();
