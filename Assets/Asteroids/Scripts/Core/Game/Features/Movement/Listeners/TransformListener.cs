@@ -9,12 +9,12 @@ namespace Asteroids.Scripts.Core.Game.Features.Movement.Listeners
 	{
 		private Entity _entity;
 
-		public override void Construct(Entity entity)
+		public override void StartListen(Entity entity)
 		{
 			_entity = entity;
 		}
 
-		private void Update()
+		private void LateUpdate()
 		{
 			if (_entity.Has<PositionComponent>())
 			{

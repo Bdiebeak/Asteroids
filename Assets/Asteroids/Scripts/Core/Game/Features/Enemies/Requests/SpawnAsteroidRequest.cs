@@ -1,9 +1,10 @@
 ﻿using Asteroids.Scripts.ECS.Requests;
+using UnityEngine;
 
 namespace Asteroids.Scripts.Core.Game.Features.Enemies.Requests
 {
-	public class SpawnAsteroidsRequest : IRequest
+	public class SpawnAsteroidRequest : IRequest
 	{
-		public int count;
+		public Vector2 position;
 	}
 }

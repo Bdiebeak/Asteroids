@@ -5,7 +5,6 @@ namespace Asteroids.Scripts.Core.Game.Features.Weapons.Requests
 {
 	public class ShootRequest : IRequest
 	{
-		public Entity shooter;
 		public Entity weapon;
 	}
 }

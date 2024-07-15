@@ -22,8 +22,8 @@ namespace Asteroids.Scripts.Core.Game.Features.Weapons
 			systems.Add(_systemsFactory.CreateSystem<AddAttackDelaySystem>());
 			systems.Add(_systemsFactory.CreateSystem<DecreaseChargesSystem>());
 			systems.Add(_systemsFactory.CreateSystem<StartWeaponChargingSystem>());
-			systems.Add(_systemsFactory.CreateSystem<BulletShootSystem>());
-			systems.Add(_systemsFactory.CreateSystem<LaserShootSystem>());
+			systems.Add(_systemsFactory.CreateSystem<ShootBulletSystem>());
+			systems.Add(_systemsFactory.CreateSystem<ShootLaserSystem>());
 			systems.Add(_systemsFactory.CreateSystem<DestroyOutOfBoundsBulletSystem>());
 			systems.Add(_systemsFactory.CreateSystem<BulletCollisonSystem>());
 			systems.Add(_systemsFactory.CreateSystem<LaserCollisionSystem>());

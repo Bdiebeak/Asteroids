@@ -25,10 +25,10 @@ namespace Asteroids.Scripts.Core.Game.Features.Weapons.Systems
 			var entities = _gameplayContext.GetEntities(_attackDelayMask);
 			foreach (Entity entity in entities)
 			{
-				AttackDelayTimerComponent attackDelay = entity.Get<AttackDelayTimerComponent>();
-				if (attackDelay.value > 0)
+				AttackDelayTimerComponent attackDelayTimer = entity.Get<AttackDelayTimerComponent>();
+				if (attackDelayTimer.value > 0)
 				{
-					attackDelay.value -= _timeService.DeltaTime;
+					attackDelayTimer.value -= _timeService.DeltaTime;
 					continue;
 				}
 

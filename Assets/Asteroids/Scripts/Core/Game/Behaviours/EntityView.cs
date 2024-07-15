@@ -16,7 +16,7 @@ namespace Asteroids.Scripts.Core.Game.Behaviours
 			LinkedEntity = entity;
 			foreach (EcsListener listener in listeners)
 			{
-				listener.Construct(entity);
+				listener.StartListen(entity);
 			}
 		}
 	}

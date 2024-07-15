@@ -34,7 +34,7 @@ namespace Asteroids.Scripts.Core.Game.Factories.Views
 			{
 				if (_pools.TryGetValue(prefabKey, out IPool pool) == false)
 				{
-					pool = new SimplePool(() => CreateInstance(prefab).GetComponent<PoolableObject>());
+					pool = new SimplePool(() => InstantiateView(prefab).GetComponent<PoolableObject>());
 					_pools[prefabKey] = pool;
 				}
 
@@ -46,17 +46,17 @@ namespace Asteroids.Scripts.Core.Game.Factories.Views
 				return poolable.gameObject;
 			}
 
-			return CreateInstance(prefab, position, rotation);
+			return InstantiateView(prefab, position, rotation);
 		}
 
-		private GameObject CreateInstance(GameObject prefab)
+		private GameObject InstantiateView(GameObject prefab)
 		{
 			GameObject instance = Object.Instantiate(prefab);
 			_container.InjectGameObject(instance);
 			return instance;
 		}
 
-		private GameObject CreateInstance(GameObject prefab, Vector3 position, Quaternion rotation)
+		private GameObject InstantiateView(GameObject prefab, Vector3 position, Quaternion rotation)
 		{
 			GameObject instance = Object.Instantiate(prefab, position, rotation);
 			_container.InjectGameObject(instance);

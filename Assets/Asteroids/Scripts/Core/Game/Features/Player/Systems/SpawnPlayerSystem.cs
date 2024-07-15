@@ -22,7 +22,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Player.Systems
 			PlayerConfig playerConfig = _configService.PlayerConfig;
 			_gameplayContext.CreateRequest(new SpawnPlayerRequest
 			{
-				position = playerConfig.SpawnPoint
+				position = playerConfig.spawnPoint
 			});
 		}
 	}

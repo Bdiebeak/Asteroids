@@ -3,9 +3,8 @@ using UnityEngine;
 
 namespace Asteroids.Scripts.Core.Game.Features.Enemies.Requests
 {
-	public class SpawnAsteroidPiecesRequest : IRequest
+	public class SpawnAsteroidPieceRequest : IRequest
 	{
 		public Vector2 position;
-		public int count;
 	}
 }

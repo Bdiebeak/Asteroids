@@ -3,6 +3,7 @@ using Asteroids.Scripts.Core.Game.Features.Weapons.Components;
 using Asteroids.Scripts.ECS.Components;
 using Asteroids.Scripts.ECS.Entities;
 using Asteroids.Scripts.ECS.Systems.Interfaces;
+using UnityEngine;
 
 namespace Asteroids.Scripts.Core.Game.Features.Weapons.Systems
 {
@@ -25,6 +26,12 @@ namespace Asteroids.Scripts.Core.Game.Features.Weapons.Systems
 			foreach (Entity entity in entities)
 			{
 				AttackDelayComponent attackDelay = entity.Get<AttackDelayComponent>();
+
+				if (entity.Has<AttackDelayTimerComponent>())
+				{
+					Debug.LogError("The weapon shot without waiting for the end of delay between shots.");
+					continue;
+				}
 				entity.Add(new AttackDelayTimerComponent()).value = attackDelay.value;
 			}
 		}

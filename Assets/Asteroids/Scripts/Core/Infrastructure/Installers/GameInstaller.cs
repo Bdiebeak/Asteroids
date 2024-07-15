@@ -12,6 +12,7 @@ namespace Asteroids.Scripts.Core.Infrastructure.Installers
 	{
 		public void InstallTo(IContainerBuilder containerBuilder)
 		{
+			// TODO: don't like 3 different factories
 			containerBuilder.Register<IEntityFactory, EntityFactory>();
 			containerBuilder.Register<IViewFactory, ViewFactory>();
 			containerBuilder.Register<IGameFactory, GameFactory>();

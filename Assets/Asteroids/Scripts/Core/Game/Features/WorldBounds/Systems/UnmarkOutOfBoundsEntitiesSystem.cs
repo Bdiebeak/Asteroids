@@ -6,7 +6,6 @@ using Asteroids.Scripts.Core.Utilities.Services.GameCamera;
 using Asteroids.Scripts.ECS.Components;
 using Asteroids.Scripts.ECS.Entities;
 using Asteroids.Scripts.ECS.Systems.Interfaces;
-using UnityEngine;
 
 namespace Asteroids.Scripts.Core.Game.Features.WorldBounds.Systems
 {
@@ -29,9 +28,8 @@ namespace Asteroids.Scripts.Core.Game.Features.WorldBounds.Systems
 			var entities = _gameplayContext.GetEntities(_movableMask);
 			foreach (Entity entity in entities)
 			{
-				Bounds bounds = _cameraService.Bounds;
 				PositionComponent position = entity.Get<PositionComponent>();
-				if (bounds.IsInBounds(position.value) == false)
+				if (_cameraService.Bounds.IsInBounds(position.value) == false)
 				{
 					continue;
 				}

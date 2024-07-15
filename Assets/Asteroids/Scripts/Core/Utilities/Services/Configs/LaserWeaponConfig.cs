@@ -2,9 +2,9 @@
 {
 	public class LaserWeaponConfig
 	{
-		public float AttackDelay = 1.25f;
-		public float ActiveTime = 1f;
-		public float ChargingTime = 10;
-		public int MaxCharges = 2;
+		public float attackDelay = 1.25f;
+		public float activeTime = 1f;
+		public float chargingTime = 10;
+		public int maxCharges = 2;
 	}
 }

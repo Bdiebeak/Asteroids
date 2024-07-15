@@ -35,7 +35,6 @@ namespace Asteroids.Scripts.Core.Game.Features.Weapons.Systems
 					BulletWeaponReference weapon = playerEntity.Get<BulletWeaponReference>();
 					_gameplayContext.CreateRequest(new ShootRequest
 					{
-						   shooter = playerEntity,
 						   weapon = weapon.value
 					});
 				}

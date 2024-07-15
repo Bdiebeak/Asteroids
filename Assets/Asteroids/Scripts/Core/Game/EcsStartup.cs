@@ -60,19 +60,19 @@ namespace Asteroids.Scripts.Core.Game
 		private void InitializeInputSystems()
 		{
 			_inputSystems = new SystemsContainer();
+			_inputSystems.Add(new InputFeatures(_systemsFactory));
 #if UNITY_EDITOR
 			_inputSystems.Add(new UnityDebugFeature(_inputContext));
 #endif
-			_inputSystems.Add(new InputFeatures(_systemsFactory));
 		}
 
 		private void InitializeGameplaySystems()
 		{
 			_gameplaySystems = new SystemsContainer();
+			_gameplaySystems.Add(new GameplayFeatures(_systemsFactory));
 #if UNITY_EDITOR
 			_gameplaySystems.Add(new UnityDebugFeature(_gameplayContext));
 #endif
-			_gameplaySystems.Add(new GameplayFeatures(_systemsFactory));
 		}
 	}
 }

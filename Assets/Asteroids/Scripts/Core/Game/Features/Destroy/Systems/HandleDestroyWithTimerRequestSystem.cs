@@ -8,37 +8,33 @@ using UnityEngine;
 
 namespace Asteroids.Scripts.Core.Game.Features.Destroy.Systems
 {
-	public class HandleDestroyRequestSystem : IUpdateSystem
+	public class HandleDestroyWithTimerRequestSystem : IUpdateSystem
 	{
 		private readonly GameplayContext _gameplayContext;
 
-		public HandleDestroyRequestSystem(GameplayContext gameplayContext)
+		public HandleDestroyWithTimerRequestSystem(GameplayContext gameplayContext)
 		{
 			_gameplayContext = gameplayContext;
 		}
 
 		public void Update()
 		{
-			var entities = _gameplayContext.GetRequests<DestroyRequest>();
+			var entities = _gameplayContext.GetRequests<DestroyWithTimerRequest>();
 			foreach (Entity entity in entities)
 			{
-				DestroyRequest destroyRequest = entity.Get<DestroyRequest>();
+				DestroyWithTimerRequest request = entity.Get<DestroyWithTimerRequest>();
+				Entity target = request.target;
 
-				if (_gameplayContext.IsActive(destroyRequest.target) == false)
+				if (_gameplayContext.IsActive(target) == false)
 				{
 					Debug.LogError("Destroy target isn't active.");
 					continue;
 				}
 
-				if (destroyRequest.target.Has<ToDestroyComponent>())
-				{
-					continue;
-				}
-
-				destroyRequest.target.Add(new ToDestroyComponent());
+				target.Add(new DestroyTimerComponent()).value = request.timer;
 			}
 
-			_gameplayContext.DestroyRequests<DestroyRequest>();
+			_gameplayContext.DestroyRequests<DestroyWithTimerRequest>();
 		}
 	}
 }

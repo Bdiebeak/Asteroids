@@ -1,6 +1,5 @@
 ﻿using Asteroids.Scripts.Core.UI.Factory;
 using Asteroids.Scripts.Core.UI.Models;
-using Asteroids.Scripts.Core.Utilities.Services.Screens;
 using Asteroids.Scripts.DI.Builder;
 
 namespace Asteroids.Scripts.Core.Infrastructure.Installers
@@ -9,7 +8,6 @@ namespace Asteroids.Scripts.Core.Infrastructure.Installers
 	{
 		public void InstallTo(IContainerBuilder containerBuilder)
 		{
-			containerBuilder.Register<IScreenService, ScreenService>();
 			containerBuilder.Register<IUIFactory, UIFactory>();
 			containerBuilder.Register<StartScreenModel>();
 			containerBuilder.Register<GameScreenModel>();

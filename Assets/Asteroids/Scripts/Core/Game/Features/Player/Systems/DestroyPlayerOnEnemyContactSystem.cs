@@ -28,6 +28,11 @@ namespace Asteroids.Scripts.Core.Game.Features.Player.Systems
 				Entity senderEntity = collisionEvent.sender;
 				Entity collisionEntity = collisionEvent.collision;
 
+				// We may wonder why the sender is always the player and there's no reverse check.
+				// This is because the CollisionProvider behavior is attached to the Player prefab,
+				// making the Player the Sender.
+				// If the Sender were an Enemy, this logic would execute only when an event is triggered from Player.
+				// This logic persists as long as the CollisionProvider remains attached to the Player.
 				if (senderEntity.Has<PlayerComponent>() && collisionEntity.Has<EnemyComponent>())
 				{
 					_gameplayContext.CreateRequest(new DestroyRequest()).target = senderEntity;

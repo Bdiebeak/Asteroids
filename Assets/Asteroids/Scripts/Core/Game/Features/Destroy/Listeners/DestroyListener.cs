@@ -6,12 +6,18 @@ namespace Asteroids.Scripts.Core.Game.Features.Destroy.Listeners
 {
 	public class DestroyListener : EcsListener
 	{
+		private PoolableObject _poolable;
 		private Entity _entity;
 
-		public override void Construct(Entity entity)
+		public override void StartListen(Entity entity)
 		{
 			_entity = entity;
 			_entity.Destroyed += OnEntityDestroyed;
+		}
+
+		private void Awake()
+		{
+			_poolable = GetComponent<PoolableObject>();
 		}
 
 		private void OnDestroy()
@@ -22,9 +28,9 @@ namespace Asteroids.Scripts.Core.Game.Features.Destroy.Listeners
 		private void OnEntityDestroyed()
 		{
 			_entity.Destroyed -= OnEntityDestroyed;
-			if (TryGetComponent(out PoolableObject poolable))
+			if (_poolable)
 			{
-				poolable.Release();
+				_poolable.Release();
 			}
 			else
 			{

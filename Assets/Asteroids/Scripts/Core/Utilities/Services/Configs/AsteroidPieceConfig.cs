@@ -2,8 +2,8 @@
 {
 	public class AsteroidPieceConfig
 	{
-		public int SpawnCount = 2;
-		public float Speed = 3;
-		public int Score = 75;
+		public int spawnCount = 2;
+		public float speed = 3;
+		public int score = 75;
 	}
 }

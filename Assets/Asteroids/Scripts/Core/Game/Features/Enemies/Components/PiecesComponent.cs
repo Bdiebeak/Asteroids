@@ -2,5 +2,8 @@
 
 namespace Asteroids.Scripts.Core.Game.Features.Enemies.Components
 {
-	public class AsteroidComponent : IComponent { }
+	public class PiecesComponent : IComponent
+	{
+		public int value;
+	}
 }

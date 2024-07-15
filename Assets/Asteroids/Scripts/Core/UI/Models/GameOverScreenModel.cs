@@ -3,7 +3,7 @@ using Asteroids.Scripts.Core.Infrastructure.StateMachine.States;
 
 namespace Asteroids.Scripts.Core.UI.Models
 {
-	public class GameOverScreenModel
+	public class GameOverScreenModel : IScreenModel
 	{
 		public int score;
 
@@ -17,6 +17,11 @@ namespace Asteroids.Scripts.Core.UI.Models
 		public void RestartGame()
 		{
 			_gameStateMachine.Enter<RestartState>();
+		}
+
+		public void Reset()
+		{
+			score = 0;
 		}
 	}
 }

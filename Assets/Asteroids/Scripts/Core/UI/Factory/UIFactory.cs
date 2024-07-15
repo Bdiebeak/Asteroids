@@ -34,11 +34,11 @@ namespace Asteroids.Scripts.Core.UI.Factory
 		public TScreen CreateScreen<TScreen>() where TScreen : IScreen
 		{
 			Type screenType = typeof(TScreen);
-			Canvas canvas = GetOrCreateMainCanvas();
-			return Instantiate(_screenKeys[screenType], canvas.transform).GetComponent<TScreen>();
+			Transform canvasTransform = GetMainCanvas().transform;
+			return Instantiate(_screenKeys[screenType], canvasTransform).GetComponent<TScreen>();
 		}
 
-		private Canvas GetOrCreateMainCanvas()
+		private Canvas GetMainCanvas()
 		{
 			if (_canvas == null)
 			{
@@ -47,9 +47,9 @@ namespace Asteroids.Scripts.Core.UI.Factory
 			return _canvas;
 		}
 
-		private GameObject Instantiate(string assetKey, Transform parent = null)
+		private GameObject Instantiate(string screenKey, Transform parent = null)
 		{
-			GameObject prefab = _assetProvider.Load<GameObject>(assetKey);
+			GameObject prefab = _assetProvider.Load<GameObject>(screenKey);
 			GameObject instance = Object.Instantiate(prefab, parent);
 			_container.InjectGameObject(instance);
 			return instance;

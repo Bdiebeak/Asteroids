@@ -8,13 +8,12 @@ using UnityEngine;
 
 namespace Asteroids.Scripts.Core.Game.Features.Enemies.Systems
 {
-	public class HandleSpawnAsteroidPiecesRequestSystem : IUpdateSystem
+	public class HandleSpawnAsteroidRequestSystem : IUpdateSystem
 	{
 		private readonly GameplayContext _gameplayContext;
 		private readonly IGameFactory _gameFactory;
 
-		public HandleSpawnAsteroidPiecesRequestSystem(GameplayContext gameplayContext,
-													  IGameFactory gameFactory)
+		public HandleSpawnAsteroidRequestSystem(GameplayContext gameplayContext, IGameFactory gameFactory)
 		{
 			_gameplayContext = gameplayContext;
 			_gameFactory = gameFactory;
@@ -22,17 +21,14 @@ namespace Asteroids.Scripts.Core.Game.Features.Enemies.Systems
 
 		public void Update()
 		{
-			var entities = _gameplayContext.GetRequests<SpawnAsteroidPiecesRequest>();
+			var entities = _gameplayContext.GetRequests<SpawnAsteroidRequest>();
 			foreach (Entity entity in entities)
 			{
-				SpawnAsteroidPiecesRequest spawnRequest = entity.Get<SpawnAsteroidPiecesRequest>();
-				for (int i = 0; i < spawnRequest.count; i++)
-				{
-					_gameFactory.CreateAsteroidPiece(spawnRequest.position, Random.insideUnitCircle.normalized);
-				}
+				SpawnAsteroidRequest spawnRequest = entity.Get<SpawnAsteroidRequest>();
+				_gameFactory.CreateAsteroid(spawnRequest.position, Random.insideUnitCircle.normalized);
 			}
 
-			_gameplayContext.DestroyRequests<SpawnAsteroidPiecesRequest>();
+			_gameplayContext.DestroyRequests<SpawnAsteroidRequest>();
 		}
 	}
 }

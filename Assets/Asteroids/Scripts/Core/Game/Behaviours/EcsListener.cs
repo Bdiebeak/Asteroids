@@ -6,6 +6,6 @@ namespace Asteroids.Scripts.Core.Game.Behaviours
 	[RequireComponent(typeof(EntityView))]
 	public abstract class EcsListener : MonoBehaviour
 	{
-		public abstract void Construct(Entity entity);
+		public abstract void StartListen(Entity entity);
 	}
 }

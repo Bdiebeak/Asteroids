@@ -23,6 +23,7 @@ namespace Asteroids.Scripts.Core.UI.Screens
 		private LabelValueElement laserCooldownElement;
 
 		private GameScreenModel _screenModel;
+		private const string ValueFormat = "F2";
 
 		[Inject]
 		public void Construct(GameScreenModel screenModel)
@@ -46,11 +47,11 @@ namespace Asteroids.Scripts.Core.UI.Screens
 		private void UpdateHints()
 		{
 			positionElement.SetValue(_screenModel.position.ToString());
-			rotationElement.SetValue(_screenModel.rotation.ToString("F2"));
+			rotationElement.SetValue(_screenModel.rotation.ToString(ValueFormat));
 			velocityElement.SetValue(_screenModel.velocity.ToString());
-			velocityMagnitudeElement.SetValue(_screenModel.velocityMagnitude.ToString("F2"));
+			velocityMagnitudeElement.SetValue(_screenModel.velocityMagnitude.ToString(ValueFormat));
 			laserCountElement.SetValue($"{_screenModel.currentLaserCount} / {_screenModel.maxLaserCount}");
-			laserCooldownElement.SetValue(_screenModel.laserCooldown.ToString("F2"));
+			laserCooldownElement.SetValue(_screenModel.laserCooldown.ToString(ValueFormat));
 		}
 	}
 }

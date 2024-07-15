@@ -2,10 +2,10 @@
 {
 	public class UfoConfig
 	{
-		public int SpawnCount = 1;
-		public int MinSpawnTime = 30;
-		public int MaxSpawnTime = 60;
-		public float Speed = 1.5f;
-		public int Score = 100;
+		public int spawnCount = 1;
+		public int minSpawnTime = 30;
+		public int maxSpawnTime = 60;
+		public float speed = 1.5f;
+		public int score = 100;
 	}
 }

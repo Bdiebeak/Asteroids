@@ -2,7 +2,7 @@
 {
 	public class BulletWeaponConfig
 	{
-		public float AttackDelay = 0.25f;
-		public float Speed = 12.5f;
+		public float attackDelay = 0.25f;
+		public float speed = 12.5f;
 	}
 }

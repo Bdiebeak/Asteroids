@@ -25,23 +25,23 @@ namespace Asteroids.Scripts.Core.Game.Features.Weapons.Systems
 			{
 				ShootRequest shootRequest = entity.Get<ShootRequest>();
 
-				Entity shooter = shootRequest.shooter;
-				if (_gameplayContext.IsActive(shooter) == false)
+				Entity weapon = shootRequest.weapon;
+				if (weapon.Has<WeaponComponent>() == false)
 				{
-					Debug.LogError("Shooter entity isn't active.");
+					Debug.LogError("Entity in request isn't weapon. Can't shoot.");
 					continue;
 				}
 
-				Entity weapon = shootRequest.weapon;
 				if (_gameplayContext.IsActive(weapon) == false)
 				{
 					Debug.LogError("Weapon entity isn't active.");
 					continue;
 				}
 
+				Entity shooter = weapon.Get<OwnerReference>().value;
 				if (weapon.Get<OwnerReference>().value != shooter)
 				{
-					Debug.LogError("Can't shoot with unowned weapon.");
+					Debug.LogError("Shooter entity isn't active.");
 					continue;
 				}
 

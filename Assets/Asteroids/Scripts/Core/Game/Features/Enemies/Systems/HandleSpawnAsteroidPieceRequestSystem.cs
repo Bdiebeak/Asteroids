@@ -4,15 +4,16 @@ using Asteroids.Scripts.Core.Game.Features.Enemies.Requests;
 using Asteroids.Scripts.ECS.Entities;
 using Asteroids.Scripts.ECS.Requests;
 using Asteroids.Scripts.ECS.Systems.Interfaces;
+using UnityEngine;
 
 namespace Asteroids.Scripts.Core.Game.Features.Enemies.Systems
 {
-	public class HandleSpawnUfoRequestSystem : IUpdateSystem
+	public class HandleSpawnAsteroidPieceRequestSystem : IUpdateSystem
 	{
 		private readonly GameplayContext _gameplayContext;
 		private readonly IGameFactory _gameFactory;
 
-		public HandleSpawnUfoRequestSystem(GameplayContext gameplayContext, IGameFactory gameFactory)
+		public HandleSpawnAsteroidPieceRequestSystem(GameplayContext gameplayContext, IGameFactory gameFactory)
 		{
 			_gameplayContext = gameplayContext;
 			_gameFactory = gameFactory;
@@ -20,14 +21,14 @@ namespace Asteroids.Scripts.Core.Game.Features.Enemies.Systems
 
 		public void Update()
 		{
-			var entities = _gameplayContext.GetRequests<SpawnUfoRequest>();
+			var entities = _gameplayContext.GetRequests<SpawnAsteroidPieceRequest>();
 			foreach (Entity entity in entities)
 			{
-				SpawnUfoRequest request = entity.Get<SpawnUfoRequest>();
-				_gameFactory.CreateUfo(request.position);
+				SpawnAsteroidPieceRequest spawnRequest = entity.Get<SpawnAsteroidPieceRequest>();
+				_gameFactory.CreateAsteroidPiece(spawnRequest.position, Random.insideUnitCircle.normalized);
 			}
 
-			_gameplayContext.DestroyRequests<SpawnUfoRequest>();
+			_gameplayContext.DestroyRequests<SpawnAsteroidPieceRequest>();
 		}
 	}
 }

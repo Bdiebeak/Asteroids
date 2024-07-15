@@ -19,6 +19,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Enemies.Systems
 		{
 			_gameplayContext = gameplayContext;
 			_asteroidMask = new Mask().Include<AsteroidComponent>()
+									  .Include<PiecesComponent>()
 									  .Include<ToDestroyComponent>();
 		}
 
@@ -27,13 +28,16 @@ namespace Asteroids.Scripts.Core.Game.Features.Enemies.Systems
 			var entities = _gameplayContext.GetEntities(_asteroidMask);
 			foreach (Entity entity in entities)
 			{
-				AsteroidComponent asteroid = entity.Get<AsteroidComponent>();
 				PositionComponent position = entity.Get<PositionComponent>();
-				_gameplayContext.CreateRequest(new SpawnAsteroidPiecesRequest
+				PiecesComponent pieces = entity.Get<PiecesComponent>();
+
+				for (int i = 0; i < pieces.value; i++)
 				{
-					position = position.value,
-					count = asteroid.piecesCount
-				});
+					_gameplayContext.CreateRequest(new SpawnAsteroidPieceRequest
+					{
+						position = position.value
+					});
+				}
 			}
 		}
 	}

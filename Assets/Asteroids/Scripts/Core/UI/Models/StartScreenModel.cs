@@ -3,7 +3,7 @@ using Asteroids.Scripts.Core.Infrastructure.StateMachine.States;
 
 namespace Asteroids.Scripts.Core.UI.Models
 {
-	public class StartScreenModel
+	public class StartScreenModel : IScreenModel
 	{
 		private readonly IGameStateMachine _gameStateMachine;
 
@@ -16,5 +16,7 @@ namespace Asteroids.Scripts.Core.UI.Models
 		{
 			_gameStateMachine.Enter<GameLoopState>();
 		}
+
+		public void Reset() { }
 	}
 }

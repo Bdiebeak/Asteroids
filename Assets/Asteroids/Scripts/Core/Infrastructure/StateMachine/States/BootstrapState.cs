@@ -10,8 +10,7 @@ namespace Asteroids.Scripts.Core.Infrastructure.StateMachine.States
 		private readonly IGameFactory _gameFactory;
 		private readonly ICameraService _cameraService;
 
-		public BootstrapState(IGameStateMachine stateMachine, IGameFactory gameFactory,
-							  ICameraService cameraService)
+		public BootstrapState(IGameStateMachine stateMachine, IGameFactory gameFactory, ICameraService cameraService)
 		{
 			_stateMachine = stateMachine;
 			_gameFactory = gameFactory;

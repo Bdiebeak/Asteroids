@@ -19,8 +19,8 @@ namespace Asteroids.Scripts.Core.Game.Features.Enemies
 			systems.Add(_systemsFactory.CreateSystem<AsteroidsSpawnSystem>());
 			systems.Add(_systemsFactory.CreateSystem<AsteroidPiecesSpawnSystem>());
 			systems.Add(_systemsFactory.CreateSystem<UfoSpawnSystem>());
-			systems.Add(_systemsFactory.CreateSystem<HandleSpawnAsteroidsRequestSystem>());
-			systems.Add(_systemsFactory.CreateSystem<HandleSpawnAsteroidPiecesRequestSystem>());
+			systems.Add(_systemsFactory.CreateSystem<HandleSpawnAsteroidRequestSystem>());
+			systems.Add(_systemsFactory.CreateSystem<HandleSpawnAsteroidPieceRequestSystem>());
 			systems.Add(_systemsFactory.CreateSystem<HandleSpawnUfoRequestSystem>());
 		}
 	}

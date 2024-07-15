@@ -27,8 +27,6 @@ namespace Asteroids.Scripts.Core.Game.Features.Weapons.Systems
 			foreach (Entity entity in entities)
 			{
 				ChargesComponent charges = entity.Get<ChargesComponent>();
-
-				// Wait when Charge timer will be finished.
 				ChargeDelayTimerComponent chargeDelayTimer = entity.Get<ChargeDelayTimerComponent>();
 				if (chargeDelayTimer.value > 0)
 				{

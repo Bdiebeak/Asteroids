@@ -5,7 +5,7 @@ namespace Asteroids.Scripts.Core.Utilities.Pool
 {
 	public class SimplePool : IPool
 	{
-		private readonly Queue<PoolableObject> _pool = new();
+		private readonly Stack<PoolableObject> _pool = new();
 		private readonly HashSet<PoolableObject> _allObjects = new();
 		private readonly Func<PoolableObject> _creationFunc;
 
@@ -24,7 +24,7 @@ namespace Asteroids.Scripts.Core.Utilities.Pool
 			}
 			else
 			{
-				poolable = _pool.Dequeue();
+				poolable = _pool.Pop();
 			}
 
 			poolable.OnGet();
@@ -34,7 +34,7 @@ namespace Asteroids.Scripts.Core.Utilities.Pool
 		public void Release(PoolableObject poolable)
 		{
 			poolable.OnRelease();
-			_pool.Enqueue(poolable);
+			_pool.Push(poolable);
 		}
 
 		public void Clean()
