@@ -12,13 +12,27 @@ namespace Asteroids.Scripts.ECS.Contexts
 		public event Action<Entity> EntityCreated;
 
 		private readonly HashSet<Entity> _entities = new();
+		private int _creationIndex;
 
 		public Entity CreateEntity()
 		{
-			Entity newEntity = new();
+			Entity newEntity = new(_creationIndex++);
 			_entities.Add(newEntity);
+
 			EntityCreated?.Invoke(newEntity);
 			return newEntity;
+		}
+
+		public bool TryGetEntity(int id, out Entity entity)
+		{
+			if (_entities.Any(x => x.Id == id))
+			{
+				entity = _entities.First(x => x.Id == id);
+				return true;
+			}
+
+			entity = default;
+			return false;
 		}
 
 		public void DestroyEntity(Entity entity)
@@ -29,11 +43,6 @@ namespace Asteroids.Scripts.ECS.Contexts
 			}
 			_entities.Remove(entity);
 			entity.Destroy();
-		}
-
-		public bool IsActive(Entity entity)
-		{
-			return entity != null && _entities.Contains(entity);
 		}
 
 		public IReadOnlyCollection<Entity> GetEntities()

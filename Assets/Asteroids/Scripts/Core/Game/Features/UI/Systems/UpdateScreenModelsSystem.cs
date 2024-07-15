@@ -58,7 +58,13 @@ namespace Asteroids.Scripts.Core.Game.Features.UI.Systems
 
 		private void UpdateWeaponsData(Entity player)
 		{
-			Entity laserWeapon = player.Get<LaserWeaponReference>().value;
+			LaserWeaponReference laserWeaponReference = player.Get<LaserWeaponReference>();
+			if (_gameplayContext.TryGetEntity(laserWeaponReference.entityId, out Entity laserWeapon) == false)
+			{
+				Debug.LogError("Can't get laser weapon.");
+				return;
+			}
+
 			ChargesComponent charges = laserWeapon.Get<ChargesComponent>();
 
 			_gameScreenModel.currentLaserCount = charges.value;

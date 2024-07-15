@@ -24,18 +24,18 @@ namespace Asteroids.Scripts.Core.Game.Features.Destroy.Systems
 			{
 				DestroyRequest destroyRequest = entity.Get<DestroyRequest>();
 
-				if (_gameplayContext.IsActive(destroyRequest.target) == false)
+				if (_gameplayContext.TryGetEntity(destroyRequest.targetEntityId, out Entity target) == false)
 				{
-					Debug.LogError("Destroy target isn't active.");
+					Debug.LogError("Can't get entity to destroy.");
 					continue;
 				}
 
-				if (destroyRequest.target.Has<ToDestroyComponent>())
+				if (target.Has<ToDestroyComponent>())
 				{
 					continue;
 				}
 
-				destroyRequest.target.Add(new ToDestroyComponent());
+				target.Add(new ToDestroyComponent());
 			}
 
 			_gameplayContext.DestroyRequests<DestroyRequest>();

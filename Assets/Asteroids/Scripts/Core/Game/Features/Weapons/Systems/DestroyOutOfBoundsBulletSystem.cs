@@ -28,7 +28,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Weapons.Systems
 			var entities = _gameplayContext.GetEntities(_bulletMask);
 			foreach (Entity entity in entities)
 			{
-				_gameplayContext.CreateRequest(new DestroyRequest()).target = entity;
+				_gameplayContext.CreateRequest(new DestroyRequest()).targetEntityId = entity.Id;
 			}
 		}
 	}

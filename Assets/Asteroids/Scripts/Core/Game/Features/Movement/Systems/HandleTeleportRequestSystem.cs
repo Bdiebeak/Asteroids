@@ -23,10 +23,9 @@ namespace Asteroids.Scripts.Core.Game.Features.Movement.Systems
 			foreach (Entity entity in entities)
 			{
 				TeleportRequest request = entity.Get<TeleportRequest>();
-				Entity target = request.target;
-				if (_gameplayContext.IsActive(target) == false)
+				if (_gameplayContext.TryGetEntity(request.targetEntityId, out Entity target) == false)
 				{
-					Debug.LogError("Teleportation target isn't active.");
+					Debug.LogError("Can't get entity to teleport.");
 					continue;
 				}
 

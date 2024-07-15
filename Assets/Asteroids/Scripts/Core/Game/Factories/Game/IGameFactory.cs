@@ -1,5 +1,4 @@
-﻿using Asteroids.Scripts.ECS.Entities;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Asteroids.Scripts.Core.Game.Factories.Game
 {
@@ -11,6 +10,6 @@ namespace Asteroids.Scripts.Core.Game.Factories.Game
 		void CreateAsteroidPiece(Vector2 position, Vector2 direction);
 		void CreateUfo(Vector2 position);
 		void CreateBullet(Vector2 position, Vector2 direction);
-		void CreateLaser(Vector2 position, float rotation, Entity shooter);
+		void CreateLaser(Vector2 position, float rotation, int shooterId);
 	}
 }

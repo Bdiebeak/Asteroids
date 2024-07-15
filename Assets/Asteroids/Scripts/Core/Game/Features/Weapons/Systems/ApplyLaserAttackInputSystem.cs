@@ -35,7 +35,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Weapons.Systems
 					LaserWeaponReference weapon = playerEntity.Get<LaserWeaponReference>();
 					_gameplayContext.CreateRequest(new ShootRequest
 					{
-						   weapon = weapon.value
+						   weaponEntityId = weapon.entityId
 					});
 				}
 			}

@@ -6,6 +6,7 @@ using Asteroids.Scripts.Core.Game.Features.Weapons.Components;
 using Asteroids.Scripts.ECS.Components;
 using Asteroids.Scripts.ECS.Entities;
 using Asteroids.Scripts.ECS.Systems.Interfaces;
+using UnityEngine;
 
 namespace Asteroids.Scripts.Core.Game.Features.Weapons.Systems
 {
@@ -28,11 +29,17 @@ namespace Asteroids.Scripts.Core.Game.Features.Weapons.Systems
 			var entities = _gameplayContext.GetEntities(_weaponMask);
 			foreach (Entity entity in entities)
 			{
-				Entity shooter = entity.Get<OwnerReference>().value;
+				OwnerReference ownerReference = entity.Get<OwnerReference>();
+				if (_gameplayContext.TryGetEntity(ownerReference.entityId, out Entity shooter) == false)
+				{
+					Debug.LogError("Can't get owner entity.");
+					continue;
+				}
+
 				PositionComponent position = shooter.Get<PositionComponent>();
 				RotationComponent rotation = shooter.Get<RotationComponent>();
 
-				_gameFactory.CreateLaser(position.value, rotation.value, shooter);
+				_gameFactory.CreateLaser(position.value, rotation.value, shooter.Id);
 			}
 		}
 	}

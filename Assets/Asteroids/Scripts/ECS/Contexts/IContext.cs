@@ -10,8 +10,8 @@ namespace Asteroids.Scripts.ECS.Contexts
 		event Action<Entity> EntityCreated;
 
 		Entity CreateEntity();
+		bool TryGetEntity(int id, out Entity entity);
 		void DestroyEntity(Entity entity);
-		bool IsActive(Entity entity);
 		IReadOnlyCollection<Entity> GetEntities();
 		IReadOnlyCollection<Entity> GetEntities(Mask mask);
 		void Destroy();

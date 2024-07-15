@@ -23,11 +23,10 @@ namespace Asteroids.Scripts.Core.Game.Features.Destroy.Systems
 			foreach (Entity entity in entities)
 			{
 				DestroyWithTimerRequest request = entity.Get<DestroyWithTimerRequest>();
-				Entity target = request.target;
 
-				if (_gameplayContext.IsActive(target) == false)
+				if (_gameplayContext.TryGetEntity(request.targetEntityId, out Entity target) == false)
 				{
-					Debug.LogError("Destroy target isn't active.");
+					Debug.LogError("Can't get entity to time destroy.");
 					continue;
 				}
 

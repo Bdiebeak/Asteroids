@@ -14,6 +14,13 @@ namespace Asteroids.Scripts.ECS.Entities
 
 		private readonly Dictionary<Type, IComponent> _components = new();
 
+		public int Id { get; private set; }
+
+		public Entity(int id)
+		{
+			Id = id;
+		}
+
 		public IReadOnlyCollection<IComponent> GetComponents()
 		{
 			return _components.Values;

@@ -1,5 +1,4 @@
 ﻿using Asteroids.Scripts.Core.Game.Contexts;
-using Asteroids.Scripts.Core.Game.Features.Owner.Components;
 using Asteroids.Scripts.Core.Game.Features.Weapons.Components;
 using Asteroids.Scripts.Core.Game.Features.Weapons.Requests;
 using Asteroids.Scripts.ECS.Entities;
@@ -25,23 +24,15 @@ namespace Asteroids.Scripts.Core.Game.Features.Weapons.Systems
 			{
 				ShootRequest shootRequest = entity.Get<ShootRequest>();
 
-				Entity weapon = shootRequest.weapon;
+				if (_gameplayContext.TryGetEntity(shootRequest.weaponEntityId, out Entity weapon) == false)
+				{
+					Debug.LogError("Can't get weapon.");
+					continue;
+				}
+
 				if (weapon.Has<WeaponComponent>() == false)
 				{
 					Debug.LogError("Entity in request isn't weapon. Can't shoot.");
-					continue;
-				}
-
-				if (_gameplayContext.IsActive(weapon) == false)
-				{
-					Debug.LogError("Weapon entity isn't active.");
-					continue;
-				}
-
-				Entity shooter = weapon.Get<OwnerReference>().value;
-				if (weapon.Get<OwnerReference>().value != shooter)
-				{
-					Debug.LogError("Shooter entity isn't active.");
 					continue;
 				}
 

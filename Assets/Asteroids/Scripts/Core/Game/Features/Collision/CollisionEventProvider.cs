@@ -1,15 +1,15 @@
 ﻿using System;
 using Asteroids.Scripts.Core.Game.Behaviours;
 using Asteroids.Scripts.Core.Game.Contexts;
-using Asteroids.Scripts.Core.Game.Features.Collision.Requests;
+using Asteroids.Scripts.Core.Game.Features.Collision.Events;
 using Asteroids.Scripts.DI.Attributes;
-using Asteroids.Scripts.ECS.Requests;
+using Asteroids.Scripts.ECS.Events;
 using UnityEngine;
 
 namespace Asteroids.Scripts.Core.Game.Features.Collision
 {
 	[RequireComponent(typeof(EntityView))]
-	public class CollisionProvider : MonoBehaviour
+	public class CollisionEventProvider : MonoBehaviour
 	{
 		private GameplayContext _gameplayContext;
 		private EntityView _entityView;
@@ -38,10 +38,10 @@ namespace Asteroids.Scripts.Core.Game.Features.Collision
 													"It's required to provide collision event in ECS world.");
 			}
 
-			_gameplayContext.CreateRequest(new CollisionEnterRequest
+			_gameplayContext.CreateEvent(new CollisionEnterEvent()
 			{
-				sender = _entityView.LinkedEntity,
-				collision = collisionEntityView.LinkedEntity
+				senderEntityId = _entityView.LinkedEntity.Id,
+				collisionEntityId = collisionEntityView.LinkedEntity.Id
 			});
 		}
 	}

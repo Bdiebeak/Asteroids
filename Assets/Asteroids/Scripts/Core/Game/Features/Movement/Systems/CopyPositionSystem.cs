@@ -23,10 +23,10 @@ namespace Asteroids.Scripts.Core.Game.Features.Movement.Systems
 			var entities = _gameplayContext.GetEntities(_copyTargetMask);
 			foreach (Entity entity in entities)
 			{
-				Entity target = entity.Get<CopyTargetPositionComponent>().target;
-				if (_gameplayContext.IsActive(target) == false)
+				CopyTargetPositionComponent copyTargetPosition = entity.Get<CopyTargetPositionComponent>();
+				if (_gameplayContext.TryGetEntity(copyTargetPosition.targetEntityId, out Entity target) == false)
 				{
-					Debug.LogError("Target entity isn't active. Can't follow it's position.");
+					Debug.LogError("Can't get entity to copy position.");
 					continue;
 				}
 

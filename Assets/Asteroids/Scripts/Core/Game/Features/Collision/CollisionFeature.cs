@@ -16,7 +16,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Collision
 
 		public override void AddTo(SystemsContainer systems)
 		{
-			systems.Add(_systemsFactory.CreateSystem<HandleCollisionEnterRequestSystem>());
+			systems.Add(_systemsFactory.CreateSystem<CleanUpCollisionEventsSystem>());
 		}
 	}
 }

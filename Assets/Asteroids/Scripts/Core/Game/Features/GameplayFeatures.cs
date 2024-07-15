@@ -30,10 +30,10 @@ namespace Asteroids.Scripts.Core.Game.Features
 			systems.Add(new WorldBoundsFeature(_systemsFactory));
 			systems.Add(new MovementFeature(_systemsFactory));
 			systems.Add(new WeaponFeatures(_systemsFactory));
-			systems.Add(new CollisionFeature(_systemsFactory));
 			systems.Add(new ScoreFeature(_systemsFactory));
 			systems.Add(new OwnerFeature(_systemsFactory));
 			systems.Add(new UIFeature(_systemsFactory));
+			systems.Add(new CollisionFeature(_systemsFactory));
 			systems.Add(new DestroyFeature(_systemsFactory)); // Have to be last in features order.
 		}
 	}

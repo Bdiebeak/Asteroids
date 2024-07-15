@@ -34,7 +34,7 @@ namespace Asteroids.Scripts.Core.Game.Features.Destroy.Systems
 					continue;
 				}
 
-				_gameplayContext.CreateRequest(new DestroyRequest()).target = entity;
+				_gameplayContext.CreateRequest(new DestroyRequest()).targetEntityId = entity.Id;
 			}
 		}
 	}

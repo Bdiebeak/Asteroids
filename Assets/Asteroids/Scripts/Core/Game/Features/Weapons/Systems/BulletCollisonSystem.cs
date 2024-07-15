@@ -1,4 +1,5 @@
 ﻿using Asteroids.Scripts.Core.Game.Contexts;
+using Asteroids.Scripts.Core.Game.Features.Collision;
 using Asteroids.Scripts.Core.Game.Features.Collision.Events;
 using Asteroids.Scripts.Core.Game.Features.Destroy.Requests;
 using Asteroids.Scripts.Core.Game.Features.Enemies.Components;
@@ -7,6 +8,7 @@ using Asteroids.Scripts.ECS.Entities;
 using Asteroids.Scripts.ECS.Events;
 using Asteroids.Scripts.ECS.Requests;
 using Asteroids.Scripts.ECS.Systems.Interfaces;
+using UnityEngine;
 
 namespace Asteroids.Scripts.Core.Game.Features.Weapons.Systems
 {
@@ -21,17 +23,20 @@ namespace Asteroids.Scripts.Core.Game.Features.Weapons.Systems
 
 		public void Update()
 		{
-			var entities = _gameplayContext.GetEvents<ValidCollisionEnterEvent>();
+			var entities = _gameplayContext.GetEvents<CollisionEnterEvent>();
 			foreach (Entity entity in entities)
 			{
-				ValidCollisionEnterEvent collisionEvent = entity.Get<ValidCollisionEnterEvent>();
-				Entity senderEntity = collisionEvent.sender;
-				Entity collisionEntity = collisionEvent.collision;
-
-				if (senderEntity.Has<BulletComponent>() && collisionEntity.Has<EnemyComponent>())
+				CollisionEnterEvent collisionEvent = entity.Get<CollisionEnterEvent>();
+				if (collisionEvent.TryGetEntities(_gameplayContext, out Entity sender, out Entity collision) == false)
 				{
-					_gameplayContext.CreateRequest(new DestroyRequest()).target = senderEntity;
-					_gameplayContext.CreateRequest(new DestroyRequest()).target = collisionEntity;
+					Debug.LogError("Can't get all required Collision entities.");
+					continue;
+				}
+
+				if (sender.Has<BulletComponent>() && collision.Has<EnemyComponent>())
+				{
+					_gameplayContext.CreateRequest(new DestroyRequest()).targetEntityId = sender.Id;
+					_gameplayContext.CreateRequest(new DestroyRequest()).targetEntityId = collision.Id;
 				}
 			}
 		}

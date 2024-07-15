@@ -11,6 +11,6 @@ namespace Asteroids.Scripts.Core.Game.Factories.Entities
 		Entity CreateUfo(Vector2 position);
 		Entity CreateUfoSpawner(float spawnTimer);
 		Entity CreateBullet(Vector2 position, Vector2 direction);
-		Entity CreateLaser(Vector2 position, float rotation, Entity shooter);
+		Entity CreateLaser(Vector2 position, float rotation, int shooterId);
 	}
 }

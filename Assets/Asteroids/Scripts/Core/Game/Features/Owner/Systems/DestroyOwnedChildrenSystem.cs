@@ -6,6 +6,7 @@ using Asteroids.Scripts.ECS.Components;
 using Asteroids.Scripts.ECS.Entities;
 using Asteroids.Scripts.ECS.Requests;
 using Asteroids.Scripts.ECS.Systems.Interfaces;
+using UnityEngine;
 
 namespace Asteroids.Scripts.Core.Game.Features.Owner.Systems
 {
@@ -26,12 +27,18 @@ namespace Asteroids.Scripts.Core.Game.Features.Owner.Systems
 			var entities = _gameplayContext.GetEntities(_ownerMask);
 			foreach (Entity entity in entities)
 			{
-				OwnerReference owner = entity.Get<OwnerReference>();
-				if (owner.value.Has<ToDestroyComponent>())
+				OwnerReference ownerReference = entity.Get<OwnerReference>();
+				if (_gameplayContext.TryGetEntity(ownerReference.entityId, out Entity owner) == false)
+				{
+					Debug.LogError("Teleportation target isn't active.");
+					continue;
+				}
+
+				if (owner.Has<ToDestroyComponent>())
 				{
 					_gameplayContext.CreateRequest(new DestroyRequest
 					{
-						target = entity
+						targetEntityId = entity.Id
 					});
 				}
 			}

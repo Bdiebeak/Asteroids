@@ -62,9 +62,9 @@ namespace Asteroids.Scripts.Core.Game.Factories.Game
 			view.Construct(entity);
 		}
 
-		public void CreateLaser(Vector2 position, float rotation, Entity shooter)
+		public void CreateLaser(Vector2 position, float rotation, int shooterId)
 		{
-			Entity entity = _entityFactory.CreateLaser(position, rotation, shooter);
+			Entity entity = _entityFactory.CreateLaser(position, rotation, shooterId);
 			EntityView view = _viewFactory.CreateView(GameAssetKeys.Laser, position, rotation);
 			view.Construct(entity);
 		}

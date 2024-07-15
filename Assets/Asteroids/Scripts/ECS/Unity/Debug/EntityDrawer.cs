@@ -55,7 +55,7 @@ namespace Asteroids.Scripts.ECS.Unity.Debug
 
 		private string GenerateName()
 		{
-			StringBuilder stringBuilder = new("Entity (");
+			StringBuilder stringBuilder = new($"Entity {_entity.Id} - (");
 			for (int i = 0; i < components.Count; i++)
 			{
 				stringBuilder.Append(components[i].componentReference.GetType().Name);

@@ -41,8 +41,8 @@ namespace Asteroids.Scripts.Core.Game.Factories.Entities
 			entity.Add(new RotationSpeedComponent()).value = playerConfig.rotationSpeed;
 			entity.Add(new RotationVelocityComponent());
 			entity.Add(new KeepInBoundsComponent());
-			entity.Add(new BulletWeaponReference()).value = CreateBulletWeapon(entity);
-			entity.Add(new LaserWeaponReference()).value = CreateLaserWeapon(entity);
+			entity.Add(new BulletWeaponReference()).entityId = CreateBulletWeapon(entity).Id;
+			entity.Add(new LaserWeaponReference()).entityId = CreateLaserWeapon(entity).Id;
 			entity.Add(new ScoreCounterComponent());
 			_player = entity;
 			return entity;
@@ -91,7 +91,7 @@ namespace Asteroids.Scripts.Core.Game.Factories.Entities
 			entity.Add(new MoveSpeedComponent()).value = ufoConfig.speed;
 			entity.Add(new MoveVelocityComponent());
 			entity.Add(new KeepInBoundsComponent());
-			entity.Add(new ChaseTargetComponent()).value = _player;
+			entity.Add(new ChaseTargetComponent()).targetEntityId = _player.Id;
 			entity.Add(new ScoreRewardComponent()).value = ufoConfig.score;
 			return entity;
 		}
@@ -116,15 +116,15 @@ namespace Asteroids.Scripts.Core.Game.Factories.Entities
 			return entity;
 		}
 
-		public Entity CreateLaser(Vector2 position, float rotation, Entity shooter)
+		public Entity CreateLaser(Vector2 position, float rotation, int shooterId)
 		{
 			LaserWeaponConfig laserConfig = _configService.LaserWeaponConfig;
 			Entity entity = _gameplayContext.CreateEntity();
 			entity.Add(new LaserComponent());
 			entity.Add(new PositionComponent()).value = position;
 			entity.Add(new RotationComponent()).value = rotation;
-			entity.Add(new CopyTargetPositionComponent()).target = shooter;
-			entity.Add(new CopyTargetRotationComponent()).target = shooter;
+			entity.Add(new CopyTargetPositionComponent()).targetEntityId = shooterId;
+			entity.Add(new CopyTargetRotationComponent()).targetEntityId = shooterId;
 			entity.Add(new DestroyTimerComponent()).value = laserConfig.activeTime;
 			return entity;
 		}
@@ -136,7 +136,7 @@ namespace Asteroids.Scripts.Core.Game.Factories.Entities
 			entity.Add(new WeaponComponent());
 			entity.Add(new BulletWeaponComponent());
 			entity.Add(new AttackDelayComponent()).value = bulletConfig.attackDelay;
-			entity.Add(new OwnerReference()).value = owner;
+			entity.Add(new OwnerReference()).entityId = owner.Id;
 			return entity;
 		}
 
@@ -153,7 +153,7 @@ namespace Asteroids.Scripts.Core.Game.Factories.Entities
 				value = laserConfig.maxCharges,
 				maxValue = laserConfig.maxCharges
 			});
-			entity.Add(new OwnerReference()).value = owner;
+			entity.Add(new OwnerReference()).entityId = owner.Id;
 			return entity;
 		}
 	}

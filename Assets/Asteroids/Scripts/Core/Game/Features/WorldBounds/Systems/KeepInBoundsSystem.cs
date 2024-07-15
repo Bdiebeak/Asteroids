@@ -35,7 +35,7 @@ namespace Asteroids.Scripts.Core.Game.Features.WorldBounds.Systems
 				Vector2 newPosition = _cameraService.Bounds.GetOppositeEdgePosition(position.value);
 				_gameplayContext.CreateRequest(new TeleportRequest
 				{
-					target = entity,
+					targetEntityId = entity.Id,
 					position = newPosition
 				});
 			}
