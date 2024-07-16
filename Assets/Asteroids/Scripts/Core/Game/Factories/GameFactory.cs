@@ -22,13 +22,6 @@ namespace Asteroids.Scripts.Core.Game.Factories
 			_assetProvider = assetProvider;
 		}
 
-		public Camera CreateMainCamera()
-		{
-			GameObject cameraPrefab = _assetProvider.Load<GameObject>(GameAssetKeys.MainCamera);
-			GameObject camera = Instantiate(cameraPrefab);
-			return camera.GetComponent<Camera>();
-		}
-
 		public void CreatePlayerView(Entity entity)
 		{
 			CreateView(GameAssetKeys.Player, entity);
@@ -71,17 +64,16 @@ namespace Asteroids.Scripts.Core.Game.Factories
 
 		private GameObject GetViewInstance(GameObject prefab, Vector2 position, Quaternion rotation)
 		{
-			string prefabKey = prefab.name;
-
 			if (prefab.TryGetComponent(out PoolableObject _) == false)
 			{
 				return Instantiate(prefab, position, rotation);
 			}
 
-			if (_pools.TryGetValue(prefabKey, out IPool pool) == false)
+			string poolKey = prefab.name;
+			if (_pools.TryGetValue(poolKey, out IPool pool) == false)
 			{
 				pool = new SimplePool(() => Instantiate(prefab).GetComponent<PoolableObject>());
-				_pools[prefabKey] = pool;
+				_pools[poolKey] = pool;
 			}
 
 			PoolableObject poolable = pool.Get();

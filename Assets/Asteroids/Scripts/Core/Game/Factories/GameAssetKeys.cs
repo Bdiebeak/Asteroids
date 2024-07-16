@@ -2,7 +2,6 @@
 {
 	public static class GameAssetKeys
 	{
-		public const string MainCamera = "Infrastructure/MainCamera";
 		public const string Player = "Gameplay/Player/PlayerShip";
 		public const string Bullet = "Gameplay/Weapons/Bullet";
 		public const string Laser = "Gameplay/Weapons/Laser";
